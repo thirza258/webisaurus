@@ -1,5 +1,5 @@
 // Webisaurus Service Worker — Offline Cache & Instant Load
-const CACHE_NAME = 'webisaurus-static-v3';
+const CACHE_NAME = 'webisaurus-static-v4';
 
 const STATIC_ASSETS = [
   './',

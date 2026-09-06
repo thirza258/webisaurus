@@ -276,6 +276,32 @@ Implement PWA installability, P1 (URL deep-linking & shareable state), P2 (cross
 - ✅ HTTP 200 OK verified across `manifest.json`, `icon.svg`, `icon-192.png`, `icon-512.png`, `command-palette.js`, `playground.js`, and `sw.js`.
 - ✅ Both Explorer and Comparator pages operational on `http://localhost:8000`.
 
+---
+
+## 📝 Session: 2026-09-06 — Fix: Concept Card Rendering Crash (Prism.js markup-templating)
+
+### 🎯 Objective
+Fix issue where the Single Language Explorer only rendered the first card ("Variables & Constants") and stopped before rendering "Data Types" and subsequent concepts for all languages.
+
+### 📂 Files Modified
+- [`src/js/vendor/prism.min.js`](file:///D:/Document/webisaurus/src/js/vendor/prism.min.js) — Added missing `markup-templating` component and added defensive checks to PHP `before-tokenize` / `after-tokenize` hooks (`e.languages["markup-templating"] && ...`).
+- [`src/js/app.js`](file:///D:/Document/webisaurus/src/js/app.js) — Wrapped `window.Prism.highlightElement(codeEl)` in `try...catch` so that syntax highlighting failures never halt concept card DOM generation.
+- [`src/js/compare.js`](file:///D:/Document/webisaurus/src/js/compare.js) — Wrapped `window.Prism.highlightElement(codeEl)` in `try...catch` for slot resilience.
+- [`src/sw.js`](file:///D:/Document/webisaurus/src/sw.js) — Bumped cache version to `webisaurus-static-v4`.
+- [`src/js/data-loader.js`](file:///D:/Document/webisaurus/src/js/data-loader.js) — Bumped localStorage prefix to `webisaurus_cache_v4_`.
+
+### 💡 Root Cause & Technical Fix
+- **Root Cause**: In `prism.min.js`, the bundled PHP language definition hooked into Prism's global `after-tokenize` event and executed `e.languages["markup-templating"].tokenizePlaceholders(a, "php")`. Because `markup-templating` was not included in the bundle, `e.languages["markup-templating"]` was undefined. On the second card tokenization, this threw an unhandled `TypeError: Cannot read properties of undefined (reading 'tokenizePlaceholders')`, abruptly terminating the concept rendering loop.
+- **Fix**:
+  1. Embedded official `markup-templating` definition into `prism.min.js` and added safety guards.
+  2. Wrapped `Prism.highlightElement()` inside a `try...catch` block in `app.js` and `compare.js` to guarantee UI rendering isolation.
+  3. Bumped Service Worker cache and `localStorage` prefix to `v4` to force client browsers to discard the broken Prism cache immediately.
+
+### 🧪 Verification & Status
+- ✅ Verified with real Chrome headless CDP browser testing: all 24 concept cards ("Variables & Constants", "Comments & Documentation", "Data Types", ..., "Try / Except & Error Handling") render 100% reliably across Rust, Zig, Go, C++, JavaScript, and Haskell.
+- ✅ Zero unhandled exceptions in browser console.
+
+
 
 
 

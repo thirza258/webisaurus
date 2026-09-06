@@ -214,7 +214,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                     conceptsGrid.appendChild(article);
 
                     if (window.Prism && snippet) {
-                        window.Prism.highlightElement(codeEl);
+                        try {
+                            window.Prism.highlightElement(codeEl);
+                        } catch (err) {
+                            console.warn('Prism highlighting fallback:', err);
+                        }
                     }
                 });
             });

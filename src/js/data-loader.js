@@ -4,7 +4,7 @@ const cache = {
     snippets: new Map()
 };
 
-const STORAGE_PREFIX = 'webisaurus_cache_v2_';
+const STORAGE_PREFIX = 'webisaurus_cache_v4_';
 
 function getStorage(key) {
     try {

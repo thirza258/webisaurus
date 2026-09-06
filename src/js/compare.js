@@ -254,7 +254,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             codeEl.textContent = snippet.code;
             notesEl.textContent = snippet.notes || '';
             if (window.Prism) {
-                window.Prism.highlightElement(codeEl);
+                try {
+                    window.Prism.highlightElement(codeEl);
+                } catch (err) {
+                    console.warn('Prism highlighting fallback:', err);
+                }
             }
         } else {
             codeEl.textContent = 'No snippet available.';
