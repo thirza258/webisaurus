@@ -1,0 +1,149 @@
+{
+  "language_id": "logtalk",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "Var = 10.",
+      "notes": "Same as Prolog, uppercase letters denote variables."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": ":- object(person).\n    :- public(name/1).\n:- end_object.",
+      "notes": "Adapted: Encapsulated objects and protocols act as types."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "Result is A + B.",
+      "notes": "Prolog's arithmetic and unification operators."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "( Score >= 90 -> Grade = 'A' ; Grade = 'B' )",
+      "notes": "If-then-else construct."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "list::map(Goal, List, Result).",
+      "notes": "Adapted: Object-oriented list iteration."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "loop(0).\nloop(N) :-\n    N > 0,\n    N2 is N - 1,\n    loop(N2).",
+      "notes": "Adapted: Recursion is used for loops."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": ":- public(add/3).\nadd(A, B, C) :- C is A + B.",
+      "notes": "Adapted: Methods/predicates in an object."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "List = [1, 2, 3].",
+      "notes": "Lists function as arrays."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "Map = [key-value].",
+      "notes": "Assoc lists or dictionary objects."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "catch(Object::Message, Error, Handler).",
+      "notes": "Standard Prolog catch mechanism for message sending."
+    },
+    "comments": {
+      "title": "Comments",
+      "concept_id": "comments",
+      "code": "-- Single-line comment in Logtalk\n/* Multi-line comment */",
+      "notes": "Logtalk uses -- for line comments and /* */ for blocks."
+    },
+    "numbers": {
+      "title": "Numbers & Decimal Data",
+      "concept_id": "numbers",
+      "code": "DECLARE @val INT = 42;\nDECLARE @price DECIMAL(10, 2) = 19.99;",
+      "notes": "Logtalk represents exact decimal precisions alongside standard integer types."
+    },
+    "booleans": {
+      "title": "Booleans & Predicates",
+      "concept_id": "booleans",
+      "code": "-- Three-valued logic (TRUE, FALSE, UNKNOWN)\nWHERE status = 'ACTIVE' AND deleted_at IS NULL",
+      "notes": "Logtalk evaluates predicates using declarative boolean conditions with NULL semantics."
+    },
+    "type_casting": {
+      "title": "Type Casting (CAST/CONVERT)",
+      "concept_id": "type_casting",
+      "code": "CAST('42' AS INT)\nCONVERT(VARCHAR(10), 100)",
+      "notes": "Logtalk casts types using CAST(expr AS target_type) expressions."
+    },
+    "strings": {
+      "title": "Strings & Text Literals",
+      "concept_id": "strings",
+      "code": "SELECT 'String literal' AS col, N'Unicode text' AS unicode_col;",
+      "notes": "Logtalk encloses character literals in single quotes with optional N prefix for Unicode."
+    },
+    "string_formatting": {
+      "title": "String Concatenation",
+      "concept_id": "string_formatting",
+      "code": "SELECT CONCAT('User: ', username, ' (', email, ')') FROM users;",
+      "notes": "Logtalk formats and joins textual columns using CONCAT or string concatenation operators."
+    },
+    "pattern_matching": {
+      "title": "Pattern Matching (LIKE & CASE)",
+      "concept_id": "pattern_matching",
+      "code": "SELECT CASE \n    WHEN score >= 90 THEN 'A'\n    WHEN score >= 80 THEN 'B'\n    ELSE 'C'\nEND AS grade\nWHERE email LIKE '%@example.com';",
+      "notes": "Logtalk performs conditional classification via CASE WHEN and pattern search with LIKE."
+    },
+    "range": {
+      "title": "Ranges (BETWEEN & LIMIT/OFFSET)",
+      "concept_id": "range",
+      "code": "SELECT * FROM orders \nWHERE order_date BETWEEN '2024-01-01' AND '2024-12-31'\nLIMIT 10 OFFSET 20;",
+      "notes": "Logtalk defines range intervals with BETWEEN and pagination ranges via LIMIT/OFFSET."
+    },
+    "iterators": {
+      "title": "Cursors & Window Functions",
+      "concept_id": "iterators",
+      "code": "-- Window row iteration\nSELECT id, ROW_NUMBER() OVER (ORDER BY created_at) AS row_num\nFROM logs;",
+      "notes": "Logtalk processes ordered sequences set-by-set using window functions or procedural cursors."
+    },
+    "oop_classes": {
+      "title": "Schemas & Tables (Entities)",
+      "concept_id": "oop_classes",
+      "code": "CREATE TABLE users (\n    id INT PRIMARY KEY,\n    username VARCHAR(50) NOT NULL,\n    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP\n);",
+      "notes": "Logtalk structures entities through relational tables, constraints, and views."
+    },
+    "lists": {
+      "title": "Tables & Arrays",
+      "concept_id": "lists",
+      "code": "-- Array or temporary result table\nSELECT ARRAY[1, 2, 3] AS num_list;",
+      "notes": "Logtalk supports array column types or relation rowsets representing lists."
+    },
+    "tuples": {
+      "title": "Rows & Composite Types",
+      "concept_id": "tuples",
+      "code": "-- Row tuple\nSELECT (1, 'Alice', 95) AS user_row;",
+      "notes": "Logtalk represents tuples as table rows or composite record types."
+    },
+    "sets": {
+      "title": "Set Queries (UNION, INTERSECT)",
+      "concept_id": "sets",
+      "code": "SELECT id FROM active_users\nUNION\nSELECT id FROM premium_users;",
+      "notes": "Logtalk combines dataset results using relational algebra (UNION, INTERSECT, EXCEPT)."
+    },
+    "modules_import": {
+      "title": "Schemas & Extensions",
+      "concept_id": "modules_import",
+      "code": "CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\";\nSET search_path TO my_schema, public;",
+      "notes": "Logtalk manages namespaces and modular capabilities through schemas and extensions."
+    }
+  }
+}

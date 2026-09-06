@@ -1,0 +1,149 @@
+{
+  "language_id": "zig",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "const std = @import(\"std\");\n\nconst pi: f64 = 3.14159; // Immutable\nvar count: i32 = 0;      // Mutable\ncount += 1;",
+      "notes": "Zig uses `const` for immutable values and `var` for mutable variables, encouraging safety by default."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "const a: i32 = -10;\nconst b: u64 = 9000;\nconst c: f32 = 2.5;\nconst d: bool = true;\nconst e: []const u8 = \"Hello\"; // String slice",
+      "notes": "Zig has explicit arbitrary bit-width integers (e.g., i7, u24) and no hidden control flow."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "const sum = 5 + 10;\nconst WrappingSum = 255 +% 1; // Wrapping addition\nconst bitwise = 0b1010 & 0b1100;\nconst equal = (sum == 15);",
+      "notes": "Zig provides standard operators plus special wrapping arithmetic operators like `+%` to handle overflow explicitly."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "const x = 10;\nif (x > 5) {\n    _ = x;\n} else {\n    _ = x;\n}\n\n// If as an expression\nconst y = if (x > 5) 1 else 0;",
+      "notes": "`if` statements can be used as expressions, functioning similarly to ternary operators in other languages."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "const items = [_]u8{ 1, 2, 3 };\nfor (items) |item, index| {\n    _ = item;\n    _ = index;\n}",
+      "notes": "The `for` loop operates on slices and arrays natively, allowing capture of elements and optional indices."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "var i: usize = 0;\nwhile (i < 5) : (i += 1) {\n    _ = i;\n}",
+      "notes": "Zig's `while` loops can include a continue expression (after the colon) ensuring it runs on every iteration."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "fn add(a: i32, b: i32) i32 {\n    return a + b;\n}\n\npub fn main() void {\n    _ = add(2, 3);\n}",
+      "notes": "Functions use explicit typing. The `pub` keyword makes them visible outside the module."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "const arr = [_]i32{ 1, 2, 3, 4, 5 };\nconst len = arr.len;\n\n// Slices (pointers with length)\nconst slice: []const i32 = arr[1..3];",
+      "notes": "Arrays have compile-time known lengths. Slices are commonly used to pass array segments safely."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "const std = @import(\"std\");\nvar gpa = std.heap.GeneralPurposeAllocator(.{}){};\nvar map = std.StringHashMap(i32).init(gpa.allocator());\ndefer map.deinit();\n\ntry map.put(\"apple\", 1);",
+      "notes": "Maps aren't built into the syntax but are provided by the standard library (`std.AutoHashMap` or `std.StringHashMap`)."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "const std = @import(\"std\");\nconst MyError = error{ Oops };\n\nfn doSomething() !void {\n    return MyError.Oops;\n}\n\npub fn main() void {\n    doSomething() catch |err| {\n        std.debug.print(\"Failed: {}\", .{err});\n    };\n}",
+      "notes": "Zig uses error unions (`!T`) instead of exceptions. The `catch` or `try` keywords explicitly handle them."
+    },
+    "comments": {
+      "title": "Comments & Documentation",
+      "concept_id": "comments",
+      "code": "// Single-line comment in Zig\n\n/*\n * Multi-line comment block\n */\n\n/**\n * Documentation comment\n */",
+      "notes": "Zig uses C-style // single-line and /* */ multi-line comments."
+    },
+    "numbers": {
+      "title": "Numbers & Numerics",
+      "concept_id": "numbers",
+      "code": "const a: i32 = 42;\nconst b: f64 = 3.14159;\nconst hex: u32 = 0xFF;\nconst sep = 1_000_000;",
+      "notes": "Zig provides explicitly sized integer and floating-point primitives with binary and hex support."
+    },
+    "booleans": {
+      "title": "Booleans & Conditions",
+      "concept_id": "booleans",
+      "code": "bool isActive = true;\nbool isDone = false;\nif (isActive && !isDone) {\n    // Condition satisfied\n}",
+      "notes": "Zig uses bool / boolean types with true and false literals and logical operators (&&, ||, !)."
+    },
+    "type_casting": {
+      "title": "Type Casting & Conversion",
+      "concept_id": "type_casting",
+      "code": "const i: i32 = 42;\nconst f: f64 = @floatFromInt(i);\nconst u: u8 = @truncate(@as(u32, 100));",
+      "notes": "Zig supports explicit type casting using cast operators or constructor functions."
+    },
+    "strings": {
+      "title": "Strings & Characters",
+      "concept_id": "strings",
+      "code": "const str: []const u8 = \"Hello, Zig!\";\nconst char: u8 = str[0];",
+      "notes": "Zig distinguishes between single-character literals and string sequences or pointer slices."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "String name = \"Alice\";\nint score = 95;\nString msg = String.format(\"User %s scored %d\", name, score);",
+      "notes": "Zig supports string interpolation or printf-style formatting specifiers."
+    },
+    "pattern_matching": {
+      "title": "Pattern Matching & Switch",
+      "concept_id": "pattern_matching",
+      "code": "switch (val) {\n    case 1:\n        printf(\"One\\n\");\n        break;\n    case 2:\n    case 3:\n        printf(\"Two or Three\\n\");\n        break;\n    default:\n        printf(\"Other\\n\");\n}",
+      "notes": "Zig evaluates branching conditions through switch statements, match expressions, or when constructs."
+    },
+    "range": {
+      "title": "Ranges & Slicing",
+      "concept_id": "range",
+      "code": "const array = [_]i32{ 1, 2, 3, 4, 5 };\nconst slice = array[1..4];",
+      "notes": "Zig represents ranges with range operators (.., ..<) or standard indexed iteration boundaries."
+    },
+    "iterators": {
+      "title": "Iterators & Sequences",
+      "concept_id": "iterators",
+      "code": "for (const auto& item : collection) {\n    // Iteration over container\n}",
+      "notes": "Zig implements iteration through Iterator interfaces, generators, or range-for loops."
+    },
+    "oop_classes": {
+      "title": "Classes & OOP",
+      "concept_id": "oop_classes",
+      "code": "const Person = struct {\n    name: []const u8,\n    age: u32,\n    \n    pub fn init(name: []const u8, age: u32) Person {\n        return .{ .name = name, .age = age };\n    }\n};",
+      "notes": "Zig models object orientation through classes with constructors/encapsulation or structs with associated methods."
+    },
+    "lists": {
+      "title": "Dynamic Arrays & Lists",
+      "concept_id": "lists",
+      "code": "List<int> list = new ArrayList<int>();",
+      "notes": "Zig manages growable dynamic collections using vectors, ArrayLists, or dynamically reallocated heap buffers."
+    },
+    "tuples": {
+      "title": "Tuples & Records",
+      "concept_id": "tuples",
+      "code": "record Pair(int x, int y) {}",
+      "notes": "Zig represents heterogeneous records through tuples, structured bindings, or lightweight record structs."
+    },
+    "sets": {
+      "title": "Sets & Unique Collections",
+      "concept_id": "sets",
+      "code": "Set<int> set = new HashSet<>();",
+      "notes": "Zig provides unique collection hashing structures with O(1) average lookup and insertion time."
+    },
+    "modules_import": {
+      "title": "Modules, Packages & Imports",
+      "concept_id": "modules_import",
+      "code": "const std = @import(\"std\");\nconst math = std.math;",
+      "notes": "Zig structures namespaces and external libraries via include directives, package declarations, or module imports."
+    }
+  }
+}

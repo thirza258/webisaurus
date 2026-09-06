@@ -1,0 +1,149 @@
+{
+  "language_id": "awk",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "BEGIN {\n  name = \"Alice\"\n  age = 30\n  print \"Name:\", name\n}",
+      "notes": "Variables don't need to be declared. $0 is the whole line, $1, $2 are fields."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "BEGIN {\n  str = \"Hello\"\n  num = 42\n  # Types are context-dependent\n}",
+      "notes": "Awk implicitly converts between strings and numbers depending on context."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "$1 > 100 && $2 == \"Error\" {\n  print $0\n}",
+      "notes": "Standard C-like operators. String concatenation is done by placing strings adjacently (e.g. \"a\" \"b\")."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "{\n  if ($1 > 10) {\n    print \"Greater\"\n  } else {\n    print \"Lesser\"\n  }\n}",
+      "notes": "Pattern-action structure itself acts as a conditional, or use explicit if-else in blocks."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "{\n  for (i = 1; i <= NF; i++) {\n    print $i\n  }\n}",
+      "notes": "Standard C-style for loops. Useful for iterating over fields in a line (NF = Number of Fields)."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "{\n  i = 1\n  while (i <= NF) {\n    print $i\n    i++\n  }\n}",
+      "notes": "Standard C-style while loop."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "function square(x) {\n  return x * x\n}\n\n{\n  print square($1)\n}",
+      "notes": "Custom functions can be defined. Local variables should be added as extra parameters."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "BEGIN {\n  split(\"apple banana cherry\", fruits, \" \")\n  print fruits[1]\n}",
+      "notes": "Arrays in Awk are actually associative arrays. split() creates a 1-indexed array."
+    },
+    "maps": {
+      "title": "Associative Arrays",
+      "concept_id": "maps",
+      "code": "{\n  count[$1]++\n}\nEND {\n  for (word in count) {\n    print word, count[word]\n  }\n}",
+      "notes": "All arrays are associative (maps). Very common for counting occurrences."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "{\n  if (getline < \"file.txt\" < 0) {\n    print \"Error reading file\"\n    exit 1\n  }\n}",
+      "notes": "Awk relies on checking return values of functions like getline or system()."
+    },
+    "comments": {
+      "title": "Comments & Script Headers",
+      "concept_id": "comments",
+      "code": "# Single line comment in AWK\n# Shell scripts begin with a shebang:\n#!/usr/bin/env awk",
+      "notes": "AWK uses # for comments with script headers."
+    },
+    "numbers": {
+      "title": "Numbers & Arithmetic",
+      "concept_id": "numbers",
+      "code": "x=42\nresult=$((x * 2 + 5))\nhex=0xFF",
+      "notes": "AWK supports shell integer arithmetic and numeric expressions."
+    },
+    "booleans": {
+      "title": "Booleans & Exit Codes",
+      "concept_id": "booleans",
+      "code": "is_active=true\nif [ \"$is_active\" = \"true\" ]; then\n    echo \"Active\"\nfi",
+      "notes": "AWK evaluates boolean status through exit codes (0 = success) and boolean primitives."
+    },
+    "type_casting": {
+      "title": "Type Casting & Coercion",
+      "concept_id": "type_casting",
+      "code": "str_val=\"42\"\n# Arithmetic context forces integer coercion\nnum=$((str_val + 0))",
+      "notes": "AWK handles type conversion explicitly via type accelerators [type] or arithmetic evaluation."
+    },
+    "strings": {
+      "title": "Strings & Quoting",
+      "concept_id": "strings",
+      "code": "single='Literal single quotes'\ndouble=\"Expanded: ${USER}\"\nmultiline=\"Line 1\nLine 2\"",
+      "notes": "AWK differentiates between single quotes (literal) and double quotes (variable expansion)."
+    },
+    "string_formatting": {
+      "title": "String Interpolation",
+      "concept_id": "string_formatting",
+      "code": "name=\"Alice\"\nscore=95\nprintf \"User %s scored %d\\n\" \"$name\" \"$score\"",
+      "notes": "AWK provides in-string variable interpolation and printf formatting."
+    },
+    "pattern_matching": {
+      "title": "Pattern Matching & Case",
+      "concept_id": "pattern_matching",
+      "code": "case \"$val\" in\n    1) echo \"One\" ;;\n    2|3) echo \"Two or Three\" ;;\n    *) echo \"Other\" ;;\nesac",
+      "notes": "AWK matches patterns with case statements or switch blocks with glob matching."
+    },
+    "range": {
+      "title": "Ranges & Sequences",
+      "concept_id": "range",
+      "code": "# Brace expansion\nfor i in {1..10..2}; do\n    echo \"$i\"\ndone",
+      "notes": "AWK constructs ranges with brace expansion {start..end} or range operators .."
+    },
+    "iterators": {
+      "title": "Pipes & Iterators",
+      "concept_id": "iterators",
+      "code": "while IFS= read -r line; do\n    echo \"$line\"\ndone < \"file.txt\"",
+      "notes": "AWK streams data elements through command pipelines and loop iteration."
+    },
+    "oop_classes": {
+      "title": "Classes / Structured Functions",
+      "concept_id": "oop_classes",
+      "code": "# Functions serve as reusable components\nperson_greet() {\n    local name=\"$1\"\n    echo \"Hello $name\"\n}",
+      "notes": "AWK defines reusable components through classes (PowerShell 5+) or modular functions."
+    },
+    "lists": {
+      "title": "Arrays & Collections",
+      "concept_id": "lists",
+      "code": "items=(\"apple\" \"banana\" \"cherry\")\nitems+=(\"date\")\necho \"${items[0]}\" # apple\necho \"${items[@]}\" # all elements",
+      "notes": "AWK manages arrays using array lists @() or whitespace-delimited shell arrays."
+    },
+    "tuples": {
+      "title": "Tuples & Records",
+      "concept_id": "tuples",
+      "code": "pair=\"10:apple\"\nIFS=\":\" read -r id name <<< \"$pair\"",
+      "notes": "AWK emulates tuples through string delimiters, .NET Tuples, or positional variables."
+    },
+    "sets": {
+      "title": "Sets & Unique Lists",
+      "concept_id": "sets",
+      "code": "declare -A set\nset[\"apple\"]=1\nset[\"banana\"]=1\n[[ -n \"${set[apple]}\" ]] && echo \"Found\"",
+      "notes": "AWK models unique sets using associative arrays or underlying runtime sets."
+    },
+    "modules_import": {
+      "title": "Sourcing & Modules",
+      "concept_id": "modules_import",
+      "code": "# Source an external script\nsource ./utils.sh\n# or: . ./utils.sh",
+      "notes": "AWK imports external functions using source (. in POSIX) or Import-Module."
+    }
+  }
+}

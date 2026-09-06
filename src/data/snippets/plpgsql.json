@@ -1,0 +1,149 @@
+{
+  "language_id": "plpgsql",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "DECLARE\n  v_name text := 'Alice';\n  v_age integer := 30;",
+      "notes": "Declared in the DECLARE block."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "DECLARE\n  v_str text;\n  v_num numeric(10,2);\n  v_date timestamp;\n  v_bool boolean;",
+      "notes": "Common PostgreSQL types."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "v_result := v_a + v_b;\nv_concat := 'Hello' || ' ' || 'World';\nIF v_a = v_b AND v_c != v_d THEN",
+      "notes": "Standard operators, || for concatenation."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "IF v_score >= 90 THEN\n  v_grade := 'A';\nELSIF v_score >= 80 THEN\n  v_grade := 'B';\nELSE\n  v_grade := 'C';\nEND IF;",
+      "notes": "IF-THEN-ELSIF conditionals."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "FOR i IN 1..10 LOOP\n  RAISE NOTICE '%', i;\nEND LOOP;",
+      "notes": "Integer FOR loop."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "WHILE v_counter < 10 LOOP\n  v_counter := v_counter + 1;\nEND LOOP;",
+      "notes": "Standard WHILE loop."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "CREATE OR REPLACE FUNCTION get_total(a integer, b integer) RETURNS integer AS $$\nBEGIN\n  RETURN a + b;\nEND;\n$$ LANGUAGE plpgsql;",
+      "notes": "Creating a function in PL/pgSQL."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "DECLARE\n  v_arr integer[] := ARRAY[1, 2, 3];\nBEGIN\n  v_arr[1] := 10;\nEND;",
+      "notes": "PostgreSQL array types."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "DECLARE\n  v_map jsonb := '{\"key1\": \"value1\"}'::jsonb;\nBEGIN\n  v_map := jsonb_set(v_map, '{key2}', '\"value2\"');\nEND;",
+      "notes": "Adapted: Uses JSONB for dictionary-like maps."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "BEGIN\n  -- Code here\nEXCEPTION\n  WHEN no_data_found THEN\n    RAISE NOTICE 'Not found';\n  WHEN OTHERS THEN\n    RAISE NOTICE 'Error: %', SQLERRM;\nEND;",
+      "notes": "EXCEPTION block."
+    },
+    "comments": {
+      "title": "Comments",
+      "concept_id": "comments",
+      "code": "-- Single-line comment in PL/pgSQL\n/* Multi-line comment */",
+      "notes": "PL/pgSQL uses -- for line comments and /* */ for blocks."
+    },
+    "numbers": {
+      "title": "Numbers & Decimal Data",
+      "concept_id": "numbers",
+      "code": "DECLARE @val INT = 42;\nDECLARE @price DECIMAL(10, 2) = 19.99;",
+      "notes": "PL/pgSQL represents exact decimal precisions alongside standard integer types."
+    },
+    "booleans": {
+      "title": "Booleans & Predicates",
+      "concept_id": "booleans",
+      "code": "-- Three-valued logic (TRUE, FALSE, UNKNOWN)\nWHERE status = 'ACTIVE' AND deleted_at IS NULL",
+      "notes": "PL/pgSQL evaluates predicates using declarative boolean conditions with NULL semantics."
+    },
+    "type_casting": {
+      "title": "Type Casting (CAST/CONVERT)",
+      "concept_id": "type_casting",
+      "code": "CAST('42' AS INT)\nCONVERT(VARCHAR(10), 100)",
+      "notes": "PL/pgSQL casts types using CAST(expr AS target_type) expressions."
+    },
+    "strings": {
+      "title": "Strings & Text Literals",
+      "concept_id": "strings",
+      "code": "SELECT 'String literal' AS col, N'Unicode text' AS unicode_col;",
+      "notes": "PL/pgSQL encloses character literals in single quotes with optional N prefix for Unicode."
+    },
+    "string_formatting": {
+      "title": "String Concatenation",
+      "concept_id": "string_formatting",
+      "code": "SELECT CONCAT('User: ', username, ' (', email, ')') FROM users;",
+      "notes": "PL/pgSQL formats and joins textual columns using CONCAT or string concatenation operators."
+    },
+    "pattern_matching": {
+      "title": "Pattern Matching (LIKE & CASE)",
+      "concept_id": "pattern_matching",
+      "code": "SELECT CASE \n    WHEN score >= 90 THEN 'A'\n    WHEN score >= 80 THEN 'B'\n    ELSE 'C'\nEND AS grade\nWHERE email LIKE '%@example.com';",
+      "notes": "PL/pgSQL performs conditional classification via CASE WHEN and pattern search with LIKE."
+    },
+    "range": {
+      "title": "Ranges (BETWEEN & LIMIT/OFFSET)",
+      "concept_id": "range",
+      "code": "SELECT * FROM orders \nWHERE order_date BETWEEN '2024-01-01' AND '2024-12-31'\nLIMIT 10 OFFSET 20;",
+      "notes": "PL/pgSQL defines range intervals with BETWEEN and pagination ranges via LIMIT/OFFSET."
+    },
+    "iterators": {
+      "title": "Cursors & Window Functions",
+      "concept_id": "iterators",
+      "code": "-- Window row iteration\nSELECT id, ROW_NUMBER() OVER (ORDER BY created_at) AS row_num\nFROM logs;",
+      "notes": "PL/pgSQL processes ordered sequences set-by-set using window functions or procedural cursors."
+    },
+    "oop_classes": {
+      "title": "Schemas & Tables (Entities)",
+      "concept_id": "oop_classes",
+      "code": "CREATE TABLE users (\n    id INT PRIMARY KEY,\n    username VARCHAR(50) NOT NULL,\n    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP\n);",
+      "notes": "PL/pgSQL structures entities through relational tables, constraints, and views."
+    },
+    "lists": {
+      "title": "Tables & Arrays",
+      "concept_id": "lists",
+      "code": "-- Array or temporary result table\nSELECT ARRAY[1, 2, 3] AS num_list;",
+      "notes": "PL/pgSQL supports array column types or relation rowsets representing lists."
+    },
+    "tuples": {
+      "title": "Rows & Composite Types",
+      "concept_id": "tuples",
+      "code": "-- Row tuple\nSELECT (1, 'Alice', 95) AS user_row;",
+      "notes": "PL/pgSQL represents tuples as table rows or composite record types."
+    },
+    "sets": {
+      "title": "Set Queries (UNION, INTERSECT)",
+      "concept_id": "sets",
+      "code": "SELECT id FROM active_users\nUNION\nSELECT id FROM premium_users;",
+      "notes": "PL/pgSQL combines dataset results using relational algebra (UNION, INTERSECT, EXCEPT)."
+    },
+    "modules_import": {
+      "title": "Schemas & Extensions",
+      "concept_id": "modules_import",
+      "code": "CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\";\nSET search_path TO my_schema, public;",
+      "notes": "PL/pgSQL manages namespaces and modular capabilities through schemas and extensions."
+    }
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "language_id": "swift",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "var mutableVar = 10\nlet immutableVal = \"Hello\"",
+      "notes": "Use 'var' for mutable variables and 'let' for constants. Swift is statically typed but uses type inference."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "let intVal: Int = 42\nlet floatVal: Float = 3.14\nlet doubleVal: Double = 3.14159\nlet boolVal: Bool = true\nlet stringVal: String = \"Swift\"\nlet optionalInt: Int? = nil",
+      "notes": "Swift places strong emphasis on safety with optionals (?) representing a value or the absence of a value (nil)."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "let sum = 3 + 4\nlet rem = 10 % 3\n\nlet eq = (1 == 1)\nlet neq = (1 != 2)\n\nlet nilCoalescing = optionalInt ?? 0",
+      "notes": "Standard operators apply. The nil-coalescing operator (??) unwraps an optional safely or provides a default value."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "let x = 10\nif x > 0 {\n    print(\"Positive\")\n} else if x < 0 {\n    print(\"Negative\")\n} else {\n    print(\"Zero\")\n}\n\n// Guard let for early exit\nguard let unwrapped = optionalInt else { return }",
+      "notes": "Parentheses are not required around conditions. 'guard' is used extensively for early returns and safe optional unwrapping."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "for i in 1...5 {\n    print(i) // Inclusive range\n}\n\nfor i in 0..<5 {\n    print(i) // Exclusive range\n}\n\nlet arr = [\"a\", \"b\", \"c\"]\nfor (index, value) in arr.enumerated() {\n    print(\"\\(index): \\(value)\")\n}",
+      "notes": "Swift uses ranges (... and ..<) for iteration. The C-style for loop is no longer supported."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "var x = 0\nwhile x < 5 {\n    x += 1\n}\n\nvar y = 0\nrepeat {\n    y += 1\n} while y < 5",
+      "notes": "'repeat-while' guarantees that the block executes at least once, akin to 'do-while' in other languages."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "func add(_ a: Int, to b: Int) -> Int {\n    return a + b\n}\n\nlet result = add(3, to: 4)\n\nlet closure = { (x: Int, y: Int) -> Int in\n    return x + y\n}",
+      "notes": "Functions can define argument labels (like 'to') and parameter names. Closures provide concise inline function expressions."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "var arr: [Int] = [1, 2, 3, 4, 5]\narr.append(6)\n\nlet first = arr[0]\nlet count = arr.count",
+      "notes": "Arrays are value types (structs) in Swift. Using 'let' makes the array immutable."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "var dict: [String: Int] = [\"one\": 1, \"two\": 2]\ndict[\"three\"] = 3\n\nif let val = dict[\"one\"] {\n    print(val)\n}",
+      "notes": "Dictionaries (maps) are strongly typed. Accessing a dictionary returns an optional value, handled safely via optional binding."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "enum MyError: Error { case badInput }\n\nfunc throwingFunc() throws {\n    throw MyError.badInput\n}\n\ndo {\n    try throwingFunc()\n} catch MyError.badInput {\n    print(\"Bad input\")\n} catch {\n    print(\"Generic error: \\(error)\")\n}",
+      "notes": "Swift uses do-try-catch blocks for error handling. Functions that can throw errors must be marked with 'throws'."
+    },
+    "comments": {
+      "title": "Comments & Documentation",
+      "concept_id": "comments",
+      "code": "// Single-line comment in Swift\n\n/*\n * Multi-line comment block\n */\n\n/**\n * Documentation comment\n */",
+      "notes": "Swift uses C-style // single-line and /* */ multi-line comments."
+    },
+    "numbers": {
+      "title": "Numbers & Numerics",
+      "concept_id": "numbers",
+      "code": "int a = 42;\ndouble b = 3.14159;\nlong large = 1_000_000L;\nint hex = 0xFF;\nint bin = 0b1010;",
+      "notes": "Swift provides explicitly sized integer and floating-point primitives with binary and hex support."
+    },
+    "booleans": {
+      "title": "Booleans & Conditions",
+      "concept_id": "booleans",
+      "code": "bool isActive = true;\nbool isDone = false;\nif (isActive && !isDone) {\n    // Condition satisfied\n}",
+      "notes": "Swift uses bool / boolean types with true and false literals and logical operators (&&, ||, !)."
+    },
+    "type_casting": {
+      "title": "Type Casting & Conversion",
+      "concept_id": "type_casting",
+      "code": "int a = 42;\ndouble d = (double)a;\nint b = (int)d;",
+      "notes": "Swift supports explicit type casting using cast operators or constructor functions."
+    },
+    "strings": {
+      "title": "Strings & Characters",
+      "concept_id": "strings",
+      "code": "String str = \"Hello, World!\";\nchar ch = str.charAt(0);\nint len = str.length();",
+      "notes": "Swift distinguishes between single-character literals and string sequences or pointer slices."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "let name = \"Alice\"\nlet score = 95\nlet msg = \"User \\(name) scored \\(score)\"",
+      "notes": "Swift supports string interpolation or printf-style formatting specifiers."
+    },
+    "pattern_matching": {
+      "title": "Pattern Matching & Switch",
+      "concept_id": "pattern_matching",
+      "code": "switch val {\ncase 1:\n    print(\"One\")\ncase 2...3:\n    print(\"Two or Three\")\ndefault:\n    print(\"Other\")\n}",
+      "notes": "Swift evaluates branching conditions through switch statements, match expressions, or when constructs."
+    },
+    "range": {
+      "title": "Ranges & Slicing",
+      "concept_id": "range",
+      "code": "let r = 1..<5\nfor i in r { print(i) }",
+      "notes": "Swift represents ranges with range operators (.., ..<) or standard indexed iteration boundaries."
+    },
+    "iterators": {
+      "title": "Iterators & Sequences",
+      "concept_id": "iterators",
+      "code": "for (const auto& item : collection) {\n    // Iteration over container\n}",
+      "notes": "Swift implements iteration through Iterator interfaces, generators, or range-for loops."
+    },
+    "oop_classes": {
+      "title": "Classes & OOP",
+      "concept_id": "oop_classes",
+      "code": "class Person {\n    private String name;\n    public Person(String name) {\n        this.name = name;\n    }\n    public String getName() {\n        return this.name;\n    }\n}",
+      "notes": "Swift models object orientation through classes with constructors/encapsulation or structs with associated methods."
+    },
+    "lists": {
+      "title": "Dynamic Arrays & Lists",
+      "concept_id": "lists",
+      "code": "List<int> list = new ArrayList<int>();",
+      "notes": "Swift manages growable dynamic collections using vectors, ArrayLists, or dynamically reallocated heap buffers."
+    },
+    "tuples": {
+      "title": "Tuples & Records",
+      "concept_id": "tuples",
+      "code": "let pair = (10, \"apple\")\nlet (num, label) = pair",
+      "notes": "Swift represents heterogeneous records through tuples, structured bindings, or lightweight record structs."
+    },
+    "sets": {
+      "title": "Sets & Unique Collections",
+      "concept_id": "sets",
+      "code": "Set<int> set = new HashSet<>();",
+      "notes": "Swift provides unique collection hashing structures with O(1) average lookup and insertion time."
+    },
+    "modules_import": {
+      "title": "Modules, Packages & Imports",
+      "concept_id": "modules_import",
+      "code": "import package.name;",
+      "notes": "Swift structures namespaces and external libraries via include directives, package declarations, or module imports."
+    }
+  }
+}

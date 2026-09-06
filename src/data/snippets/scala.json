@@ -1,0 +1,149 @@
+{
+  "language_id": "scala",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "val immutable = \"Constant\"\nvar mutable = 42\nmutable = 43",
+      "notes": "Prefer 'val' for immutability."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "val i: Int = 1\nval d: Double = 1.0\nval b: Boolean = true\nval s: String = \"Text\"\nval opt: Option[String] = Some(\"Data\")",
+      "notes": "Use Option[T] (Some/None) instead of null for missing values."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "val sum = 1 + 2\nval eq = 1 == 1\nval bitwise = 1 & 2",
+      "notes": "Operators are just method calls in Scala (e.g., 1.+(2))."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "val max = if a > b then a else b\n\nx match\n  case 1 => \"One\"\n  case n if n < 10 => \"Small\"\n  case _ => \"Other\"",
+      "notes": "Scala 3 supports optional braces and powerful pattern matching."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "for i <- 1 to 5 do println(i)\n\nval doubled = for x <- List(1, 2, 3) yield x * 2",
+      "notes": "For comprehensions can iterate and transform data with 'yield'."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "while x > 0 do\n  x -= 1",
+      "notes": "Scala 3 uses 'do' instead of braces for while loops."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "def add(a: Int, b: Int): Int = a + b\n\nval multiply = (a: Int, b: Int) => a * b",
+      "notes": "Functions can be defined with 'def' or as anonymous function values."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "val arr = Array(1, 2, 3)\narr(0) = 10",
+      "notes": "Arrays use parentheses for indexing (calls apply/update methods)."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "val m = Map(\"a\" -> 1, \"b\" -> 2)\nval v = m(\"a\") // 1",
+      "notes": "Default Map is immutable."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "import scala.util.{Try, Success, Failure}\nval result = Try(10 / 0) match\n  case Success(v) => v\n  case Failure(e) => 0",
+      "notes": "Idiomatic error handling uses Try, Either, or Option instead of throwing."
+    },
+    "comments": {
+      "title": "Comments & Documentation",
+      "concept_id": "comments",
+      "code": "// Comments in Scala\n/* Block documentation */",
+      "notes": "Scala provides comments to document code behavior."
+    },
+    "numbers": {
+      "title": "Numbers & Constants",
+      "concept_id": "numbers",
+      "code": "val = 42\nratio = 3.14159",
+      "notes": "Scala supports numeric literals for computation and indexing."
+    },
+    "booleans": {
+      "title": "Booleans & Conditions",
+      "concept_id": "booleans",
+      "code": "flag = true\nif flag:\n    // Execute branch",
+      "notes": "Scala provides boolean conditions for program control flow."
+    },
+    "type_casting": {
+      "title": "Type Conversion",
+      "concept_id": "type_casting",
+      "code": "converted = (type)original_value",
+      "notes": "Scala converts data between native format representations."
+    },
+    "strings": {
+      "title": "Strings & Characters",
+      "concept_id": "strings",
+      "code": "text = \"Sample string text\"",
+      "notes": "Scala represents textual data through string literals and character arrays."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "formatted = format(\"Text: %s\", value)",
+      "notes": "Scala formats and joins textual values for display and output."
+    },
+    "pattern_matching": {
+      "title": "Conditionals & Branching",
+      "concept_id": "pattern_matching",
+      "code": "case value of\n    1: execute_one()\n    default: execute_default()",
+      "notes": "Scala branches execution based on value comparison and conditional expressions."
+    },
+    "range": {
+      "title": "Ranges & Intervals",
+      "concept_id": "range",
+      "code": "range = 1..10",
+      "notes": "Scala defines intervals and index sequences for bounded processing."
+    },
+    "iterators": {
+      "title": "Iteration & Loops",
+      "concept_id": "iterators",
+      "code": "for item in collection:\n    process(item)",
+      "notes": "Scala iterates across collections and sequence elements."
+    },
+    "oop_classes": {
+      "title": "Structures & Modules",
+      "concept_id": "oop_classes",
+      "code": "struct Entity {\n    data: Value\n}",
+      "notes": "Scala organizes data and behavior through structures or modular components."
+    },
+    "lists": {
+      "title": "Collections & Arrays",
+      "concept_id": "lists",
+      "code": "items = [1, 2, 3, 4]",
+      "notes": "Scala stores sequence data in indexed lists or arrays."
+    },
+    "tuples": {
+      "title": "Records & Pairs",
+      "concept_id": "tuples",
+      "code": "pair = (10, \"label\")",
+      "notes": "Scala groups related fields into lightweight composite pairs or records."
+    },
+    "sets": {
+      "title": "Sets & Uniqueness",
+      "concept_id": "sets",
+      "code": "set = Set([1, 2, 3])",
+      "notes": "Scala tracks unique values without duplicate entries."
+    },
+    "modules_import": {
+      "title": "Libraries & Modules",
+      "concept_id": "modules_import",
+      "code": "import module_name",
+      "notes": "Scala organizes external libraries and code units into modular namespaces."
+    }
+  }
+}

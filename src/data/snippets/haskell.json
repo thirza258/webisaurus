@@ -1,0 +1,149 @@
+{
+  "language_id": "haskell",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "x = 10\n\n-- With type signature\ny :: Int\ny = 20",
+      "notes": "Variables in Haskell are immutable. Once bound to a value, they cannot be changed. Pattern matching is often used in bindings."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "a :: Int = 42\nb :: Integer = 9999999999999999\nc :: Float = 3.14\nd :: Double = 2.71828\ne :: Bool = True\nf :: Char = 'X'\ng :: String = \"Hello\"\n\n-- Algebraic Data Type\ndata Shape = Circle Float | Rectangle Float Float",
+      "notes": "Haskell is statically typed with strong type inference. You can define custom Algebraic Data Types (ADTs)."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "add = 5 + 3\nsub = 5 - 3\nmul = 5 * 3\ndivFloat = 5.0 / 2.0\ndivInt = 5 `div` 2\nremInt = 5 `mod` 2\n\nandBool = True && False\norBool = True || False\nnotBool = not True\n\neq = 5 == 5\nneq = 5 /= 3",
+      "notes": "Operators are just functions. Backticks allow using any binary function as an infix operator (e.g., `div`)."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "result = if x > 0 \n         then \"Positive\" \n         else \"Non-positive\"\n\n-- Using guards (more common in functions)\nsign x\n  | x > 0     = 1\n  | x < 0     = -1\n  | otherwise = 0",
+      "notes": "if-then-else is an expression, so it must always have an 'else' branch and both branches must return the same type. Guards are often preferred for multiple conditions."
+    },
+    "for_loop": {
+      "title": "For Loop (Mapping)",
+      "concept_id": "for_loop",
+      "code": "-- Applying a function to each element (map)\nsquares = map (\\x -> x * x) [1..5]\n-- Result: [1, 4, 9, 16, 25]\n\n-- Using list comprehensions\nevens = [x * 2 | x <- [1..5]]",
+      "notes": "Haskell has no traditional 'for' loop. Iteration is typically done using higher-order functions like map, fold, or list comprehensions."
+    },
+    "while_loop": {
+      "title": "While Loop (Recursion)",
+      "concept_id": "while_loop",
+      "code": "-- Recursion to simulate while loop\ncountdown :: Int -> IO ()\ncountdown 0 = putStrLn \"Liftoff!\"\ncountdown n = do\n  print n\n  countdown (n - 1)",
+      "notes": "Haskell has no 'while' loop. State changes over time are modeled using recursion or monadic constructs."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "add :: Int -> Int -> Int\nadd x y = x + y\n\n-- Lambda expression\nmultiply = \\x y -> x * y\n\n-- Pattern matching\nfactorial 0 = 1\nfactorial n = n * factorial (n - 1)",
+      "notes": "Functions are first-class and curried by default. Pattern matching is extensively used for flow control."
+    },
+    "arrays": {
+      "title": "Arrays (Lists)",
+      "concept_id": "arrays",
+      "code": "numbers = [1, 2, 3, 4, 5]\n\n-- Cons operator to prepend\nnewNumbers = 0 : numbers\n\n-- Concatenation\ncombined = [1, 2] ++ [3, 4]\n\n-- Indexing (0-based, O(n))\nthird = numbers !! 2",
+      "notes": "Lists are homogeneous linked lists, widely used in Haskell. For O(1) random access, use Data.Array or Data.Vector."
+    },
+    "maps": {
+      "title": "Maps (Dictionaries)",
+      "concept_id": "maps",
+      "code": "import qualified Data.Map as Map\n\nmyMap = Map.fromList [(\"apple\", 1), (\"banana\", 2)]\n\n-- Insert\nnewMap = Map.insert \"cherry\" 3 myMap\n\n-- Lookup\nval = Map.lookup \"apple\" myMap -- Returns Just 1",
+      "notes": "Data.Map provides a balanced binary tree implementation. It is immutable, so updates return a new map."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "-- Using Maybe for possible failure\nsafeDivide :: Int -> Int -> Maybe Int\nsafeDivide _ 0 = Nothing\nsafeDivide x y = Just (x `div` y)\n\n-- Using Either for detailed errors\ndivideOrError :: Int -> Int -> Either String Int\ndivideOrError _ 0 = Left \"Division by zero\"\ndivideOrError x y = Right (x `div` y)",
+      "notes": "Haskell uses ADTs like Maybe and Either for safe error handling instead of exceptions, forcing the caller to handle failures."
+    },
+    "comments": {
+      "title": "Comments & Annotations",
+      "concept_id": "comments",
+      "code": "-- Single-line comment\n{- Multi-line\n   comment block -}\nadd :: Int -> Int -> Int\nadd a b = a + b",
+      "notes": "Haskell uses functional comment delimiters (-- in Haskell/ML, ; in Lisps, # or % in BEAM)."
+    },
+    "numbers": {
+      "title": "Numbers & Numerics",
+      "concept_id": "numbers",
+      "code": "x = 42 :: Int\nbig = 100000000000000000000 :: Integer\npiVal = 3.14159 :: Double\nhexVal = 0xFF",
+      "notes": "Haskell supports exact rational fractions, arbitrary-precision integers, and IEEE floats natively."
+    },
+    "booleans": {
+      "title": "Booleans & Logic",
+      "concept_id": "booleans",
+      "code": "isActive = True\nisDone = False\nresult = isActive && not isDone",
+      "notes": "Haskell treats booleans as first-class algebraic constructors (True/False, true/false, t/nil)."
+    },
+    "type_casting": {
+      "title": "Type Conversion",
+      "concept_id": "type_casting",
+      "code": "intVal = 42 :: Int\nfloatVal = fromIntegral intVal :: Double\nstrVal = show intVal\nparsed = read \"123\" :: Int",
+      "notes": "Haskell performs conversion via typeclass methods (fromIntegral, show, read) or explicit parse functions."
+    },
+    "strings": {
+      "title": "Strings & Text",
+      "concept_id": "strings",
+      "code": "str = \"Hello, Haskell!\"\ncharVal = 'H' :: Char\nmulti = \"Line 1\\nLine 2\"",
+      "notes": "Haskell represents strings as linked lists of characters, UTF-8 binaries, or dedicated text buffers."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "import Text.Printf\nmsg = printf \"User %s scored %d\" \"Alice\" (95 :: Int)",
+      "notes": "Haskell formats text through format strings, interpolation macros, or string concatenation."
+    },
+    "pattern_matching": {
+      "title": "Pattern Matching",
+      "concept_id": "pattern_matching",
+      "code": "describeList xs = case xs of\n    []       -> \"Empty list\"\n    [x]      -> \"Single element\"\n    (x:y:_)  -> \"Multiple elements\"",
+      "notes": "Pattern matching is a core feature in Haskell, destructuring algebraic variants, tuples, and lists directly."
+    },
+    "range": {
+      "title": "Ranges & Sequences",
+      "concept_id": "range",
+      "code": "-- Infinite lazy sequence\nevens = [0, 2 .. 20]\n-- List slice with take/drop\nsub = take 5 (drop 2 [1..10])",
+      "notes": "Haskell constructs ranges as lazy lists, infinite streams, or structured range enumerables."
+    },
+    "iterators": {
+      "title": "Iterators & Comprehensions",
+      "concept_id": "iterators",
+      "code": "-- List comprehension\nsquares = [x * x | x <- [1..10], even x]",
+      "notes": "Haskell achieves iterative processing through list comprehensions, map/filter transforms, and recursion."
+    },
+    "oop_classes": {
+      "title": "Types & Abstractions (OOP Equivalent)",
+      "concept_id": "oop_classes",
+      "code": "data Person = Person { name :: String, age :: Int }\n\ngreet :: Person -> String\ngreet (Person n _) = \"Hello, \" ++ n",
+      "notes": "Haskell emphasizes algebraic data types, protocols/typeclasses, and structs over traditional class hierarchies."
+    },
+    "lists": {
+      "title": "Lists (Linked Lists)",
+      "concept_id": "lists",
+      "code": "list = [1, 2, 3]\nappended = 0 : list  -- Cons: O(1)\nmerged = list ++ [4, 5] -- Concat",
+      "notes": "Lists in Haskell are singly linked immutable sequences optimized for head/tail structural sharing."
+    },
+    "tuples": {
+      "title": "Tuples & Records",
+      "concept_id": "tuples",
+      "code": "tuple = (1, \"apple\", True)\n(num, str, flag) = tuple",
+      "notes": "Haskell uses fixed-length heterogeneous tuples for bundling related data points and function return values."
+    },
+    "sets": {
+      "title": "Sets",
+      "concept_id": "sets",
+      "code": "import qualified Data.Set as Set\ns = Set.fromList [1, 2, 3]\ns' = Set.insert 4 s\nexists = Set.member 2 s'",
+      "notes": "Haskell provides persistent immutable sets implemented via balanced binary trees (HAMT / AVL)."
+    },
+    "modules_import": {
+      "title": "Modules & Imports",
+      "concept_id": "modules_import",
+      "code": "module Math.Geometry (area, perimeter) where\nimport Data.List (sort, nub)\nimport qualified Data.Map as Map",
+      "notes": "Haskell isolates scopes through modules and explicit import lists with aliasing and qualified names."
+    }
+  }
+}

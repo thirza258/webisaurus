@@ -1,0 +1,149 @@
+{
+  "language_id": "gleam",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "let x = 10\n\n// Shadowing is allowed\nlet x = x + 5\n\n// Asserting types (pattern matching)\nlet assert Ok(y) = some_result()",
+      "notes": "Variables are immutable. You use 'let' to bind them. Shadowing is commonly used to 'update' a variable's value in a scope."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "let i: Int = 42\nlet f: Float = 3.14\nlet b: Bool = True\nlet s: String = \"Hello\"\n\n// Custom Type\npub type Shape {\n  Circle(radius: Float)\n  Rectangle(w: Float, h: Float)\n}",
+      "notes": "Gleam is statically typed with inference. It compiles to Erlang or JavaScript. Custom types are equivalent to ADTs or enums."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "let add_int = 5 + 3\nlet add_float = 5.0 +. 3.0\n\nlet div_int = 5 / 2\nlet div_float = 5.0 /. 2.0\nlet rem_int = 5 % 2\n\nlet logic = True && False || True\n\nlet eq = 5 == 5\nlet neq = 5 != 3",
+      "notes": "Gleam distinguishes between Int and Float operators (e.g., '+' vs '+.'). Equality '==' works for all types."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "let result = case x > 0 {\n  True -> \"Positive\"\n  False -> \"Non-positive\"\n}\n\n// Case statement (Pattern Matching)\nlet sign = case x {\n  n if n > 0 -> 1\n  n if n < 0 -> -1\n  _ -> 0\n}",
+      "notes": "Gleam does not have an 'if' statement. Instead, it relies completely on exhaustive 'case' pattern matching for all conditionals."
+    },
+    "for_loop": {
+      "title": "For Loop (Mapping)",
+      "concept_id": "for_loop",
+      "code": "import gleam/list\n\nlet lst = [1, 2, 3, 4]\nlet squares = list.map(lst, fn(x) { x * x })\n\n// Filter\nlet evens = list.filter(lst, fn(x) { x % 2 == 0 })",
+      "notes": "Gleam has no loops. Standard library functions like list.map, list.filter, and list.fold handle iterative operations."
+    },
+    "while_loop": {
+      "title": "While Loop (Recursion)",
+      "concept_id": "while_loop",
+      "code": "import gleam/io\n\npub fn countdown(n: Int) {\n  case n {\n    0 -> io.println(\"Done\")\n    _ -> {\n      io.println(\"Counting\")\n      countdown(n - 1)\n    }\n  }\n}",
+      "notes": "Statefulness and iterative loops are handled entirely through tail-recursive function calls."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "pub fn add(x: Int, y: Int) -> Int {\n  x + y\n}\n\n// Anonymous functions\nlet multiply = fn(x, y) { x * y }\n\n// Function capture (short anonymous)\nlet add_one = add(_, 1)",
+      "notes": "Functions are defined with 'fn'. The pipeline operator '|>' is widely used to pass results as the first argument of the next function."
+    },
+    "arrays": {
+      "title": "Lists and Tuples",
+      "concept_id": "arrays",
+      "code": "// Lists (immutable, homogeneous)\nlet lst = [1, 2, 3]\nlet new_lst = [0, ..lst]\n\n// Tuples (fixed size, heterogeneous)\nlet pair = #(\"Alice\", 30)\nlet name = pair.0",
+      "notes": "Lists use `[..]` for fast cons/prepend operations. Tuples are accessed via index e.g., `.0`, `.1`."
+    },
+    "maps": {
+      "title": "Maps (Dicts)",
+      "concept_id": "maps",
+      "code": "import gleam/dict\n\nlet d = dict.new()\nlet d1 = dict.insert(d, \"apple\", 1)\nlet d2 = dict.insert(d1, \"banana\", 2)\n\nlet val_res = dict.get(d2, \"apple\")",
+      "notes": "Dictionaries (dict) provide immutable key-value stores. Since everything is immutable, inserting returns a new dict."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "// Result type: Result(Value, Error)\npub fn safe_div(x: Int, y: Int) -> Result(Int, String) {\n  case y {\n    0 -> Error(\"DivByZero\")\n    _ -> Ok(x / y)\n  }\n}\n\n// Using 'use' for monadic binding (early return)\npub fn div_twice(x, y) {\n  use step1 <- gleam/result.try(safe_div(x, y))\n  safe_div(step1, y)\n}",
+      "notes": "Gleam uses the Result type exclusively for errors. The 'use' keyword provides an elegant syntactic sugar for handling early returns on errors."
+    },
+    "comments": {
+      "title": "Comments & Annotations",
+      "concept_id": "comments",
+      "code": "% Line comment in Erlang\n-doc(\"Function doc\").\nadd(A, B) -> A + B.",
+      "notes": "Gleam uses functional comment delimiters (-- in Haskell/ML, ; in Lisps, # or % in BEAM)."
+    },
+    "numbers": {
+      "title": "Numbers & Numerics",
+      "concept_id": "numbers",
+      "code": "x = 42\npi = 3.14159\nhex = 0xFF",
+      "notes": "Gleam supports exact rational fractions, arbitrary-precision integers, and IEEE floats natively."
+    },
+    "booleans": {
+      "title": "Booleans & Logic",
+      "concept_id": "booleans",
+      "code": "IsActive = true,\nResult = IsActive andalso not false.",
+      "notes": "Gleam treats booleans as first-class algebraic constructors (True/False, true/false, t/nil)."
+    },
+    "type_casting": {
+      "title": "Type Conversion",
+      "concept_id": "type_casting",
+      "code": "num = String.to_integer(\"42\")\nstr = Integer.to_string(num)",
+      "notes": "Gleam performs conversion via typeclass methods (fromIntegral, show, read) or explicit parse functions."
+    },
+    "strings": {
+      "title": "Strings & Text",
+      "concept_id": "strings",
+      "code": "s = \"Hello, World!\"\nchar = ?H",
+      "notes": "Gleam represents strings as linked lists of characters, UTF-8 binaries, or dedicated text buffers."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "io_lib:format(\"User ~s scored ~p\", [\"Alice\", 95])",
+      "notes": "Gleam formats text through format strings, interpolation macros, or string concatenation."
+    },
+    "pattern_matching": {
+      "title": "Pattern Matching",
+      "concept_id": "pattern_matching",
+      "code": "case Response of\n    {ok, Data} -> Data;\n    {error, _} -> error\nend.",
+      "notes": "Pattern matching is a core feature in Gleam, destructuring algebraic variants, tuples, and lists directly."
+    },
+    "range": {
+      "title": "Ranges & Sequences",
+      "concept_id": "range",
+      "code": "r = 1..10\nslice = Enum.slice(1..10, 2, 4)",
+      "notes": "Gleam constructs ranges as lazy lists, infinite streams, or structured range enumerables."
+    },
+    "iterators": {
+      "title": "Iterators & Comprehensions",
+      "concept_id": "iterators",
+      "code": "for x <- 1..10, rem(x, 2) == 0, do: x * x",
+      "notes": "Gleam achieves iterative processing through list comprehensions, map/filter transforms, and recursion."
+    },
+    "oop_classes": {
+      "title": "Types & Abstractions (OOP Equivalent)",
+      "concept_id": "oop_classes",
+      "code": "defmodule Person do\n  defstruct [:name, :age]\n  def greet(%Person{name: name}), do: \"Hello #{name}\"\nend",
+      "notes": "Gleam emphasizes algebraic data types, protocols/typeclasses, and structs over traditional class hierarchies."
+    },
+    "lists": {
+      "title": "Lists (Linked Lists)",
+      "concept_id": "lists",
+      "code": "[1, 2, 3] ++ [4, 5]",
+      "notes": "Lists in Gleam are singly linked immutable sequences optimized for head/tail structural sharing."
+    },
+    "tuples": {
+      "title": "Tuples & Records",
+      "concept_id": "tuples",
+      "code": "{ok, \"Result\", 200}",
+      "notes": "Gleam uses fixed-length heterogeneous tuples for bundling related data points and function return values."
+    },
+    "sets": {
+      "title": "Sets",
+      "concept_id": "sets",
+      "code": "s = MapSet.new([1, 2, 3])\nMapSet.put(s, 4)",
+      "notes": "Gleam provides persistent immutable sets implemented via balanced binary trees (HAMT / AVL)."
+    },
+    "modules_import": {
+      "title": "Modules & Imports",
+      "concept_id": "modules_import",
+      "code": "defmodule MyModule do\n  import Enum, only: [map: 2]\n  alias MyProject.Helper\nend",
+      "notes": "Gleam isolates scopes through modules and explicit import lists with aliasing and qualified names."
+    }
+  }
+}

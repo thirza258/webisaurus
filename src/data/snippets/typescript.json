@@ -1,0 +1,149 @@
+{
+  "language_id": "typescript",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "const MAX_USERS: number = 100;\nlet currentUser: string = 'Alice';\n\n// Block-scoped, reassignable\ncurrentUser = 'Bob';\n\n// Type inference\nconst isLoggedIn = true;",
+      "notes": "Prefer 'const' by default, use 'let' for reassignable variables. Avoid 'var'."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "const str: string = 'Hello';\nconst num: number = 42;\nconst bool: boolean = true;\nconst nullVal: null = null;\nconst undef: undefined = undefined;\nconst sym: symbol = Symbol('key');\nconst bigInt: bigint = 9007199254740991n;",
+      "notes": "TypeScript includes standard JS types plus bigint and strict null checks."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "let a = 10 + 5;\nlet b = 10 ** 2;\n\n// Strict equality\nconst isEqual = (a === 15);\n\n// Nullish coalescing\nconst value = null ?? 'default';\n\n// Optional chaining\nconst len = someObj?.property?.length;",
+      "notes": "Always use strict equality '===' and '!=='. Nullish coalescing '??' is preferred over '||' for defaults."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "const score = 85;\n\nif (score >= 90) {\n  console.log('A');\n} else if (score >= 80) {\n  console.log('B');\n} else {\n  console.log('C');\n}\n\n// Ternary\nconst result = score >= 50 ? 'Pass' : 'Fail';",
+      "notes": "Standard if/else syntax. Ternary operators are common for simple conditional assignments."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "const items = ['a', 'b', 'c'];\n\n// for...of (values)\nfor (const item of items) {\n  console.log(item);\n}\n\n// Standard for loop\nfor (let i = 0; i < items.length; i++) {\n  console.log(items[i]);\n}",
+      "notes": "Use 'for...of' to iterate over arrays and iterables. Avoid 'for...in' for arrays."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "let count = 0;\n\nwhile (count < 5) {\n  console.log(count);\n  count++;\n}\n\n// Do-while loop\ndo {\n  console.log('Runs at least once');\n} while (false);",
+      "notes": "Standard while and do-while loops. Ensure loop conditions will eventually evaluate to false."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "function add(x: number, y: number): number {\n  return x + y;\n}\n\n// Arrow function with implicit return\nconst multiply = (x: number, y: number): number => x * y;\n\n// Optional and default parameters\nconst greet = (name: string, greeting: string = 'Hello'): string => `${greeting}, ${name}!`;",
+      "notes": "Arrow functions are preferred for callbacks and functional programming. Always explicitly type parameters."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "const numbers: number[] = [1, 2, 3];\nconst genericArray: Array<string> = ['a', 'b'];\n\nnumbers.push(4);\n\n// Array methods\nconst doubled = numbers.map(n => n * 2);\nconst evens = numbers.filter(n => n % 2 === 0);",
+      "notes": "Use 'type[]' syntax for simple types, 'Array<type>' for generics. Leverage map, filter, and reduce."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "// Using Record utility type for simple objects\nconst userRoles: Record<string, string> = {\n  alice: 'admin',\n  bob: 'user'\n};\n\n// Using Map for complex keys or frequent additions\nconst cache = new Map<string, any>();\ncache.set('key1', 'value1');\nconst val = cache.get('key1');",
+      "notes": "Use 'Record<K, V>' for plain objects. Use 'Map' when keys are unknown until runtime or non-string."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "try {\n  throw new Error('Something went wrong');\n} catch (error) {\n  if (error instanceof Error) {\n    console.error(error.message);\n  }\n} finally {\n  console.log('Cleanup logic here');\n}",
+      "notes": "In TypeScript 4.4+, caught errors are 'unknown' by default. Narrow the type with 'instanceof'."
+    },
+    "comments": {
+      "title": "Comments & Documentation",
+      "concept_id": "comments",
+      "code": "// Comments in TypeScript\n/* Block documentation */",
+      "notes": "TypeScript provides comments to document code behavior."
+    },
+    "numbers": {
+      "title": "Numbers & Constants",
+      "concept_id": "numbers",
+      "code": "val = 42\nratio = 3.14159",
+      "notes": "TypeScript supports numeric literals for computation and indexing."
+    },
+    "booleans": {
+      "title": "Booleans & Conditions",
+      "concept_id": "booleans",
+      "code": "flag = true\nif flag:\n    // Execute branch",
+      "notes": "TypeScript provides boolean conditions for program control flow."
+    },
+    "type_casting": {
+      "title": "Type Conversion",
+      "concept_id": "type_casting",
+      "code": "converted = (type)original_value",
+      "notes": "TypeScript converts data between native format representations."
+    },
+    "strings": {
+      "title": "Strings & Characters",
+      "concept_id": "strings",
+      "code": "text = \"Sample string text\"",
+      "notes": "TypeScript represents textual data through string literals and character arrays."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "formatted = format(\"Text: %s\", value)",
+      "notes": "TypeScript formats and joins textual values for display and output."
+    },
+    "pattern_matching": {
+      "title": "Conditionals & Branching",
+      "concept_id": "pattern_matching",
+      "code": "case value of\n    1: execute_one()\n    default: execute_default()",
+      "notes": "TypeScript branches execution based on value comparison and conditional expressions."
+    },
+    "range": {
+      "title": "Ranges & Intervals",
+      "concept_id": "range",
+      "code": "range = 1..10",
+      "notes": "TypeScript defines intervals and index sequences for bounded processing."
+    },
+    "iterators": {
+      "title": "Iteration & Loops",
+      "concept_id": "iterators",
+      "code": "for item in collection:\n    process(item)",
+      "notes": "TypeScript iterates across collections and sequence elements."
+    },
+    "oop_classes": {
+      "title": "Structures & Modules",
+      "concept_id": "oop_classes",
+      "code": "struct Entity {\n    data: Value\n}",
+      "notes": "TypeScript organizes data and behavior through structures or modular components."
+    },
+    "lists": {
+      "title": "Collections & Arrays",
+      "concept_id": "lists",
+      "code": "items = [1, 2, 3, 4]",
+      "notes": "TypeScript stores sequence data in indexed lists or arrays."
+    },
+    "tuples": {
+      "title": "Records & Pairs",
+      "concept_id": "tuples",
+      "code": "pair = (10, \"label\")",
+      "notes": "TypeScript groups related fields into lightweight composite pairs or records."
+    },
+    "sets": {
+      "title": "Sets & Uniqueness",
+      "concept_id": "sets",
+      "code": "set = Set([1, 2, 3])",
+      "notes": "TypeScript tracks unique values without duplicate entries."
+    },
+    "modules_import": {
+      "title": "Libraries & Modules",
+      "concept_id": "modules_import",
+      "code": "import module_name",
+      "notes": "TypeScript organizes external libraries and code units into modular namespaces."
+    }
+  }
+}

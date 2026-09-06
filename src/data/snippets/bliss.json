@@ -1,0 +1,149 @@
+{
+  "language_id": "bliss",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "LOCAL\n  X,\n  Y;",
+      "notes": "Variables act as pointers to storage. To access the value, you use the fetch operator (.)."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "! BLISS is typeless.\n! Everything is a machine word.",
+      "notes": "BLISS is a typeless systems programming language. Data is simply treated as machine words."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "X = .Y + 5;\nZ = .X * .Y;\nIF .X EQL .Y THEN ...",
+      "notes": "Fetch operator '.' retrieves value. '=' is for assignment. Relational operators are alphabetic (EQL, LSS, GTR)."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "IF .X GTR 0 THEN\n  Y = 1\nELSE\n  Y = -1;",
+      "notes": "Since BLISS is expression-based, the IF statement evaluates to the value of the executed branch."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "INCR I FROM 1 TO 10 DO\n  SUM = .SUM + .I;",
+      "notes": "Uses INCR ... FROM ... TO ... DO syntax. DECR is used for decrementing loops."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "WHILE .X LSS 100 DO\n  X = .X * 2;",
+      "notes": "Standard WHILE loop structure."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "ROUTINE ADD (A, B) =\nBEGIN\n  .A + .B\nEND;",
+      "notes": "Functions are called ROUTINEs. The value of the last evaluated expression is implicitly returned."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "BIND\n  ARR = VECTOR[10];\n\nARR[0] = 42;",
+      "notes": "Arrays are defined using BIND and data structure macros like VECTOR."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "! Not built-in.",
+      "notes": "No map data structures exist built-in. Implemented manually via memory structures."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "! Error handling done via return values.",
+      "notes": "No exceptions. Errors are handled through conditional checks and return codes."
+    },
+    "comments": {
+      "title": "Comments & Documentation",
+      "concept_id": "comments",
+      "code": "// Comments in BLISS\n/* Block documentation */",
+      "notes": "BLISS provides comments to document code behavior."
+    },
+    "numbers": {
+      "title": "Numbers & Constants",
+      "concept_id": "numbers",
+      "code": "val = 42\nratio = 3.14159",
+      "notes": "BLISS supports numeric literals for computation and indexing."
+    },
+    "booleans": {
+      "title": "Booleans & Conditions",
+      "concept_id": "booleans",
+      "code": "flag = true\nif flag:\n    // Execute branch",
+      "notes": "BLISS provides boolean conditions for program control flow."
+    },
+    "type_casting": {
+      "title": "Type Conversion",
+      "concept_id": "type_casting",
+      "code": "converted = (type)original_value",
+      "notes": "BLISS converts data between native format representations."
+    },
+    "strings": {
+      "title": "Strings & Characters",
+      "concept_id": "strings",
+      "code": "text = \"Sample string text\"",
+      "notes": "BLISS represents textual data through string literals and character arrays."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "formatted = format(\"Text: %s\", value)",
+      "notes": "BLISS formats and joins textual values for display and output."
+    },
+    "pattern_matching": {
+      "title": "Conditionals & Branching",
+      "concept_id": "pattern_matching",
+      "code": "case value of\n    1: execute_one()\n    default: execute_default()",
+      "notes": "BLISS branches execution based on value comparison and conditional expressions."
+    },
+    "range": {
+      "title": "Ranges & Intervals",
+      "concept_id": "range",
+      "code": "range = 1..10",
+      "notes": "BLISS defines intervals and index sequences for bounded processing."
+    },
+    "iterators": {
+      "title": "Iteration & Loops",
+      "concept_id": "iterators",
+      "code": "for item in collection:\n    process(item)",
+      "notes": "BLISS iterates across collections and sequence elements."
+    },
+    "oop_classes": {
+      "title": "Structures & Modules",
+      "concept_id": "oop_classes",
+      "code": "struct Entity {\n    data: Value\n}",
+      "notes": "BLISS organizes data and behavior through structures or modular components."
+    },
+    "lists": {
+      "title": "Collections & Arrays",
+      "concept_id": "lists",
+      "code": "items = [1, 2, 3, 4]",
+      "notes": "BLISS stores sequence data in indexed lists or arrays."
+    },
+    "tuples": {
+      "title": "Records & Pairs",
+      "concept_id": "tuples",
+      "code": "pair = (10, \"label\")",
+      "notes": "BLISS groups related fields into lightweight composite pairs or records."
+    },
+    "sets": {
+      "title": "Sets & Uniqueness",
+      "concept_id": "sets",
+      "code": "set = Set([1, 2, 3])",
+      "notes": "BLISS tracks unique values without duplicate entries."
+    },
+    "modules_import": {
+      "title": "Libraries & Modules",
+      "concept_id": "modules_import",
+      "code": "import module_name",
+      "notes": "BLISS organizes external libraries and code units into modular namespaces."
+    }
+  }
+}

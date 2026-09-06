@@ -1,0 +1,149 @@
+{
+  "language_id": "bqn",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "var â† 10\nstringVar â† \"Hello\"",
+      "notes": "Variables are assigned using the left arrow (â†). Variable names start with lowercase for values, uppercase for functions."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "int â† 42\nfloat â† 3.14\nchar â† 'a'\nstr â† \"hello\"\nbool â† 1",
+      "notes": "BQN supports standard numerics and characters. Strings are arrays of characters."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "sum â† 3 + 4\ndiff â† 10 - 5\nprod â† 2 Ã— 3\nquot â† 10 Ã· 2\npow â† 2 â‹† 3\n\neq â† 1 = 1\nneq â† 1 â‰  2\ngt â† 2 > 1",
+      "notes": "Functions (operators) use specific unicode characters and evaluate right-to-left without precedence rules."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "x â† 10\nres â† { ð•©>0 ? \"Positive\" ; \"Non-positive\" } x",
+      "notes": "BQN block conditionals use '?' for testing conditions inside a block, separating branches with semicolons."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "squares â† {ð•©Ã—ð•©}Â¨ â†•5",
+      "notes": "Like APL, explicit looping is avoided. The Each modifier (Â¨) maps a function over an array (â†•5 generates 0..4)."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "Loop â† { ð•©<5 ? ð•Š ð•©+1 ; ð•© }\nres â† Loop 0",
+      "notes": "BQN relies on block recursion (using ð•Š, meaning self) rather than imperative while-loops."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "Add â† { ð•¨ + ð•© }\nres1 â† 3 Add 4\n\nMonadicFunc â† { ð•© + 1 }\nres2 â† MonadicFunc 5",
+      "notes": "Blocks { } define functions. ð•© is the right argument, ð•¨ is the optional left argument."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "vec â† âŸ¨1, 2, 3, 4, 5âŸ©\nmat â† 2â€¿3 â¥Š 1â€¿2â€¿3â€¿4â€¿5â€¿6\n\nfirstElement â† âŠ‘ vec\nshape â† â‰¢ mat",
+      "notes": "Arrays can be written using âŸ¨ âŸ© brackets. Strands (elements tied with â€¿) are another way to form lists. â¥Š reshapes arrays."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "map â† { \"key1\" â‡ 1; \"key2\" â‡ 2 }\nval â† map.key1",
+      "notes": "BQN uses namespaces for map-like data structures, exporting values using the â‡ symbol."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "res â† { 1Ã·ð•© } â€¢Trap 0",
+      "notes": "System function â€¢Trap can be used to handle exceptions, though checking array shapes/values is preferred."
+    },
+    "comments": {
+      "title": "Comments & Annotations",
+      "concept_id": "comments",
+      "code": "-- Single-line comment\n{- Multi-line\n   comment block -}\nadd :: Int -> Int -> Int\nadd a b = a + b",
+      "notes": "Coq uses functional comment delimiters (-- in Haskell/ML, ; in Lisps, # or % in BEAM)."
+    },
+    "numbers": {
+      "title": "Numbers & Numerics",
+      "concept_id": "numbers",
+      "code": "x = 42\npi = 3.14159\nhex = 0xFF",
+      "notes": "Coq supports exact rational fractions, arbitrary-precision integers, and IEEE floats natively."
+    },
+    "booleans": {
+      "title": "Booleans & Logic",
+      "concept_id": "booleans",
+      "code": "val isActive = true",
+      "notes": "Coq treats booleans as first-class algebraic constructors (True/False, true/false, t/nil)."
+    },
+    "type_casting": {
+      "title": "Type Conversion",
+      "concept_id": "type_casting",
+      "code": "num = String.to_integer(\"42\")\nstr = Integer.to_string(num)",
+      "notes": "Coq performs conversion via typeclass methods (fromIntegral, show, read) or explicit parse functions."
+    },
+    "strings": {
+      "title": "Strings & Text",
+      "concept_id": "strings",
+      "code": "s = \"Hello, World!\"\nchar = ?H",
+      "notes": "Coq represents strings as linked lists of characters, UTF-8 binaries, or dedicated text buffers."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "import Text.Printf\nmsg = printf \"User %s scored %d\" \"Alice\" (95 :: Int)",
+      "notes": "Coq formats text through format strings, interpolation macros, or string concatenation."
+    },
+    "pattern_matching": {
+      "title": "Pattern Matching",
+      "concept_id": "pattern_matching",
+      "code": "(case val\n  (1 \"One\")\n  ((2 3) \"Two or Three\")\n  (_ \"Other\"))",
+      "notes": "Pattern matching is a core feature in Coq, destructuring algebraic variants, tuples, and lists directly."
+    },
+    "range": {
+      "title": "Ranges & Sequences",
+      "concept_id": "range",
+      "code": "r = 1..10\nslice = Enum.slice(1..10, 2, 4)",
+      "notes": "Coq constructs ranges as lazy lists, infinite streams, or structured range enumerables."
+    },
+    "iterators": {
+      "title": "Iterators & Comprehensions",
+      "concept_id": "iterators",
+      "code": "for x <- 1..10, rem(x, 2) == 0, do: x * x",
+      "notes": "Coq achieves iterative processing through list comprehensions, map/filter transforms, and recursion."
+    },
+    "oop_classes": {
+      "title": "Types & Abstractions (OOP Equivalent)",
+      "concept_id": "oop_classes",
+      "code": "defmodule Person do\n  defstruct [:name, :age]\n  def greet(%Person{name: name}), do: \"Hello #{name}\"\nend",
+      "notes": "Coq emphasizes algebraic data types, protocols/typeclasses, and structs over traditional class hierarchies."
+    },
+    "lists": {
+      "title": "Lists (Linked Lists)",
+      "concept_id": "lists",
+      "code": "[1, 2, 3] ++ [4, 5]",
+      "notes": "Lists in Coq are singly linked immutable sequences optimized for head/tail structural sharing."
+    },
+    "tuples": {
+      "title": "Tuples & Records",
+      "concept_id": "tuples",
+      "code": "(list 1 \"apple\" t)",
+      "notes": "Coq uses fixed-length heterogeneous tuples for bundling related data points and function return values."
+    },
+    "sets": {
+      "title": "Sets",
+      "concept_id": "sets",
+      "code": "s = MapSet.new([1, 2, 3])\nMapSet.put(s, 4)",
+      "notes": "Coq provides persistent immutable sets implemented via balanced binary trees (HAMT / AVL)."
+    },
+    "modules_import": {
+      "title": "Modules & Imports",
+      "concept_id": "modules_import",
+      "code": "defmodule MyModule do\n  import Enum, only: [map: 2]\n  alias MyProject.Helper\nend",
+      "notes": "Coq isolates scopes through modules and explicit import lists with aliasing and qualified names."
+    }
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "language_id": "assembly",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "section .data\n    count dq 10       ; initialized 64-bit variable\n    pi    dd 3.14159  ; initialized 32-bit float\n\nsection .bss\n    buffer resb 64    ; uninitialized 64-byte buffer",
+      "notes": "Variables are memory allocations defined in sections (`.data` for initialized, `.bss` for uninitialized). Registers are used for temporary variables."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "db 0xAA        ; 8-bit byte\ndw 0x1234      ; 16-bit word\ndd 0x12345678  ; 32-bit double word\ndq 0x11223344  ; 64-bit quad word",
+      "notes": "Assembly has no structural types; data is simply bytes in memory. The programmer interprets size (db, dw, dd, dq)."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "mov rax, 10    ; Assignment\nadd rax, 5     ; Addition (rax = rax + 5)\nsub rax, 2     ; Subtraction\nand rax, 0xFF  ; Bitwise AND\nxor rax, rax   ; Bitwise XOR (clears to 0)",
+      "notes": "Operations are CPU instructions mutating registers or memory directly, rather than mathematical expressions."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "    cmp rax, 5\n    jg .greater    ; Jump if greater\n    je .equal      ; Jump if equal\n    ; Lesser code here\n    jmp .done\n.greater:\n    ; Greater code here\n.equal:\n.done:",
+      "notes": "Conditionals use a compare instruction (`cmp`) which sets CPU flags, followed by conditional jumps (`je`, `jg`, `jl`)."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "    mov rcx, 5     ; Loop counter\n.loop_start:\n    ; Loop body here\n    dec rcx        ; Decrement counter\n    jnz .loop_start; Jump if not zero",
+      "notes": "Loops are constructed manually using counters (often `rcx`), decrement instructions, and conditional jumps. The `loop` instruction exists but is often slower."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": ".while_start:\n    cmp rax, 10\n    jge .while_end ; Exit loop if rax >= 10\n    \n    inc rax        ; Loop body\n    jmp .while_start\n.while_end:",
+      "notes": "While loops test the condition before executing the body, jumping over the body if the condition is false."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "my_add:\n    ; Inputs in rdi, rsi (System V AMD64 ABI)\n    lea rax, [rdi + rsi] ; rax = rdi + rsi\n    ret\n\n    ; Call it\n    mov rdi, 2\n    mov rsi, 3\n    call my_add",
+      "notes": "Functions are just labeled memory addresses called with `call` and exited with `ret`. Arguments are passed via registers according to an OS-specific ABI."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "section .data\n    arr dq 10, 20, 30, 40\n\nsection .text\n    ; Access arr[2] (index * 8 bytes for dq)\n    mov rax, [arr + 2*8]",
+      "notes": "Arrays are continuous blocks of memory. Access requires manual address arithmetic by multiplying the index by the element size."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "; Assembly has NO maps or dictionaries.\n; You must implement hash tables manually or use \n; an external C library.\n; Basic lookup table:\nlookup_table:\n    dq .handler1, .handler2",
+      "notes": "No built-in maps exist. Developers rely on simple jump tables, linear searches, or integrate with C libraries for complex data structures."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "    call open_file\n    test rax, rax\n    js .error_handler  ; Jump if sign flag set (negative return)\n    \n    ; Success path\n    jmp .done\n.error_handler:\n    ; Handle error",
+      "notes": "Errors are typically indicated by specific return values (like negative numbers or 0). It is strictly manual checking."
+    },
+    "comments": {
+      "title": "Comments & Documentation",
+      "concept_id": "comments",
+      "code": "// Comments in Assembly\n/* Block documentation */",
+      "notes": "Assembly provides comments to document code behavior."
+    },
+    "numbers": {
+      "title": "Numbers & Constants",
+      "concept_id": "numbers",
+      "code": "val = 42\nratio = 3.14159",
+      "notes": "Assembly supports numeric literals for computation and indexing."
+    },
+    "booleans": {
+      "title": "Booleans & Conditions",
+      "concept_id": "booleans",
+      "code": "flag = true\nif flag:\n    // Execute branch",
+      "notes": "Assembly provides boolean conditions for program control flow."
+    },
+    "type_casting": {
+      "title": "Type Conversion",
+      "concept_id": "type_casting",
+      "code": "converted = (type)original_value",
+      "notes": "Assembly converts data between native format representations."
+    },
+    "strings": {
+      "title": "Strings & Characters",
+      "concept_id": "strings",
+      "code": "text = \"Sample string text\"",
+      "notes": "Assembly represents textual data through string literals and character arrays."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "formatted = format(\"Text: %s\", value)",
+      "notes": "Assembly formats and joins textual values for display and output."
+    },
+    "pattern_matching": {
+      "title": "Conditionals & Branching",
+      "concept_id": "pattern_matching",
+      "code": "case value of\n    1: execute_one()\n    default: execute_default()",
+      "notes": "Assembly branches execution based on value comparison and conditional expressions."
+    },
+    "range": {
+      "title": "Ranges & Intervals",
+      "concept_id": "range",
+      "code": "range = 1..10",
+      "notes": "Assembly defines intervals and index sequences for bounded processing."
+    },
+    "iterators": {
+      "title": "Iteration & Loops",
+      "concept_id": "iterators",
+      "code": "for item in collection:\n    process(item)",
+      "notes": "Assembly iterates across collections and sequence elements."
+    },
+    "oop_classes": {
+      "title": "Structures & Modules",
+      "concept_id": "oop_classes",
+      "code": "struct Entity {\n    data: Value\n}",
+      "notes": "Assembly organizes data and behavior through structures or modular components."
+    },
+    "lists": {
+      "title": "Collections & Arrays",
+      "concept_id": "lists",
+      "code": "items = [1, 2, 3, 4]",
+      "notes": "Assembly stores sequence data in indexed lists or arrays."
+    },
+    "tuples": {
+      "title": "Records & Pairs",
+      "concept_id": "tuples",
+      "code": "pair = (10, \"label\")",
+      "notes": "Assembly groups related fields into lightweight composite pairs or records."
+    },
+    "sets": {
+      "title": "Sets & Uniqueness",
+      "concept_id": "sets",
+      "code": "set = Set([1, 2, 3])",
+      "notes": "Assembly tracks unique values without duplicate entries."
+    },
+    "modules_import": {
+      "title": "Libraries & Modules",
+      "concept_id": "modules_import",
+      "code": "import module_name",
+      "notes": "Assembly organizes external libraries and code units into modular namespaces."
+    }
+  }
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webisaurus — Syntax Explorer</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <meta name="theme-color" content="#000000">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/syntax-theme.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="navbar-container">
+      <a class="navbar-brand" href="index.html">🦕 Webisaurus</a>
+      <nav class="navbar-nav">
+        <a href="index.html" class="nav-link active">Explorer</a>
+        <a href="compare.html" class="nav-link">Compare</a>
+      </nav>
+      <div class="navbar-actions">
+        <button id="palette-trigger" class="palette-trigger-btn" aria-label="Open command palette">
+          <span>🔍</span>
+          <span>Search...</span>
+          <kbd class="palette-kbd">Ctrl K</kbd>
+        </button>
+        <button id="theme-toggle" class="btn-icon" aria-label="Toggle theme">
+          <span class="theme-icon">☀️</span>
+        </button>
+      </div>
+    </div>
+  </header>
+  
+  <main class="main-content">
+    <div class="explorer-layout">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <div class="sidebar-title-row">
+            <h2>Languages</h2>
+            <span class="language-count" id="language-count">140</span>
+          </div>
+          <div class="sidebar-search-box">
+            <input type="text" id="sidebar-search" class="sidebar-search-input" placeholder="Filter languages..." aria-label="Filter languages">
+          </div>
+          <div class="filter-chips" id="filter-chips">
+            <button class="filter-chip active" data-filter="all">All</button>
+            <button class="filter-chip" data-filter="Systems">Systems</button>
+            <button class="filter-chip" data-filter="Web & Scripting">Web</button>
+            <button class="filter-chip" data-filter="Enterprise">Enterprise</button>
+            <button class="filter-chip" data-filter="Functional">Functional</button>
+            <button class="filter-chip" data-filter="Data Science">Data</button>
+            <button class="filter-chip" data-filter="Compiled">Compiled</button>
+            <button class="filter-chip" data-filter="Dynamic">Dynamic</button>
+            <button class="filter-chip" data-filter="Static">Static</button>
+          </div>
+        </div>
+        <div class="language-list" id="language-list">
+          <!-- JS populates -->
+        </div>
+      </aside>
+      <section class="content-area" id="content-area">
+        <div class="content-header">
+          <div class="header-main-row">
+            <div class="header-title-group">
+              <h1 id="current-language-name">Select a Language</h1>
+              <div class="language-meta" id="language-meta">
+                <!-- badges for version, paradigm, and playground -->
+              </div>
+            </div>
+            <div class="header-actions">
+              <button id="share-view-btn" class="action-btn" title="Copy shareable link to this language">🔗 Share</button>
+            </div>
+          </div>
+        </div>
+        <div class="concepts-grid" id="concepts-grid">
+          <!-- JS populates concept cards -->
+        </div>
+      </section>
+    </div>
+  </main>
+  
+  <footer class="footer">
+    <p>Webisaurus — Polyglot Syntax Reference</p>
+  </footer>
+  
+  <script src="js/vendor/prism.min.js"></script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

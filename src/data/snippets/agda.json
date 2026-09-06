@@ -1,0 +1,149 @@
+{
+  "language_id": "agda",
+  "snippets": {
+    "variables": {
+      "title": "Definitions & Let",
+      "concept_id": "variables",
+      "code": "x : Nat\nx = 42\n\n-- Local definition with let\nresult : Nat\nresult = let y = 10 in x + y",
+      "notes": "Values in Agda are immutable equations. Definitions require explicit type signatures."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "data Bool : Set where\n  true  : Bool\n  false : Bool\n\ndata Nat : Set where\n  zero : Nat\n  suc  : Nat -> Nat",
+      "notes": "Types are defined using inductive data types with explicitly typed constructors."
+    },
+    "operators": {
+      "title": "Mixfix Operators",
+      "concept_id": "operators",
+      "code": "_+_ : Nat -> Nat -> Nat\nzero    + n = n\n(suc m) + n = suc (m + n)\n\ninfixl 6 _+_",
+      "notes": "Agda supports arbitrary mixfix operators where underscores designate operand positions."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "if_then_else_ : {A : Set} -> Bool -> A -> A -> A\nif true  then t else f = t\nif false then t else f = f\n\nstatus : String\nstatus = if true then \"active\" else \"idle\"",
+      "notes": "Conditionals are typically user-defined mixfix functions that pattern match on boolean constructors."
+    },
+    "for_loop": {
+      "title": "Recursion",
+      "concept_id": "for_loop",
+      "code": "map : {A B : Set} -> (A -> B) -> List A -> List B\nmap f []       = []\nmap f (x :: xs) = f x :: map f xs",
+      "notes": "Agda has no loops; structural recursion over inductive structures is verified to terminate by the totality checker."
+    },
+    "while_loop": {
+      "title": "Totality & Well-Founded Recursion",
+      "concept_id": "while_loop",
+      "code": "-- Unbounded while loops are prohibited in total Agda.\n-- Computations must provide a proof of termination.",
+      "notes": "General while loops cannot exist without fuel or coinductive/well-founded termination proofs."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "double : Nat -> Nat\ndouble zero    = zero\ndouble (suc n) = suc (suc (double n))\n\n-- Dependent function\nreplicate : (n : Nat) -> {A : Set} -> A -> Vec A n",
+      "notes": "Functions are first-class, pure, and can have dependent types where return types depend on input values."
+    },
+    "arrays": {
+      "title": "Vectors (Length-Indexed)",
+      "concept_id": "arrays",
+      "code": "data Vec (A : Set) : Nat -> Set where\n  []   : Vec A zero\n  _::_ : {n : Nat} -> A -> Vec A n -> Vec A (suc n)",
+      "notes": "Length-indexed vectors guarantee out-of-bounds errors are caught statically at compile time."
+    },
+    "maps": {
+      "title": "Association Lists / Finite Maps",
+      "concept_id": "maps",
+      "code": "lookup : {A B : Set} -> DecEq A -> A -> List (A * B) -> Maybe B\nlookup _    k [] = nothing\nlookup deq k ((k' , v) :: rest) = if deq k k' then just v else lookup deq k rest",
+      "notes": "Maps are represented as key-value association lists or verified balanced trees."
+    },
+    "error_handling": {
+      "title": "Maybe & Proof of Validity",
+      "concept_id": "error_handling",
+      "code": "data Maybe (A : Set) : Set where\n  just    : A -> Maybe A\n  nothing : Maybe A\n\nsafeDiv : Nat -> (d : Nat) -> {p : NonZero d} -> Nat",
+      "notes": "Errors are handled using Maybe/Either or ruled out entirely by requiring proofs as function parameters."
+    },
+    "comments": {
+      "title": "Comments & Annotations",
+      "concept_id": "comments",
+      "code": "-- Single-line comment\n{- Multi-line\n   comment block -}\nadd :: Int -> Int -> Int\nadd a b = a + b",
+      "notes": "Agda uses functional comment delimiters (-- in Haskell/ML, ; in Lisps, # or % in BEAM)."
+    },
+    "numbers": {
+      "title": "Numbers & Numerics",
+      "concept_id": "numbers",
+      "code": "x = 42 :: Int\nbig = 100000000000000000000 :: Integer\npiVal = 3.14159 :: Double\nhexVal = 0xFF",
+      "notes": "Agda supports exact rational fractions, arbitrary-precision integers, and IEEE floats natively."
+    },
+    "booleans": {
+      "title": "Booleans & Logic",
+      "concept_id": "booleans",
+      "code": "isActive = True\nisDone = False\nresult = isActive && not isDone",
+      "notes": "Agda treats booleans as first-class algebraic constructors (True/False, true/false, t/nil)."
+    },
+    "type_casting": {
+      "title": "Type Conversion",
+      "concept_id": "type_casting",
+      "code": "intVal = 42 :: Int\nfloatVal = fromIntegral intVal :: Double\nstrVal = show intVal\nparsed = read \"123\" :: Int",
+      "notes": "Agda performs conversion via typeclass methods (fromIntegral, show, read) or explicit parse functions."
+    },
+    "strings": {
+      "title": "Strings & Text",
+      "concept_id": "strings",
+      "code": "str = \"Hello, Haskell!\"\ncharVal = 'H' :: Char\nmulti = \"Line 1\\nLine 2\"",
+      "notes": "Agda represents strings as linked lists of characters, UTF-8 binaries, or dedicated text buffers."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "import Text.Printf\nmsg = printf \"User %s scored %d\" \"Alice\" (95 :: Int)",
+      "notes": "Agda formats text through format strings, interpolation macros, or string concatenation."
+    },
+    "pattern_matching": {
+      "title": "Pattern Matching",
+      "concept_id": "pattern_matching",
+      "code": "describeList xs = case xs of\n    []       -> \"Empty list\"\n    [x]      -> \"Single element\"\n    (x:y:_)  -> \"Multiple elements\"",
+      "notes": "Pattern matching is a core feature in Agda, destructuring algebraic variants, tuples, and lists directly."
+    },
+    "range": {
+      "title": "Ranges & Sequences",
+      "concept_id": "range",
+      "code": "-- Infinite lazy sequence\nevens = [0, 2 .. 20]\n-- List slice with take/drop\nsub = take 5 (drop 2 [1..10])",
+      "notes": "Agda constructs ranges as lazy lists, infinite streams, or structured range enumerables."
+    },
+    "iterators": {
+      "title": "Iterators & Comprehensions",
+      "concept_id": "iterators",
+      "code": "-- List comprehension\nsquares = [x * x | x <- [1..10], even x]",
+      "notes": "Agda achieves iterative processing through list comprehensions, map/filter transforms, and recursion."
+    },
+    "oop_classes": {
+      "title": "Types & Abstractions (OOP Equivalent)",
+      "concept_id": "oop_classes",
+      "code": "data Person = Person { name :: String, age :: Int }\n\ngreet :: Person -> String\ngreet (Person n _) = \"Hello, \" ++ n",
+      "notes": "Agda emphasizes algebraic data types, protocols/typeclasses, and structs over traditional class hierarchies."
+    },
+    "lists": {
+      "title": "Lists (Linked Lists)",
+      "concept_id": "lists",
+      "code": "list = [1, 2, 3]\nappended = 0 : list  -- Cons: O(1)\nmerged = list ++ [4, 5] -- Concat",
+      "notes": "Lists in Agda are singly linked immutable sequences optimized for head/tail structural sharing."
+    },
+    "tuples": {
+      "title": "Tuples & Records",
+      "concept_id": "tuples",
+      "code": "tuple = (1, \"apple\", True)\n(num, str, flag) = tuple",
+      "notes": "Agda uses fixed-length heterogeneous tuples for bundling related data points and function return values."
+    },
+    "sets": {
+      "title": "Sets",
+      "concept_id": "sets",
+      "code": "import qualified Data.Set as Set\ns = Set.fromList [1, 2, 3]\ns' = Set.insert 4 s\nexists = Set.member 2 s'",
+      "notes": "Agda provides persistent immutable sets implemented via balanced binary trees (HAMT / AVL)."
+    },
+    "modules_import": {
+      "title": "Modules & Imports",
+      "concept_id": "modules_import",
+      "code": "module Math.Geometry (area, perimeter) where\nimport Data.List (sort, nub)\nimport qualified Data.Map as Map",
+      "notes": "Agda isolates scopes through modules and explicit import lists with aliasing and qualified names."
+    }
+  }
+}

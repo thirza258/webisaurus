@@ -1,0 +1,149 @@
+{
+  "language_id": "cpp",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "int x = 10;\nconst double PI = 3.14;\nconstexpr int MAX = 100;\nauto y = 5.5; // Type inference\nint& ref = x; // Reference",
+      "notes": "Supports type inference with 'auto' and distinct const/constexpr for immutability and compile-time constants."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "#include <string>\n#include <vector>\nint i = 42;\ndouble d = 3.14;\nbool b = true;\nstd::string s = \"C++\";\nstd::vector<int> vec = {1, 2, 3};",
+      "notes": "Rich Standard Template Library (STL) provides robust string and collection types."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "int a = 5 + 3;\nbool b = (a == 8) && true;\nauto cmp = (5 <=> 10); // C++20 spaceship operator",
+      "notes": "Includes modern additions like the spaceship operator for 3-way comparisons."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "if (int val = getValue(); val > 0) { // C++17 init statement\n    // ...\n} else if (val < 0) {\n    // ...\n}",
+      "notes": "C++17 introduced initialization statements directly inside if/switch conditions."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "for (int i = 0; i < 5; ++i) { }\n\nstd::vector<int> v = {1, 2, 3};\nfor (const auto& item : v) { // Range-based\n    // ...\n}",
+      "notes": "Range-based for loops provide a safer and cleaner way to iterate over containers."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "int n = 0;\nwhile (n < 5) {\n    ++n;\n}\n\ndo {\n    // executes at least once\n} while (false);",
+      "notes": "Supports both traditional while and do-while constructs."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "auto add(int a, int b) -> int { // Trailing return\n    return a + b;\n}\n\ntemplate <typename T>\nT max(T a, T b) {\n    return (a > b) ? a : b;\n}",
+      "notes": "Templates enable generic programming, and 'auto' can deduce return types in modern C++."
+    },
+    "arrays": {
+      "title": "Arrays & Vectors",
+      "concept_id": "arrays",
+      "code": "#include <vector>\n#include <array>\nstd::vector<int> vec;\nvec.push_back(1);\nint val = vec.at(0); // Bounds-checked\nstd::array<int, 3> arr = {1, 2, 3};",
+      "notes": "std::vector is the default dynamic array, while std::array offers a safe wrapper around C-style arrays."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "#include <map>\nstd::map<std::string, int> m;\nm[\"key\"] = 42;\nif (auto it = m.find(\"key\"); it != m.end()) {\n    auto [k, v] = *it; // Structured bindings\n}",
+      "notes": "Ordered (std::map) and unordered maps are standard. C++17 structured bindings make iteration elegant."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "try {\n    throw std::runtime_error(\"Error\");\n} catch (const std::exception& e) {\n    // Handle error\n}\n\nstd::optional<int> safeDivide(int a, int b) noexcept;",
+      "notes": "Exceptions are traditional, but std::optional or std::expected (C++23) offer modern, monad-like alternatives."
+    },
+    "comments": {
+      "title": "Comments & Documentation",
+      "concept_id": "comments",
+      "code": "// Single-line comment in C++\n\n/*\n * Multi-line comment block\n */\n\n/**\n * Documentation comment\n */",
+      "notes": "C++ uses C-style // single-line and /* */ multi-line comments."
+    },
+    "numbers": {
+      "title": "Numbers & Numerics",
+      "concept_id": "numbers",
+      "code": "int a = 42;\ndouble b = 3.14159;\nlong large = 1_000_000L;\nint hex = 0xFF;\nint bin = 0b1010;",
+      "notes": "C++ provides explicitly sized integer and floating-point primitives with binary and hex support."
+    },
+    "booleans": {
+      "title": "Booleans & Conditions",
+      "concept_id": "booleans",
+      "code": "bool isActive = true;\nbool isDone = false;\nif (isActive && !isDone) {\n    // Condition satisfied\n}",
+      "notes": "C++ uses bool / boolean types with true and false literals and logical operators (&&, ||, !)."
+    },
+    "type_casting": {
+      "title": "Type Casting & Conversion",
+      "concept_id": "type_casting",
+      "code": "int a = 42;\ndouble d = static_cast<double>(a);\nint b = static_cast<int>(d);",
+      "notes": "C++ supports explicit type casting using cast operators or constructor functions."
+    },
+    "strings": {
+      "title": "Strings & Characters",
+      "concept_id": "strings",
+      "code": "String str = \"Hello, World!\";\nchar ch = str.charAt(0);\nint len = str.length();",
+      "notes": "C++ distinguishes between single-character literals and string sequences or pointer slices."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "char buffer[100];\nsnprintf(buffer, sizeof(buffer), \"User: %s, Score: %d\", \"Alice\", 95);\nprintf(\"%s\\n\", buffer);",
+      "notes": "C++ supports string interpolation or printf-style formatting specifiers."
+    },
+    "pattern_matching": {
+      "title": "Pattern Matching & Switch",
+      "concept_id": "pattern_matching",
+      "code": "switch (val) {\n    case 1:\n        printf(\"One\\n\");\n        break;\n    case 2:\n    case 3:\n        printf(\"Two or Three\\n\");\n        break;\n    default:\n        printf(\"Other\\n\");\n}",
+      "notes": "C++ evaluates branching conditions through switch statements, match expressions, or when constructs."
+    },
+    "range": {
+      "title": "Ranges & Slicing",
+      "concept_id": "range",
+      "code": "for (int i = 0; i < 10; i += 2) {\n    // Range from 0 to 9 step 2\n}",
+      "notes": "C++ represents ranges with range operators (.., ..<) or standard indexed iteration boundaries."
+    },
+    "iterators": {
+      "title": "Iterators & Sequences",
+      "concept_id": "iterators",
+      "code": "for (const auto& item : collection) {\n    // Iteration over container\n}",
+      "notes": "C++ implements iteration through Iterator interfaces, generators, or range-for loops."
+    },
+    "oop_classes": {
+      "title": "Classes & OOP",
+      "concept_id": "oop_classes",
+      "code": "class Person {\n    private String name;\n    public Person(String name) {\n        this.name = name;\n    }\n    public String getName() {\n        return this.name;\n    }\n}",
+      "notes": "C++ models object orientation through classes with constructors/encapsulation or structs with associated methods."
+    },
+    "lists": {
+      "title": "Dynamic Arrays & Lists",
+      "concept_id": "lists",
+      "code": "#include <vector>\nstd::vector<int> list = {1, 2, 3};\nlist.push_back(4);\nlist.pop_back();",
+      "notes": "C++ manages growable dynamic collections using vectors, ArrayLists, or dynamically reallocated heap buffers."
+    },
+    "tuples": {
+      "title": "Tuples & Records",
+      "concept_id": "tuples",
+      "code": "#include <tuple>\nauto t = std::make_tuple(1, 3.14, \"text\");\nauto [a, b, c] = t; // Structured binding",
+      "notes": "C++ represents heterogeneous records through tuples, structured bindings, or lightweight record structs."
+    },
+    "sets": {
+      "title": "Sets & Unique Collections",
+      "concept_id": "sets",
+      "code": "#include <unordered_set>\nstd::unordered_set<int> s = {1, 2, 3};\ns.insert(4);\nbool exists = s.count(2) > 0;",
+      "notes": "C++ provides unique collection hashing structures with O(1) average lookup and insertion time."
+    },
+    "modules_import": {
+      "title": "Modules, Packages & Imports",
+      "concept_id": "modules_import",
+      "code": "#include <iostream>\n#include <vector>\nimport std; // C++20 modules",
+      "notes": "C++ structures namespaces and external libraries via include directives, package declarations, or module imports."
+    }
+  }
+}

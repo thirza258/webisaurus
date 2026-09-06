@@ -1,0 +1,7 @@
+services:
+  webisaurus:
+    build: .
+    container_name: webisaurus_web
+    restart: unless-stopped
+    ports:
+      - "8080:80"

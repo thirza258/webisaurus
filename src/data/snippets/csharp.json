@@ -1,0 +1,149 @@
+{
+  "language_id": "csharp",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "var implicitlyTyped = \"Text\";\nconst int ConstantVal = 42;\nint explicitlyTyped = 10;",
+      "notes": "Use 'var' when the type is obvious from the right side."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "int i = 1;\ndouble d = 1.0;\ndecimal m = 1.0m;\nbool b = true;\nstring s = \"Text\";\nstring? nullableStr = null;",
+      "notes": "C# 8+ supports nullable reference types for better null safety."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "var sum = 1 + 2;\nvar eq = (1 == 1);\nvar safeNav = obj?.Property ?? \"default\";",
+      "notes": "Null-conditional '?.' and null-coalescing '??' operators."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "var max = a > b ? a : b;\n\nvar type = x switch\n{\n    1 => \"One\",\n    < 10 => \"Small\",\n    string s => $\"String: {s}\",\n    _ => \"Unknown\"\n};",
+      "notes": "Modern C# uses switch expressions with powerful pattern matching."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "for (int i = 0; i < 5; i++) { }\n\nforeach (var item in collection) { }",
+      "notes": "foreach is the standard way to iterate over IEnumerable collections."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "while (x > 0) { x--; }\n\ndo { y++; } while (y < 10);",
+      "notes": "Standard C-style while loops."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "int Add(int a, int b) => a + b;\n\nFunc<int, int, int> multiply = (a, b) => a * b;",
+      "notes": "Expression-bodied members allow concise method definitions."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "int[] arr = [1, 2, 3]; // C# 12 collection expression\narr[0] = 10;\nvar span = arr.AsSpan();",
+      "notes": "C# 12 introduces concise collection expressions. Spans provide zero-allocation slices."
+    },
+    "maps": {
+      "title": "Dictionaries (Maps)",
+      "concept_id": "maps",
+      "code": "Dictionary<string, int> dict = new() { [\"a\"] = 1 };\ndict[\"b\"] = 2;\nvar val = dict.GetValueOrDefault(\"a\");",
+      "notes": "Target-typed new() makes instantiation cleaner."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "try\n{\n    Risky();\n}\ncatch (Exception ex) when (ex.Message.Contains(\"timeout\"))\n{\n    Fallback();\n}\nfinally\n{\n    Cleanup();\n}",
+      "notes": "Exception filters ('when') allow catching specific conditions."
+    },
+    "comments": {
+      "title": "Comments & Documentation",
+      "concept_id": "comments",
+      "code": "// Single-line comment in C#\n\n/*\n * Multi-line comment block\n */\n\n/**\n * Documentation comment\n */",
+      "notes": "C# uses C-style // single-line and /* */ multi-line comments."
+    },
+    "numbers": {
+      "title": "Numbers & Numerics",
+      "concept_id": "numbers",
+      "code": "int a = 42;\ndouble b = 3.14159;\nlong large = 1_000_000L;\nint hex = 0xFF;\nint bin = 0b1010;",
+      "notes": "C# provides explicitly sized integer and floating-point primitives with binary and hex support."
+    },
+    "booleans": {
+      "title": "Booleans & Conditions",
+      "concept_id": "booleans",
+      "code": "bool isActive = true;\nbool isDone = false;\nif (isActive && !isDone) {\n    // Condition satisfied\n}",
+      "notes": "C# uses bool / boolean types with true and false literals and logical operators (&&, ||, !)."
+    },
+    "type_casting": {
+      "title": "Type Casting & Conversion",
+      "concept_id": "type_casting",
+      "code": "int a = 42;\ndouble d = (double)a;\nint b = (int)d;",
+      "notes": "C# supports explicit type casting using cast operators or constructor functions."
+    },
+    "strings": {
+      "title": "Strings & Characters",
+      "concept_id": "strings",
+      "code": "String str = \"Hello, World!\";\nchar ch = str.charAt(0);\nint len = str.length();",
+      "notes": "C# distinguishes between single-character literals and string sequences or pointer slices."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "string name = \"Alice\";\nint score = 95;\nstring msg = $\"User {name} scored {score:D3}\";",
+      "notes": "C# supports string interpolation or printf-style formatting specifiers."
+    },
+    "pattern_matching": {
+      "title": "Pattern Matching & Switch",
+      "concept_id": "pattern_matching",
+      "code": "string result = val switch {\n    1 => \"One\",\n    2 or 3 => \"Two or Three\",\n    _ => \"Other\"\n};",
+      "notes": "C# evaluates branching conditions through switch statements, match expressions, or when constructs."
+    },
+    "range": {
+      "title": "Ranges & Slicing",
+      "concept_id": "range",
+      "code": "int[] nums = {0, 1, 2, 3, 4};\nvar slice = nums[1..4];",
+      "notes": "C# represents ranges with range operators (.., ..<) or standard indexed iteration boundaries."
+    },
+    "iterators": {
+      "title": "Iterators & Sequences",
+      "concept_id": "iterators",
+      "code": "IEnumerable<int> Countdown(int n) {\n    while (n > 0) yield return n--;\n}",
+      "notes": "C# implements iteration through Iterator interfaces, generators, or range-for loops."
+    },
+    "oop_classes": {
+      "title": "Classes & OOP",
+      "concept_id": "oop_classes",
+      "code": "class Person {\n    private String name;\n    public Person(String name) {\n        this.name = name;\n    }\n    public String getName() {\n        return this.name;\n    }\n}",
+      "notes": "C# models object orientation through classes with constructors/encapsulation or structs with associated methods."
+    },
+    "lists": {
+      "title": "Dynamic Arrays & Lists",
+      "concept_id": "lists",
+      "code": "var list = new List<int> { 1, 2, 3 };\nlist.Add(4);\nlist.RemoveAt(0);",
+      "notes": "C# manages growable dynamic collections using vectors, ArrayLists, or dynamically reallocated heap buffers."
+    },
+    "tuples": {
+      "title": "Tuples & Records",
+      "concept_id": "tuples",
+      "code": "var t = (Id: 1, Name: \"Alice\");\nvar (id, name) = t;",
+      "notes": "C# represents heterogeneous records through tuples, structured bindings, or lightweight record structs."
+    },
+    "sets": {
+      "title": "Sets & Unique Collections",
+      "concept_id": "sets",
+      "code": "var set = new HashSet<int> { 1, 2, 3 };\nset.Add(4);\nset.Remove(1);",
+      "notes": "C# provides unique collection hashing structures with O(1) average lookup and insertion time."
+    },
+    "modules_import": {
+      "title": "Modules, Packages & Imports",
+      "concept_id": "modules_import",
+      "code": "using System;\nusing System.Collections.Generic;\n\nnamespace MyApp;",
+      "notes": "C# structures namespaces and external libraries via include directives, package declarations, or module imports."
+    }
+  }
+}

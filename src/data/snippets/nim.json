@@ -1,0 +1,149 @@
+{
+  "language_id": "nim",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "var mutableCount = 0\nmutableCount += 1\n\nlet immutableVal = 10 # Evaluated at runtime\nconst compileTimeVal = 20 # Evaluated at compile time",
+      "notes": "Nim uses `var` for mutable variables, `let` for immutable variables, and `const` for compile-time constants."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "var\n  a: int = 42\n  b: float = 3.14\n  c: bool = true\n  d: char = 'x'\n  e: string = \"Nim\"",
+      "notes": "Nim supports standard types. Variable declarations can be grouped under a single `var` or `let` block."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "let sum = 5 + 10\nlet concat = \"Hello \" & \"World\"\nlet isEqual = (5 == 5)\nlet isGreater = (10 > 5)",
+      "notes": "Nim allows operator overloading. String concatenation uses the `&` operator."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "let x = 10\nif x > 10:\n  echo \"Greater\"\nelif x == 10:\n  echo \"Equal\"\nelse:\n  echo \"Lesser\"\n\nlet y = if x > 5: 1 else: 0",
+      "notes": "Conditionals are indentation-based and can be used as expressions to yield a value."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "for i in 0 ..< 5:\n  echo i\n\nfor i, val in [\"a\", \"b\", \"c\"]:\n  echo i, \": \", val",
+      "notes": "Nim heavily uses iterators for loops. `..<` creates an exclusive range, while `..` creates an inclusive one."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "var i = 0\nwhile i < 5:\n  echo i\n  inc i",
+      "notes": "Standard `while` loops are available. The `inc` procedure is idiomatic for incrementing variables."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "proc add(a, b: int): int =\n  result = a + b # 'result' is implicitly returned\n\nfunc pureAdd(a, b: int): int =\n  a + b # Func enforces no side effects",
+      "notes": "Nim uses `proc` for procedures and `func` for side-effect-free functions. The special `result` variable can be used for implicit returns."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "var arr: array[3, int] = [1, 2, 3] # Fixed size\nvar seqArr: seq[int] = @[1, 2, 3]  # Dynamic (sequence)\n\nseqArr.add(4)",
+      "notes": "Fixed-size arrays use `array`. Dynamic arrays are called sequences (`seq`), constructed using the `@` prefix."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "import std/tables\n\nvar ages = {\"Alice\": 30, \"Bob\": 25}.toTable\nages[\"Charlie\"] = 40\n\nif ages.hasKey(\"Alice\"):\n  echo ages[\"Alice\"]",
+      "notes": "Maps are called Tables and are provided by the `std/tables` module."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "try:\n  var f = open(\"missing.txt\")\nexcept IOError as e:\n  echo \"IO Error: \", e.msg\nfinally:\n  echo \"Always runs\"",
+      "notes": "Nim uses traditional exception handling. Alternatively, result types (`std/options` or third-party `Result` modules) are often used for error handling."
+    },
+    "comments": {
+      "title": "Comments & Documentation",
+      "concept_id": "comments",
+      "code": "# Single-line comment in Nim\n\n\"\"\"\nMulti-line documentation block.\nProvides docstrings for functions and modules.\n\"\"\"\n\ndef add(a, b):\n    \"\"\"Return sum of a and b.\"\"\"\n    return a + b",
+      "notes": "Nim uses # for line comments and triple quotes for multi-line documentation strings."
+    },
+    "numbers": {
+      "title": "Numbers & Numerics",
+      "concept_id": "numbers",
+      "code": "x = 42\npi = 3.14159\nhex_val = 0xFF\nbin_val = 0b1010\nlarge_num = 1_000_000",
+      "notes": "Nim supports arbitrary-precision or native integers, IEEE floats, and numeric literal prefixes (0x, 0b)."
+    },
+    "booleans": {
+      "title": "Booleans & Conditions",
+      "concept_id": "booleans",
+      "code": "let is_active = true\nlet has_failed = false\n\nif is_active and not has_failed:\n    echo \"Active\"",
+      "notes": "Nim represents boolean values with logical and, or, and not operators."
+    },
+    "type_casting": {
+      "title": "Type Casting & Conversion",
+      "concept_id": "type_casting",
+      "code": "let num_str = \"42\"\nlet n = parseInt(num_str)\nlet f = float(n)\nlet s = $f",
+      "notes": "Nim uses explicit conversion functions or operators to transform types between primitives."
+    },
+    "strings": {
+      "title": "Strings & Escapes",
+      "concept_id": "strings",
+      "code": "s1 = \"Double-quoted string\"\ns2 = 'Single-quoted string'\nraw = r\"C:\\new_folder\\raw.txt\"\nmulti = \"\"\"Line 1\nLine 2\"\"\"",
+      "notes": "Nim supports single, double, and raw string literals that ignore escape characters."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "import strformat\nlet name = \"Alice\"\nlet score = 95\necho fmt\"User {name} scored {score}\"",
+      "notes": "Nim uses f-string interpolation or format specifiers for embedded expression formatting."
+    },
+    "pattern_matching": {
+      "title": "Pattern Matching",
+      "concept_id": "pattern_matching",
+      "code": "case val\nof 1: echo \"One\"\nof 2, 3: echo \"Two or Three\"\nelse: echo \"Other\"",
+      "notes": "Nim provides structural pattern matching with match/case or case-of expressions."
+    },
+    "range": {
+      "title": "Ranges & Slices",
+      "concept_id": "range",
+      "code": "let r = 1 .. 5\nlet slice = text[0 .. 3]",
+      "notes": "Nim provides built-in range generation and slicing syntax with interval boundaries."
+    },
+    "iterators": {
+      "title": "Iterators & Generators",
+      "concept_id": "iterators",
+      "code": "iterator countdown(n: int): int =\n  var x = n\n  while x > 0:\n    yield x\n    dec x",
+      "notes": "Nim uses generator functions or iterators with the yield keyword for lazy element production."
+    },
+    "oop_classes": {
+      "title": "Classes & OOP",
+      "concept_id": "oop_classes",
+      "code": "type\n  Person = ref object of RootObj\n    name*: string\n    age*: int\n\nmethod greet(p: Person): string {.base.} =\n  \"Hello \" & p.name",
+      "notes": "Nim supports object-oriented paradigms with methods, constructors, and encapsulation."
+    },
+    "lists": {
+      "title": "Lists & Dynamic Arrays",
+      "concept_id": "lists",
+      "code": "var list = @[1, 2, 3]\nlist.add(4)\nlet first = list[0]",
+      "notes": "Nim provides mutable dynamic lists/sequences with append, insert, and indexing operations."
+    },
+    "tuples": {
+      "title": "Tuples & Records",
+      "concept_id": "tuples",
+      "code": "let pair: (int, string) = (1, \"apple\")\nlet (x, name) = pair",
+      "notes": "Nim provides immutable ordered tuples supporting unpack destructuring."
+    },
+    "sets": {
+      "title": "Sets & Collections",
+      "concept_id": "sets",
+      "code": "import sets\nvar s = toHashSet([1, 2, 3])\ns.incl(4)\nlet hasOne = s.contains(1)",
+      "notes": "Nim provides unique element set collections with membership tests and mathematical set operations."
+    },
+    "modules_import": {
+      "title": "Modules & Imports",
+      "concept_id": "modules_import",
+      "code": "import std/[strutils, os]\nfrom math import sqrt",
+      "notes": "Nim manages code organization via modules and selective import statements."
+    }
+  }
+}

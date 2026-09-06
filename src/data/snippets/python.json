@@ -1,0 +1,149 @@
+{
+  "language_id": "python",
+  "snippets": {
+    "variables": {
+      "title": "Variables & Constants",
+      "concept_id": "variables",
+      "code": "# Variables are dynamically typed\nx = 10\nname = \"Alice\"\n\n# Python doesn't have a const keyword\n# By convention, constants are ALL_CAPS\nMAX_CONNECTIONS = 100\n\n# Type hints (Python 3.5+)\nfrom typing import Final\nPI: Final = 3.14159",
+      "notes": "Python is dynamically typed. It has no strict constants at the language level, but naming conventions and typing.Final indicate intent."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "# Primitives\ni = 42          # int\nf = 3.14        # float\nb = True        # bool\ns = \"Hello\"     # str\n\n# Collections\nl = [1, 2, 3]   # list\nd = {'a': 1}    # dict\nt = (1, 2)      # tuple\nset_val = {1}   # set",
+      "notes": "Python automatically infers types. Collections are highly flexible and can hold mixed types."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "# Arithmetic\nsum = 10 + 5\ndiv = 10 / 3      # Float division (3.333...)\nfloor_div = 10 // 3 # Integer division (3)\nmod = 10 % 3\npow = 2 ** 3      # Exponentiation\n\n# Logical\nis_true = True and False\nis_or = True or False\nis_not = not True",
+      "notes": "Uses words ('and', 'or', 'not') for logical operators instead of symbols like '&&' or '||'."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "age = 20\n\nif age < 13:\n    print(\"Child\")\nelif age < 20:\n    print(\"Teen\")\nelse:\n    print(\"Adult\")\n\n# Ternary equivalent\nstatus = \"Adult\" if age >= 18 else \"Minor\"",
+      "notes": "Python relies on indentation rather than braces for conditional blocks."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "# Iterate over range (0 to 4)\nfor i in range(5):\n    print(i)\n\n# Iterate over items\nfruits = [\"apple\", \"banana\", \"cherry\"]\nfor fruit in fruits:\n    print(fruit)\n\n# Enumerate (index and value)\nfor idx, val in enumerate(fruits):\n    print(f\"{idx}: {val}\")",
+      "notes": "The 'for' loop in Python acts strictly as an iterator over sequences or iterables."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "count = 0\nwhile count < 5:\n    print(count)\n    count += 1\n    \n    if count == 3:\n        break # Exit loop early\nelse:\n    # Executes if loop didn't 'break'\n    print(\"Loop completed\")",
+      "notes": "Python's while loop supports an 'else' clause that runs if the loop terminates normally."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "# Basic function with type hints\ndef greet(name: str) -> str:\n    return f\"Hello, {name}!\"\n\n# Default parameters and keyword arguments\ndef power(base: int, exp: int = 2) -> int:\n    return base ** exp\n\nresult = power(3)\nres2 = power(exp=3, base=2)",
+      "notes": "Functions are first-class objects. Type hints are optional but highly recommended."
+    },
+    "arrays": {
+      "title": "Arrays / Lists",
+      "concept_id": "arrays",
+      "code": "numbers = [1, 2, 3]\n\n# Append & modify\nnumbers.append(4)\nnumbers[0] = 99\n\n# Slicing [start:stop:step]\nsubset = numbers[1:3] # [2, 3]\n\n# List comprehension (idiomatic)\nsquares = [x**2 for x in numbers if x > 0]",
+      "notes": "Python lists are dynamic arrays. List comprehensions offer a concise way to create lists."
+    },
+    "maps": {
+      "title": "Maps / Dictionaries",
+      "concept_id": "maps",
+      "code": "user = {\n    \"name\": \"Alice\",\n    \"age\": 30\n}\n\n# Add/update\nuser[\"role\"] = \"admin\"\n\n# Safe access\nage = user.get(\"age\", 0)\n\n# Iteration\nfor key, value in user.items():\n    print(f\"{key}: {value}\")",
+      "notes": "Dictionaries in Python are insertion-ordered (since 3.7) and highly optimized."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "try:\n    result = 10 / 0\nexcept ZeroDivisionError as e:\n    print(f\"Math error: {e}\")\nexcept Exception as e:\n    print(f\"General error: {e}\")\nelse:\n    print(\"No errors occurred\")\nfinally:\n    print(\"Cleanup code runs always\")",
+      "notes": "Python uses try/except blocks. It encourages a 'Look before you leap' or 'Easier to ask forgiveness' approach."
+    },
+    "comments": {
+      "title": "Comments & Documentation",
+      "concept_id": "comments",
+      "code": "# Single-line comment in Python\n\n\"\"\"\nMulti-line documentation block.\nProvides docstrings for functions and modules.\n\"\"\"\n\ndef add(a, b):\n    \"\"\"Return sum of a and b.\"\"\"\n    return a + b",
+      "notes": "Python uses # for line comments and triple quotes for multi-line documentation strings."
+    },
+    "numbers": {
+      "title": "Numbers & Numerics",
+      "concept_id": "numbers",
+      "code": "x = 42\npi = 3.14159\nhex_val = 0xFF\nbin_val = 0b1010\nlarge_num = 1_000_000",
+      "notes": "Python supports arbitrary-precision or native integers, IEEE floats, and numeric literal prefixes (0x, 0b)."
+    },
+    "booleans": {
+      "title": "Booleans & Conditions",
+      "concept_id": "booleans",
+      "code": "is_active = True\nhas_failed = False\n\nif is_active and not has_failed:\n    print(\"Active\")",
+      "notes": "Python represents boolean values with logical and, or, and not operators."
+    },
+    "type_casting": {
+      "title": "Type Casting & Conversion",
+      "concept_id": "type_casting",
+      "code": "num_str = \"42\"\nn = int(num_str)\nf = float(n)\ns = str(f)",
+      "notes": "Python uses explicit conversion functions or operators to transform types between primitives."
+    },
+    "strings": {
+      "title": "Strings & Escapes",
+      "concept_id": "strings",
+      "code": "s1 = \"Double-quoted string\"\ns2 = 'Single-quoted string'\nraw = r\"C:\\new_folder\\raw.txt\"\nmulti = \"\"\"Line 1\nLine 2\"\"\"",
+      "notes": "Python supports single, double, and raw string literals that ignore escape characters."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "name = \"Alice\"\nscore = 95\nmsg = f\"User {name} scored {score:.1f}\"\nprint(msg)",
+      "notes": "Python uses f-string interpolation or format specifiers for embedded expression formatting."
+    },
+    "pattern_matching": {
+      "title": "Pattern Matching",
+      "concept_id": "pattern_matching",
+      "code": "match val:\n    case 1:\n        print(\"One\")\n    case 2 | 3:\n        print(\"Two or Three\")\n    case _:\n        print(\"Default\")",
+      "notes": "Python provides structural pattern matching with match/case or case-of expressions."
+    },
+    "range": {
+      "title": "Ranges & Slices",
+      "concept_id": "range",
+      "code": "r = range(1, 10, 2)\nsub = nums[1:5]\nrev = nums[::-1]",
+      "notes": "Python provides built-in range generation and slicing syntax with interval boundaries."
+    },
+    "iterators": {
+      "title": "Iterators & Generators",
+      "concept_id": "iterators",
+      "code": "def countdown(n):\n    while n > 0:\n        yield n\n        n -= 1\n\nfor i in countdown(3):\n    print(i)",
+      "notes": "Python uses generator functions or iterators with the yield keyword for lazy element production."
+    },
+    "oop_classes": {
+      "title": "Classes & OOP",
+      "concept_id": "oop_classes",
+      "code": "class Person:\n    def __init__(self, name: str):\n        self.name = name\n    \n    def greet(self) -> str:\n        return f\"Hello {self.name}\"",
+      "notes": "Python supports object-oriented paradigms with methods, constructors, and encapsulation."
+    },
+    "lists": {
+      "title": "Lists & Dynamic Arrays",
+      "concept_id": "lists",
+      "code": "items = [1, 2, 3]\nitems.append(4)\nitems.insert(1, 10)\npopped = items.pop()",
+      "notes": "Python provides mutable dynamic lists/sequences with append, insert, and indexing operations."
+    },
+    "tuples": {
+      "title": "Tuples & Records",
+      "concept_id": "tuples",
+      "code": "pair = (10, \"apple\")\nx, name = pair\nsingle = (42,)",
+      "notes": "Python provides immutable ordered tuples supporting unpack destructuring."
+    },
+    "sets": {
+      "title": "Sets & Collections",
+      "concept_id": "sets",
+      "code": "s = {1, 2, 3}\ns.add(4)\ns.remove(1)\nunion = s | {3, 5}",
+      "notes": "Python provides unique element set collections with membership tests and mathematical set operations."
+    },
+    "modules_import": {
+      "title": "Modules & Imports",
+      "concept_id": "modules_import",
+      "code": "import math\nfrom math import sqrt, pi\nimport os.path as path",
+      "notes": "Python manages code organization via modules and selective import statements."
+    }
+  }
+}

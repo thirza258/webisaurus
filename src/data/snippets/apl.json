@@ -1,0 +1,149 @@
+{
+  "language_id": "apl",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "var ← 10\nstringVar ← 'Hello'",
+      "notes": "Variables are assigned using the leftward arrow (←). APL is dynamically typed."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "int ← 42\nfloat ← 3.14\nchar ← 'a'\nstr ← 'hello'\nbool ← 1  ⍝ Booleans are represented as 0 and 1\ncomplex ← 1j2",
+      "notes": "APL supports integers, floats, complex numbers, and characters. Strings are character arrays."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "sum ← 3 + 4\ndiff ← 10 - 5\nprod ← 2 × 3\nquot ← 10 ÷ 2\npow ← * 3  ⍝ e^3\npow2 ← 2 * 3 ⍝ 2^3\nlog ← ⍟ 10\n\neq ← 1 = 1\nneq ← 1 ≠ 2\ngt ← 2 > 1",
+      "notes": "APL uses Unicode symbols for mathematical and logical operations. Operations are evaluated strictly right-to-left."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "x ← 10\nres ← { ⍵>0: 'Positive' ⋄ ⍵<0: 'Negative' ⋄ 'Zero' } x\n\n⍝ Alternatively, using control structures in traditional functions:\n:If x>0\n    res2 ← 'Positive'\n:Else\n    res2 ← 'Non-positive'\n:EndIf",
+      "notes": "Dfn guards (:) evaluate to the right side if the condition on the left is true. Control structures like :If/:Else are used in dfns or tradfns."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "⍝ Implicit looping (Array orientation)\nsquares ← {⍵×⍵}¨ ⍳5\n\n⍝ Explicit looping (Tradfn/Control Structures)\n:For i :In ⍳5\n    ⎕←i\n:EndFor",
+      "notes": "Explicit loops are rare. The Each operator (¨) applies a function to each element of an array, which replaces most for-loops."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "x ← 0\n:While x < 5\n    ⎕←x\n    x ← x + 1\n:EndWhile",
+      "notes": ":While and :EndWhile execute a block of code as long as the condition evaluates to true (1)."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "⍝ Dfn (Dynamic function)\nAdd ← {⍺ + ⍵}\nres ← 3 Add 4\n\n⍝ Tradfn (Traditional function)\n∇ r ← x Multiply y\n  r ← x × y\n∇",
+      "notes": "Dfns use curly braces; ⍺ represents the left argument, ⍵ the right argument. Tradfns use the del symbol (∇)."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "vec ← 1 2 3 4 5\nmat ← 2 3 ⍴ 1 2 3 4 5 6  ⍝ Reshape (⍴) into a 2x3 matrix\nshape ← ⍴ mat            ⍝ Gets the shape: 2 3\n\nfirstElement ← ⊃vec      ⍝ First element",
+      "notes": "APL is fundamentally about arrays. Elements are separated by spaces. The ⍴ operator constructs and queries dimensions."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "⍝ Namespaces are often used as dictionaries/maps in Dyalog APL\ndict ← ⎕NS ''\ndict.key1 ← 'value1'\ndict.key2 ← 42\n\nval ← dict.key1",
+      "notes": "Namespaces (created with ⎕NS) act as dynamic objects or maps to store key-value pairs."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": ":Trap 0\n    res ← 1 ÷ 0  ⍝ Intentional divide by zero\n:Else\n    ⎕←'An error occurred: ', ⎕EN\n:EndTrap",
+      "notes": ":Trap catches specified error numbers (0 means all errors). ⎕EN holds the error number."
+    },
+    "comments": {
+      "title": "Comments & Headers",
+      "concept_id": "comments",
+      "code": "# Comment in APL\n# Multi-line comments or docstrings\n# are documented here",
+      "notes": "APL uses # or language-specific delimiters (% in MATLAB, ! in Fortran) for comments."
+    },
+    "numbers": {
+      "title": "Vectors, Matrices & Numbers",
+      "concept_id": "numbers",
+      "code": "x = 42\npi = 3.14159\n# Vector operations\nv = [1, 2, 3, 4]",
+      "notes": "APL is optimized for vector and matrix calculations with high-precision numerical representations."
+    },
+    "booleans": {
+      "title": "Logical Vectors & Booleans",
+      "concept_id": "booleans",
+      "code": "is_valid = TRUE\nflags = c(TRUE, FALSE, TRUE)",
+      "notes": "APL provides boolean types with support for element-wise vector logic operations."
+    },
+    "type_casting": {
+      "title": "Type Coercion & Casting",
+      "concept_id": "type_casting",
+      "code": "as.numeric(\"42\")\nas.character(3.14)",
+      "notes": "APL converts data between numeric, character, factor, and logical representations."
+    },
+    "strings": {
+      "title": "Strings & Character Vectors",
+      "concept_id": "strings",
+      "code": "s = \"Statistical Computing\"\nlen = nchar(s)",
+      "notes": "APL treats strings as atomic character scalars or vector arrays."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "sprintf(\"Variable %.2f is %s\", 3.14159, \"pi\")",
+      "notes": "APL formats numerical output with sprintf formatting specifiers."
+    },
+    "pattern_matching": {
+      "title": "Conditionals & Switches",
+      "concept_id": "pattern_matching",
+      "code": "switch(val, \"one\" = 1, \"two\" = 2, 0)",
+      "notes": "APL executes branch logic via switch, ifelse, or conditional filtering."
+    },
+    "range": {
+      "title": "Sequences & Indexing",
+      "concept_id": "range",
+      "code": "seq(1, 10, by = 2)\nv[1:5]",
+      "notes": "APL indexes matrices and vectors using 1-based indexing and sequence generators."
+    },
+    "iterators": {
+      "title": "Vectorized Apply & Iteration",
+      "concept_id": "iterators",
+      "code": "lapply(1:5, function(x) x^2)",
+      "notes": "APL emphasizes vectorized functional processing (apply, map) over explicit loops."
+    },
+    "oop_classes": {
+      "title": "Object Systems & S3/S4",
+      "concept_id": "oop_classes",
+      "code": "# Object systems in APL\nobj = list(name = \"Model\", score = 0.95)\nclass(obj) = \"metric\"",
+      "notes": "APL uses class dispatch systems (S3/S4 in R, multiple dispatch in Julia) for data modeling."
+    },
+    "lists": {
+      "title": "DataFrames & Lists",
+      "concept_id": "lists",
+      "code": "df = list(a = 1:3, b = c(\"x\", \"y\", \"z\"))",
+      "notes": "APL stores heterogeneous columnar records in data frames and lists."
+    },
+    "tuples": {
+      "title": "Pairs & Records",
+      "concept_id": "tuples",
+      "code": "pair = c(x = 10, y = 20)",
+      "notes": "APL uses named vectors or lightweight structures for data records."
+    },
+    "sets": {
+      "title": "Set Operations",
+      "concept_id": "sets",
+      "code": "union(c(1, 2), c(2, 3))\nintersect(c(1, 2), c(2, 3))",
+      "notes": "APL provides native mathematical set functions (union, intersect, setdiff)."
+    },
+    "modules_import": {
+      "title": "Libraries & Packages",
+      "concept_id": "modules_import",
+      "code": "library(dplyr)\nrequire(ggplot2)",
+      "notes": "APL loads package namespaces using library or import declarations."
+    }
+  }
+}

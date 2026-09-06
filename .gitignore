@@ -1,0 +1,44 @@
+# ============================
+# Webisaurus .gitignore
+# ============================
+
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~
+
+# Editor / IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+*.log
+npm-debug.log*
+
+# Docker runtime
+docker-compose.override.yml
+
+# Build artifacts
+dist/
+build/
+tmp/
+*.tmp
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# NOTE: .claude/ is NOT ignored — it is the AI context
+# preservation system and should be committed to the repo.
+claude_docs/

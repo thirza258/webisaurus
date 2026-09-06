@@ -1,0 +1,149 @@
+{
+  "language_id": "php",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "$maxUsers = 100;\n$currentUser = 'Alice';\n\n// Variables are dynamically typed by default\n$currentUser = 'Bob';\n\n// Constants\ndefine('MAX_FILE_SIZE', 1024);\nconst DB_NAME = 'myapp';",
+      "notes": "Variables start with $. Use 'const' for class/namespace constants and 'define()' for global constants."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "$str = 'Hello';\n$int = 42;\n$float = 3.14;\n$bool = true;\n$nullVal = null;\n$array = [1, 2, 3];\n$obj = new stdClass();",
+      "notes": "PHP supports scalar, compound, and special types. Type hinting can enforce types in PHP 7+."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "$a = 10 + 5;\n$b = 10 ** 2;\n\n// Strict equality\n$isEqual = ($a === 15);\n\n// Null coalescing\n$value = $_GET['user'] ?? 'default';\n\n// Nullsafe operator (PHP 8.0+)\n$len = $someObj?->property?->length;",
+      "notes": "Use '===' for strict comparison. The nullsafe '?->' operator prevents errors on null object access."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "$score = 85;\n\nif ($score >= 90) {\n    echo 'A';\n} elseif ($score >= 80) {\n    echo 'B';\n} else {\n    echo 'C';\n}\n\n// Match expression (PHP 8.0+)\n$grade = match(true) {\n    $score >= 90 => 'A',\n    $score >= 80 => 'B',\n    default => 'C',\n};",
+      "notes": "PHP 8 'match' expressions are safer and more concise than 'switch' statements."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "$items = ['a', 'b', 'c'];\n\n// foreach is preferred for arrays\nforeach ($items as $item) {\n    echo $item;\n}\n\n// Standard for loop\nfor ($i = 0; $i < count($items); $i++) {\n    echo $items[$i];\n}",
+      "notes": "'foreach' is the standard way to iterate over arrays and traversable objects."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "$count = 0;\n\nwhile ($count < 5) {\n    echo $count;\n    $count++;\n}\n\n// Do-while loop\ndo {\n    echo 'Runs at least once';\n} while (false);",
+      "notes": "Standard while and do-while loops."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "function add(int $x, int $y): int {\n    return $x + $y;\n}\n\n// Arrow function (PHP 7.4+)\n$multiply = fn(int $x, int $y): int => $x * $y;\n\n// Named arguments (PHP 8.0+)\n$greeting = greet(greeting: 'Hi', name: 'Alice');",
+      "notes": "Use strict typing ('declare(strict_types=1);'). Arrow functions capture variables from the parent scope automatically."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "$numbers = [1, 2, 3];\n$numbers[] = 4; // Append\n\n// Array functions\n$doubled = array_map(fn($n) => $n * 2, $numbers);\n$evens = array_filter($numbers, fn($n) => $n % 2 === 0);",
+      "notes": "PHP arrays are ordered maps. Use short array syntax '[]' instead of 'array()'."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "// Associative arrays act as maps\n$userRoles = [\n    'alice' => 'admin',\n    'bob' => 'user'\n];\n\n$userRoles['charlie'] = 'guest';\n\nif (array_key_exists('alice', $userRoles)) {\n    echo $userRoles['alice'];\n}",
+      "notes": "Associative arrays are the primary map-like structure in PHP. Keys can be integers or strings."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "try {\n    throw new Exception('Something went wrong');\n} catch (Exception $e) {\n    error_log($e->getMessage());\n} finally {\n    // Cleanup logic\n}\n\n// Catch multiple exceptions (PHP 7.1+)\n// catch (LogicException | RuntimeException $e) { ... }",
+      "notes": "Always catch specific exceptions rather than Throwable unless implementing a top-level handler."
+    },
+    "comments": {
+      "title": "Comments & Documentation",
+      "concept_id": "comments",
+      "code": "// Comments in PHP\n/* Block documentation */",
+      "notes": "PHP provides comments to document code behavior."
+    },
+    "numbers": {
+      "title": "Numbers & Constants",
+      "concept_id": "numbers",
+      "code": "val = 42\nratio = 3.14159",
+      "notes": "PHP supports numeric literals for computation and indexing."
+    },
+    "booleans": {
+      "title": "Booleans & Conditions",
+      "concept_id": "booleans",
+      "code": "flag = true\nif flag:\n    // Execute branch",
+      "notes": "PHP provides boolean conditions for program control flow."
+    },
+    "type_casting": {
+      "title": "Type Conversion",
+      "concept_id": "type_casting",
+      "code": "converted = (type)original_value",
+      "notes": "PHP converts data between native format representations."
+    },
+    "strings": {
+      "title": "Strings & Characters",
+      "concept_id": "strings",
+      "code": "text = \"Sample string text\"",
+      "notes": "PHP represents textual data through string literals and character arrays."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "formatted = format(\"Text: %s\", value)",
+      "notes": "PHP formats and joins textual values for display and output."
+    },
+    "pattern_matching": {
+      "title": "Conditionals & Branching",
+      "concept_id": "pattern_matching",
+      "code": "case value of\n    1: execute_one()\n    default: execute_default()",
+      "notes": "PHP branches execution based on value comparison and conditional expressions."
+    },
+    "range": {
+      "title": "Ranges & Intervals",
+      "concept_id": "range",
+      "code": "range = 1..10",
+      "notes": "PHP defines intervals and index sequences for bounded processing."
+    },
+    "iterators": {
+      "title": "Iteration & Loops",
+      "concept_id": "iterators",
+      "code": "for item in collection:\n    process(item)",
+      "notes": "PHP iterates across collections and sequence elements."
+    },
+    "oop_classes": {
+      "title": "Structures & Modules",
+      "concept_id": "oop_classes",
+      "code": "struct Entity {\n    data: Value\n}",
+      "notes": "PHP organizes data and behavior through structures or modular components."
+    },
+    "lists": {
+      "title": "Collections & Arrays",
+      "concept_id": "lists",
+      "code": "items = [1, 2, 3, 4]",
+      "notes": "PHP stores sequence data in indexed lists or arrays."
+    },
+    "tuples": {
+      "title": "Records & Pairs",
+      "concept_id": "tuples",
+      "code": "pair = (10, \"label\")",
+      "notes": "PHP groups related fields into lightweight composite pairs or records."
+    },
+    "sets": {
+      "title": "Sets & Uniqueness",
+      "concept_id": "sets",
+      "code": "set = Set([1, 2, 3])",
+      "notes": "PHP tracks unique values without duplicate entries."
+    },
+    "modules_import": {
+      "title": "Libraries & Modules",
+      "concept_id": "modules_import",
+      "code": "import module_name",
+      "notes": "PHP organizes external libraries and code units into modular namespaces."
+    }
+  }
+}

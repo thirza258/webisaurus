@@ -1,0 +1,149 @@
+{
+  "language_id": "fsharp",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "let immutable = \"Constant\"\nlet mutable mut = 42\nmut <- 43",
+      "notes": "F# values are immutable by default. Mutation requires 'mutable' and '<-' operator."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "let i: int = 1\nlet d: float = 1.0\nlet b: bool = true\nlet s: string = \"Text\"\nlet opt: int option = Some 42",
+      "notes": "Option types are used instead of nulls."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "let sum = 1 + 2\nlet eq = 1 = 1\nlet piped = 5 |> add 2",
+      "notes": "Equality is '=', not '=='. The pipe operator '|>' is heavily used to chain operations."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "let max = if a > b then a else b\n\nlet typeName = match x with\n    | 1 -> \"One\"\n    | n when n < 10 -> \"Small\"\n    | _ -> \"Other\"",
+      "notes": "Pattern matching is a core feature for control flow."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "for i in 1 .. 5 do printfn \"%d\" i\n\nlet doubled = [ for x in 1..3 -> x * 2 ]",
+      "notes": "List/Array comprehensions are used to generate new collections."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "while x > 0 do\n    x <- x - 1",
+      "notes": "While loops are used mostly for mutable imperative code."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "let add a b = a + b\n\nlet multiply = fun a b -> a * b",
+      "notes": "Functions are automatically curried. 'let' is used to define both values and functions."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "let arr = [| 1; 2; 3 |]\narr.[0] <- 10",
+      "notes": "Arrays use [| |] syntax. List uses [ ]."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "let m = Map [(\"a\", 1); (\"b\", 2)]\nlet m2 = m.Add(\"c\", 3)\nlet v = m.[\"a\"]",
+      "notes": "Maps are immutable. Adding an item returns a new Map."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "try\n    risky()\nwith\n| :? System.DivideByZeroException -> 0\n| ex -> -1",
+      "notes": "Idiomatic F# often uses Result<'T, 'Error> types instead of exceptions."
+    },
+    "comments": {
+      "title": "Comments & Documentation",
+      "concept_id": "comments",
+      "code": "// Comments in F#\n/* Block documentation */",
+      "notes": "F# provides comments to document code behavior."
+    },
+    "numbers": {
+      "title": "Numbers & Constants",
+      "concept_id": "numbers",
+      "code": "val = 42\nratio = 3.14159",
+      "notes": "F# supports numeric literals for computation and indexing."
+    },
+    "booleans": {
+      "title": "Booleans & Conditions",
+      "concept_id": "booleans",
+      "code": "flag = true\nif flag:\n    // Execute branch",
+      "notes": "F# provides boolean conditions for program control flow."
+    },
+    "type_casting": {
+      "title": "Type Conversion",
+      "concept_id": "type_casting",
+      "code": "converted = (type)original_value",
+      "notes": "F# converts data between native format representations."
+    },
+    "strings": {
+      "title": "Strings & Characters",
+      "concept_id": "strings",
+      "code": "text = \"Sample string text\"",
+      "notes": "F# represents textual data through string literals and character arrays."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "formatted = format(\"Text: %s\", value)",
+      "notes": "F# formats and joins textual values for display and output."
+    },
+    "pattern_matching": {
+      "title": "Conditionals & Branching",
+      "concept_id": "pattern_matching",
+      "code": "case value of\n    1: execute_one()\n    default: execute_default()",
+      "notes": "F# branches execution based on value comparison and conditional expressions."
+    },
+    "range": {
+      "title": "Ranges & Intervals",
+      "concept_id": "range",
+      "code": "range = 1..10",
+      "notes": "F# defines intervals and index sequences for bounded processing."
+    },
+    "iterators": {
+      "title": "Iteration & Loops",
+      "concept_id": "iterators",
+      "code": "for item in collection:\n    process(item)",
+      "notes": "F# iterates across collections and sequence elements."
+    },
+    "oop_classes": {
+      "title": "Structures & Modules",
+      "concept_id": "oop_classes",
+      "code": "struct Entity {\n    data: Value\n}",
+      "notes": "F# organizes data and behavior through structures or modular components."
+    },
+    "lists": {
+      "title": "Collections & Arrays",
+      "concept_id": "lists",
+      "code": "items = [1, 2, 3, 4]",
+      "notes": "F# stores sequence data in indexed lists or arrays."
+    },
+    "tuples": {
+      "title": "Records & Pairs",
+      "concept_id": "tuples",
+      "code": "pair = (10, \"label\")",
+      "notes": "F# groups related fields into lightweight composite pairs or records."
+    },
+    "sets": {
+      "title": "Sets & Uniqueness",
+      "concept_id": "sets",
+      "code": "set = Set([1, 2, 3])",
+      "notes": "F# tracks unique values without duplicate entries."
+    },
+    "modules_import": {
+      "title": "Libraries & Modules",
+      "concept_id": "modules_import",
+      "code": "import module_name",
+      "notes": "F# organizes external libraries and code units into modular namespaces."
+    }
+  }
+}

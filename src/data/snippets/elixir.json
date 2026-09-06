@@ -1,0 +1,149 @@
+{
+  "language_id": "elixir",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "x = 10\n\n# Variables can be rebound\nx = 20\n\n# Pattern matching binds variables\n{a, b} = {1, 2}\n\n# Pin operator prevents rebinding\n^x = 20 # Match succeeds",
+      "notes": "Elixir data is immutable. Variables can be rebound to new values. The `=` operator is for pattern matching; use `^` to match against existing values."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "i = 42\nf = 3.14\natom = :ok\ntuple = {:person, \"Alice\", 30}\nlist = [1, 2, 3]\nbinary = <<\"hello\">>\nstring = \"UTF-8 Binary\"\npid = self()",
+      "notes": "Elixir shares Erlang's type system. Strings are UTF-8 binaries. Atoms (symbols starting with `:`) are constants."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "add = 5 + 3\nsub = 5 - 3\nmul = 5 * 3\ndiv_float = 5 / 2\ndiv_int = div(5, 2)\nrem_int = rem(5, 2)\n\n# Strict boolean operators\nlogic = true and false or true\n\neq = 5 === 5 # Strict\nneq = 5 !== 3",
+      "notes": "Boolean operators `and`, `or`, `not` require booleans. Relaxed operators `&&`, `||`, `!` allow truthy/falsy values (nil/false are falsy)."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "res = if x > 0 do\n  \"Positive\"\nelse\n  \"Non-positive\"\nend\n\n# Case with pattern matching\nsign = case x do\n  n when n > 0 -> 1\n  n when n < 0 -> -1\n  0 -> 0\nend\n\n# Cond\ncond do\n  x > 0 -> 1\n  true -> 0\nend",
+      "notes": "`cond` checks multiple conditions. `case` strictly uses pattern matching. `if/else` is a macro for a basic case."
+    },
+    "for_loop": {
+      "title": "For Loop (Comprehensions)",
+      "concept_id": "for_loop",
+      "code": "# List comprehension\nsquares = for x <- [1, 2, 3, 4], do: x * x\n\n# Filtering\nevens = for x <- 1..10, rem(x, 2) == 0, do: x\n\n# Map\nmapped = Enum.map([1, 2, 3], fn x -> x * 2 end)",
+      "notes": "Iteration is functional. `for` comprehensions are powerful macros. The `Enum` module provides all common collection operations."
+    },
+    "while_loop": {
+      "title": "While Loop (Recursion)",
+      "concept_id": "while_loop",
+      "code": "defmodule Loop do\n  def count(0), do: :ok\n  def count(n) do\n    IO.puts(n)\n    count(n - 1)\n  end\nend\n\n# GenServer state loop concept\n# Processes recurse on receive to maintain state",
+      "notes": "Elixir has no loop constructs. State changes are driven by tail-recursive function calls, particularly in concurrent actors (GenServers)."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "defmodule Math do\n  def add(x, y), do: x + y\n  \n  # Pattern matching\n  def fact(0), do: 1\n  def fact(n) when n > 0, do: n * fact(n - 1)\nend\n\n# Anonymous functions\nmultiply = fn x, y -> x * y end\nshort = &(&1 * &2)",
+      "notes": "Named functions live in modules. `&` enables terse anonymous functions. Pipe operator `|>` chains function calls natively."
+    },
+    "arrays": {
+      "title": "Lists and Tuples",
+      "concept_id": "arrays",
+      "code": "list = [1, 2, 3]\nnew_list = [0 | list] # Fast prepend\nconcat = [1, 2] ++ [3, 4]\n\n# Tuple\npoint = {10, 20}\nfirst = elem(point, 0) # 0-indexed",
+      "notes": "Lists are linked lists (slow random access, fast prepend). Tuples are contiguous memory (fast reads, expensive updates)."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "map = %{\"name\" => \"Alice\", :age => 30}\n\n# Insert/Update (all keys)\nmap1 = Map.put(map, :city, \"London\")\n\n# Update existing atom keys only\nmap2 = %{map1 | age: 31}\n\n# Pattern matching\n%{age: age} = map2",
+      "notes": "Maps are the go-to key-value structure. Atom keys allow shorthand syntax `%{key: val}`. `%{map | key: val}` updates strictly existing keys."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "# Result tuples\ncase File.read(\"file.txt\") do\n  {:ok, body} -> body\n  {:error, reason} -> IO.puts(\"Error: #{reason}\")\nend\n\n# Try/Rescue\ntry do\n  1 / 0\nrescue\n  ArithmeticError -> 0\nend",
+      "notes": "Idiomatic Elixir returns `{:ok, val}` or `{:error, reason}` tuples. Exceptions (`raise`, `rescue`) are reserved for truly unexpected crashes."
+    },
+    "comments": {
+      "title": "Comments & Annotations",
+      "concept_id": "comments",
+      "code": "# Single-line comment in Elixir\n@doc \"\"\"\nDocumentation for function\n\"\"\"\ndef add(a, b), do: a + b",
+      "notes": "Elixir uses functional comment delimiters (-- in Haskell/ML, ; in Lisps, # or % in BEAM)."
+    },
+    "numbers": {
+      "title": "Numbers & Numerics",
+      "concept_id": "numbers",
+      "code": "x = 42\npi = 3.14159\nhex = 0xFF",
+      "notes": "Elixir supports exact rational fractions, arbitrary-precision integers, and IEEE floats natively."
+    },
+    "booleans": {
+      "title": "Booleans & Logic",
+      "concept_id": "booleans",
+      "code": "is_active = true\nresult = is_active and not false",
+      "notes": "Elixir treats booleans as first-class algebraic constructors (True/False, true/false, t/nil)."
+    },
+    "type_casting": {
+      "title": "Type Conversion",
+      "concept_id": "type_casting",
+      "code": "num = String.to_integer(\"42\")\nstr = Integer.to_string(num)",
+      "notes": "Elixir performs conversion via typeclass methods (fromIntegral, show, read) or explicit parse functions."
+    },
+    "strings": {
+      "title": "Strings & Text",
+      "concept_id": "strings",
+      "code": "s = \"Hello, World!\"\nchar = ?H",
+      "notes": "Elixir represents strings as linked lists of characters, UTF-8 binaries, or dedicated text buffers."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "name = \"Alice\"\nmsg = \"User #{name} is #{95}\"",
+      "notes": "Elixir formats text through format strings, interpolation macros, or string concatenation."
+    },
+    "pattern_matching": {
+      "title": "Pattern Matching",
+      "concept_id": "pattern_matching",
+      "code": "case response do\n  {:ok, data} -> IO.puts(\"Received #{data}\")\n  {:error, reason} -> IO.puts(\"Error: #{reason}\")\nend",
+      "notes": "Pattern matching is a core feature in Elixir, destructuring algebraic variants, tuples, and lists directly."
+    },
+    "range": {
+      "title": "Ranges & Sequences",
+      "concept_id": "range",
+      "code": "r = 1..10\nslice = Enum.slice(1..10, 2, 4)",
+      "notes": "Elixir constructs ranges as lazy lists, infinite streams, or structured range enumerables."
+    },
+    "iterators": {
+      "title": "Iterators & Comprehensions",
+      "concept_id": "iterators",
+      "code": "for x <- 1..10, rem(x, 2) == 0, do: x * x",
+      "notes": "Elixir achieves iterative processing through list comprehensions, map/filter transforms, and recursion."
+    },
+    "oop_classes": {
+      "title": "Types & Abstractions (OOP Equivalent)",
+      "concept_id": "oop_classes",
+      "code": "defmodule Person do\n  defstruct [:name, :age]\n  def greet(%Person{name: name}), do: \"Hello #{name}\"\nend",
+      "notes": "Elixir emphasizes algebraic data types, protocols/typeclasses, and structs over traditional class hierarchies."
+    },
+    "lists": {
+      "title": "Lists (Linked Lists)",
+      "concept_id": "lists",
+      "code": "[1, 2, 3] ++ [4, 5]",
+      "notes": "Lists in Elixir are singly linked immutable sequences optimized for head/tail structural sharing."
+    },
+    "tuples": {
+      "title": "Tuples & Records",
+      "concept_id": "tuples",
+      "code": "{ok, \"Result\", 200}",
+      "notes": "Elixir uses fixed-length heterogeneous tuples for bundling related data points and function return values."
+    },
+    "sets": {
+      "title": "Sets",
+      "concept_id": "sets",
+      "code": "s = MapSet.new([1, 2, 3])\nMapSet.put(s, 4)",
+      "notes": "Elixir provides persistent immutable sets implemented via balanced binary trees (HAMT / AVL)."
+    },
+    "modules_import": {
+      "title": "Modules & Imports",
+      "concept_id": "modules_import",
+      "code": "defmodule MyModule do\n  import Enum, only: [map: 2]\n  alias MyProject.Helper\nend",
+      "notes": "Elixir isolates scopes through modules and explicit import lists with aliasing and qualified names."
+    }
+  }
+}

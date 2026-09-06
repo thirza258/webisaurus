@@ -1,0 +1,149 @@
+{
+  "language_id": "racket",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "(define x 10)\n(define y 20)\n\n;; Local variables (Racket typically uses [] for let)\n(let ([a 1]\n      [b 2])\n  (+ a b))\n\n(let* ([a 1]\n       [b (+ a 1)])\n  b)",
+      "notes": "define is used for module-level variables. let and let* create local lexical scopes. Racket idiomatically uses square brackets for binding pairs."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "42                   ; integer\n3.14                 ; flonum\n3/4                  ; exact rational\n3+4i                 ; complex\n\"Hello\"              ; string\n#\\A                  ; character\n'symbol              ; symbol\n'(1 2 3)             ; list\n#(1 2 3)             ; vector\n#t                   ; boolean true\n#f                   ; boolean false",
+      "notes": "Racket inherits Scheme's rich numeric tower and fundamental data types, adding structures, hash tables, and byte strings as core concepts."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "(+ 1 2 3)    ; => 6\n(- 10 4)     ; => 6\n(* 2 3)      ; => 6\n(/ 10 2)     ; => 5\n\n(= 1 1)      ; Numeric equality\n(equal? \"a\" \"a\") ; Deep structural equality\n(eqv? 'a 'a) ; Value equality\n(eq? 'a 'a)  ; Pointer equality\n\n(and #t #f)  ; => #f\n(or #f #t)   ; => #t\n(not #t)     ; => #f",
+      "notes": "Functions are used in prefix notation. equal? is the most general equality predicate."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "(if (> x 0)\n    'positive\n    'negative)\n\n(cond [(> x 0) 'positive]\n      [(< x 0) 'negative]\n      [else 'zero])\n\n(when (> x 0)\n  (displayln \"positive\"))\n\n(unless (< x 0)\n  (displayln \"non-negative\"))",
+      "notes": "if is for two-branch logic, cond for multi-branch. when and unless are used when you have side effects and no else branch is needed."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": ";; Racket's powerful comprehension comprehensions\n(for ([i (in-range 10)])\n  (displayln i))\n\n(for ([x '(a b c)]\n      [y '(1 2 3)])\n  (printf \"~a: ~a\\n\" x y))\n\n;; Accumulating results\n(for/list ([i (in-range 5)])\n  (* i i)) ; => '(0 1 4 9 16)",
+      "notes": "Racket has a comprehensive set of for macros (for, for/list, for/fold, etc.) that replace traditional loop structures with sequence abstractions."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": ";; Using named let\n(let loop ([x 0])\n  (when (< x 10)\n    (displayln x)\n    (loop (add1 x))))\n\n;; Iterating indefinitely until a condition\n(let loop ()\n  (let ([v (read-line)])\n    (unless (eof-object? v)\n      (displayln v)\n      (loop))))",
+      "notes": "While Racket has imperative constructs, tail-recursive named let is the standard way to express stateful iteration."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "(define (add a b)\n  (+ a b))\n\n;; Lambda\n(define multiply (lambda (x y) (* x y)))\n\n;; Keyword arguments\n(define (greet name #:greeting [g \"Hello\"])\n  (string-append g \", \" name))\n\n(greet \"Alice\" #:greeting \"Hi\")",
+      "notes": "Functions support optional, keyword, and rest arguments. Racket provides a rich contract system (define/contract) for type-like checking."
+    },
+    "arrays": {
+      "title": "Arrays (Vectors)",
+      "concept_id": "arrays",
+      "code": ";; Vectors\n(make-vector 5 0)\n#(1 2 3 4 5) ; Literal immutable vector\n\n(define v (vector 1 2 3))\n(vector-ref v 0)\n(vector-set! v 0 42)\n\n;; Iterating over a vector\n(for ([val (in-vector v)])\n  (displayln val))",
+      "notes": "Vectors are fixed-size, contiguous memory structures. Sequences work natively with vectors via in-vector."
+    },
+    "maps": {
+      "title": "Maps (Hash Tables)",
+      "concept_id": "maps",
+      "code": ";; Mutable hash table\n(define ht (make-hash))\n(hash-set! ht 'key \"value\")\n(hash-ref ht 'key)\n\n;; Immutable hash table\n(define ht2 (hash 'a 1 'b 2))\n(define ht3 (hash-set ht2 'c 3))\n\n;; Hash table iteration\n(for ([(k v) (in-hash ht2)])\n  (printf \"~a = ~a\\n\" k v))",
+      "notes": "Racket provides both mutable (make-hash) and immutable (hash) hash tables. Immutable hashes share structure for efficiency."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "(with-handlers ([exn:fail:contract:divide-by-zero?\n                 (lambda (exn) 'divided-by-zero)]\n                [exn:fail?\n                 (lambda (exn) 'some-other-error)])\n  (/ 1 0))\n\n;; Raising an error\n(error 'my-func \"Something went wrong\")",
+      "notes": "with-handlers intercepts exceptions based on predicates (like exn:fail?). Exceptions in Racket are typically structs inheriting from exn."
+    },
+    "comments": {
+      "title": "Comments & Annotations",
+      "concept_id": "comments",
+      "code": ";; Single-line comment in Lisp\n#|\n Multi-line block comment\n|#\n(defun add (a b)\n  \"Documentation string for function\"\n  (+ a b))",
+      "notes": "Racket uses functional comment delimiters (-- in Haskell/ML, ; in Lisps, # or % in BEAM)."
+    },
+    "numbers": {
+      "title": "Numbers & Numerics",
+      "concept_id": "numbers",
+      "code": "(def x 42)          ; Integer\n(def pi 3.14159)    ; Float\n(def ratio 1/3)     ; Exact rational ratio\n(def hex #xFF)      ; Hexadecimal",
+      "notes": "Racket supports exact rational fractions, arbitrary-precision integers, and IEEE floats natively."
+    },
+    "booleans": {
+      "title": "Booleans & Logic",
+      "concept_id": "booleans",
+      "code": "(def is-active true)\n(if is-active\n    (print \"Active\")\n    (print \"Inactive\"))",
+      "notes": "Racket treats booleans as first-class algebraic constructors (True/False, true/false, t/nil)."
+    },
+    "type_casting": {
+      "title": "Type Conversion",
+      "concept_id": "type_casting",
+      "code": "(def n (parse-integer \"42\"))\n(def f (float n))\n(def s (write-to-string f))",
+      "notes": "Racket performs conversion via typeclass methods (fromIntegral, show, read) or explicit parse functions."
+    },
+    "strings": {
+      "title": "Strings & Text",
+      "concept_id": "strings",
+      "code": "(def s \"Hello, World!\")\n(def char-val (char s 0))\n(def multi \"Line 1\nLine 2\")",
+      "notes": "Racket represents strings as linked lists of characters, UTF-8 binaries, or dedicated text buffers."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "(format nil \"User: ~A scored ~D\" \"Alice\" 95)",
+      "notes": "Racket formats text through format strings, interpolation macros, or string concatenation."
+    },
+    "pattern_matching": {
+      "title": "Pattern Matching",
+      "concept_id": "pattern_matching",
+      "code": "(case val\n  (1 \"One\")\n  ((2 3) \"Two or Three\")\n  (_ \"Other\"))",
+      "notes": "Pattern matching is a core feature in Racket, destructuring algebraic variants, tuples, and lists directly."
+    },
+    "range": {
+      "title": "Ranges & Sequences",
+      "concept_id": "range",
+      "code": "(def r (range 1 10 2))\n(def sub (subseq [1 2 3 4 5] 1 3))",
+      "notes": "Racket constructs ranges as lazy lists, infinite streams, or structured range enumerables."
+    },
+    "iterators": {
+      "title": "Iterators & Comprehensions",
+      "concept_id": "iterators",
+      "code": "(def squares (for [x (range 10) :when (even? x)] (* x x)))",
+      "notes": "Racket achieves iterative processing through list comprehensions, map/filter transforms, and recursion."
+    },
+    "oop_classes": {
+      "title": "Types & Abstractions (OOP Equivalent)",
+      "concept_id": "oop_classes",
+      "code": "(defrecord Person [name age])\n(defprotocol Speaker\n  (speak [this]))",
+      "notes": "Racket emphasizes algebraic data types, protocols/typeclasses, and structs over traditional class hierarchies."
+    },
+    "lists": {
+      "title": "Lists (Linked Lists)",
+      "concept_id": "lists",
+      "code": "(def list '(1 2 3))\n(def prepended (cons 0 list))\n(def tail (rest list))",
+      "notes": "Lists in Racket are singly linked immutable sequences optimized for head/tail structural sharing."
+    },
+    "tuples": {
+      "title": "Tuples & Records",
+      "concept_id": "tuples",
+      "code": "(list 1 \"apple\" t)",
+      "notes": "Racket uses fixed-length heterogeneous tuples for bundling related data points and function return values."
+    },
+    "sets": {
+      "title": "Sets",
+      "concept_id": "sets",
+      "code": "(def s (set [1 2 3]))\n(conj s 4)\n(contains? s 2)",
+      "notes": "Racket provides persistent immutable sets implemented via balanced binary trees (HAMT / AVL)."
+    },
+    "modules_import": {
+      "title": "Modules & Imports",
+      "concept_id": "modules_import",
+      "code": "(ns my-project.core\n  (:require [clojure.string :as str]))",
+      "notes": "Racket isolates scopes through modules and explicit import lists with aliasing and qualified names."
+    }
+  }
+}

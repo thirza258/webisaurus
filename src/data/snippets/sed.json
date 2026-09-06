@@ -1,0 +1,149 @@
+{
+  "language_id": "sed",
+  "snippets": {
+    "variables": {
+      "title": "Variables (Hold/Pattern Space)",
+      "concept_id": "variables",
+      "code": "sed -n 'h; n; G; p' file.txt",
+      "notes": "Sed doesn't have named variables. It uses a 'pattern space' (current line) and a 'hold space' (buffer). h=copy to hold, G=append hold to pattern."
+    },
+    "data_types": {
+      "title": "Data Types (Text Streams)",
+      "concept_id": "data_types",
+      "code": "sed 's/[0-9]\\+/NUM/g' file.txt",
+      "notes": "Sed only processes text streams. Numbers and strings are manipulated using regular expressions."
+    },
+    "operators": {
+      "title": "Operators (Commands)",
+      "concept_id": "operators",
+      "code": "sed 's/foo/bar/g; /^$/d' file.txt",
+      "notes": "Commands act as operators: s/ (substitute), d (delete), p (print). Semicolons chain commands."
+    },
+    "conditionals": {
+      "title": "Conditionals (Addresses/Patterns)",
+      "concept_id": "conditionals",
+      "code": "sed '/^Error/ { s/FAIL/FIXED/; }' file.txt",
+      "notes": "Addresses (regex or line numbers) before a block { } act as conditionals (if matches, then execute)."
+    },
+    "for_loop": {
+      "title": "For Loop (Global Substitution)",
+      "concept_id": "for_loop",
+      "code": "sed 's/foo/bar/g' file.txt",
+      "notes": "The 'g' flag in substitution acts like a loop, replacing all occurrences on a line instead of just the first."
+    },
+    "while_loop": {
+      "title": "While Loop (Branching/Labels)",
+      "concept_id": "while_loop",
+      "code": "sed ':a; s/foo/bar/; t a' file.txt",
+      "notes": "Loops are created using labels (:a) and branching on success (t a) or unconditional branching (b)."
+    },
+    "functions": {
+      "title": "Functions (Reusable Scripts)",
+      "concept_id": "functions",
+      "code": "sed -f script.sed file.txt",
+      "notes": "Sed lacks functions. Logic is encapsulated in script files (-f) or blocks { }."
+    },
+    "arrays": {
+      "title": "Arrays (Multi-line Pattern Space)",
+      "concept_id": "arrays",
+      "code": "sed 'N; s/\\n/ /' file.txt",
+      "notes": "No arrays. The N command appends the next line to the pattern space, allowing multi-line (array-like) processing."
+    },
+    "maps": {
+      "title": "Maps (Lookup Tables via Regex)",
+      "concept_id": "maps",
+      "code": "sed 's/apple/red/; s/banana/yellow/' file.txt",
+      "notes": "No native maps. Key-value lookup is achieved by explicitly chaining substitutions."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "sed 's/foo/bar/w output.txt' file.txt",
+      "notes": "Very limited. Scripts will halt on syntax errors. The 'w' flag safely writes successful matches to a file."
+    },
+    "comments": {
+      "title": "Comments & Script Headers",
+      "concept_id": "comments",
+      "code": "# Single line comment in Sed\n# Shell scripts begin with a shebang:\n#!/usr/bin/env sed",
+      "notes": "Sed uses # for comments with script headers."
+    },
+    "numbers": {
+      "title": "Numbers & Arithmetic",
+      "concept_id": "numbers",
+      "code": "x=42\nresult=$((x * 2 + 5))\nhex=0xFF",
+      "notes": "Sed supports shell integer arithmetic and numeric expressions."
+    },
+    "booleans": {
+      "title": "Booleans & Exit Codes",
+      "concept_id": "booleans",
+      "code": "is_active=true\nif [ \"$is_active\" = \"true\" ]; then\n    echo \"Active\"\nfi",
+      "notes": "Sed evaluates boolean status through exit codes (0 = success) and boolean primitives."
+    },
+    "type_casting": {
+      "title": "Type Casting & Coercion",
+      "concept_id": "type_casting",
+      "code": "str_val=\"42\"\n# Arithmetic context forces integer coercion\nnum=$((str_val + 0))",
+      "notes": "Sed handles type conversion explicitly via type accelerators [type] or arithmetic evaluation."
+    },
+    "strings": {
+      "title": "Strings & Quoting",
+      "concept_id": "strings",
+      "code": "single='Literal single quotes'\ndouble=\"Expanded: ${USER}\"\nmultiline=\"Line 1\nLine 2\"",
+      "notes": "Sed differentiates between single quotes (literal) and double quotes (variable expansion)."
+    },
+    "string_formatting": {
+      "title": "String Interpolation",
+      "concept_id": "string_formatting",
+      "code": "name=\"Alice\"\nscore=95\nprintf \"User %s scored %d\\n\" \"$name\" \"$score\"",
+      "notes": "Sed provides in-string variable interpolation and printf formatting."
+    },
+    "pattern_matching": {
+      "title": "Pattern Matching & Case",
+      "concept_id": "pattern_matching",
+      "code": "case \"$val\" in\n    1) echo \"One\" ;;\n    2|3) echo \"Two or Three\" ;;\n    *) echo \"Other\" ;;\nesac",
+      "notes": "Sed matches patterns with case statements or switch blocks with glob matching."
+    },
+    "range": {
+      "title": "Ranges & Sequences",
+      "concept_id": "range",
+      "code": "# Brace expansion\nfor i in {1..10..2}; do\n    echo \"$i\"\ndone",
+      "notes": "Sed constructs ranges with brace expansion {start..end} or range operators .."
+    },
+    "iterators": {
+      "title": "Pipes & Iterators",
+      "concept_id": "iterators",
+      "code": "while IFS= read -r line; do\n    echo \"$line\"\ndone < \"file.txt\"",
+      "notes": "Sed streams data elements through command pipelines and loop iteration."
+    },
+    "oop_classes": {
+      "title": "Classes / Structured Functions",
+      "concept_id": "oop_classes",
+      "code": "# Functions serve as reusable components\nperson_greet() {\n    local name=\"$1\"\n    echo \"Hello $name\"\n}",
+      "notes": "Sed defines reusable components through classes (PowerShell 5+) or modular functions."
+    },
+    "lists": {
+      "title": "Arrays & Collections",
+      "concept_id": "lists",
+      "code": "items=(\"apple\" \"banana\" \"cherry\")\nitems+=(\"date\")\necho \"${items[0]}\" # apple\necho \"${items[@]}\" # all elements",
+      "notes": "Sed manages arrays using array lists @() or whitespace-delimited shell arrays."
+    },
+    "tuples": {
+      "title": "Tuples & Records",
+      "concept_id": "tuples",
+      "code": "pair=\"10:apple\"\nIFS=\":\" read -r id name <<< \"$pair\"",
+      "notes": "Sed emulates tuples through string delimiters, .NET Tuples, or positional variables."
+    },
+    "sets": {
+      "title": "Sets & Unique Lists",
+      "concept_id": "sets",
+      "code": "declare -A set\nset[\"apple\"]=1\nset[\"banana\"]=1\n[[ -n \"${set[apple]}\" ]] && echo \"Found\"",
+      "notes": "Sed models unique sets using associative arrays or underlying runtime sets."
+    },
+    "modules_import": {
+      "title": "Sourcing & Modules",
+      "concept_id": "modules_import",
+      "code": "# Source an external script\nsource ./utils.sh\n# or: . ./utils.sh",
+      "notes": "Sed imports external functions using source (. in POSIX) or Import-Module."
+    }
+  }
+}

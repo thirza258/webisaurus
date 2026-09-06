@@ -1,0 +1,149 @@
+{
+  "language_id": "tsql",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "DECLARE @name VARCHAR(50) = 'Alice';\nDECLARE @age INT = 30;",
+      "notes": "Variables are declared with DECLARE and prefixed with @."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "DECLARE @str NVARCHAR(100);\nDECLARE @num DECIMAL(10,2);\nDECLARE @date DATETIME2;\nDECLARE @flag BIT;",
+      "notes": "Common T-SQL data types."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "SET @result = @a + @b;\nSET @concat = 'Hello' + ' ' + 'World';\nIF @a = @b AND @c <> @d\n  PRINT 'True';",
+      "notes": "Operators include + for both addition and string concatenation."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "IF @score >= 90\nBEGIN\n  SET @grade = 'A';\nEND\nELSE IF @score >= 80\nBEGIN\n  SET @grade = 'B';\nEND\nELSE\nBEGIN\n  SET @grade = 'C';\nEND",
+      "notes": "IF...ELSE conditionals."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "DECLARE @i INT = 1;\nWHILE @i <= 10\nBEGIN\n  PRINT @i;\n  SET @i = @i + 1;\nEND",
+      "notes": "Adapted: T-SQL has no native FOR loop; WHILE is used instead."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "WHILE @counter < 10\nBEGIN\n  SET @counter = @counter + 1;\nEND",
+      "notes": "Standard WHILE loop."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "CREATE FUNCTION dbo.GetTotal (@a INT, @b INT)\nRETURNS INT\nAS\nBEGIN\n  RETURN @a + @b;\nEND",
+      "notes": "Scalar user-defined function."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "DECLARE @Arr TABLE (Id INT, Value VARCHAR(50));\nINSERT INTO @Arr VALUES (1, 'One'), (2, 'Two');",
+      "notes": "Adapted: T-SQL uses table variables instead of traditional arrays."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "DECLARE @Dict TABLE (KeyName VARCHAR(50) PRIMARY KEY, Value VARCHAR(100));\nINSERT INTO @Dict VALUES ('key1', 'val1');",
+      "notes": "Adapted: Table variables act as dictionary/map structures."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "BEGIN TRY\n  -- Code here\nEND TRY\nBEGIN CATCH\n  PRINT ERROR_MESSAGE();\nEND CATCH",
+      "notes": "TRY...CATCH block."
+    },
+    "comments": {
+      "title": "Comments",
+      "concept_id": "comments",
+      "code": "-- Single-line comment in T-SQL\n/* Multi-line comment */",
+      "notes": "T-SQL uses -- for line comments and /* */ for blocks."
+    },
+    "numbers": {
+      "title": "Numbers & Decimal Data",
+      "concept_id": "numbers",
+      "code": "DECLARE @val INT = 42;\nDECLARE @price DECIMAL(10, 2) = 19.99;",
+      "notes": "T-SQL represents exact decimal precisions alongside standard integer types."
+    },
+    "booleans": {
+      "title": "Booleans & Predicates",
+      "concept_id": "booleans",
+      "code": "-- Three-valued logic (TRUE, FALSE, UNKNOWN)\nWHERE status = 'ACTIVE' AND deleted_at IS NULL",
+      "notes": "T-SQL evaluates predicates using declarative boolean conditions with NULL semantics."
+    },
+    "type_casting": {
+      "title": "Type Casting (CAST/CONVERT)",
+      "concept_id": "type_casting",
+      "code": "CAST('42' AS INT)\nCONVERT(VARCHAR(10), 100)",
+      "notes": "T-SQL casts types using CAST(expr AS target_type) expressions."
+    },
+    "strings": {
+      "title": "Strings & Text Literals",
+      "concept_id": "strings",
+      "code": "SELECT 'String literal' AS col, N'Unicode text' AS unicode_col;",
+      "notes": "T-SQL encloses character literals in single quotes with optional N prefix for Unicode."
+    },
+    "string_formatting": {
+      "title": "String Concatenation",
+      "concept_id": "string_formatting",
+      "code": "SELECT CONCAT('User: ', username, ' (', email, ')') FROM users;",
+      "notes": "T-SQL formats and joins textual columns using CONCAT or string concatenation operators."
+    },
+    "pattern_matching": {
+      "title": "Pattern Matching (LIKE & CASE)",
+      "concept_id": "pattern_matching",
+      "code": "SELECT CASE \n    WHEN score >= 90 THEN 'A'\n    WHEN score >= 80 THEN 'B'\n    ELSE 'C'\nEND AS grade\nWHERE email LIKE '%@example.com';",
+      "notes": "T-SQL performs conditional classification via CASE WHEN and pattern search with LIKE."
+    },
+    "range": {
+      "title": "Ranges (BETWEEN & LIMIT/OFFSET)",
+      "concept_id": "range",
+      "code": "SELECT * FROM orders \nWHERE order_date BETWEEN '2024-01-01' AND '2024-12-31'\nLIMIT 10 OFFSET 20;",
+      "notes": "T-SQL defines range intervals with BETWEEN and pagination ranges via LIMIT/OFFSET."
+    },
+    "iterators": {
+      "title": "Cursors & Window Functions",
+      "concept_id": "iterators",
+      "code": "-- Window row iteration\nSELECT id, ROW_NUMBER() OVER (ORDER BY created_at) AS row_num\nFROM logs;",
+      "notes": "T-SQL processes ordered sequences set-by-set using window functions or procedural cursors."
+    },
+    "oop_classes": {
+      "title": "Schemas & Tables (Entities)",
+      "concept_id": "oop_classes",
+      "code": "CREATE TABLE users (\n    id INT PRIMARY KEY,\n    username VARCHAR(50) NOT NULL,\n    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP\n);",
+      "notes": "T-SQL structures entities through relational tables, constraints, and views."
+    },
+    "lists": {
+      "title": "Tables & Arrays",
+      "concept_id": "lists",
+      "code": "-- Array or temporary result table\nSELECT ARRAY[1, 2, 3] AS num_list;",
+      "notes": "T-SQL supports array column types or relation rowsets representing lists."
+    },
+    "tuples": {
+      "title": "Rows & Composite Types",
+      "concept_id": "tuples",
+      "code": "-- Row tuple\nSELECT (1, 'Alice', 95) AS user_row;",
+      "notes": "T-SQL represents tuples as table rows or composite record types."
+    },
+    "sets": {
+      "title": "Set Queries (UNION, INTERSECT)",
+      "concept_id": "sets",
+      "code": "SELECT id FROM active_users\nUNION\nSELECT id FROM premium_users;",
+      "notes": "T-SQL combines dataset results using relational algebra (UNION, INTERSECT, EXCEPT)."
+    },
+    "modules_import": {
+      "title": "Schemas & Extensions",
+      "concept_id": "modules_import",
+      "code": "CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\";\nSET search_path TO my_schema, public;",
+      "notes": "T-SQL manages namespaces and modular capabilities through schemas and extensions."
+    }
+  }
+}

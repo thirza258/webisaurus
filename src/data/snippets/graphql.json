@@ -1,0 +1,149 @@
+{
+  "language_id": "graphql",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "query GetUser($userId: ID!) {\n  user(id: $userId) {\n    name\n  }\n}",
+      "notes": "Adapted: Query variables passed in from the client."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "type User {\n  id: ID!\n  name: String!\n  age: Int\n}",
+      "notes": "Adapted: Schema definition types (ID, String, Int, Float, Boolean)."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "# Handled via arguments, e.g.:\nusers(where: { age: { gte: 18 } }) { name }",
+      "notes": "Adapted: No native operators; filters are passed via input objects."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "query ($showEmail: Boolean!) {\n  user {\n    name\n    email @include(if: $showEmail)\n  }\n}",
+      "notes": "Adapted: Directives @include and @skip function as conditionals."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "query {\n  users(first: 10) { name }\n}",
+      "notes": "Adapted: Queries return lists. Iteration happens client-side."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "query GetPage($cursor: String) {\n  users(after: $cursor, first: 10) {\n    edges { node { name } }\n    pageInfo { hasNextPage endCursor }\n  }\n}",
+      "notes": "Adapted: Cursor-based pagination functions as a while loop over pages."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "type Mutation {\n  createUser(name: String!): User\n}",
+      "notes": "Adapted: Queries, mutations, and resolvers act as functions."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "type Query {\n  tags: [String!]!\n}",
+      "notes": "Adapted: Lists enclosed in brackets represent arrays."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "input UserFilter {\n  key: String\n  value: String\n}",
+      "notes": "Adapted: Input objects or JSON scalars act as maps."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "{\n  \"errors\": [\n    { \"message\": \"User not found\", \"path\": [\"user\"] }\n  ]\n}",
+      "notes": "Adapted: Errors are returned in a dedicated 'errors' array."
+    },
+    "comments": {
+      "title": "Comments",
+      "concept_id": "comments",
+      "code": "-- Single-line comment in GraphQL\n/* Multi-line comment */",
+      "notes": "GraphQL uses -- for line comments and /* */ for blocks."
+    },
+    "numbers": {
+      "title": "Numbers & Decimal Data",
+      "concept_id": "numbers",
+      "code": "DECLARE @val INT = 42;\nDECLARE @price DECIMAL(10, 2) = 19.99;",
+      "notes": "GraphQL represents exact decimal precisions alongside standard integer types."
+    },
+    "booleans": {
+      "title": "Booleans & Predicates",
+      "concept_id": "booleans",
+      "code": "-- Three-valued logic (TRUE, FALSE, UNKNOWN)\nWHERE status = 'ACTIVE' AND deleted_at IS NULL",
+      "notes": "GraphQL evaluates predicates using declarative boolean conditions with NULL semantics."
+    },
+    "type_casting": {
+      "title": "Type Casting (CAST/CONVERT)",
+      "concept_id": "type_casting",
+      "code": "CAST('42' AS INT)\nCONVERT(VARCHAR(10), 100)",
+      "notes": "GraphQL casts types using CAST(expr AS target_type) expressions."
+    },
+    "strings": {
+      "title": "Strings & Text Literals",
+      "concept_id": "strings",
+      "code": "SELECT 'String literal' AS col, N'Unicode text' AS unicode_col;",
+      "notes": "GraphQL encloses character literals in single quotes with optional N prefix for Unicode."
+    },
+    "string_formatting": {
+      "title": "String Concatenation",
+      "concept_id": "string_formatting",
+      "code": "SELECT CONCAT('User: ', username, ' (', email, ')') FROM users;",
+      "notes": "GraphQL formats and joins textual columns using CONCAT or string concatenation operators."
+    },
+    "pattern_matching": {
+      "title": "Pattern Matching (LIKE & CASE)",
+      "concept_id": "pattern_matching",
+      "code": "SELECT CASE \n    WHEN score >= 90 THEN 'A'\n    WHEN score >= 80 THEN 'B'\n    ELSE 'C'\nEND AS grade\nWHERE email LIKE '%@example.com';",
+      "notes": "GraphQL performs conditional classification via CASE WHEN and pattern search with LIKE."
+    },
+    "range": {
+      "title": "Ranges (BETWEEN & LIMIT/OFFSET)",
+      "concept_id": "range",
+      "code": "SELECT * FROM orders \nWHERE order_date BETWEEN '2024-01-01' AND '2024-12-31'\nLIMIT 10 OFFSET 20;",
+      "notes": "GraphQL defines range intervals with BETWEEN and pagination ranges via LIMIT/OFFSET."
+    },
+    "iterators": {
+      "title": "Cursors & Window Functions",
+      "concept_id": "iterators",
+      "code": "-- Window row iteration\nSELECT id, ROW_NUMBER() OVER (ORDER BY created_at) AS row_num\nFROM logs;",
+      "notes": "GraphQL processes ordered sequences set-by-set using window functions or procedural cursors."
+    },
+    "oop_classes": {
+      "title": "Schemas & Tables (Entities)",
+      "concept_id": "oop_classes",
+      "code": "CREATE TABLE users (\n    id INT PRIMARY KEY,\n    username VARCHAR(50) NOT NULL,\n    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP\n);",
+      "notes": "GraphQL structures entities through relational tables, constraints, and views."
+    },
+    "lists": {
+      "title": "Tables & Arrays",
+      "concept_id": "lists",
+      "code": "-- Array or temporary result table\nSELECT ARRAY[1, 2, 3] AS num_list;",
+      "notes": "GraphQL supports array column types or relation rowsets representing lists."
+    },
+    "tuples": {
+      "title": "Rows & Composite Types",
+      "concept_id": "tuples",
+      "code": "-- Row tuple\nSELECT (1, 'Alice', 95) AS user_row;",
+      "notes": "GraphQL represents tuples as table rows or composite record types."
+    },
+    "sets": {
+      "title": "Set Queries (UNION, INTERSECT)",
+      "concept_id": "sets",
+      "code": "SELECT id FROM active_users\nUNION\nSELECT id FROM premium_users;",
+      "notes": "GraphQL combines dataset results using relational algebra (UNION, INTERSECT, EXCEPT)."
+    },
+    "modules_import": {
+      "title": "Schemas & Extensions",
+      "concept_id": "modules_import",
+      "code": "CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\";\nSET search_path TO my_schema, public;",
+      "notes": "GraphQL manages namespaces and modular capabilities through schemas and extensions."
+    }
+  }
+}

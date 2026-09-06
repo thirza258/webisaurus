@@ -1,0 +1,149 @@
+{
+  "language_id": "datalog",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "parent(X, Y)",
+      "notes": "Variables begin with an uppercase letter."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": ".decl person(name: symbol, age: number)",
+      "notes": "Adapted: Datalog defines relations (tables) and typed attributes."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "X = Y + Z,\nA != B",
+      "notes": "Logical and arithmetic conditions in rule bodies."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "grade(X, \"A\") :- score(X, S), S >= 90.\ngrade(X, \"B\") :- score(X, S), S >= 80, S < 90.",
+      "notes": "Adapted: Conditionals are modeled by multiple rules with different conditions."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "path(X, Y) :- edge(X, Y).\npath(X, Y) :- edge(X, Z), path(Z, Y).",
+      "notes": "Adapted: Iteration is expressed via recursive rule evaluation."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "ancestor(X, Y) :- parent(X, Y).\nancestor(X, Y) :- parent(X, Z), ancestor(Z, Y).",
+      "notes": "Adapted: Datalog's fixed-point semantics act as a while loop until no new facts are found."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "grandparent(X, Y) :- parent(X, Z), parent(Z, Y).",
+      "notes": "Adapted: Logic rules replace functions, generating relations."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "items(1, \"A\"). items(2, \"B\").",
+      "notes": "Adapted: Relations act as unordered sets/arrays."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "dictionary(\"key1\", \"value1\").\ndictionary(\"key2\", \"value2\").",
+      "notes": "Adapted: Key-value stores are modeled as binary relations."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "missing_data(X) :- person(X), !address(X).",
+      "notes": "Adapted: Datalog has no runtime errors; you write rules to find inconsistent data."
+    },
+    "comments": {
+      "title": "Comments",
+      "concept_id": "comments",
+      "code": "-- Single-line comment in Datalog\n/* Multi-line comment */",
+      "notes": "Datalog uses -- for line comments and /* */ for blocks."
+    },
+    "numbers": {
+      "title": "Numbers & Decimal Data",
+      "concept_id": "numbers",
+      "code": "DECLARE @val INT = 42;\nDECLARE @price DECIMAL(10, 2) = 19.99;",
+      "notes": "Datalog represents exact decimal precisions alongside standard integer types."
+    },
+    "booleans": {
+      "title": "Booleans & Predicates",
+      "concept_id": "booleans",
+      "code": "-- Three-valued logic (TRUE, FALSE, UNKNOWN)\nWHERE status = 'ACTIVE' AND deleted_at IS NULL",
+      "notes": "Datalog evaluates predicates using declarative boolean conditions with NULL semantics."
+    },
+    "type_casting": {
+      "title": "Type Casting (CAST/CONVERT)",
+      "concept_id": "type_casting",
+      "code": "CAST('42' AS INT)\nCONVERT(VARCHAR(10), 100)",
+      "notes": "Datalog casts types using CAST(expr AS target_type) expressions."
+    },
+    "strings": {
+      "title": "Strings & Text Literals",
+      "concept_id": "strings",
+      "code": "SELECT 'String literal' AS col, N'Unicode text' AS unicode_col;",
+      "notes": "Datalog encloses character literals in single quotes with optional N prefix for Unicode."
+    },
+    "string_formatting": {
+      "title": "String Concatenation",
+      "concept_id": "string_formatting",
+      "code": "SELECT CONCAT('User: ', username, ' (', email, ')') FROM users;",
+      "notes": "Datalog formats and joins textual columns using CONCAT or string concatenation operators."
+    },
+    "pattern_matching": {
+      "title": "Pattern Matching (LIKE & CASE)",
+      "concept_id": "pattern_matching",
+      "code": "SELECT CASE \n    WHEN score >= 90 THEN 'A'\n    WHEN score >= 80 THEN 'B'\n    ELSE 'C'\nEND AS grade\nWHERE email LIKE '%@example.com';",
+      "notes": "Datalog performs conditional classification via CASE WHEN and pattern search with LIKE."
+    },
+    "range": {
+      "title": "Ranges (BETWEEN & LIMIT/OFFSET)",
+      "concept_id": "range",
+      "code": "SELECT * FROM orders \nWHERE order_date BETWEEN '2024-01-01' AND '2024-12-31'\nLIMIT 10 OFFSET 20;",
+      "notes": "Datalog defines range intervals with BETWEEN and pagination ranges via LIMIT/OFFSET."
+    },
+    "iterators": {
+      "title": "Cursors & Window Functions",
+      "concept_id": "iterators",
+      "code": "-- Window row iteration\nSELECT id, ROW_NUMBER() OVER (ORDER BY created_at) AS row_num\nFROM logs;",
+      "notes": "Datalog processes ordered sequences set-by-set using window functions or procedural cursors."
+    },
+    "oop_classes": {
+      "title": "Schemas & Tables (Entities)",
+      "concept_id": "oop_classes",
+      "code": "CREATE TABLE users (\n    id INT PRIMARY KEY,\n    username VARCHAR(50) NOT NULL,\n    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP\n);",
+      "notes": "Datalog structures entities through relational tables, constraints, and views."
+    },
+    "lists": {
+      "title": "Tables & Arrays",
+      "concept_id": "lists",
+      "code": "-- Array or temporary result table\nSELECT ARRAY[1, 2, 3] AS num_list;",
+      "notes": "Datalog supports array column types or relation rowsets representing lists."
+    },
+    "tuples": {
+      "title": "Rows & Composite Types",
+      "concept_id": "tuples",
+      "code": "-- Row tuple\nSELECT (1, 'Alice', 95) AS user_row;",
+      "notes": "Datalog represents tuples as table rows or composite record types."
+    },
+    "sets": {
+      "title": "Set Queries (UNION, INTERSECT)",
+      "concept_id": "sets",
+      "code": "SELECT id FROM active_users\nUNION\nSELECT id FROM premium_users;",
+      "notes": "Datalog combines dataset results using relational algebra (UNION, INTERSECT, EXCEPT)."
+    },
+    "modules_import": {
+      "title": "Schemas & Extensions",
+      "concept_id": "modules_import",
+      "code": "CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\";\nSET search_path TO my_schema, public;",
+      "notes": "Datalog manages namespaces and modular capabilities through schemas and extensions."
+    }
+  }
+}

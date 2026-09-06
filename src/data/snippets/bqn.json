@@ -1,0 +1,149 @@
+{
+  "language_id": "bqn",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "var â† 10\nstringVar â† \"Hello\"",
+      "notes": "Variables are assigned using the left arrow (â†). Variable names start with lowercase for values, uppercase for functions."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "int â† 42\nfloat â† 3.14\nchar â† 'a'\nstr â† \"hello\"\nbool â† 1",
+      "notes": "BQN supports standard numerics and characters. Strings are arrays of characters."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "sum â† 3 + 4\ndiff â† 10 - 5\nprod â† 2 Ã— 3\nquot â† 10 Ã· 2\npow â† 2 â‹† 3\n\neq â† 1 = 1\nneq â† 1 â‰  2\ngt â† 2 > 1",
+      "notes": "Functions (operators) use specific unicode characters and evaluate right-to-left without precedence rules."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "x â† 10\nres â† { ð•©>0 ? \"Positive\" ; \"Non-positive\" } x",
+      "notes": "BQN block conditionals use '?' for testing conditions inside a block, separating branches with semicolons."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "squares â† {ð•©Ã—ð•©}Â¨ â†•5",
+      "notes": "Like APL, explicit looping is avoided. The Each modifier (Â¨) maps a function over an array (â†•5 generates 0..4)."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "Loop â† { ð•©<5 ? ð•Š ð•©+1 ; ð•© }\nres â† Loop 0",
+      "notes": "BQN relies on block recursion (using ð•Š, meaning self) rather than imperative while-loops."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "Add â† { ð•¨ + ð•© }\nres1 â† 3 Add 4\n\nMonadicFunc â† { ð•© + 1 }\nres2 â† MonadicFunc 5",
+      "notes": "Blocks { } define functions. ð•© is the right argument, ð•¨ is the optional left argument."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "vec â† âŸ¨1, 2, 3, 4, 5âŸ©\nmat â† 2â€¿3 â¥Š 1â€¿2â€¿3â€¿4â€¿5â€¿6\n\nfirstElement â† âŠ‘ vec\nshape â† â‰¢ mat",
+      "notes": "Arrays can be written using âŸ¨ âŸ© brackets. Strands (elements tied with â€¿) are another way to form lists. â¥Š reshapes arrays."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "map â† { \"key1\" â‡ 1; \"key2\" â‡ 2 }\nval â† map.key1",
+      "notes": "BQN uses namespaces for map-like data structures, exporting values using the â‡ symbol."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "res â† { 1Ã·ð•© } â€¢Trap 0",
+      "notes": "System function â€¢Trap can be used to handle exceptions, though checking array shapes/values is preferred."
+    },
+    "comments": {
+      "title": "Comments & Headers",
+      "concept_id": "comments",
+      "code": "# Comment in BQN\n# Multi-line comments or docstrings\n# are documented here",
+      "notes": "BQN uses # or language-specific delimiters (% in MATLAB, ! in Fortran) for comments."
+    },
+    "numbers": {
+      "title": "Vectors, Matrices & Numbers",
+      "concept_id": "numbers",
+      "code": "x = 42\npi = 3.14159\n# Vector operations\nv = [1, 2, 3, 4]",
+      "notes": "BQN is optimized for vector and matrix calculations with high-precision numerical representations."
+    },
+    "booleans": {
+      "title": "Logical Vectors & Booleans",
+      "concept_id": "booleans",
+      "code": "is_valid = TRUE\nflags = c(TRUE, FALSE, TRUE)",
+      "notes": "BQN provides boolean types with support for element-wise vector logic operations."
+    },
+    "type_casting": {
+      "title": "Type Coercion & Casting",
+      "concept_id": "type_casting",
+      "code": "as.numeric(\"42\")\nas.character(3.14)",
+      "notes": "BQN converts data between numeric, character, factor, and logical representations."
+    },
+    "strings": {
+      "title": "Strings & Character Vectors",
+      "concept_id": "strings",
+      "code": "s = \"Statistical Computing\"\nlen = nchar(s)",
+      "notes": "BQN treats strings as atomic character scalars or vector arrays."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "sprintf(\"Variable %.2f is %s\", 3.14159, \"pi\")",
+      "notes": "BQN formats numerical output with sprintf formatting specifiers."
+    },
+    "pattern_matching": {
+      "title": "Conditionals & Switches",
+      "concept_id": "pattern_matching",
+      "code": "switch(val, \"one\" = 1, \"two\" = 2, 0)",
+      "notes": "BQN executes branch logic via switch, ifelse, or conditional filtering."
+    },
+    "range": {
+      "title": "Sequences & Indexing",
+      "concept_id": "range",
+      "code": "seq(1, 10, by = 2)\nv[1:5]",
+      "notes": "BQN indexes matrices and vectors using 1-based indexing and sequence generators."
+    },
+    "iterators": {
+      "title": "Vectorized Apply & Iteration",
+      "concept_id": "iterators",
+      "code": "lapply(1:5, function(x) x^2)",
+      "notes": "BQN emphasizes vectorized functional processing (apply, map) over explicit loops."
+    },
+    "oop_classes": {
+      "title": "Object Systems & S3/S4",
+      "concept_id": "oop_classes",
+      "code": "# Object systems in BQN\nobj = list(name = \"Model\", score = 0.95)\nclass(obj) = \"metric\"",
+      "notes": "BQN uses class dispatch systems (S3/S4 in R, multiple dispatch in Julia) for data modeling."
+    },
+    "lists": {
+      "title": "DataFrames & Lists",
+      "concept_id": "lists",
+      "code": "df = list(a = 1:3, b = c(\"x\", \"y\", \"z\"))",
+      "notes": "BQN stores heterogeneous columnar records in data frames and lists."
+    },
+    "tuples": {
+      "title": "Pairs & Records",
+      "concept_id": "tuples",
+      "code": "pair = c(x = 10, y = 20)",
+      "notes": "BQN uses named vectors or lightweight structures for data records."
+    },
+    "sets": {
+      "title": "Set Operations",
+      "concept_id": "sets",
+      "code": "union(c(1, 2), c(2, 3))\nintersect(c(1, 2), c(2, 3))",
+      "notes": "BQN provides native mathematical set functions (union, intersect, setdiff)."
+    },
+    "modules_import": {
+      "title": "Libraries & Packages",
+      "concept_id": "modules_import",
+      "code": "library(dplyr)\nrequire(ggplot2)",
+      "notes": "BQN loads package namespaces using library or import declarations."
+    }
+  }
+}

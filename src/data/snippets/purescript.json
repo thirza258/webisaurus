@@ -1,0 +1,149 @@
+{
+  "language_id": "objectivecpp",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "int myCVar = 10;\nNSString *myObjCStr = @\"Hello Obj-C\";\nstd::string myCppStr = \"Hello C++\";",
+      "notes": "Objective-C++ allows seamless mixing of C++ stack/heap objects and Objective-C heap objects in the same file (.mm extension)."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "bool cppBool = true;\nBOOL objcBool = YES;\nstd::vector<int> cppVector;\nNSArray *objcArray = @[@1, @2];\nauto inferred = 42; // C++11 type inference",
+      "notes": "All C++ and Objective-C data types coexist. You can store pointers to Obj-C objects in C++ containers and vice versa."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "int sum = 3 + 4;\n\n// Overloaded operators from C++\nstd::string a = \"a\";\nstd::string b = \"b\";\nstd::string c = a + b;\n\n// Objective-C equality requires messages\nBOOL eq = [objcArray isEqualToArray:@[@1, @2]];",
+      "notes": "C++ features like operator overloading work normally on C++ objects, while Objective-C messaging continues to handle Obj-C objects."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "if (cppBool) {\n    std::cout << \"C++ style\" << std::endl;\n} else if (objcBool) {\n    NSLog(@\"Obj-C style\");\n}",
+      "notes": "Conditionals are inherited from C and can freely mix standard library C++ operations with Foundation logging."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "// C++ range-based for loop\nstd::vector<int> vec = {1, 2, 3};\nfor (int val : vec) {\n    std::cout << val << \"\\n\";\n}\n\n// Objective-C fast enumeration\nNSArray *arr = @[@1, @2, @3];\nfor (NSNumber *num in arr) {\n    NSLog(@\"%@\", num);\n}",
+      "notes": "You can use C++11 range-based loops for STL containers and Obj-C fast enumeration (for-in) for Foundation collections."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "int x = 0;\nwhile (x < 5) {\n    x++;\n}",
+      "notes": "While loops operate exactly as they do in C/C++."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "// C++ function returning an Obj-C type\nNSString* getGreeting(const std::string& name) {\n    return [NSString stringWithUTF8String:name.c_str()];\n}\n\n// Obj-C method using C++ types\n- (void)processVector:(const std::vector<int>&)vec {\n    // Process\n}",
+      "notes": "Functions and methods can freely accept and return both C++ references/values and Objective-C object pointers."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "std::vector<int> cppVec = {1, 2, 3};\nNSArray *objcArr = @[@1, @2, @3];\n\n// Converting C++ vector to NSArray\nNSMutableArray *bridge = [NSMutableArray array];\nfor (int v : cppVec) {\n    [bridge addObject:@(v)];\n}",
+      "notes": "No direct bridging exists between STL vectors and NSArrays; manual iteration is required to convert between them."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "std::map<std::string, int> cppMap = {{\"key\", 1}};\nNSDictionary *objcMap = @{@\"key\": @1};\n\n// Getting value\nint val = cppMap[\"key\"];\nNSNumber *nsVal = objcMap[@\"key\"];",
+      "notes": "You can use std::map or std::unordered_map alongside NSDictionary. Mixing them requires manual data conversion."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "try {\n    throw std::runtime_error(\"C++ exception\");\n} catch (const std::exception& e) {\n    std::cerr << e.what() << '\\n';\n}\n\nNSError *error = nil;\nBOOL ok = [obj performAndReturnError:&error];",
+      "notes": "C++ uses try-catch exceptions, while Objective-C uses NSError pointers. They do not cross boundaries cleanly; catch C++ exceptions before letting them leak into Objective-C call stacks."
+    },
+    "comments": {
+      "title": "Comments & Annotations",
+      "concept_id": "comments",
+      "code": "-- Single-line comment\n{- Multi-line\n   comment block -}\nadd :: Int -> Int -> Int\nadd a b = a + b",
+      "notes": "PureScript uses functional comment delimiters (-- in Haskell/ML, ; in Lisps, # or % in BEAM)."
+    },
+    "numbers": {
+      "title": "Numbers & Numerics",
+      "concept_id": "numbers",
+      "code": "x = 42 :: Int\nbig = 100000000000000000000 :: Integer\npiVal = 3.14159 :: Double\nhexVal = 0xFF",
+      "notes": "PureScript supports exact rational fractions, arbitrary-precision integers, and IEEE floats natively."
+    },
+    "booleans": {
+      "title": "Booleans & Logic",
+      "concept_id": "booleans",
+      "code": "isActive = True\nisDone = False\nresult = isActive && not isDone",
+      "notes": "PureScript treats booleans as first-class algebraic constructors (True/False, true/false, t/nil)."
+    },
+    "type_casting": {
+      "title": "Type Conversion",
+      "concept_id": "type_casting",
+      "code": "intVal = 42 :: Int\nfloatVal = fromIntegral intVal :: Double\nstrVal = show intVal\nparsed = read \"123\" :: Int",
+      "notes": "PureScript performs conversion via typeclass methods (fromIntegral, show, read) or explicit parse functions."
+    },
+    "strings": {
+      "title": "Strings & Text",
+      "concept_id": "strings",
+      "code": "str = \"Hello, Haskell!\"\ncharVal = 'H' :: Char\nmulti = \"Line 1\\nLine 2\"",
+      "notes": "PureScript represents strings as linked lists of characters, UTF-8 binaries, or dedicated text buffers."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "import Text.Printf\nmsg = printf \"User %s scored %d\" \"Alice\" (95 :: Int)",
+      "notes": "PureScript formats text through format strings, interpolation macros, or string concatenation."
+    },
+    "pattern_matching": {
+      "title": "Pattern Matching",
+      "concept_id": "pattern_matching",
+      "code": "describeList xs = case xs of\n    []       -> \"Empty list\"\n    [x]      -> \"Single element\"\n    (x:y:_)  -> \"Multiple elements\"",
+      "notes": "Pattern matching is a core feature in PureScript, destructuring algebraic variants, tuples, and lists directly."
+    },
+    "range": {
+      "title": "Ranges & Sequences",
+      "concept_id": "range",
+      "code": "-- Infinite lazy sequence\nevens = [0, 2 .. 20]\n-- List slice with take/drop\nsub = take 5 (drop 2 [1..10])",
+      "notes": "PureScript constructs ranges as lazy lists, infinite streams, or structured range enumerables."
+    },
+    "iterators": {
+      "title": "Iterators & Comprehensions",
+      "concept_id": "iterators",
+      "code": "-- List comprehension\nsquares = [x * x | x <- [1..10], even x]",
+      "notes": "PureScript achieves iterative processing through list comprehensions, map/filter transforms, and recursion."
+    },
+    "oop_classes": {
+      "title": "Types & Abstractions (OOP Equivalent)",
+      "concept_id": "oop_classes",
+      "code": "data Person = Person { name :: String, age :: Int }\n\ngreet :: Person -> String\ngreet (Person n _) = \"Hello, \" ++ n",
+      "notes": "PureScript emphasizes algebraic data types, protocols/typeclasses, and structs over traditional class hierarchies."
+    },
+    "lists": {
+      "title": "Lists (Linked Lists)",
+      "concept_id": "lists",
+      "code": "list = [1, 2, 3]\nappended = 0 : list  -- Cons: O(1)\nmerged = list ++ [4, 5] -- Concat",
+      "notes": "Lists in PureScript are singly linked immutable sequences optimized for head/tail structural sharing."
+    },
+    "tuples": {
+      "title": "Tuples & Records",
+      "concept_id": "tuples",
+      "code": "tuple = (1, \"apple\", True)\n(num, str, flag) = tuple",
+      "notes": "PureScript uses fixed-length heterogeneous tuples for bundling related data points and function return values."
+    },
+    "sets": {
+      "title": "Sets",
+      "concept_id": "sets",
+      "code": "import qualified Data.Set as Set\ns = Set.fromList [1, 2, 3]\ns' = Set.insert 4 s\nexists = Set.member 2 s'",
+      "notes": "PureScript provides persistent immutable sets implemented via balanced binary trees (HAMT / AVL)."
+    },
+    "modules_import": {
+      "title": "Modules & Imports",
+      "concept_id": "modules_import",
+      "code": "module Math.Geometry (area, perimeter) where\nimport Data.List (sort, nub)\nimport qualified Data.Map as Map",
+      "notes": "PureScript isolates scopes through modules and explicit import lists with aliasing and qualified names."
+    }
+  }
+}

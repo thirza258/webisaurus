@@ -1,0 +1,149 @@
+{
+  "language_id": "d",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "int a = 10;\nauto b = 20; // Type inferred as int\nimmutable c = 30; // Cannot be changed\nconst d = 40; // Read-only view",
+      "notes": "D supports explicit typing, type inference with `auto`, and distinguishing between `const` (read-only) and `immutable` (guaranteed never to change)."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "int i = 42;\nlong l = 100_000_000L;\ndouble f = 3.14;\nchar c = 'a'; // UTF-8 code unit\nstring s = \"Hello\"; // Immutable array of char",
+      "notes": "Strings in D are simply immutable arrays of UTF-8 characters (`immutable(char)[]`)."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "int sum = 5 + 10;\nint p = 2 ^^ 3; // Exponentiation (8)\nint[] a = [1, 2];\nint[] b = a ~ [3]; // Concatenation ([1, 2, 3])",
+      "notes": "D includes unique operators like `^^` for exponentiation and `~` for array concatenation."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "int x = 10;\nif (x > 5) {\n    // do something\n} else {\n    // do something else\n}\n\nstring res = (x == 10) ? \"Yes\" : \"No\";",
+      "notes": "Conditionals are similar to C and C++, supporting standard `if/else` and ternary operators."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "foreach (i; 0 .. 5) {\n    import std.stdio; // can import locally\n    writeln(i);\n}\n\n// Traditional for loop also supported\nfor(int j=0; j<5; j++) {}",
+      "notes": "The `foreach` loop is the idiomatic way to iterate, supporting ranges with `..`."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "int i = 0;\nwhile (i < 5) {\n    i++;\n}\n\ndo {\n    i--;\n} while (i > 0);",
+      "notes": "Standard `while` and `do-while` loops are supported just like in C."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "int add(int a, int b) pure {\n    return a + b;\n}\n\nauto multiply(T)(T a, T b) { // Template function\n    return a * b;\n}",
+      "notes": "Functions can be marked `pure` or `nothrow`. D has incredibly powerful and concise template syntax."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "int[3] staticArr = [1, 2, 3]; // Fixed size\nint[] dynamicArr = [1, 2, 3]; // Dynamic slice\ndynamicArr ~= 4; // Append\n\nint[] slice = dynamicArr[1..3];",
+      "notes": "D features first-class built-in dynamic arrays (slices) and array operations, including vector math like `arr[] += 5`."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "int[string] ages; // Associative array\nages[\"Alice\"] = 30;\nages[\"Bob\"] = 25;\n\nages.remove(\"Bob\");\n\nif (auto age = \"Alice\" in ages) {\n    // *age == 30\n}",
+      "notes": "Maps (associative arrays) are a built-in language feature in D, typed as `Value[Key]`."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "import std.stdio;\n\ntry {\n    throw new Exception(\"Something went wrong\");\n} catch (Exception e) {\n    writeln(\"Caught: \", e.msg);\n} finally {\n    writeln(\"Cleanup\");\n}",
+      "notes": "D uses standard exception handling. It also features `scope(exit)` and `scope(failure)` blocks for clean resource management."
+    },
+    "comments": {
+      "title": "Comments & Documentation",
+      "concept_id": "comments",
+      "code": "// Single-line comment in D\n\n/*\n * Multi-line comment block\n */\n\n/**\n * Documentation comment\n */",
+      "notes": "D uses C-style // single-line and /* */ multi-line comments."
+    },
+    "numbers": {
+      "title": "Numbers & Numerics",
+      "concept_id": "numbers",
+      "code": "int a = 42;\ndouble b = 3.14159;\nlong large = 1_000_000L;\nint hex = 0xFF;\nint bin = 0b1010;",
+      "notes": "D provides explicitly sized integer and floating-point primitives with binary and hex support."
+    },
+    "booleans": {
+      "title": "Booleans & Conditions",
+      "concept_id": "booleans",
+      "code": "bool isActive = true;\nbool isDone = false;\nif (isActive && !isDone) {\n    // Condition satisfied\n}",
+      "notes": "D uses bool / boolean types with true and false literals and logical operators (&&, ||, !)."
+    },
+    "type_casting": {
+      "title": "Type Casting & Conversion",
+      "concept_id": "type_casting",
+      "code": "int a = 42;\ndouble d = (double)a;\nint b = (int)d;",
+      "notes": "D supports explicit type casting using cast operators or constructor functions."
+    },
+    "strings": {
+      "title": "Strings & Characters",
+      "concept_id": "strings",
+      "code": "String str = \"Hello, World!\";\nchar ch = str.charAt(0);\nint len = str.length();",
+      "notes": "D distinguishes between single-character literals and string sequences or pointer slices."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "String name = \"Alice\";\nint score = 95;\nString msg = String.format(\"User %s scored %d\", name, score);",
+      "notes": "D supports string interpolation or printf-style formatting specifiers."
+    },
+    "pattern_matching": {
+      "title": "Pattern Matching & Switch",
+      "concept_id": "pattern_matching",
+      "code": "switch (val) {\n    case 1:\n        printf(\"One\\n\");\n        break;\n    case 2:\n    case 3:\n        printf(\"Two or Three\\n\");\n        break;\n    default:\n        printf(\"Other\\n\");\n}",
+      "notes": "D evaluates branching conditions through switch statements, match expressions, or when constructs."
+    },
+    "range": {
+      "title": "Ranges & Slicing",
+      "concept_id": "range",
+      "code": "for (int i = 0; i < 10; i += 2) {\n    // Range from 0 to 9 step 2\n}",
+      "notes": "D represents ranges with range operators (.., ..<) or standard indexed iteration boundaries."
+    },
+    "iterators": {
+      "title": "Iterators & Sequences",
+      "concept_id": "iterators",
+      "code": "for (const auto& item : collection) {\n    // Iteration over container\n}",
+      "notes": "D implements iteration through Iterator interfaces, generators, or range-for loops."
+    },
+    "oop_classes": {
+      "title": "Classes & OOP",
+      "concept_id": "oop_classes",
+      "code": "class Person {\n    private String name;\n    public Person(String name) {\n        this.name = name;\n    }\n    public String getName() {\n        return this.name;\n    }\n}",
+      "notes": "D models object orientation through classes with constructors/encapsulation or structs with associated methods."
+    },
+    "lists": {
+      "title": "Dynamic Arrays & Lists",
+      "concept_id": "lists",
+      "code": "List<int> list = new ArrayList<int>();",
+      "notes": "D manages growable dynamic collections using vectors, ArrayLists, or dynamically reallocated heap buffers."
+    },
+    "tuples": {
+      "title": "Tuples & Records",
+      "concept_id": "tuples",
+      "code": "record Pair(int x, int y) {}",
+      "notes": "D represents heterogeneous records through tuples, structured bindings, or lightweight record structs."
+    },
+    "sets": {
+      "title": "Sets & Unique Collections",
+      "concept_id": "sets",
+      "code": "Set<int> set = new HashSet<>();",
+      "notes": "D provides unique collection hashing structures with O(1) average lookup and insertion time."
+    },
+    "modules_import": {
+      "title": "Modules, Packages & Imports",
+      "concept_id": "modules_import",
+      "code": "import package.name;",
+      "notes": "D structures namespaces and external libraries via include directives, package declarations, or module imports."
+    }
+  }
+}

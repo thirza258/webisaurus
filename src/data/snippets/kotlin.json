@@ -1,0 +1,149 @@
+{
+  "language_id": "kotlin",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "val readOnly = \"Constant\"\nvar mutable = 42\nmutable = 43",
+      "notes": "Use 'val' for read-only variables and 'var' for mutable variables."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "val i: Int = 1\nval d: Double = 1.0\nval b: Boolean = true\nval s: String = \"Text\"\nval n: String? = null",
+      "notes": "Kotlin features strict null safety using nullable types denoted by '?'."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "val sum = 1 + 2\nval eq = (1 == 1) // structural equality\nval refEq = (obj1 === obj2) // referential equality",
+      "notes": "'==' calls .equals() safely underneath."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "val max = if (a > b) a else b\n\nval type = when (x) {\n    1 -> \"One\"\n    in 2..10 -> \"Few\"\n    is String -> \"String\"\n    else -> \"Unknown\"\n}",
+      "notes": "'if' and 'when' are expressions returning values."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "for (i in 1..5) { println(i) }\nfor (item in collection) { println(item) }",
+      "notes": "Iterates using ranges and iterators."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "while (x > 0) { x-- }\n\ndo { y++ } while (y < 10)",
+      "notes": "Standard while and do-while loops."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "fun add(a: Int, b: Int): Int {\n    return a + b\n}\n\nfun multiply(a: Int, b: Int) = a * b",
+      "notes": "Single-expression functions can omit the return type and braces."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "val arr = arrayOf(1, 2, 3)\nval intArr = intArrayOf(1, 2, 3)\narr[0] = 10",
+      "notes": "Arrays are invariant. Primitive arrays like IntArray avoid boxing."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "val map = mapOf(\"a\" to 1, \"b\" to 2)\nval mutMap = mutableMapOf(\"a\" to 1)\nmutMap[\"c\"] = 3",
+      "notes": "'to' is an infix function creating a Pair."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "val res = try {\n    riskyOperation()\n} catch (e: Exception) {\n    fallback()\n} finally {\n    cleanup()\n}",
+      "notes": "try-catch is an expression. Kotlin has no checked exceptions."
+    },
+    "comments": {
+      "title": "Comments & Documentation",
+      "concept_id": "comments",
+      "code": "// Single-line comment in Kotlin\n\n/*\n * Multi-line comment block\n */\n\n/**\n * Documentation comment\n */",
+      "notes": "Kotlin uses C-style // single-line and /* */ multi-line comments."
+    },
+    "numbers": {
+      "title": "Numbers & Numerics",
+      "concept_id": "numbers",
+      "code": "int a = 42;\ndouble b = 3.14159;\nlong large = 1_000_000L;\nint hex = 0xFF;\nint bin = 0b1010;",
+      "notes": "Kotlin provides explicitly sized integer and floating-point primitives with binary and hex support."
+    },
+    "booleans": {
+      "title": "Booleans & Conditions",
+      "concept_id": "booleans",
+      "code": "bool isActive = true;\nbool isDone = false;\nif (isActive && !isDone) {\n    // Condition satisfied\n}",
+      "notes": "Kotlin uses bool / boolean types with true and false literals and logical operators (&&, ||, !)."
+    },
+    "type_casting": {
+      "title": "Type Casting & Conversion",
+      "concept_id": "type_casting",
+      "code": "int a = 42;\ndouble d = (double)a;\nint b = (int)d;",
+      "notes": "Kotlin supports explicit type casting using cast operators or constructor functions."
+    },
+    "strings": {
+      "title": "Strings & Characters",
+      "concept_id": "strings",
+      "code": "String str = \"Hello, World!\";\nchar ch = str.charAt(0);\nint len = str.length();",
+      "notes": "Kotlin distinguishes between single-character literals and string sequences or pointer slices."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "val name = \"Alice\"\nval score = 95\nval msg = \"User $name scored ${score + 5}\"",
+      "notes": "Kotlin supports string interpolation or printf-style formatting specifiers."
+    },
+    "pattern_matching": {
+      "title": "Pattern Matching & Switch",
+      "concept_id": "pattern_matching",
+      "code": "when (val) {\n    1 -> println(\"One\")\n    2, 3 -> println(\"Two or Three\")\n    else -> println(\"Other\")\n}",
+      "notes": "Kotlin evaluates branching conditions through switch statements, match expressions, or when constructs."
+    },
+    "range": {
+      "title": "Ranges & Slicing",
+      "concept_id": "range",
+      "code": "val r = 1..10 step 2\nfor (i in r) { print(i) }",
+      "notes": "Kotlin represents ranges with range operators (.., ..<) or standard indexed iteration boundaries."
+    },
+    "iterators": {
+      "title": "Iterators & Sequences",
+      "concept_id": "iterators",
+      "code": "for (const auto& item : collection) {\n    // Iteration over container\n}",
+      "notes": "Kotlin implements iteration through Iterator interfaces, generators, or range-for loops."
+    },
+    "oop_classes": {
+      "title": "Classes & OOP",
+      "concept_id": "oop_classes",
+      "code": "class Person {\n    private String name;\n    public Person(String name) {\n        this.name = name;\n    }\n    public String getName() {\n        return this.name;\n    }\n}",
+      "notes": "Kotlin models object orientation through classes with constructors/encapsulation or structs with associated methods."
+    },
+    "lists": {
+      "title": "Dynamic Arrays & Lists",
+      "concept_id": "lists",
+      "code": "List<int> list = new ArrayList<int>();",
+      "notes": "Kotlin manages growable dynamic collections using vectors, ArrayLists, or dynamically reallocated heap buffers."
+    },
+    "tuples": {
+      "title": "Tuples & Records",
+      "concept_id": "tuples",
+      "code": "record Pair(int x, int y) {}",
+      "notes": "Kotlin represents heterogeneous records through tuples, structured bindings, or lightweight record structs."
+    },
+    "sets": {
+      "title": "Sets & Unique Collections",
+      "concept_id": "sets",
+      "code": "Set<int> set = new HashSet<>();",
+      "notes": "Kotlin provides unique collection hashing structures with O(1) average lookup and insertion time."
+    },
+    "modules_import": {
+      "title": "Modules, Packages & Imports",
+      "concept_id": "modules_import",
+      "code": "import package.name;",
+      "notes": "Kotlin structures namespaces and external libraries via include directives, package declarations, or module imports."
+    }
+  }
+}

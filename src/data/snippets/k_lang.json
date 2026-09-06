@@ -1,0 +1,149 @@
+{
+  "language_id": "k_lang",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "var: 10\nstringVar: \"Hello\"",
+      "notes": "Variables are assigned using a colon (:)."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "int: 42\nfloat: 3.14\nchar: \"a\"\nstr: \"hello\"\nbool: 1b\nsym: `hello",
+      "notes": "K supports standard primitives plus symbols (`) which are interned strings used for fast equality checks."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "sum: 3 + 4\ndiff: 10 - 5\nprod: 2 * 3\nquot: 10 % 2\n\neq: 1 = 1\nneq: 1 ~ 2\ngt: 2 > 1",
+      "notes": "Operators evaluate strictly right-to-left. No operator precedence. Division is %."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "x: 10\nres: $[x>0; \"Positive\"; \"Non-positive\"]",
+      "notes": "The cond operator ($) takes a condition, true branch, and false branch. It can be extended: $[cond1; res1; cond2; res2; default]."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "/ Array-oriented approach\nsquares: {x*x} 0 1 2 3 4\n\n/ Explicit loop\nx: 0\ndo[5; x:x+1]",
+      "notes": "do[n; ...] executes the block n times. Most looping is avoided in favor of vector operations."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "x: 0\nwhile[x < 5; x:x+1]",
+      "notes": "while[cond; block] executes until cond evaluates to 0 or false."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "add: {[x;y] x+y}\nres1: add[3;4]\n\n/ Implicit arguments (x, y, z)\naddImp: {x+y}\nres2: addImp[3;4]",
+      "notes": "Functions are enclosed in {}. Arguments are specified in brackets, or implicitly use x, y, and z."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "vec: 1 2 3 4 5\nmat: (1 2 3; 4 5 6)\n\nfirstElement: vec[0]\ncount: #vec",
+      "notes": "Lists (arrays) are created by separating items with spaces or semicolons in parentheses. # gets the length or shape."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "dict: `a`b`c ! 1 2 3\nval: dict[`b]",
+      "notes": "Dictionaries (maps) are created using the bang operator (!) joining a list of keys and a list of values."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "safeDiv: @[{x%y}; (10;0); {\"Error: \",x}]\nres: safeDiv",
+      "notes": "Trap (@) catches errors. It takes a function, its arguments, and a callback function for the error case."
+    },
+    "comments": {
+      "title": "Comments & Headers",
+      "concept_id": "comments",
+      "code": "# Comment in K\n# Multi-line comments or docstrings\n# are documented here",
+      "notes": "K uses # or language-specific delimiters (% in MATLAB, ! in Fortran) for comments."
+    },
+    "numbers": {
+      "title": "Vectors, Matrices & Numbers",
+      "concept_id": "numbers",
+      "code": "x = 42\npi = 3.14159\n# Vector operations\nv = [1, 2, 3, 4]",
+      "notes": "K is optimized for vector and matrix calculations with high-precision numerical representations."
+    },
+    "booleans": {
+      "title": "Logical Vectors & Booleans",
+      "concept_id": "booleans",
+      "code": "is_valid = TRUE\nflags = c(TRUE, FALSE, TRUE)",
+      "notes": "K provides boolean types with support for element-wise vector logic operations."
+    },
+    "type_casting": {
+      "title": "Type Coercion & Casting",
+      "concept_id": "type_casting",
+      "code": "as.numeric(\"42\")\nas.character(3.14)",
+      "notes": "K converts data between numeric, character, factor, and logical representations."
+    },
+    "strings": {
+      "title": "Strings & Character Vectors",
+      "concept_id": "strings",
+      "code": "s = \"Statistical Computing\"\nlen = nchar(s)",
+      "notes": "K treats strings as atomic character scalars or vector arrays."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "sprintf(\"Variable %.2f is %s\", 3.14159, \"pi\")",
+      "notes": "K formats numerical output with sprintf formatting specifiers."
+    },
+    "pattern_matching": {
+      "title": "Conditionals & Switches",
+      "concept_id": "pattern_matching",
+      "code": "switch(val, \"one\" = 1, \"two\" = 2, 0)",
+      "notes": "K executes branch logic via switch, ifelse, or conditional filtering."
+    },
+    "range": {
+      "title": "Sequences & Indexing",
+      "concept_id": "range",
+      "code": "seq(1, 10, by = 2)\nv[1:5]",
+      "notes": "K indexes matrices and vectors using 1-based indexing and sequence generators."
+    },
+    "iterators": {
+      "title": "Vectorized Apply & Iteration",
+      "concept_id": "iterators",
+      "code": "lapply(1:5, function(x) x^2)",
+      "notes": "K emphasizes vectorized functional processing (apply, map) over explicit loops."
+    },
+    "oop_classes": {
+      "title": "Object Systems & S3/S4",
+      "concept_id": "oop_classes",
+      "code": "# Object systems in K\nobj = list(name = \"Model\", score = 0.95)\nclass(obj) = \"metric\"",
+      "notes": "K uses class dispatch systems (S3/S4 in R, multiple dispatch in Julia) for data modeling."
+    },
+    "lists": {
+      "title": "DataFrames & Lists",
+      "concept_id": "lists",
+      "code": "df = list(a = 1:3, b = c(\"x\", \"y\", \"z\"))",
+      "notes": "K stores heterogeneous columnar records in data frames and lists."
+    },
+    "tuples": {
+      "title": "Pairs & Records",
+      "concept_id": "tuples",
+      "code": "pair = c(x = 10, y = 20)",
+      "notes": "K uses named vectors or lightweight structures for data records."
+    },
+    "sets": {
+      "title": "Set Operations",
+      "concept_id": "sets",
+      "code": "union(c(1, 2), c(2, 3))\nintersect(c(1, 2), c(2, 3))",
+      "notes": "K provides native mathematical set functions (union, intersect, setdiff)."
+    },
+    "modules_import": {
+      "title": "Libraries & Packages",
+      "concept_id": "modules_import",
+      "code": "library(dplyr)\nrequire(ggplot2)",
+      "notes": "K loads package namespaces using library or import declarations."
+    }
+  }
+}

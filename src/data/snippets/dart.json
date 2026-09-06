@@ -1,0 +1,149 @@
+{
+  "language_id": "dart",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "var name = 'Dart';\nfinal int count = 10;\nconst double pi = 3.14159;",
+      "notes": "Dart is strongly typed but allows type inference using 'var'. 'final' variables can be set only once; 'const' are compile-time constants."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "int age = 30;\ndouble height = 1.75;\nString greeting = 'Hello';\nbool isActive = true;\n\n// Null safety\nString? nullableStr = null;",
+      "notes": "Dart 2.12+ features sound null safety. Types cannot be null unless explicitly marked with a question mark (?)."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "int sum = 3 + 4;\ndouble div = 10 / 3; // Double division\nint intDiv = 10 ~/ 3; // Integer division\n\nbool eq = (1 == 1);\n\n// Null-aware operators\nString val = nullableStr ?? 'default';\nnullableStr ??= 'assigned if null';",
+      "notes": "Dart includes integer division (~/), cascade notation (..), and extensive null-aware operators (??, ??=, ?.)."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "int x = 10;\nif (x > 0) {\n  print('Positive');\n} else {\n  print('Non-positive');\n}\n\n// Pattern matching in switches (Dart 3.0+)\nString desc = switch(x) {\n  > 0 => 'Positive',\n  _ => 'Other'\n};",
+      "notes": "Standard C-style conditionals are used. Dart 3 introduced powerful pattern matching in switch statements and expressions."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "for (int i = 0; i < 5; i++) {\n  print(i);\n}\n\nList<String> items = ['a', 'b', 'c'];\nfor (var item in items) {\n  print(item);\n}\n\nitems.forEach((item) => print(item));",
+      "notes": "Supports classic for-loops, for-in loops for Iterables, and higher-order functions like forEach."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "int x = 0;\nwhile (x < 5) {\n  x++;\n}\n\nint y = 0;\ndo {\n  y++;\n} while (y < 5);",
+      "notes": "Standard while and do-while loops operate as expected."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "int add(int a, int b) {\n  return a + b;\n}\n\n// Arrow syntax for single expressions\nint multiply(int a, int b) => a * b;\n\n// Named parameters\nvoid greet({required String name, String suffix = ''}) {\n  print('Hello $name$suffix');\n}",
+      "notes": "Functions are first-class objects. Dart supports arrow syntax (=>), optional positional arguments ([ ]), and named arguments ({ })."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "List<int> numbers = [1, 2, 3, 4, 5];\nnumbers.add(6);\n\nint first = numbers[0];\nint length = numbers.length;\n\n// Collection if / for\nList<int> even = [for (var i in numbers) if (i % 2 == 0) i];",
+      "notes": "Arrays are List objects. Dart provides collection-if and collection-for syntax to build collections dynamically."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "Map<String, int> scores = {\n  'Alice': 100,\n  'Bob': 90\n};\n\nscores['Charlie'] = 85;\nint? aliceScore = scores['Alice'];",
+      "notes": "Maps are heavily used. Keys and values are strongly typed. Accessing a key returns a nullable value (V?)."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "try {\n  int result = 10 ~/ 0;\n} on UnsupportedError catch (e) {\n  print('Cannot divide by zero: $e');\n} catch (e, stackTrace) {\n  print('Unknown error: $e');\n} finally {\n  print('Cleanup');\n}",
+      "notes": "Exceptions are handled with try-catch blocks. 'on Type' specifies which exceptions to catch, while 'catch' captures the exception object and optional stack trace."
+    },
+    "comments": {
+      "title": "Comments & Documentation",
+      "concept_id": "comments",
+      "code": "// Single-line comment in Dart\n\n/*\n * Multi-line comment block\n */\n\n/**\n * Documentation comment\n */",
+      "notes": "Dart uses C-style // single-line and /* */ multi-line comments."
+    },
+    "numbers": {
+      "title": "Numbers & Numerics",
+      "concept_id": "numbers",
+      "code": "int a = 42;\ndouble b = 3.14159;\nlong large = 1_000_000L;\nint hex = 0xFF;\nint bin = 0b1010;",
+      "notes": "Dart provides explicitly sized integer and floating-point primitives with binary and hex support."
+    },
+    "booleans": {
+      "title": "Booleans & Conditions",
+      "concept_id": "booleans",
+      "code": "bool isActive = true;\nbool isDone = false;\nif (isActive && !isDone) {\n    // Condition satisfied\n}",
+      "notes": "Dart uses bool / boolean types with true and false literals and logical operators (&&, ||, !)."
+    },
+    "type_casting": {
+      "title": "Type Casting & Conversion",
+      "concept_id": "type_casting",
+      "code": "int a = 42;\ndouble d = (double)a;\nint b = (int)d;",
+      "notes": "Dart supports explicit type casting using cast operators or constructor functions."
+    },
+    "strings": {
+      "title": "Strings & Characters",
+      "concept_id": "strings",
+      "code": "String str = \"Hello, World!\";\nchar ch = str.charAt(0);\nint len = str.length();",
+      "notes": "Dart distinguishes between single-character literals and string sequences or pointer slices."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "val name = \"Alice\"\nval score = 95\nval msg = \"User $name scored ${score + 5}\"",
+      "notes": "Dart supports string interpolation or printf-style formatting specifiers."
+    },
+    "pattern_matching": {
+      "title": "Pattern Matching & Switch",
+      "concept_id": "pattern_matching",
+      "code": "switch (val) {\n    case 1:\n        printf(\"One\\n\");\n        break;\n    case 2:\n    case 3:\n        printf(\"Two or Three\\n\");\n        break;\n    default:\n        printf(\"Other\\n\");\n}",
+      "notes": "Dart evaluates branching conditions through switch statements, match expressions, or when constructs."
+    },
+    "range": {
+      "title": "Ranges & Slicing",
+      "concept_id": "range",
+      "code": "for (int i = 0; i < 10; i += 2) {\n    // Range from 0 to 9 step 2\n}",
+      "notes": "Dart represents ranges with range operators (.., ..<) or standard indexed iteration boundaries."
+    },
+    "iterators": {
+      "title": "Iterators & Sequences",
+      "concept_id": "iterators",
+      "code": "for (const auto& item : collection) {\n    // Iteration over container\n}",
+      "notes": "Dart implements iteration through Iterator interfaces, generators, or range-for loops."
+    },
+    "oop_classes": {
+      "title": "Classes & OOP",
+      "concept_id": "oop_classes",
+      "code": "class Person {\n    private String name;\n    public Person(String name) {\n        this.name = name;\n    }\n    public String getName() {\n        return this.name;\n    }\n}",
+      "notes": "Dart models object orientation through classes with constructors/encapsulation or structs with associated methods."
+    },
+    "lists": {
+      "title": "Dynamic Arrays & Lists",
+      "concept_id": "lists",
+      "code": "var list = [1, 2, 3];\nlist.add(4);\nlist.removeAt(0);",
+      "notes": "Dart manages growable dynamic collections using vectors, ArrayLists, or dynamically reallocated heap buffers."
+    },
+    "tuples": {
+      "title": "Tuples & Records",
+      "concept_id": "tuples",
+      "code": "record Pair(int x, int y) {}",
+      "notes": "Dart represents heterogeneous records through tuples, structured bindings, or lightweight record structs."
+    },
+    "sets": {
+      "title": "Sets & Unique Collections",
+      "concept_id": "sets",
+      "code": "Set<int> set = new HashSet<>();",
+      "notes": "Dart provides unique collection hashing structures with O(1) average lookup and insertion time."
+    },
+    "modules_import": {
+      "title": "Modules, Packages & Imports",
+      "concept_id": "modules_import",
+      "code": "import package.name;",
+      "notes": "Dart structures namespaces and external libraries via include directives, package declarations, or module imports."
+    }
+  }
+}

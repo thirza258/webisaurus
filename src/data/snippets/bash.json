@@ -1,0 +1,149 @@
+{
+  "language_id": "bash",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "name=\"Alice\"\nreadonly age=30\necho \"Name: $name\"",
+      "notes": "No spaces around the equal sign. Use quotes to handle spaces in values."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "string_var=\"Hello\"\nint_var=42\ndeclare -a array_var=(1 2 3)\ndeclare -A map_var=([key]=\"value\")",
+      "notes": "Bash variables are character strings by default. Arrays and associative arrays are supported."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "sum=$((5 + 3))\nif [[ $sum -eq 8 && \"$string_var\" == \"Hello\" ]]; then\n  echo \"Match\"\nfi",
+      "notes": "Use $(( )) for arithmetic. -eq, -ne for integers; ==, != for strings."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "if [ $val -gt 10 ]; then\n  echo \"Greater\"\nelif [ $val -eq 10 ]; then\n  echo \"Equal\"\nelse\n  echo \"Lesser\"\nfi",
+      "notes": "Use [ ] or [[ ]] for conditions."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "for i in {1..5}; do\n  echo $i\ndone\n\nfor file in *.txt; do\n  echo \"$file\"\ndone",
+      "notes": "Supports range expansion and globbing."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "count=1\nwhile [ $count -le 5 ]; do\n  echo $count\n  ((count++))\ndone",
+      "notes": "Use (( )) for C-style arithmetic."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "greet() {\n  local name=$1\n  echo \"Hello, $name!\"\n}\n\ngreet \"Alice\"",
+      "notes": "Parameters are accessed via $1, $2, etc. Use 'local' to scope variables."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "fruits=(\"apple\" \"banana\" \"cherry\")\necho \"${fruits[0]}\"\n\nfruits+=(\"date\")\necho \"All: ${fruits[@]}\"",
+      "notes": "0-indexed arrays."
+    },
+    "maps": {
+      "title": "Dictionaries / Maps",
+      "concept_id": "maps",
+      "code": "declare -A colors=([apple]=\"red\" [banana]=\"yellow\")\necho \"${colors[apple]}\"\ncolors[cherry]=\"red\"",
+      "notes": "Associative arrays require 'declare -A' in Bash 4+."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "command_that_might_fail || {\n  echo \"Command failed with status $?\" >&2\n  exit 1\n}\n\nset -e # Exit immediately if a command exits with a non-zero status.",
+      "notes": "Check $? for the exit status of the last command, or use 'set -e'."
+    },
+    "comments": {
+      "title": "Comments & Script Headers",
+      "concept_id": "comments",
+      "code": "# Single line comment in Bash\n# Shell scripts begin with a shebang:\n#!/usr/bin/env bash",
+      "notes": "Bash uses # for comments with script headers."
+    },
+    "numbers": {
+      "title": "Numbers & Arithmetic",
+      "concept_id": "numbers",
+      "code": "x=42\nresult=$((x * 2 + 5))\nhex=0xFF",
+      "notes": "Bash supports shell integer arithmetic and numeric expressions."
+    },
+    "booleans": {
+      "title": "Booleans & Exit Codes",
+      "concept_id": "booleans",
+      "code": "is_active=true\nif [ \"$is_active\" = \"true\" ]; then\n    echo \"Active\"\nfi",
+      "notes": "Bash evaluates boolean status through exit codes (0 = success) and boolean primitives."
+    },
+    "type_casting": {
+      "title": "Type Casting & Coercion",
+      "concept_id": "type_casting",
+      "code": "str_val=\"42\"\n# Arithmetic context forces integer coercion\nnum=$((str_val + 0))",
+      "notes": "Bash handles type conversion explicitly via type accelerators [type] or arithmetic evaluation."
+    },
+    "strings": {
+      "title": "Strings & Quoting",
+      "concept_id": "strings",
+      "code": "single='Literal single quotes'\ndouble=\"Expanded: ${USER}\"\nmultiline=\"Line 1\nLine 2\"",
+      "notes": "Bash differentiates between single quotes (literal) and double quotes (variable expansion)."
+    },
+    "string_formatting": {
+      "title": "String Interpolation",
+      "concept_id": "string_formatting",
+      "code": "name=\"Alice\"\nscore=95\nprintf \"User %s scored %d\\n\" \"$name\" \"$score\"",
+      "notes": "Bash provides in-string variable interpolation and printf formatting."
+    },
+    "pattern_matching": {
+      "title": "Pattern Matching & Case",
+      "concept_id": "pattern_matching",
+      "code": "case \"$val\" in\n    1) echo \"One\" ;;\n    2|3) echo \"Two or Three\" ;;\n    *) echo \"Other\" ;;\nesac",
+      "notes": "Bash matches patterns with case statements or switch blocks with glob matching."
+    },
+    "range": {
+      "title": "Ranges & Sequences",
+      "concept_id": "range",
+      "code": "# Brace expansion\nfor i in {1..10..2}; do\n    echo \"$i\"\ndone",
+      "notes": "Bash constructs ranges with brace expansion {start..end} or range operators .."
+    },
+    "iterators": {
+      "title": "Pipes & Iterators",
+      "concept_id": "iterators",
+      "code": "while IFS= read -r line; do\n    echo \"$line\"\ndone < \"file.txt\"",
+      "notes": "Bash streams data elements through command pipelines and loop iteration."
+    },
+    "oop_classes": {
+      "title": "Classes / Structured Functions",
+      "concept_id": "oop_classes",
+      "code": "# Functions serve as reusable components\nperson_greet() {\n    local name=\"$1\"\n    echo \"Hello $name\"\n}",
+      "notes": "Bash defines reusable components through classes (PowerShell 5+) or modular functions."
+    },
+    "lists": {
+      "title": "Arrays & Collections",
+      "concept_id": "lists",
+      "code": "items=(\"apple\" \"banana\" \"cherry\")\nitems+=(\"date\")\necho \"${items[0]}\" # apple\necho \"${items[@]}\" # all elements",
+      "notes": "Bash manages arrays using array lists @() or whitespace-delimited shell arrays."
+    },
+    "tuples": {
+      "title": "Tuples & Records",
+      "concept_id": "tuples",
+      "code": "pair=\"10:apple\"\nIFS=\":\" read -r id name <<< \"$pair\"",
+      "notes": "Bash emulates tuples through string delimiters, .NET Tuples, or positional variables."
+    },
+    "sets": {
+      "title": "Sets & Unique Lists",
+      "concept_id": "sets",
+      "code": "declare -A set\nset[\"apple\"]=1\nset[\"banana\"]=1\n[[ -n \"${set[apple]}\" ]] && echo \"Found\"",
+      "notes": "Bash models unique sets using associative arrays or underlying runtime sets."
+    },
+    "modules_import": {
+      "title": "Sourcing & Modules",
+      "concept_id": "modules_import",
+      "code": "# Source an external script\nsource ./utils.sh\n# or: . ./utils.sh",
+      "notes": "Bash imports external functions using source (. in POSIX) or Import-Module."
+    }
+  }
+}

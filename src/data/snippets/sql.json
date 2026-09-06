@@ -1,0 +1,149 @@
+{
+  "language_id": "sql",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "-- SQL:2023 Standard doesn't have imperative variables.\n-- Standard uses DECLARE for cursors or inside standard PSM (Persistent Stored Modules)\nDECLARE v_counter INT DEFAULT 0;",
+      "notes": "Adapted: Imperative variables are part of SQL/PSM standard."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "CREATE TABLE example (\n  id INTEGER PRIMARY KEY,\n  name VARCHAR(50),\n  price DECIMAL(10, 2),\n  is_active BOOLEAN\n);",
+      "notes": "Adapted: Data types are defined in table schemas."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "SELECT a + b, a - b, a * b, a / b\nFROM numbers\nWHERE a = b AND c <> d OR e IS NOT NULL;",
+      "notes": "Standard arithmetic, comparison, and logical operators."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "SELECT\n  CASE \n    WHEN score >= 90 THEN 'A'\n    WHEN score >= 80 THEN 'B'\n    ELSE 'C'\n  END AS grade\nFROM students;",
+      "notes": "SQL uses CASE expressions for conditionals."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "-- Recursive CTE for generating a sequence\nWITH RECURSIVE cnt(x) AS (\n  SELECT 1\n  UNION ALL\n  SELECT x + 1 FROM cnt WHERE x < 10\n)\nSELECT x FROM cnt;",
+      "notes": "Adapted: Sets and CTEs replace imperative loops in pure SQL."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "-- SQL/PSM Standard While Loop\nWHILE v_counter < 10 DO\n  SET v_counter = v_counter + 1;\nEND WHILE;",
+      "notes": "Adapted: Imperative loop from SQL/PSM."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "CREATE FUNCTION add_numbers (a INT, b INT)\nRETURNS INT\nBEGIN\n  RETURN a + b;\nEND;",
+      "notes": "Adapted: User-defined functions (UDFs)."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "CREATE TABLE array_data (\n  id INT,\n  tags TEXT ARRAY\n);",
+      "notes": "Adapted: SQL:2023 supports ARRAY types."
+    },
+    "maps": {
+      "title": "Maps / Dictionaries",
+      "concept_id": "maps",
+      "code": "-- Using a separate table and JOIN to simulate dictionary mapping\nSELECT a.id, b.val\nFROM main_table a\nJOIN dict_table b ON a.key = b.key;",
+      "notes": "Adapted: Relational joins or JSON objects are used for key-value maps."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "DECLARE EXIT HANDLER FOR SQLEXCEPTION\nBEGIN\n  ROLLBACK;\n  SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'An error occurred';\nEND;",
+      "notes": "Adapted: SQL/PSM standard error handling."
+    },
+    "comments": {
+      "title": "Comments",
+      "concept_id": "comments",
+      "code": "-- Single-line comment in SQL\n/* Multi-line comment */",
+      "notes": "SQL uses -- for line comments and /* */ for blocks."
+    },
+    "numbers": {
+      "title": "Numbers & Decimal Data",
+      "concept_id": "numbers",
+      "code": "DECLARE @val INT = 42;\nDECLARE @price DECIMAL(10, 2) = 19.99;",
+      "notes": "SQL represents exact decimal precisions alongside standard integer types."
+    },
+    "booleans": {
+      "title": "Booleans & Predicates",
+      "concept_id": "booleans",
+      "code": "-- Three-valued logic (TRUE, FALSE, UNKNOWN)\nWHERE status = 'ACTIVE' AND deleted_at IS NULL",
+      "notes": "SQL evaluates predicates using declarative boolean conditions with NULL semantics."
+    },
+    "type_casting": {
+      "title": "Type Casting (CAST/CONVERT)",
+      "concept_id": "type_casting",
+      "code": "CAST('42' AS INT)\nCONVERT(VARCHAR(10), 100)",
+      "notes": "SQL casts types using CAST(expr AS target_type) expressions."
+    },
+    "strings": {
+      "title": "Strings & Text Literals",
+      "concept_id": "strings",
+      "code": "SELECT 'String literal' AS col, N'Unicode text' AS unicode_col;",
+      "notes": "SQL encloses character literals in single quotes with optional N prefix for Unicode."
+    },
+    "string_formatting": {
+      "title": "String Concatenation",
+      "concept_id": "string_formatting",
+      "code": "SELECT CONCAT('User: ', username, ' (', email, ')') FROM users;",
+      "notes": "SQL formats and joins textual columns using CONCAT or string concatenation operators."
+    },
+    "pattern_matching": {
+      "title": "Pattern Matching (LIKE & CASE)",
+      "concept_id": "pattern_matching",
+      "code": "SELECT CASE \n    WHEN score >= 90 THEN 'A'\n    WHEN score >= 80 THEN 'B'\n    ELSE 'C'\nEND AS grade\nWHERE email LIKE '%@example.com';",
+      "notes": "SQL performs conditional classification via CASE WHEN and pattern search with LIKE."
+    },
+    "range": {
+      "title": "Ranges (BETWEEN & LIMIT/OFFSET)",
+      "concept_id": "range",
+      "code": "SELECT * FROM orders \nWHERE order_date BETWEEN '2024-01-01' AND '2024-12-31'\nLIMIT 10 OFFSET 20;",
+      "notes": "SQL defines range intervals with BETWEEN and pagination ranges via LIMIT/OFFSET."
+    },
+    "iterators": {
+      "title": "Cursors & Window Functions",
+      "concept_id": "iterators",
+      "code": "-- Window row iteration\nSELECT id, ROW_NUMBER() OVER (ORDER BY created_at) AS row_num\nFROM logs;",
+      "notes": "SQL processes ordered sequences set-by-set using window functions or procedural cursors."
+    },
+    "oop_classes": {
+      "title": "Schemas & Tables (Entities)",
+      "concept_id": "oop_classes",
+      "code": "CREATE TABLE users (\n    id INT PRIMARY KEY,\n    username VARCHAR(50) NOT NULL,\n    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP\n);",
+      "notes": "SQL structures entities through relational tables, constraints, and views."
+    },
+    "lists": {
+      "title": "Tables & Arrays",
+      "concept_id": "lists",
+      "code": "-- Array or temporary result table\nSELECT ARRAY[1, 2, 3] AS num_list;",
+      "notes": "SQL supports array column types or relation rowsets representing lists."
+    },
+    "tuples": {
+      "title": "Rows & Composite Types",
+      "concept_id": "tuples",
+      "code": "-- Row tuple\nSELECT (1, 'Alice', 95) AS user_row;",
+      "notes": "SQL represents tuples as table rows or composite record types."
+    },
+    "sets": {
+      "title": "Set Queries (UNION, INTERSECT)",
+      "concept_id": "sets",
+      "code": "SELECT id FROM active_users\nUNION\nSELECT id FROM premium_users;",
+      "notes": "SQL combines dataset results using relational algebra (UNION, INTERSECT, EXCEPT)."
+    },
+    "modules_import": {
+      "title": "Schemas & Extensions",
+      "concept_id": "modules_import",
+      "code": "CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\";\nSET search_path TO my_schema, public;",
+      "notes": "SQL manages namespaces and modular capabilities through schemas and extensions."
+    }
+  }
+}

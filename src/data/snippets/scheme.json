@@ -1,0 +1,149 @@
+{
+  "language_id": "scheme",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "(define x 10)\n(define y 20)\n\n;; Local variables\n(let ((a 1)\n      (b 2))\n  (+ a b))\n\n;; Sequential binding (let*)\n(let* ((a 1)\n       (b (+ a 1)))\n  b)",
+      "notes": "define creates top-level bindings. let creates parallel local bindings, while let* allows bindings to refer to previous ones."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "42                   ; integer\n3.14                 ; inexact real (float)\n3/4                  ; exact rational\n3+4i                 ; complex number\n\"Hello\"              ; string\n#\\A                  ; character\n'symbol              ; symbol\n'(1 2 3)             ; list\n#(1 2 3)             ; vector\n#t                   ; boolean true\n#f                   ; boolean false",
+      "notes": "Scheme implements a full numeric tower. Boolean values are #t and #f. Lists are built from cons cells."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "(+ 1 2 3)    ; => 6\n(- 10 4)     ; => 6\n(* 2 3)      ; => 6\n(/ 10 2)     ; => 5\n\n(= 1 1)      ; Numeric equality\n(equal? \"a\" \"a\") ; Deep structural equality\n(eqv? 'a 'a) ; Value equality\n(eq? 'a 'a)  ; Pointer equality\n\n(and #t #f)  ; => #f\n(or #f #t)   ; => #t\n(not #t)     ; => #f",
+      "notes": "Operators are prefix functions. Scheme uses standard predicate names ending in ? for type and equality checks."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "(if (> x 0)\n    'positive\n    'negative)\n\n(cond ((> x 0) 'positive)\n      ((< x 0) 'negative)\n      (else 'zero))\n\n(case x\n  ((1 3 5) 'odd)\n  ((2 4 6) 'even)\n  (else 'other))",
+      "notes": "if is used for simple branching. cond is used for multi-way if-else chains. case matches against discrete values."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": ";; Traditional looping construct using `do`\n(do ((i 0 (+ i 1)))\n    ((= i 10))\n  (display i)\n  (newline))\n\n;; Iterating over a list\n(for-each (lambda (x) (display x))\n          '(1 2 3))",
+      "notes": "Scheme favors recursion over imperative loops, but do provides standard iteration. for-each and map are used for list iteration."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": ";; Named let for looping\n(let loop ((x 0))\n  (when (< x 10)\n    (display x)\n    (newline)\n    (loop (+ x 1))))\n\n;; Using mutation\n(let ((x 0))\n  (let loop ()\n    (when (< x 10)\n      (display x)\n      (set! x (+ x 1))\n      (loop))))",
+      "notes": "Named let is the idiomatic way to express loops in Scheme through tail recursion. The compiler optimizes this into a standard loop."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": ";; Standard definition\n(define (add a b)\n  (+ a b))\n\n;; Equivalent lambda binding\n(define add (lambda (a b) (+ a b)))\n\n;; Variadic function\n(define (sum . numbers)\n  (apply + numbers))",
+      "notes": "Functions are first-class citizens created with lambda. define provides shorthand syntax for defining named functions."
+    },
+    "arrays": {
+      "title": "Arrays (Vectors)",
+      "concept_id": "arrays",
+      "code": ";; Creating a vector\n(make-vector 5 0)\n#(1 2 3 4 5) ; Literal syntax\n\n;; Accessing and modifying\n(define v (vector 10 20 30))\n(vector-ref v 0)       ; => 10\n(vector-set! v 0 42)   ; Mutates vector",
+      "notes": "Vectors provide O(1) access. Scheme uses -ref for accessing and -set! for mutating. The ! suffix indicates a mutating operation."
+    },
+    "maps": {
+      "title": "Maps (Hash Tables)",
+      "concept_id": "maps",
+      "code": ";; SRFI 69 Hash Tables\n(define ht (make-hash-table equal?))\n\n;; Setting values\n(hash-table-set! ht \"key\" \"value\")\n\n;; Getting values\n(hash-table-ref ht \"key\")\n(hash-table-ref/default ht \"missing\" \"default\")\n\n;; Checking existence\n(hash-table-exists? ht \"key\")",
+      "notes": "Hash tables are typically provided via SRFI 69 or R6RS/R7RS standard libraries, supporting custom equivalence predicates."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "(guard (e ((error-object? e) (display \"Error occurred\") 0)\n          (else (raise e)))\n  (/ 1 0))\n\n;; Signaling an error\n(error \"Something went wrong\")",
+      "notes": "R7RS uses guard for exception handling, which acts like a try-catch block with cond-style clauses for matching exceptions."
+    },
+    "comments": {
+      "title": "Comments & Annotations",
+      "concept_id": "comments",
+      "code": ";; Single-line comment in Lisp\n#|\n Multi-line block comment\n|#\n(defun add (a b)\n  \"Documentation string for function\"\n  (+ a b))",
+      "notes": "Scheme uses functional comment delimiters (-- in Haskell/ML, ; in Lisps, # or % in BEAM)."
+    },
+    "numbers": {
+      "title": "Numbers & Numerics",
+      "concept_id": "numbers",
+      "code": "(def x 42)          ; Integer\n(def pi 3.14159)    ; Float\n(def ratio 1/3)     ; Exact rational ratio\n(def hex #xFF)      ; Hexadecimal",
+      "notes": "Scheme supports exact rational fractions, arbitrary-precision integers, and IEEE floats natively."
+    },
+    "booleans": {
+      "title": "Booleans & Logic",
+      "concept_id": "booleans",
+      "code": "(def is-active true)\n(if is-active\n    (print \"Active\")\n    (print \"Inactive\"))",
+      "notes": "Scheme treats booleans as first-class algebraic constructors (True/False, true/false, t/nil)."
+    },
+    "type_casting": {
+      "title": "Type Conversion",
+      "concept_id": "type_casting",
+      "code": "(def n (parse-integer \"42\"))\n(def f (float n))\n(def s (write-to-string f))",
+      "notes": "Scheme performs conversion via typeclass methods (fromIntegral, show, read) or explicit parse functions."
+    },
+    "strings": {
+      "title": "Strings & Text",
+      "concept_id": "strings",
+      "code": "(def s \"Hello, World!\")\n(def char-val (char s 0))\n(def multi \"Line 1\nLine 2\")",
+      "notes": "Scheme represents strings as linked lists of characters, UTF-8 binaries, or dedicated text buffers."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "(format nil \"User: ~A scored ~D\" \"Alice\" 95)",
+      "notes": "Scheme formats text through format strings, interpolation macros, or string concatenation."
+    },
+    "pattern_matching": {
+      "title": "Pattern Matching",
+      "concept_id": "pattern_matching",
+      "code": "(case val\n  (1 \"One\")\n  ((2 3) \"Two or Three\")\n  (_ \"Other\"))",
+      "notes": "Pattern matching is a core feature in Scheme, destructuring algebraic variants, tuples, and lists directly."
+    },
+    "range": {
+      "title": "Ranges & Sequences",
+      "concept_id": "range",
+      "code": "(def r (range 1 10 2))\n(def sub (subseq [1 2 3 4 5] 1 3))",
+      "notes": "Scheme constructs ranges as lazy lists, infinite streams, or structured range enumerables."
+    },
+    "iterators": {
+      "title": "Iterators & Comprehensions",
+      "concept_id": "iterators",
+      "code": "(def squares (for [x (range 10) :when (even? x)] (* x x)))",
+      "notes": "Scheme achieves iterative processing through list comprehensions, map/filter transforms, and recursion."
+    },
+    "oop_classes": {
+      "title": "Types & Abstractions (OOP Equivalent)",
+      "concept_id": "oop_classes",
+      "code": "(defrecord Person [name age])\n(defprotocol Speaker\n  (speak [this]))",
+      "notes": "Scheme emphasizes algebraic data types, protocols/typeclasses, and structs over traditional class hierarchies."
+    },
+    "lists": {
+      "title": "Lists (Linked Lists)",
+      "concept_id": "lists",
+      "code": "(def list '(1 2 3))\n(def prepended (cons 0 list))\n(def tail (rest list))",
+      "notes": "Lists in Scheme are singly linked immutable sequences optimized for head/tail structural sharing."
+    },
+    "tuples": {
+      "title": "Tuples & Records",
+      "concept_id": "tuples",
+      "code": "(list 1 \"apple\" t)",
+      "notes": "Scheme uses fixed-length heterogeneous tuples for bundling related data points and function return values."
+    },
+    "sets": {
+      "title": "Sets",
+      "concept_id": "sets",
+      "code": "(def s (set [1 2 3]))\n(conj s 4)\n(contains? s 2)",
+      "notes": "Scheme provides persistent immutable sets implemented via balanced binary trees (HAMT / AVL)."
+    },
+    "modules_import": {
+      "title": "Modules & Imports",
+      "concept_id": "modules_import",
+      "code": "(ns my-project.core\n  (:require [clojure.string :as str]))",
+      "notes": "Scheme isolates scopes through modules and explicit import lists with aliasing and qualified names."
+    }
+  }
+}

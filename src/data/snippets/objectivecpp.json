@@ -1,0 +1,149 @@
+{
+  "language_id": "objectivecpp",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "int myCVar = 10;\nNSString *myObjCStr = @\"Hello Obj-C\";\nstd::string myCppStr = \"Hello C++\";",
+      "notes": "Objective-C++ allows seamless mixing of C++ stack/heap objects and Objective-C heap objects in the same file (.mm extension)."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "bool cppBool = true;\nBOOL objcBool = YES;\nstd::vector<int> cppVector;\nNSArray *objcArray = @[@1, @2];\nauto inferred = 42; // C++11 type inference",
+      "notes": "All C++ and Objective-C data types coexist. You can store pointers to Obj-C objects in C++ containers and vice versa."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "int sum = 3 + 4;\n\n// Overloaded operators from C++\nstd::string a = \"a\";\nstd::string b = \"b\";\nstd::string c = a + b;\n\n// Objective-C equality requires messages\nBOOL eq = [objcArray isEqualToArray:@[@1, @2]];",
+      "notes": "C++ features like operator overloading work normally on C++ objects, while Objective-C messaging continues to handle Obj-C objects."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "if (cppBool) {\n    std::cout << \"C++ style\" << std::endl;\n} else if (objcBool) {\n    NSLog(@\"Obj-C style\");\n}",
+      "notes": "Conditionals are inherited from C and can freely mix standard library C++ operations with Foundation logging."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "// C++ range-based for loop\nstd::vector<int> vec = {1, 2, 3};\nfor (int val : vec) {\n    std::cout << val << \"\\n\";\n}\n\n// Objective-C fast enumeration\nNSArray *arr = @[@1, @2, @3];\nfor (NSNumber *num in arr) {\n    NSLog(@\"%@\", num);\n}",
+      "notes": "You can use C++11 range-based loops for STL containers and Obj-C fast enumeration (for-in) for Foundation collections."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "int x = 0;\nwhile (x < 5) {\n    x++;\n}",
+      "notes": "While loops operate exactly as they do in C/C++."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "// C++ function returning an Obj-C type\nNSString* getGreeting(const std::string& name) {\n    return [NSString stringWithUTF8String:name.c_str()];\n}\n\n// Obj-C method using C++ types\n- (void)processVector:(const std::vector<int>&)vec {\n    // Process\n}",
+      "notes": "Functions and methods can freely accept and return both C++ references/values and Objective-C object pointers."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "std::vector<int> cppVec = {1, 2, 3};\nNSArray *objcArr = @[@1, @2, @3];\n\n// Converting C++ vector to NSArray\nNSMutableArray *bridge = [NSMutableArray array];\nfor (int v : cppVec) {\n    [bridge addObject:@(v)];\n}",
+      "notes": "No direct bridging exists between STL vectors and NSArrays; manual iteration is required to convert between them."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "std::map<std::string, int> cppMap = {{\"key\", 1}};\nNSDictionary *objcMap = @{@\"key\": @1};\n\n// Getting value\nint val = cppMap[\"key\"];\nNSNumber *nsVal = objcMap[@\"key\"];",
+      "notes": "You can use std::map or std::unordered_map alongside NSDictionary. Mixing them requires manual data conversion."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "try {\n    throw std::runtime_error(\"C++ exception\");\n} catch (const std::exception& e) {\n    std::cerr << e.what() << '\\n';\n}\n\nNSError *error = nil;\nBOOL ok = [obj performAndReturnError:&error];",
+      "notes": "C++ uses try-catch exceptions, while Objective-C uses NSError pointers. They do not cross boundaries cleanly; catch C++ exceptions before letting them leak into Objective-C call stacks."
+    },
+    "comments": {
+      "title": "Comments & Documentation",
+      "concept_id": "comments",
+      "code": "// Comments in Objective-C++\n/* Block documentation */",
+      "notes": "Objective-C++ provides comments to document code behavior."
+    },
+    "numbers": {
+      "title": "Numbers & Constants",
+      "concept_id": "numbers",
+      "code": "val = 42\nratio = 3.14159",
+      "notes": "Objective-C++ supports numeric literals for computation and indexing."
+    },
+    "booleans": {
+      "title": "Booleans & Conditions",
+      "concept_id": "booleans",
+      "code": "flag = true\nif flag:\n    // Execute branch",
+      "notes": "Objective-C++ provides boolean conditions for program control flow."
+    },
+    "type_casting": {
+      "title": "Type Conversion",
+      "concept_id": "type_casting",
+      "code": "converted = (type)original_value",
+      "notes": "Objective-C++ converts data between native format representations."
+    },
+    "strings": {
+      "title": "Strings & Characters",
+      "concept_id": "strings",
+      "code": "text = \"Sample string text\"",
+      "notes": "Objective-C++ represents textual data through string literals and character arrays."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "formatted = format(\"Text: %s\", value)",
+      "notes": "Objective-C++ formats and joins textual values for display and output."
+    },
+    "pattern_matching": {
+      "title": "Conditionals & Branching",
+      "concept_id": "pattern_matching",
+      "code": "case value of\n    1: execute_one()\n    default: execute_default()",
+      "notes": "Objective-C++ branches execution based on value comparison and conditional expressions."
+    },
+    "range": {
+      "title": "Ranges & Intervals",
+      "concept_id": "range",
+      "code": "range = 1..10",
+      "notes": "Objective-C++ defines intervals and index sequences for bounded processing."
+    },
+    "iterators": {
+      "title": "Iteration & Loops",
+      "concept_id": "iterators",
+      "code": "for item in collection:\n    process(item)",
+      "notes": "Objective-C++ iterates across collections and sequence elements."
+    },
+    "oop_classes": {
+      "title": "Structures & Modules",
+      "concept_id": "oop_classes",
+      "code": "struct Entity {\n    data: Value\n}",
+      "notes": "Objective-C++ organizes data and behavior through structures or modular components."
+    },
+    "lists": {
+      "title": "Collections & Arrays",
+      "concept_id": "lists",
+      "code": "items = [1, 2, 3, 4]",
+      "notes": "Objective-C++ stores sequence data in indexed lists or arrays."
+    },
+    "tuples": {
+      "title": "Records & Pairs",
+      "concept_id": "tuples",
+      "code": "pair = (10, \"label\")",
+      "notes": "Objective-C++ groups related fields into lightweight composite pairs or records."
+    },
+    "sets": {
+      "title": "Sets & Uniqueness",
+      "concept_id": "sets",
+      "code": "set = Set([1, 2, 3])",
+      "notes": "Objective-C++ tracks unique values without duplicate entries."
+    },
+    "modules_import": {
+      "title": "Libraries & Modules",
+      "concept_id": "modules_import",
+      "code": "import module_name",
+      "notes": "Objective-C++ organizes external libraries and code units into modular namespaces."
+    }
+  }
+}

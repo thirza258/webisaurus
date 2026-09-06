@@ -1,0 +1,149 @@
+{
+  "language_id": "fennel",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "(local x 10)\n(var y 20)\n(set y 30)\n\n;; let binds local variables for a scope\n(let [a 1\n      b 2]\n  (+ a b))\n\n;; Global variable\n(global z 100)",
+      "notes": "local creates immutable local variables, var creates mutable locals, and set changes a var. let creates block-scoped locals."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "42                   ; number\n3.14                 ; number\n\"Hello\"              ; string\ntrue                 ; boolean true\nfalse                ; boolean false\nnil                  ; nil\n[1 2 3]              ; sequential table (array)\n{:a 1 :b 2}          ; associative table (map)\n:symbol              ; string (compiles to Lua string)",
+      "notes": "Fennel types directly map to Lua types. There's only one numeric type. Tables serve as both arrays and dictionaries."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "(+ 1 2)      ; => 3\n(- 10 4)     ; => 6\n(* 2 3)      ; => 6\n(/ 10 2)     ; => 5\n(// 10 3)    ; => 3 (integer division)\n(% 10 3)     ; => 1 (modulo)\n(.. \"a\" \"b\") ; => \"ab\" (string concat)\n\n(= 1 1)      ; equality\n(not= 1 2)   ; inequality\n(and true false)\n(or false true)\n(not true)",
+      "notes": "Operators are prefix just like in other Lisps, but map directly to Lua's math and logic operators. .. is used for string concatenation."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "(if (> x 0)\n    \"positive\"\n    \"negative\")\n\n(if (> x 0) \"positive\"\n    (< x 0) \"negative\"\n    \"zero\") ; multi-way if\n\n(when (> x 0)\n  (print \"positive\"))",
+      "notes": "if acts like an expression and can have an arbitrary number of condition/result pairs. when evaluates a body only if the condition is truthy."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": ";; Numeric for loop\n(for [i 1 10]\n  (print i))\n\n(for [i 10 1 -1] ; With step\n  (print i))\n\n;; Iterating over sequential tables\n(each [index value (ipairs [\"a\" \"b\" \"c\"])]\n  (print index value))",
+      "notes": "for implements Lua's numeric for loop. each implements Lua's generic for loop using iterators like ipairs and pairs."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "(var x 0)\n(while (< x 10)\n  (print x)\n  (set x (+ x 1)))",
+      "notes": "while directly compiles to Lua's while loop. It evaluates its body repeatedly as long as the condition is truthy."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "(fn add [a b]\n  (+ a b))\n\n;; Anonymous function (lambda)\n(lambda [x] (* x x))\n;; or\n(hashfn (* $1 $1)) ; or #(* $1 $1)\n\n;; Variadic function\n(fn sum [...]\n  (let [args [...]]\n    ;; logic to sum args\n    ))",
+      "notes": "fn defines functions. lambda or λ define functions that perform arity checks. hashfn provides a short syntax for simple anonymous functions."
+    },
+    "arrays": {
+      "title": "Arrays (Sequential Tables)",
+      "concept_id": "arrays",
+      "code": "(local arr [10 20 30])\n\n;; Accessing (1-indexed)\n(. arr 1) ; => 10\n\n;; Modifying\n(tset arr 1 42)\n\n;; Appending\n(table.insert arr 40)\n\n;; Length\n(length arr)",
+      "notes": "Arrays in Fennel are Lua sequential tables. They use square brackets and are 1-indexed. The . macro gets values, tset sets values."
+    },
+    "maps": {
+      "title": "Maps (Associative Tables)",
+      "concept_id": "maps",
+      "code": "(local t {:key \"value\"\n          :number 42})\n\n;; Accessing\n(. t :key) ; => \"value\"\nt.key      ; Syntax sugar for (. t :key)\n\n;; Modifying\n(tset t :key \"new-value\")\n\n;; Iterating\n(each [k v (pairs t)]\n  (print k v))",
+      "notes": "Maps are Lua associative tables using curly braces. String keys can be written as keywords (e.g., :key). . and tset are used for access and modification."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": ";; Using pcall (protected call) like Lua\n(local (ok? result) (pcall (fn [] (error \"fail\"))))\n(if ok?\n    (print \"Success: \" result)\n    (print \"Error: \" result))\n\n;; Throwing an error\n(error \"Something went wrong\")",
+      "notes": "Error handling uses Lua's pcall or xpcall to catch errors, returning a boolean indicating success and either the result or the error message."
+    },
+    "comments": {
+      "title": "Comments & Annotations",
+      "concept_id": "comments",
+      "code": ";; Single-line comment in Lisp\n#|\n Multi-line block comment\n|#\n(defun add (a b)\n  \"Documentation string for function\"\n  (+ a b))",
+      "notes": "Fennel uses functional comment delimiters (-- in Haskell/ML, ; in Lisps, # or % in BEAM)."
+    },
+    "numbers": {
+      "title": "Numbers & Numerics",
+      "concept_id": "numbers",
+      "code": "(def x 42)          ; Integer\n(def pi 3.14159)    ; Float\n(def ratio 1/3)     ; Exact rational ratio\n(def hex #xFF)      ; Hexadecimal",
+      "notes": "Fennel supports exact rational fractions, arbitrary-precision integers, and IEEE floats natively."
+    },
+    "booleans": {
+      "title": "Booleans & Logic",
+      "concept_id": "booleans",
+      "code": "(def is-active true)\n(if is-active\n    (print \"Active\")\n    (print \"Inactive\"))",
+      "notes": "Fennel treats booleans as first-class algebraic constructors (True/False, true/false, t/nil)."
+    },
+    "type_casting": {
+      "title": "Type Conversion",
+      "concept_id": "type_casting",
+      "code": "(def n (parse-integer \"42\"))\n(def f (float n))\n(def s (write-to-string f))",
+      "notes": "Fennel performs conversion via typeclass methods (fromIntegral, show, read) or explicit parse functions."
+    },
+    "strings": {
+      "title": "Strings & Text",
+      "concept_id": "strings",
+      "code": "(def s \"Hello, World!\")\n(def char-val (char s 0))\n(def multi \"Line 1\nLine 2\")",
+      "notes": "Fennel represents strings as linked lists of characters, UTF-8 binaries, or dedicated text buffers."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "(format nil \"User: ~A scored ~D\" \"Alice\" 95)",
+      "notes": "Fennel formats text through format strings, interpolation macros, or string concatenation."
+    },
+    "pattern_matching": {
+      "title": "Pattern Matching",
+      "concept_id": "pattern_matching",
+      "code": "(case val\n  (1 \"One\")\n  ((2 3) \"Two or Three\")\n  (_ \"Other\"))",
+      "notes": "Pattern matching is a core feature in Fennel, destructuring algebraic variants, tuples, and lists directly."
+    },
+    "range": {
+      "title": "Ranges & Sequences",
+      "concept_id": "range",
+      "code": "(def r (range 1 10 2))\n(def sub (subseq [1 2 3 4 5] 1 3))",
+      "notes": "Fennel constructs ranges as lazy lists, infinite streams, or structured range enumerables."
+    },
+    "iterators": {
+      "title": "Iterators & Comprehensions",
+      "concept_id": "iterators",
+      "code": "(def squares (for [x (range 10) :when (even? x)] (* x x)))",
+      "notes": "Fennel achieves iterative processing through list comprehensions, map/filter transforms, and recursion."
+    },
+    "oop_classes": {
+      "title": "Types & Abstractions (OOP Equivalent)",
+      "concept_id": "oop_classes",
+      "code": "(defrecord Person [name age])\n(defprotocol Speaker\n  (speak [this]))",
+      "notes": "Fennel emphasizes algebraic data types, protocols/typeclasses, and structs over traditional class hierarchies."
+    },
+    "lists": {
+      "title": "Lists (Linked Lists)",
+      "concept_id": "lists",
+      "code": "(def list '(1 2 3))\n(def prepended (cons 0 list))\n(def tail (rest list))",
+      "notes": "Lists in Fennel are singly linked immutable sequences optimized for head/tail structural sharing."
+    },
+    "tuples": {
+      "title": "Tuples & Records",
+      "concept_id": "tuples",
+      "code": "(list 1 \"apple\" t)",
+      "notes": "Fennel uses fixed-length heterogeneous tuples for bundling related data points and function return values."
+    },
+    "sets": {
+      "title": "Sets",
+      "concept_id": "sets",
+      "code": "(def s (set [1 2 3]))\n(conj s 4)\n(contains? s 2)",
+      "notes": "Fennel provides persistent immutable sets implemented via balanced binary trees (HAMT / AVL)."
+    },
+    "modules_import": {
+      "title": "Modules & Imports",
+      "concept_id": "modules_import",
+      "code": "(ns my-project.core\n  (:require [clojure.string :as str]))",
+      "notes": "Fennel isolates scopes through modules and explicit import lists with aliasing and qualified names."
+    }
+  }
+}

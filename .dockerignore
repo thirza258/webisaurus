@@ -1,0 +1,45 @@
+# ============================
+# Webisaurus .dockerignore
+# ============================
+
+# Git
+.git
+.gitignore
+
+# AI context (not needed in container)
+.claude/
+claude_docs/
+CLAUDE.md
+AGENTS.md
+
+# Documentation
+README.md
+LICENSE
+
+# Docker files (avoid recursive copy)
+Dockerfile
+docker-compose.yml
+docker-compose.override.yml
+
+# Dependencies & tooling
+node_modules/
+package-lock.json
+yarn.lock
+
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Editor / IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logs & temp
+*.log
+tmp/
+*.tmp

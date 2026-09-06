@@ -1,0 +1,149 @@
+{
+  "language_id": "sac",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "int var = 10;\nfloat val = 3.14f;",
+      "notes": "SAC is statically typed and resembles C syntax, but enforces single-assignment in its core representation."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "int x = 42;\nfloat y = 3.14f;\ndouble z = 1.0;\nchar c = 'a';\nbool b = true;",
+      "notes": "Scalar types are directly inherited from C."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "int sum = 3 + 4;\nint diff = 10 - 5;\nint prod = 2 * 3;\nint quot = 10 / 2;\n\nbool eq = (1 == 1);\nbool gt = (2 > 1);",
+      "notes": "Standard C operators are used, operating on scalars as well as being automatically lifted to array dimensions."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "int res;\nif (x > 0) {\n  res = 1;\n} else {\n  res = 0;\n}",
+      "notes": "SAC supports C-like conditionals. Variables assigned in branches must be consistent across branches."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "// Standard C-style loop\nint sum = 0;\nfor (int i=0; i<5; i++) {\n  sum += i;\n}\n\n// SAC With-loop (data-parallel construct)\nint[10] arr = with { \n  (. <= [i] <= .) : i * 2;\n} : genarray([10], 0);",
+      "notes": "While standard for-loops exist, With-loops are fundamental in SAC for expressing parallel multi-dimensional array operations."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "int x = 0;\nwhile (x < 5) {\n  x = x + 1;\n}",
+      "notes": "C-style while loops are supported, though inherently sequential."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "int add(int x, int y) {\n  return x + y;\n}\n\nint[] add_arrays(int[] a, int[] b) {\n  return a + b;\n}",
+      "notes": "Functions can be overloaded by array rank and shape. Operations extend natively to arrays."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "int[5] vec = [1, 2, 3, 4, 5];\nint[2,3] mat = [[1, 2, 3], [4, 5, 6]];\n\nint first = vec[0];",
+      "notes": "Arrays are first-class, pure functional citizens in SAC. Shape is tracked as part of the type system."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "// SAC does not have native dictionaries\n// Often structured via parallel arrays or struct arrays\nstruct Entry { int key; int val; };\nstruct Entry[2] map = [ Entry{1, 100}, Entry{2, 200} ];",
+      "notes": "Being an array-processing language, SAC focuses purely on multi-dimensional numeric data rather than maps/hash tables."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "// No built-in exception handling\nif (divisor == 0) {\n  // Print error and abort, or return error code\n}",
+      "notes": "SAC avoids dynamic exceptions. Error management is done via return values or aborting execution on fatal conditions."
+    },
+    "comments": {
+      "title": "Comments & Headers",
+      "concept_id": "comments",
+      "code": "# Comment in SAC\n# Multi-line comments or docstrings\n# are documented here",
+      "notes": "SAC uses # or language-specific delimiters (% in MATLAB, ! in Fortran) for comments."
+    },
+    "numbers": {
+      "title": "Vectors, Matrices & Numbers",
+      "concept_id": "numbers",
+      "code": "x = 42\npi = 3.14159\n# Vector operations\nv = [1, 2, 3, 4]",
+      "notes": "SAC is optimized for vector and matrix calculations with high-precision numerical representations."
+    },
+    "booleans": {
+      "title": "Logical Vectors & Booleans",
+      "concept_id": "booleans",
+      "code": "is_valid = TRUE\nflags = c(TRUE, FALSE, TRUE)",
+      "notes": "SAC provides boolean types with support for element-wise vector logic operations."
+    },
+    "type_casting": {
+      "title": "Type Coercion & Casting",
+      "concept_id": "type_casting",
+      "code": "as.numeric(\"42\")\nas.character(3.14)",
+      "notes": "SAC converts data between numeric, character, factor, and logical representations."
+    },
+    "strings": {
+      "title": "Strings & Character Vectors",
+      "concept_id": "strings",
+      "code": "s = \"Statistical Computing\"\nlen = nchar(s)",
+      "notes": "SAC treats strings as atomic character scalars or vector arrays."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "sprintf(\"Variable %.2f is %s\", 3.14159, \"pi\")",
+      "notes": "SAC formats numerical output with sprintf formatting specifiers."
+    },
+    "pattern_matching": {
+      "title": "Conditionals & Switches",
+      "concept_id": "pattern_matching",
+      "code": "switch(val, \"one\" = 1, \"two\" = 2, 0)",
+      "notes": "SAC executes branch logic via switch, ifelse, or conditional filtering."
+    },
+    "range": {
+      "title": "Sequences & Indexing",
+      "concept_id": "range",
+      "code": "seq(1, 10, by = 2)\nv[1:5]",
+      "notes": "SAC indexes matrices and vectors using 1-based indexing and sequence generators."
+    },
+    "iterators": {
+      "title": "Vectorized Apply & Iteration",
+      "concept_id": "iterators",
+      "code": "lapply(1:5, function(x) x^2)",
+      "notes": "SAC emphasizes vectorized functional processing (apply, map) over explicit loops."
+    },
+    "oop_classes": {
+      "title": "Object Systems & S3/S4",
+      "concept_id": "oop_classes",
+      "code": "# Object systems in SAC\nobj = list(name = \"Model\", score = 0.95)\nclass(obj) = \"metric\"",
+      "notes": "SAC uses class dispatch systems (S3/S4 in R, multiple dispatch in Julia) for data modeling."
+    },
+    "lists": {
+      "title": "DataFrames & Lists",
+      "concept_id": "lists",
+      "code": "df = list(a = 1:3, b = c(\"x\", \"y\", \"z\"))",
+      "notes": "SAC stores heterogeneous columnar records in data frames and lists."
+    },
+    "tuples": {
+      "title": "Pairs & Records",
+      "concept_id": "tuples",
+      "code": "pair = c(x = 10, y = 20)",
+      "notes": "SAC uses named vectors or lightweight structures for data records."
+    },
+    "sets": {
+      "title": "Set Operations",
+      "concept_id": "sets",
+      "code": "union(c(1, 2), c(2, 3))\nintersect(c(1, 2), c(2, 3))",
+      "notes": "SAC provides native mathematical set functions (union, intersect, setdiff)."
+    },
+    "modules_import": {
+      "title": "Libraries & Packages",
+      "concept_id": "modules_import",
+      "code": "library(dplyr)\nrequire(ggplot2)",
+      "notes": "SAC loads package namespaces using library or import declarations."
+    }
+  }
+}

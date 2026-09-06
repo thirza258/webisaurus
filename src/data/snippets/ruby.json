@@ -1,0 +1,149 @@
+{
+  "language_id": "ruby",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "max_users = 100\ncurrent_user = 'Alice'\n\n# Variables are dynamically typed\ncurrent_user = 'Bob'\n\n# Constants start with a capital letter\nMAX_FILE_SIZE = 1024\n\n# Global (avoid), Instance, Class variables\n$global_var = 1\n@instance_var = 2\n@@class_var = 3",
+      "notes": "Use snake_case for local variables. Reassigning constants generates a warning."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "str = 'Hello'\nnum = 42\nfloat = 3.14\nbool = true\nnil_val = nil\nsym = :my_symbol\narray = [1, 2, 3]\nhash = { key: 'value' }",
+      "notes": "Everything in Ruby is an object. Symbols are immutable, reusable constants represented by a name."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "a = 10 + 5\nb = 10 ** 2\n\n# Equality\nis_equal = (a == 15)\n\n# Safe navigation operator\nlen = some_obj&.property&.length\n\n# Conditional assignment\nvalue ||= 'default'",
+      "notes": "Use '&.' to avoid NoMethodError on nil objects. '||=' sets a variable only if it is nil or false."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "score = 85\n\nif score >= 90\n  puts 'A'\nelsif score >= 80\n  puts 'B'\nelse\n  puts 'C'\nend\n\n# Unless statement\nputs 'Fail' unless score >= 50\n\n# Pattern matching (Ruby 2.7+)\ncase score\nin 90..100 then puts 'A'\nin 80...90 then puts 'B'\nend",
+      "notes": "Ruby supports statement modifiers (e.g., puts 'hi' if true). Pattern matching provides powerful object deconstruction."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "items = ['a', 'b', 'c']\n\n# Each block (preferred)\nitems.each do |item|\n  puts item\nend\n\n# For loop (rarely used)\nfor item in items\n  puts item\nend",
+      "notes": "Idiomatic Ruby uses 'each' with blocks instead of traditional 'for' loops."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "count = 0\n\nwhile count < 5\n  puts count\n  count += 1\nend\n\n# Until loop\nuntil count == 0\n  count -= 1\nend",
+      "notes": "Ruby also supports 'until', which loops as long as the condition is false."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "def add(x, y)\n  x + y # Implicit return\nend\n\n# Keyword arguments\ndef greet(name:, greeting: 'Hello')\n  \"#{greeting}, #{name}!\"\nend\n\n# Procs and Lambdas\nmultiply = ->(x, y) { x * y }\nmultiply.call(2, 3)",
+      "notes": "Methods return the value of the last evaluated expression implicitly. Use keyword arguments for clarity."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "numbers = [1, 2, 3]\nnumbers << 4 # Append\n\n# Array methods\ndoubled = numbers.map { |n| n * 2 }\nevens = numbers.select(&:even?)\n\n# Syntax sugar for array of strings\nwords = %w[apple banana cherry]",
+      "notes": "Arrays are highly versatile. Use enumerable methods like map, select, reduce."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "# Hashes act as maps\nuser_roles = {\n  alice: 'admin',\n  bob: 'user'\n}\n\nuser_roles[:charlie] = 'guest'\n\n# Fetch with default value\nrole = user_roles.fetch(:dave, 'unknown')",
+      "notes": "Symbols are typically used as Hash keys. 'fetch' is preferred over '[]' to handle missing keys predictably."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "begin\n  raise StandardError, 'Something went wrong'\nrescue StandardError => e\n  puts e.message\nensure\n  # Cleanup logic\nend\n\n# Inline rescue\nval = might_fail rescue 'default_value'",
+      "notes": "Catch 'StandardError', not 'Exception', to avoid trapping system-level errors."
+    },
+    "comments": {
+      "title": "Comments & Documentation",
+      "concept_id": "comments",
+      "code": "// Comments in Ruby\n/* Block documentation */",
+      "notes": "Ruby provides comments to document code behavior."
+    },
+    "numbers": {
+      "title": "Numbers & Constants",
+      "concept_id": "numbers",
+      "code": "val = 42\nratio = 3.14159",
+      "notes": "Ruby supports numeric literals for computation and indexing."
+    },
+    "booleans": {
+      "title": "Booleans & Conditions",
+      "concept_id": "booleans",
+      "code": "flag = true\nif flag:\n    // Execute branch",
+      "notes": "Ruby provides boolean conditions for program control flow."
+    },
+    "type_casting": {
+      "title": "Type Conversion",
+      "concept_id": "type_casting",
+      "code": "converted = (type)original_value",
+      "notes": "Ruby converts data between native format representations."
+    },
+    "strings": {
+      "title": "Strings & Characters",
+      "concept_id": "strings",
+      "code": "text = \"Sample string text\"",
+      "notes": "Ruby represents textual data through string literals and character arrays."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "formatted = format(\"Text: %s\", value)",
+      "notes": "Ruby formats and joins textual values for display and output."
+    },
+    "pattern_matching": {
+      "title": "Conditionals & Branching",
+      "concept_id": "pattern_matching",
+      "code": "case value of\n    1: execute_one()\n    default: execute_default()",
+      "notes": "Ruby branches execution based on value comparison and conditional expressions."
+    },
+    "range": {
+      "title": "Ranges & Intervals",
+      "concept_id": "range",
+      "code": "range = 1..10",
+      "notes": "Ruby defines intervals and index sequences for bounded processing."
+    },
+    "iterators": {
+      "title": "Iteration & Loops",
+      "concept_id": "iterators",
+      "code": "for item in collection:\n    process(item)",
+      "notes": "Ruby iterates across collections and sequence elements."
+    },
+    "oop_classes": {
+      "title": "Structures & Modules",
+      "concept_id": "oop_classes",
+      "code": "struct Entity {\n    data: Value\n}",
+      "notes": "Ruby organizes data and behavior through structures or modular components."
+    },
+    "lists": {
+      "title": "Collections & Arrays",
+      "concept_id": "lists",
+      "code": "items = [1, 2, 3, 4]",
+      "notes": "Ruby stores sequence data in indexed lists or arrays."
+    },
+    "tuples": {
+      "title": "Records & Pairs",
+      "concept_id": "tuples",
+      "code": "pair = (10, \"label\")",
+      "notes": "Ruby groups related fields into lightweight composite pairs or records."
+    },
+    "sets": {
+      "title": "Sets & Uniqueness",
+      "concept_id": "sets",
+      "code": "set = Set([1, 2, 3])",
+      "notes": "Ruby tracks unique values without duplicate entries."
+    },
+    "modules_import": {
+      "title": "Libraries & Modules",
+      "concept_id": "modules_import",
+      "code": "import module_name",
+      "notes": "Ruby organizes external libraries and code units into modular namespaces."
+    }
+  }
+}

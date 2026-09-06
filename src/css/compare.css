@@ -1,0 +1,133 @@
+.comparator-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-color);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.slots-grid {
+  display: grid;
+  gap: 16px;
+  padding: 24px;
+}
+
+.slots-2 {
+  grid-template-columns: 1fr 1fr;
+}
+
+.slots-3 {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.slot-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-sm);
+}
+
+.slot-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-color);
+  background: var(--bg-surface-elevated);
+}
+
+.slot-lang-select {
+  flex: 1;
+  max-width: 200px;
+  padding: 6px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+}
+
+.slot-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.swap-btn {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 4px 8px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  transition: border 150ms, color 150ms;
+}
+
+.swap-btn:hover {
+  border-color: var(--border-focus);
+  color: var(--text-primary);
+}
+
+.explore-btn {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 4px 8px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: border 150ms, color 150ms;
+}
+
+.explore-btn:hover {
+  border-color: var(--border-focus);
+  color: var(--text-primary);
+}
+
+.slot-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.slot-body .code-block {
+  min-height: 200px;
+  border-radius: 0;
+  flex: 1;
+  margin: 0;
+}
+
+.slot-footer {
+  border-top: 1px solid var(--border-color);
+}
+
+.slot-notes {
+  padding: 12px 16px;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  min-height: 40px;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .slots-2, .slots-3 {
+    grid-template-columns: 1fr;
+  }
+}

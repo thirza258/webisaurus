@@ -1,0 +1,149 @@
+{
+  "language_id": "perl",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "my $max_users = 100;\nmy $current_user = 'Alice';\n\n# Scalars ($), Arrays (@), Hashes (%)\nmy $age = 30;\nmy @colors = ('red', 'green', 'blue');\nmy %config = ( host => 'localhost', port => 8080 );\n\n# State variables (persistent across calls)\nuse feature 'state';\nstate $counter = 0;",
+      "notes": "Always use 'my' to declare variables with lexical scope (requires 'use strict')."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "my $str = 'Hello';\nmy $num = 42;\nmy $float = 3.14;\nmy $ref_array = \\@colors;\nmy $ref_hash = \\%config;\nmy $undef_val = undef;\n\n# Booleans (Perl 5.36+)\nuse builtin qw(true false);\nmy $is_valid = true;",
+      "notes": "Context (scalar vs list) governs how data types behave. Perl 5.36+ introduces true/false booleans."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "my $a = 10 + 5;\nmy $b = 10 ** 2;\n\n# Numeric equality\nmy $num_eq = ($a == 15);\n\n# String equality\nmy $str_eq = ($str eq 'Hello');\n\n# Logical defined-or (//)\nmy $val = $undef_val // 'default';\n\n# Smartmatch is deprecated, avoid it.",
+      "notes": "Use ==, !=, <, > for numbers, and eq, ne, lt, gt for strings. 'defined-or' (//) is preferred over logical OR (||) for defaults."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "my $score = 85;\n\nif ($score >= 90) {\n    print \"A\\n\";\n} elsif ($score >= 80) {\n    print \"B\\n\";\n} else {\n    print \"C\\n\";\n}\n\n# Postfix conditionals\nprint \"Pass\\n\" if $score >= 50;\nprint \"Fail\\n\" unless $score >= 50;",
+      "notes": "Postfix modifiers ('if', 'unless') are idiomatic for single statements."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "my @items = ('a', 'b', 'c');\n\n# foreach loop (idiomatic)\nforeach my $item (@items) {\n    print \"$item\\n\";\n}\n\n# C-style for loop\nfor (my $i = 0; $i < @items; $i++) {\n    print $items[$i] . \"\\n\";\n}",
+      "notes": "'for' and 'foreach' are synonymous in Perl. Iterating over a list aliases the loop variable to the elements."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "my $count = 0;\n\nwhile ($count < 5) {\n    print \"$count\\n\";\n    $count++;\n}\n\n# Until loop\nuntil ($count == 0) {\n    $count--;\n}",
+      "notes": "'while' executes while true, 'until' executes while false."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "# Function signatures (Perl 5.36+ default)\nuse feature 'signatures';\nno warnings 'experimental::signatures';\n\nsub add($x, $y) {\n    return $x + $y;\n}\n\n# Traditional subroutine\nsub greet {\n    my ($name, $greeting) = @_;\n    $greeting //= 'Hello';\n    return \"$greeting, $name!\";\n}",
+      "notes": "Modern Perl uses signatures. Traditional subroutines unpack arguments from the '@_' array."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "my @numbers = (1, 2, 3);\npush @numbers, 4;\n\n# Array functions\nmy @doubled = map { $_ * 2 } @numbers;\nmy @evens = grep { $_ % 2 == 0 } @numbers;\n\n# Array size\nmy $size = scalar @numbers;",
+      "notes": "Use 'map' and 'grep' for transforming and filtering lists. '@' is for the whole array, '$' is for elements."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "my %user_roles = (\n    alice => 'admin',\n    bob   => 'user'\n);\n\n$user_roles{charlie} = 'guest';\n\nif (exists $user_roles{alice}) {\n    print $user_roles{alice};\n}\n\n# Iterate over keys and values\nwhile (my ($k, $v) = each %user_roles) {\n    print \"$k: $v\\n\";\n}",
+      "notes": "Hashes (%) are associative arrays. Use '=>' (fat comma) for readability. Check existence with 'exists'."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "# eval for exception handling\neval {\n    die \"Something went wrong\\n\";\n};\nif ($@) {\n    warn \"Caught: $@\";\n}\n\n# Try/Catch (Perl 5.34+ with feature 'try')\nuse feature 'try';\nno warnings 'experimental::try';\n\ntry {\n    die \"Fatal error\";\n} catch ($e) {\n    warn \"Caught error: $e\";\n}",
+      "notes": "Modern Perl supports try/catch syntax. Legacy code uses eval {} and checks the $@ variable."
+    },
+    "comments": {
+      "title": "Comments & Documentation",
+      "concept_id": "comments",
+      "code": "// Comments in Perl\n/* Block documentation */",
+      "notes": "Perl provides comments to document code behavior."
+    },
+    "numbers": {
+      "title": "Numbers & Constants",
+      "concept_id": "numbers",
+      "code": "val = 42\nratio = 3.14159",
+      "notes": "Perl supports numeric literals for computation and indexing."
+    },
+    "booleans": {
+      "title": "Booleans & Conditions",
+      "concept_id": "booleans",
+      "code": "flag = true\nif flag:\n    // Execute branch",
+      "notes": "Perl provides boolean conditions for program control flow."
+    },
+    "type_casting": {
+      "title": "Type Conversion",
+      "concept_id": "type_casting",
+      "code": "converted = (type)original_value",
+      "notes": "Perl converts data between native format representations."
+    },
+    "strings": {
+      "title": "Strings & Characters",
+      "concept_id": "strings",
+      "code": "text = \"Sample string text\"",
+      "notes": "Perl represents textual data through string literals and character arrays."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "formatted = format(\"Text: %s\", value)",
+      "notes": "Perl formats and joins textual values for display and output."
+    },
+    "pattern_matching": {
+      "title": "Conditionals & Branching",
+      "concept_id": "pattern_matching",
+      "code": "case value of\n    1: execute_one()\n    default: execute_default()",
+      "notes": "Perl branches execution based on value comparison and conditional expressions."
+    },
+    "range": {
+      "title": "Ranges & Intervals",
+      "concept_id": "range",
+      "code": "range = 1..10",
+      "notes": "Perl defines intervals and index sequences for bounded processing."
+    },
+    "iterators": {
+      "title": "Iteration & Loops",
+      "concept_id": "iterators",
+      "code": "for item in collection:\n    process(item)",
+      "notes": "Perl iterates across collections and sequence elements."
+    },
+    "oop_classes": {
+      "title": "Structures & Modules",
+      "concept_id": "oop_classes",
+      "code": "struct Entity {\n    data: Value\n}",
+      "notes": "Perl organizes data and behavior through structures or modular components."
+    },
+    "lists": {
+      "title": "Collections & Arrays",
+      "concept_id": "lists",
+      "code": "items = [1, 2, 3, 4]",
+      "notes": "Perl stores sequence data in indexed lists or arrays."
+    },
+    "tuples": {
+      "title": "Records & Pairs",
+      "concept_id": "tuples",
+      "code": "pair = (10, \"label\")",
+      "notes": "Perl groups related fields into lightweight composite pairs or records."
+    },
+    "sets": {
+      "title": "Sets & Uniqueness",
+      "concept_id": "sets",
+      "code": "set = Set([1, 2, 3])",
+      "notes": "Perl tracks unique values without duplicate entries."
+    },
+    "modules_import": {
+      "title": "Libraries & Modules",
+      "concept_id": "modules_import",
+      "code": "import module_name",
+      "notes": "Perl organizes external libraries and code units into modular namespaces."
+    }
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "language_id": "ocaml",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "let x = 10\n\n(* Mutable reference *)\nlet y = ref 20\ny := !y + 5",
+      "notes": "Variables are immutable by default. OCaml supports mutability via 'ref' for explicit references, which must be dereferenced with '!'."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "let i : int = 42\nlet f : float = 3.14\nlet b : bool = true\nlet c : char = 'X'\nlet s : string = \"Hello\"\n\n(* Variant type (ADT) *)\ntype shape = \n  | Circle of float\n  | Rectangle of float * float",
+      "notes": "OCaml has strong static typing with powerful inference. You rarely need to write type annotations."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "let add_int = 5 + 3\nlet add_float = 5.0 +. 3.0\n\nlet div_int = 5 / 2\nlet div_float = 5.0 /. 2.0\n\nlet logic = true && not false || true\n\nlet eq = 5 = 5\nlet phys_eq = 5 == 5\nlet neq = 5 <> 3",
+      "notes": "OCaml strictly separates integer and floating-point operators (e.g., '+' for int, '+.' for float). '=' is structural equality, '==' is physical equality."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "let result = \n  if x > 0 then\n    \"Positive\"\n  else\n    \"Non-positive\"\n\n(* Pattern matching as conditional *)\nlet sign = match x with\n  | n when n > 0 -> 1\n  | n when n < 0 -> -1\n  | _ -> 0",
+      "notes": "if-then-else is an expression. Both branches must have the same type. Pattern matching is extremely common and powerful."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "for i = 1 to 5 do\n  Printf.printf \"%d\\n\" i\ndone\n\n(* Downward loop *)\nfor i = 5 downto 1 do\n  Printf.printf \"%d\\n\" i\ndone",
+      "notes": "OCaml includes imperative 'for' loops, mainly used for iterating over arrays or side effects. For lists, use List.map or List.iter."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "let counter = ref 0 in\nwhile !counter < 5 do\n  Printf.printf \"%d\\n\" !counter;\n  counter := !counter + 1\ndone",
+      "notes": "OCaml has imperative 'while' loops, which are useful when dealing with mutable state (like refs) or side effects."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "let add x y = x + y\n\n(* Recursive function *)\nlet rec factorial n =\n  if n = 0 then 1 else n * factorial (n - 1)\n\n(* Anonymous function *)\nlet multiply = fun x y -> x * y",
+      "notes": "Functions are defined using 'let'. The 'rec' keyword is required for recursive functions. Functions are automatically curried."
+    },
+    "arrays": {
+      "title": "Arrays and Lists",
+      "concept_id": "arrays",
+      "code": "(* List (immutable, linked) *)\nlet lst = [1; 2; 3; 4]\nlet new_lst = 0 :: lst\n\n(* Array (mutable, fixed size) *)\nlet arr = [| 1; 2; 3; 4 |]\narr.(0) <- 99",
+      "notes": "Lists are immutable and great for functional programming. Arrays are mutable and allow O(1) random access."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "module StringMap = Map.Make(String)\n\nlet m = StringMap.empty\nlet m1 = StringMap.add \"apple\" 1 m\nlet m2 = StringMap.add \"banana\" 2 m1\n\nlet val_opt = StringMap.find_opt \"apple\" m2",
+      "notes": "Maps are created using functors (`Map.Make`). They are immutable and based on balanced AVL trees."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "(* Exceptions *)\nexception DivByZero\n\nlet div x y = \n  if y = 0 then raise DivByZero else x / y\n\nlet safe = \n  try div 10 0 \n  with DivByZero -> 0\n\n(* Option type *)\nlet safe_div x y =\n  if y = 0 then None else Some (x / y)",
+      "notes": "OCaml supports exceptions for control flow and errors, but using 'option' or 'result' types is preferred for type-safe error handling."
+    },
+    "comments": {
+      "title": "Comments & Annotations",
+      "concept_id": "comments",
+      "code": "-- Single-line comment\n{- Multi-line\n   comment block -}\nadd :: Int -> Int -> Int\nadd a b = a + b",
+      "notes": "OCaml uses functional comment delimiters (-- in Haskell/ML, ; in Lisps, # or % in BEAM)."
+    },
+    "numbers": {
+      "title": "Numbers & Numerics",
+      "concept_id": "numbers",
+      "code": "x = 42\npi = 3.14159\nhex = 0xFF",
+      "notes": "OCaml supports exact rational fractions, arbitrary-precision integers, and IEEE floats natively."
+    },
+    "booleans": {
+      "title": "Booleans & Logic",
+      "concept_id": "booleans",
+      "code": "val isActive = true",
+      "notes": "OCaml treats booleans as first-class algebraic constructors (True/False, true/false, t/nil)."
+    },
+    "type_casting": {
+      "title": "Type Conversion",
+      "concept_id": "type_casting",
+      "code": "num = String.to_integer(\"42\")\nstr = Integer.to_string(num)",
+      "notes": "OCaml performs conversion via typeclass methods (fromIntegral, show, read) or explicit parse functions."
+    },
+    "strings": {
+      "title": "Strings & Text",
+      "concept_id": "strings",
+      "code": "s = \"Hello, World!\"\nchar = ?H",
+      "notes": "OCaml represents strings as linked lists of characters, UTF-8 binaries, or dedicated text buffers."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "import Text.Printf\nmsg = printf \"User %s scored %d\" \"Alice\" (95 :: Int)",
+      "notes": "OCaml formats text through format strings, interpolation macros, or string concatenation."
+    },
+    "pattern_matching": {
+      "title": "Pattern Matching",
+      "concept_id": "pattern_matching",
+      "code": "(case val\n  (1 \"One\")\n  ((2 3) \"Two or Three\")\n  (_ \"Other\"))",
+      "notes": "Pattern matching is a core feature in OCaml, destructuring algebraic variants, tuples, and lists directly."
+    },
+    "range": {
+      "title": "Ranges & Sequences",
+      "concept_id": "range",
+      "code": "r = 1..10\nslice = Enum.slice(1..10, 2, 4)",
+      "notes": "OCaml constructs ranges as lazy lists, infinite streams, or structured range enumerables."
+    },
+    "iterators": {
+      "title": "Iterators & Comprehensions",
+      "concept_id": "iterators",
+      "code": "for x <- 1..10, rem(x, 2) == 0, do: x * x",
+      "notes": "OCaml achieves iterative processing through list comprehensions, map/filter transforms, and recursion."
+    },
+    "oop_classes": {
+      "title": "Types & Abstractions (OOP Equivalent)",
+      "concept_id": "oop_classes",
+      "code": "defmodule Person do\n  defstruct [:name, :age]\n  def greet(%Person{name: name}), do: \"Hello #{name}\"\nend",
+      "notes": "OCaml emphasizes algebraic data types, protocols/typeclasses, and structs over traditional class hierarchies."
+    },
+    "lists": {
+      "title": "Lists (Linked Lists)",
+      "concept_id": "lists",
+      "code": "[1, 2, 3] ++ [4, 5]",
+      "notes": "Lists in OCaml are singly linked immutable sequences optimized for head/tail structural sharing."
+    },
+    "tuples": {
+      "title": "Tuples & Records",
+      "concept_id": "tuples",
+      "code": "(list 1 \"apple\" t)",
+      "notes": "OCaml uses fixed-length heterogeneous tuples for bundling related data points and function return values."
+    },
+    "sets": {
+      "title": "Sets",
+      "concept_id": "sets",
+      "code": "s = MapSet.new([1, 2, 3])\nMapSet.put(s, 4)",
+      "notes": "OCaml provides persistent immutable sets implemented via balanced binary trees (HAMT / AVL)."
+    },
+    "modules_import": {
+      "title": "Modules & Imports",
+      "concept_id": "modules_import",
+      "code": "defmodule MyModule do\n  import Enum, only: [map: 2]\n  alias MyProject.Helper\nend",
+      "notes": "OCaml isolates scopes through modules and explicit import lists with aliasing and qualified names."
+    }
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "language_id": "j_lang",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "var =: 10\nstringVar =: 'Hello'",
+      "notes": "Variables are defined using =: (global assignment) or =. (local assignment within explicit verbs)."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "int =: 42\nfloat =: 3.14\nchar =: 'a'\nstr =: 'hello'\nbool =: 1  NB. Booleans are 0 and 1\ncomplex =: 1j2",
+      "notes": "J uses standard numeric, boolean, and character types. Data types are implicit based on values."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "sum =: 3 + 4\ndiff =: 10 - 5\nprod =: 2 * 3\nquot =: 10 % 2  NB. % is division\npow =: 2 ^ 3\n\neq =: 1 = 1\nneq =: 1 ~: 2\ngt =: 2 > 1",
+      "notes": "J restricts itself to the ASCII character set. Operators are called 'verbs'. Most standard symbols are reassigned (e.g., % is divide)."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "check =: 3 : 0\n  if. y > 0 do.\n    'Positive'\n  else.\n    'Non-positive'\n  end.\n)\n\nNB. Array-oriented approach (agenda)\nres =: ('Non-positive'`'Positive' @. (0&<)) 10",
+      "notes": "Explicit control structures (if. do. else. end.) require an explicit verb block. Agenda (@.) is often used for point-free conditionals."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "NB. Array-oriented implicit loop\nsquares =: *: i.5\n\nNB. Explicit loop in a verb block\nexplicit_loop =: 3 : 0\n  for_i. i.5 do.\n    smoutput i\n  end.\n)",
+      "notes": "J prefers implicit operations over entire arrays. Explicit loops like for_i. operate sequentially but are much slower."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "loop_test =: 3 : 0\n  x =. 0\n  while. x < 5 do.\n    smoutput x\n    x =. x + 1\n  end.\n)",
+      "notes": "while. do. end. constructs a standard while loop inside explicit verb definitions."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "NB. Explicit verb\nadd =: 3 : 'y + 4'\nres1 =: add 10\n\nNB. Explicit dyadic verb (x and y arguments)\nadd_two =: 4 : 'x + y'\nres2 =: 3 add_two 4\n\nNB. Tacit verb\ntacit_add =: +",
+      "notes": "Functions are called 'verbs'. y is the right argument, x is the left. Tacit programming eliminates explicit arguments entirely."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "vec =: 1 2 3 4 5\nmat =: 2 3 $ 1 2 3 4 5 6  NB. Shape operator is $\nshape =: $ mat\n\nboxes =: (1 2 3);'abc'  NB. Heterogeneous data requires boxing (;)",
+      "notes": "Arrays are built-in primitives. Shape ($) reshapes lists. Boxing (;) allows nested and mixed-type arrays."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "keys =: 'a';'b';'c'\nvals =: 1;2;3\n\nNB. Look up 'b'\nidx =: keys i. <'b'\nval =: idx { vals",
+      "notes": "J doesn't have a built-in map primitive, but boxed parallel arrays with the index of (i.) verb easily replicate dictionaries."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "safe_div =: 3 : 0\n  try.\n    10 % y\n  catch.\n    'Error occurred'\n  end.\n)",
+      "notes": "try. catch. end. allows trapping exceptions inside explicit verbs."
+    },
+    "comments": {
+      "title": "Comments & Headers",
+      "concept_id": "comments",
+      "code": "# Comment in J\n# Multi-line comments or docstrings\n# are documented here",
+      "notes": "J uses # or language-specific delimiters (% in MATLAB, ! in Fortran) for comments."
+    },
+    "numbers": {
+      "title": "Vectors, Matrices & Numbers",
+      "concept_id": "numbers",
+      "code": "x = 42\npi = 3.14159\n# Vector operations\nv = [1, 2, 3, 4]",
+      "notes": "J is optimized for vector and matrix calculations with high-precision numerical representations."
+    },
+    "booleans": {
+      "title": "Logical Vectors & Booleans",
+      "concept_id": "booleans",
+      "code": "is_valid = TRUE\nflags = c(TRUE, FALSE, TRUE)",
+      "notes": "J provides boolean types with support for element-wise vector logic operations."
+    },
+    "type_casting": {
+      "title": "Type Coercion & Casting",
+      "concept_id": "type_casting",
+      "code": "as.numeric(\"42\")\nas.character(3.14)",
+      "notes": "J converts data between numeric, character, factor, and logical representations."
+    },
+    "strings": {
+      "title": "Strings & Character Vectors",
+      "concept_id": "strings",
+      "code": "s = \"Statistical Computing\"\nlen = nchar(s)",
+      "notes": "J treats strings as atomic character scalars or vector arrays."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "sprintf(\"Variable %.2f is %s\", 3.14159, \"pi\")",
+      "notes": "J formats numerical output with sprintf formatting specifiers."
+    },
+    "pattern_matching": {
+      "title": "Conditionals & Switches",
+      "concept_id": "pattern_matching",
+      "code": "switch(val, \"one\" = 1, \"two\" = 2, 0)",
+      "notes": "J executes branch logic via switch, ifelse, or conditional filtering."
+    },
+    "range": {
+      "title": "Sequences & Indexing",
+      "concept_id": "range",
+      "code": "seq(1, 10, by = 2)\nv[1:5]",
+      "notes": "J indexes matrices and vectors using 1-based indexing and sequence generators."
+    },
+    "iterators": {
+      "title": "Vectorized Apply & Iteration",
+      "concept_id": "iterators",
+      "code": "lapply(1:5, function(x) x^2)",
+      "notes": "J emphasizes vectorized functional processing (apply, map) over explicit loops."
+    },
+    "oop_classes": {
+      "title": "Object Systems & S3/S4",
+      "concept_id": "oop_classes",
+      "code": "# Object systems in J\nobj = list(name = \"Model\", score = 0.95)\nclass(obj) = \"metric\"",
+      "notes": "J uses class dispatch systems (S3/S4 in R, multiple dispatch in Julia) for data modeling."
+    },
+    "lists": {
+      "title": "DataFrames & Lists",
+      "concept_id": "lists",
+      "code": "df = list(a = 1:3, b = c(\"x\", \"y\", \"z\"))",
+      "notes": "J stores heterogeneous columnar records in data frames and lists."
+    },
+    "tuples": {
+      "title": "Pairs & Records",
+      "concept_id": "tuples",
+      "code": "pair = c(x = 10, y = 20)",
+      "notes": "J uses named vectors or lightweight structures for data records."
+    },
+    "sets": {
+      "title": "Set Operations",
+      "concept_id": "sets",
+      "code": "union(c(1, 2), c(2, 3))\nintersect(c(1, 2), c(2, 3))",
+      "notes": "J provides native mathematical set functions (union, intersect, setdiff)."
+    },
+    "modules_import": {
+      "title": "Libraries & Packages",
+      "concept_id": "modules_import",
+      "code": "library(dplyr)\nrequire(ggplot2)",
+      "notes": "J loads package namespaces using library or import declarations."
+    }
+  }
+}

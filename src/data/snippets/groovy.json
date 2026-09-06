@@ -1,0 +1,149 @@
+{
+  "language_id": "groovy",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "def dynamicVar = \"Any type\"\nfinal String constant = \"Fixed\"\ndynamicVar = 42",
+      "notes": "Use 'def' for dynamic typing. Static types are optional."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "int i = 1\nBigDecimal bd = 1.0 // default decimal\nboolean b = true\nString s = \"Double quotes with ${i}\"\nchar c = 'Single'",
+      "notes": "Groovy uses BigDecimal by default for floating point literals."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "def sum = 1 + 2\ndef eq = (1 == 1) // calls equals()\ndef refEq = (obj1.is(obj2))\ndef safeNav = obj?.property",
+      "notes": "'==' checks logical equality. Safe navigation operator '?.' avoids NPEs."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "def val = a > b ? a : b\n\nswitch (x) {\n    case \"string\": println \"String\"; break\n    case 1..10: println \"Range\"; break\n    case Integer: println \"Type\"; break\n}",
+      "notes": "Groovy's switch statement is extremely flexible, allowing ranges, types, and closures."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "for (i in 1..5) { println i }\n\ncollection.each { item -> println item }",
+      "notes": "Closures like '.each' are idiomatic Groovy for iteration."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "while (x > 0) {\n    x--\n}",
+      "notes": "Standard Java-like while loop."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "def add(a, b) {\n    a + b // implicit return\n}\n\ndef closure = { a, b -> a * b }",
+      "notes": "The 'return' keyword is optional; the last evaluated expression is returned."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "def list = [1, 2, 3] // ArrayList by default\ndef arr = [1, 2, 3] as int[]\nlist << 4 // append",
+      "notes": "Square brackets create ArrayLists. Coerce to array using 'as'."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "def map = [name: \"Groovy\", age: 20]\nmap.newKey = \"value\"\nprintln map['name']",
+      "notes": "Map literal syntax. Keys are strings by default unless wrapped in ()."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "try {\n    risky()\n} catch (e) {\n    log(e.message)\n} finally {\n    cleanup()\n}",
+      "notes": "Exception types in catch blocks are optional."
+    },
+    "comments": {
+      "title": "Comments & Documentation",
+      "concept_id": "comments",
+      "code": "// Comments in Groovy\n/* Block documentation */",
+      "notes": "Groovy provides comments to document code behavior."
+    },
+    "numbers": {
+      "title": "Numbers & Constants",
+      "concept_id": "numbers",
+      "code": "val = 42\nratio = 3.14159",
+      "notes": "Groovy supports numeric literals for computation and indexing."
+    },
+    "booleans": {
+      "title": "Booleans & Conditions",
+      "concept_id": "booleans",
+      "code": "flag = true\nif flag:\n    // Execute branch",
+      "notes": "Groovy provides boolean conditions for program control flow."
+    },
+    "type_casting": {
+      "title": "Type Conversion",
+      "concept_id": "type_casting",
+      "code": "converted = (type)original_value",
+      "notes": "Groovy converts data between native format representations."
+    },
+    "strings": {
+      "title": "Strings & Characters",
+      "concept_id": "strings",
+      "code": "text = \"Sample string text\"",
+      "notes": "Groovy represents textual data through string literals and character arrays."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "formatted = format(\"Text: %s\", value)",
+      "notes": "Groovy formats and joins textual values for display and output."
+    },
+    "pattern_matching": {
+      "title": "Conditionals & Branching",
+      "concept_id": "pattern_matching",
+      "code": "case value of\n    1: execute_one()\n    default: execute_default()",
+      "notes": "Groovy branches execution based on value comparison and conditional expressions."
+    },
+    "range": {
+      "title": "Ranges & Intervals",
+      "concept_id": "range",
+      "code": "range = 1..10",
+      "notes": "Groovy defines intervals and index sequences for bounded processing."
+    },
+    "iterators": {
+      "title": "Iteration & Loops",
+      "concept_id": "iterators",
+      "code": "for item in collection:\n    process(item)",
+      "notes": "Groovy iterates across collections and sequence elements."
+    },
+    "oop_classes": {
+      "title": "Structures & Modules",
+      "concept_id": "oop_classes",
+      "code": "struct Entity {\n    data: Value\n}",
+      "notes": "Groovy organizes data and behavior through structures or modular components."
+    },
+    "lists": {
+      "title": "Collections & Arrays",
+      "concept_id": "lists",
+      "code": "items = [1, 2, 3, 4]",
+      "notes": "Groovy stores sequence data in indexed lists or arrays."
+    },
+    "tuples": {
+      "title": "Records & Pairs",
+      "concept_id": "tuples",
+      "code": "pair = (10, \"label\")",
+      "notes": "Groovy groups related fields into lightweight composite pairs or records."
+    },
+    "sets": {
+      "title": "Sets & Uniqueness",
+      "concept_id": "sets",
+      "code": "set = Set([1, 2, 3])",
+      "notes": "Groovy tracks unique values without duplicate entries."
+    },
+    "modules_import": {
+      "title": "Libraries & Modules",
+      "concept_id": "modules_import",
+      "code": "import module_name",
+      "notes": "Groovy organizes external libraries and code units into modular namespaces."
+    }
+  }
+}

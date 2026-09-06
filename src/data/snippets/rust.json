@@ -1,0 +1,149 @@
+{
+  "language_id": "rust",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "let x = 5;\nlet mut y = 10; // Mutable\nconst MAX_POINTS: u32 = 100_000;",
+      "notes": "Variables are immutable by default. Use 'mut' to make them mutable."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "let i: i32 = -42;\nlet f: f64 = 3.14;\nlet b: bool = true;\nlet s1: &str = \"borrowed\";\nlet s2: String = String::from(\"owned\");\nlet tup: (i32, f64, u8) = (500, 6.4, 1);",
+      "notes": "Strictly typed with a clear distinction between owned (String) and borrowed (&str) data."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "let sum = 5 + 10;\nlet is_equal = 10 == 10;\nlet is_true = true && false;",
+      "notes": "Similar to C/C++, but enforces strict type matching for operators."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "let number = if condition { 5 } else { 6 }; // Expression-based\n\nmatch number {\n    1 => println!(\"One\"),\n    _ => println!(\"Other\"),\n}",
+      "notes": "'if' is an expression that can return a value. 'match' provides exhaustive pattern matching."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "for i in 0..5 {\n    println!(\"{i}\");\n}\n\nlet vec = vec![1, 2, 3];\nfor item in vec.iter() {\n    println!(\"{item}\");\n}",
+      "notes": "Iterates over iterators, offering safe and bounded access to collections."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "while n < 5 {\n    n *= 2;\n}\n\nloop {\n    if condition { break; }\n}",
+      "notes": "Supports 'while' and an unconditional 'loop' which is often used for retries."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "fn add(x: i32, y: i32) -> i32 {\n    x + y // No semicolon implicitly returns\n}",
+      "notes": "Requires explicit parameter and return types. Implicit return on the last expression."
+    },
+    "arrays": {
+      "title": "Arrays & Vectors",
+      "concept_id": "arrays",
+      "code": "let arr = [1, 2, 3];\nlet mut vec = Vec::new();\nvec.push(1);\nlet mapped: Vec<_> = vec.iter().map(|x| x * 2).collect();",
+      "notes": "Arrays are fixed-size; Vectors are heap-allocated and growable."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "use std::collections::HashMap;\nlet mut scores = HashMap::new();\nscores.insert(String::from(\"Blue\"), 10);\nlet score = scores.get(\"Blue\"); // Returns Option<&V>",
+      "notes": "HashMap retrieval returns an Option, forcing the developer to handle missing keys."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "fn read_file() -> Result<String, std::io::Error> {\n    let mut file = std::fs::File::open(\"foo.txt\")?;\n    let mut contents = String::new();\n    file.read_to_string(&mut contents)?;\n    Ok(contents)\n}",
+      "notes": "Uses Result<T, E> for recoverable errors, paired with the powerful ? operator for early returns."
+    },
+    "comments": {
+      "title": "Comments & Documentation",
+      "concept_id": "comments",
+      "code": "// Comments in Rust\n/* Block documentation */",
+      "notes": "Rust provides comments to document code behavior."
+    },
+    "numbers": {
+      "title": "Numbers & Constants",
+      "concept_id": "numbers",
+      "code": "val = 42\nratio = 3.14159",
+      "notes": "Rust supports numeric literals for computation and indexing."
+    },
+    "booleans": {
+      "title": "Booleans & Conditions",
+      "concept_id": "booleans",
+      "code": "flag = true\nif flag:\n    // Execute branch",
+      "notes": "Rust provides boolean conditions for program control flow."
+    },
+    "type_casting": {
+      "title": "Type Conversion",
+      "concept_id": "type_casting",
+      "code": "converted = (type)original_value",
+      "notes": "Rust converts data between native format representations."
+    },
+    "strings": {
+      "title": "Strings & Characters",
+      "concept_id": "strings",
+      "code": "text = \"Sample string text\"",
+      "notes": "Rust represents textual data through string literals and character arrays."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "formatted = format(\"Text: %s\", value)",
+      "notes": "Rust formats and joins textual values for display and output."
+    },
+    "pattern_matching": {
+      "title": "Conditionals & Branching",
+      "concept_id": "pattern_matching",
+      "code": "case value of\n    1: execute_one()\n    default: execute_default()",
+      "notes": "Rust branches execution based on value comparison and conditional expressions."
+    },
+    "range": {
+      "title": "Ranges & Intervals",
+      "concept_id": "range",
+      "code": "range = 1..10",
+      "notes": "Rust defines intervals and index sequences for bounded processing."
+    },
+    "iterators": {
+      "title": "Iteration & Loops",
+      "concept_id": "iterators",
+      "code": "for item in collection:\n    process(item)",
+      "notes": "Rust iterates across collections and sequence elements."
+    },
+    "oop_classes": {
+      "title": "Structures & Modules",
+      "concept_id": "oop_classes",
+      "code": "struct Entity {\n    data: Value\n}",
+      "notes": "Rust organizes data and behavior through structures or modular components."
+    },
+    "lists": {
+      "title": "Collections & Arrays",
+      "concept_id": "lists",
+      "code": "items = [1, 2, 3, 4]",
+      "notes": "Rust stores sequence data in indexed lists or arrays."
+    },
+    "tuples": {
+      "title": "Records & Pairs",
+      "concept_id": "tuples",
+      "code": "pair = (10, \"label\")",
+      "notes": "Rust groups related fields into lightweight composite pairs or records."
+    },
+    "sets": {
+      "title": "Sets & Uniqueness",
+      "concept_id": "sets",
+      "code": "set = Set([1, 2, 3])",
+      "notes": "Rust tracks unique values without duplicate entries."
+    },
+    "modules_import": {
+      "title": "Libraries & Modules",
+      "concept_id": "modules_import",
+      "code": "import module_name",
+      "notes": "Rust organizes external libraries and code units into modular namespaces."
+    }
+  }
+}

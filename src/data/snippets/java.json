@@ -1,0 +1,149 @@
+{
+  "language_id": "java",
+  "snippets": {
+    "variables": {
+      "title": "Variables & Constants",
+      "concept_id": "variables",
+      "code": "// Explicit typing\nint age = 30;\nString name = \"Alice\";\n\n// Local Variable Type Inference (Java 10+)\nvar userList = new ArrayList<String>();\n\n// Constants (final)\nfinal double PI = 3.14159;\n\n// Class-level constant\npublic static final int MAX_USERS = 100;",
+      "notes": "Java is statically typed. The 'var' keyword infers type only for local variables. 'final' makes a variable a constant."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "// Primitives (stored on stack)\nint i = 42;\ndouble d = 3.14;\nboolean b = true;\nchar c = 'A';\n\n// Wrappers & Objects (stored on heap)\nInteger wrappedInt = 42; // Autoboxing\nString s = \"Hello\";\n\n// Standard Collections\nList<String> list = List.of(\"A\", \"B\");\nMap<String, Integer> map = Map.of(\"a\", 1);",
+      "notes": "Java distinguishes between primitives (lowercase, fast) and Object wrappers (Capitalized, required for Generics)."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "// Arithmetic\nint sum = 10 + 5;\nint div = 10 / 3; // Integer division (3)\n\n// Comparison\nboolean isEqual = (10 == 10);\n\n// Logical\nboolean isTrue = true && false;\nboolean isOr = true || false;\nboolean not = !true;\n\n// String equality (use .equals(), not ==)\nboolean sameStr = \"Hi\".equals(\"Hi\");",
+      "notes": "Remember to use '.equals()' for object comparison, as '==' compares object memory references, not values."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "int age = 20;\n\nif (age < 13) {\n    System.out.println(\"Child\");\n} else {\n    System.out.println(\"Adult\");\n}\n\n// Switch Expression (Java 14+)\nString status = switch (age) {\n    case 1, 2, 3 -> \"Toddler\";\n    case 18 -> \"Adult\";\n    default -> \"Unknown\";\n};\n\n// Ternary\nString label = (age >= 18) ? \"Adult\" : \"Minor\";",
+      "notes": "Java 14 introduced modern switch expressions that return values and use lambda-like arrows, preventing fall-through."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "List<String> items = List.of(\"a\", \"b\", \"c\");\n\n// Traditional for loop\nfor (int i = 0; i < items.size(); i++) {\n    System.out.println(items.get(i));\n}\n\n// Enhanced for-each loop\nfor (String item : items) {\n    System.out.println(item);\n}\n\n// Streams (Java 8+)\nitems.forEach(System.out::println);",
+      "notes": "The enhanced for-each loop is generally preferred for arrays and collections unless the index is explicitly needed."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "int count = 0;\n\nwhile (count < 5) {\n    System.out.println(count);\n    count++;\n}\n\n// Do-while (executes at least once)\nint x = 10;\ndo {\n    System.out.println(x);\n    x--;\n} while (x > 10);",
+      "notes": "While loops work standardly. Do-while loops are useful when the logic must execute before the condition check."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "class Calculator {\n    // Instance method\n    public int add(int a, int b) {\n        return a + b;\n    }\n\n    // Static method (belongs to class)\n    public static double multiply(double a, double b) {\n        return a * b;\n    }\n    \n    // Varargs\n    public int sum(int... numbers) {\n        return Arrays.stream(numbers).sum();\n    }\n}",
+      "notes": "Java methods must be part of a class or interface. Static methods can be called without instantiating the class."
+    },
+    "arrays": {
+      "title": "Arrays / Lists",
+      "concept_id": "arrays",
+      "code": "// Fixed-size primitive array\nint[] arr = new int[]{1, 2, 3};\n\n// Dynamic ArrayList\nList<Integer> list = new ArrayList<>();\nlist.add(1);\nlist.add(2);\n\n// Get and Set\nint first = list.get(0);\nlist.set(0, 99);\n\n// Streams\nList<Integer> doubled = list.stream()\n    .map(n -> n * 2)\n    .toList(); // Java 16+",
+      "notes": "Native arrays have fixed sizes. Collections like ArrayList are dynamic and heavily favored in modern Java."
+    },
+    "maps": {
+      "title": "Maps / Dictionaries",
+      "concept_id": "maps",
+      "code": "Map<String, Integer> scores = new HashMap<>();\n\n// Add / Update\nscores.put(\"Alice\", 95);\nscores.put(\"Bob\", 80);\n\n// Read\nint aliceScore = scores.getOrDefault(\"Alice\", 0);\n\n// Iteration\nfor (Map.Entry<String, Integer> entry : scores.entrySet()) {\n    System.out.println(entry.getKey() + \": \" + entry.getValue());\n}\n\n// Java 9+ Immutable Map\nvar configs = Map.of(\"timeout\", 5000);",
+      "notes": "HashMap is the standard implementation. 'Map.of' creates unmodifiable maps easily."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "try {\n    int result = 10 / 0;\n} catch (ArithmeticException e) {\n    System.err.println(\"Math error: \" + e.getMessage());\n} catch (Exception e) {\n    System.err.println(\"General error\");\n} finally {\n    System.out.println(\"Cleanup\");\n}\n\n// Method throwing exception\npublic void readFile() throws IOException {\n    throw new IOException(\"File not found\");\n}",
+      "notes": "Java has 'Checked' exceptions (must be caught or declared) and 'Unchecked' RuntimeExceptions."
+    },
+    "comments": {
+      "title": "Comments & Documentation",
+      "concept_id": "comments",
+      "code": "// Single-line comment in Java\n\n/*\n * Multi-line comment block\n */\n\n/**\n * Documentation comment\n */",
+      "notes": "Java uses C-style // single-line and /* */ multi-line comments."
+    },
+    "numbers": {
+      "title": "Numbers & Numerics",
+      "concept_id": "numbers",
+      "code": "int a = 42;\ndouble b = 3.14159;\nlong large = 1_000_000L;\nint hex = 0xFF;\nint bin = 0b1010;",
+      "notes": "Java provides explicitly sized integer and floating-point primitives with binary and hex support."
+    },
+    "booleans": {
+      "title": "Booleans & Conditions",
+      "concept_id": "booleans",
+      "code": "bool isActive = true;\nbool isDone = false;\nif (isActive && !isDone) {\n    // Condition satisfied\n}",
+      "notes": "Java uses bool / boolean types with true and false literals and logical operators (&&, ||, !)."
+    },
+    "type_casting": {
+      "title": "Type Casting & Conversion",
+      "concept_id": "type_casting",
+      "code": "int a = 42;\ndouble d = (double)a;\nint b = (int)d;",
+      "notes": "Java supports explicit type casting using cast operators or constructor functions."
+    },
+    "strings": {
+      "title": "Strings & Characters",
+      "concept_id": "strings",
+      "code": "String str = \"Hello, World!\";\nchar ch = str.charAt(0);\nint len = str.length();",
+      "notes": "Java distinguishes between single-character literals and string sequences or pointer slices."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "String name = \"Alice\";\nint score = 95;\nString msg = String.format(\"User %s scored %d\", name, score);",
+      "notes": "Java supports string interpolation or printf-style formatting specifiers."
+    },
+    "pattern_matching": {
+      "title": "Pattern Matching & Switch",
+      "concept_id": "pattern_matching",
+      "code": "switch (val) {\n    case 1:\n        printf(\"One\\n\");\n        break;\n    case 2:\n    case 3:\n        printf(\"Two or Three\\n\");\n        break;\n    default:\n        printf(\"Other\\n\");\n}",
+      "notes": "Java evaluates branching conditions through switch statements, match expressions, or when constructs."
+    },
+    "range": {
+      "title": "Ranges & Slicing",
+      "concept_id": "range",
+      "code": "for (int i = 0; i < 10; i += 2) {\n    // Range from 0 to 9 step 2\n}",
+      "notes": "Java represents ranges with range operators (.., ..<) or standard indexed iteration boundaries."
+    },
+    "iterators": {
+      "title": "Iterators & Sequences",
+      "concept_id": "iterators",
+      "code": "List<String> list = List.of(\"a\", \"b\", \"c\");\nIterator<String> it = list.iterator();\nwhile (it.hasNext()) {\n    String s = it.next();\n}",
+      "notes": "Java implements iteration through Iterator interfaces, generators, or range-for loops."
+    },
+    "oop_classes": {
+      "title": "Classes & OOP",
+      "concept_id": "oop_classes",
+      "code": "class Person {\n    private String name;\n    public Person(String name) {\n        this.name = name;\n    }\n    public String getName() {\n        return this.name;\n    }\n}",
+      "notes": "Java models object orientation through classes with constructors/encapsulation or structs with associated methods."
+    },
+    "lists": {
+      "title": "Dynamic Arrays & Lists",
+      "concept_id": "lists",
+      "code": "List<String> list = new ArrayList<>();\nlist.add(\"apple\");\nlist.add(\"banana\");\nlist.remove(0);",
+      "notes": "Java manages growable dynamic collections using vectors, ArrayLists, or dynamically reallocated heap buffers."
+    },
+    "tuples": {
+      "title": "Tuples & Records",
+      "concept_id": "tuples",
+      "code": "record Pair(int x, int y) {}",
+      "notes": "Java represents heterogeneous records through tuples, structured bindings, or lightweight record structs."
+    },
+    "sets": {
+      "title": "Sets & Unique Collections",
+      "concept_id": "sets",
+      "code": "Set<String> set = new HashSet<>();\nset.add(\"apple\");\nboolean has = set.contains(\"apple\");",
+      "notes": "Java provides unique collection hashing structures with O(1) average lookup and insertion time."
+    },
+    "modules_import": {
+      "title": "Modules, Packages & Imports",
+      "concept_id": "modules_import",
+      "code": "package com.example;\n\nimport java.util.List;\nimport java.util.ArrayList;",
+      "notes": "Java structures namespaces and external libraries via include directives, package declarations, or module imports."
+    }
+  }
+}

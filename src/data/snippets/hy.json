@@ -1,0 +1,149 @@
+{
+  "language_id": "fish",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "set name \"Fish User\"\nset -l local_var \"local\"\nset -g global_var \"global\"",
+      "notes": "Fish does not use `=` for assignment, it uses the `set` command."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "set num 10\nset list 1 2 3",
+      "notes": "Fish uses lists (arrays) natively; variables are fundamentally lists of strings."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "set a (math \"5 + 3\")",
+      "notes": "Fish uses the `math` command instead of expr or `(())`."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "if test $a -gt $b\n  echo \"Greater\"\nelse if test $a -eq $b\n  echo \"Equal\"\nelse\n  echo \"Less\"\nend",
+      "notes": "No `then` or `fi`; uses `end`."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "for i in (seq 5)\n  echo $i\nend",
+      "notes": "Uses `seq` or list variables."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "while test $i -lt 5\n  echo $i\n  set i (math $i + 1)\nend",
+      "notes": "Uses `test` and `end` block."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "function greet\n  set name $argv[1]\n  echo \"Hello $name\"\nend",
+      "notes": "Uses `$argv` instead of `$1` (though `$1` may work). No `{}`."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "set arr 1 2 3\necho $arr[1]",
+      "notes": "Fish arrays are 1-indexed."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "# Simulating with parallel lists\nset keys key1 key2\nset vals val1 val2",
+      "notes": "Fish historically lacks native dicts/maps."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "command; or echo \"Failed\"",
+      "notes": "Uses `and`/`or` instead of `&&`/`||` in older versions (though newer fish supports them)."
+    },
+    "comments": {
+      "title": "Comments & Documentation",
+      "concept_id": "comments",
+      "code": "# Single-line comment in Hy\n\n\"\"\"\nMulti-line documentation block.\nProvides docstrings for functions and modules.\n\"\"\"\n\ndef add(a, b):\n    \"\"\"Return sum of a and b.\"\"\"\n    return a + b",
+      "notes": "Hy uses # for line comments and triple quotes for multi-line documentation strings."
+    },
+    "numbers": {
+      "title": "Numbers & Numerics",
+      "concept_id": "numbers",
+      "code": "x = 42\npi = 3.14159\nhex_val = 0xFF\nbin_val = 0b1010\nlarge_num = 1_000_000",
+      "notes": "Hy supports arbitrary-precision or native integers, IEEE floats, and numeric literal prefixes (0x, 0b)."
+    },
+    "booleans": {
+      "title": "Booleans & Conditions",
+      "concept_id": "booleans",
+      "code": "is_active = True\nhas_failed = False\n\nif is_active and not has_failed:\n    print(\"Active\")",
+      "notes": "Hy represents boolean values with logical and, or, and not operators."
+    },
+    "type_casting": {
+      "title": "Type Casting & Conversion",
+      "concept_id": "type_casting",
+      "code": "num_str = \"42\"\nn = int(num_str)\nf = float(n)\ns = str(f)",
+      "notes": "Hy uses explicit conversion functions or operators to transform types between primitives."
+    },
+    "strings": {
+      "title": "Strings & Escapes",
+      "concept_id": "strings",
+      "code": "s1 = \"Double-quoted string\"\ns2 = 'Single-quoted string'\nraw = r\"C:\\new_folder\\raw.txt\"\nmulti = \"\"\"Line 1\nLine 2\"\"\"",
+      "notes": "Hy supports single, double, and raw string literals that ignore escape characters."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "name = \"Alice\"\nscore = 95\nmsg = f\"User {name} scored {score:.1f}\"\nprint(msg)",
+      "notes": "Hy uses f-string interpolation or format specifiers for embedded expression formatting."
+    },
+    "pattern_matching": {
+      "title": "Pattern Matching",
+      "concept_id": "pattern_matching",
+      "code": "match val:\n    case 1:\n        print(\"One\")\n    case 2 | 3:\n        print(\"Two or Three\")\n    case _:\n        print(\"Default\")",
+      "notes": "Hy provides structural pattern matching with match/case or case-of expressions."
+    },
+    "range": {
+      "title": "Ranges & Slices",
+      "concept_id": "range",
+      "code": "r = range(1, 10, 2)\nsub = nums[1:5]\nrev = nums[::-1]",
+      "notes": "Hy provides built-in range generation and slicing syntax with interval boundaries."
+    },
+    "iterators": {
+      "title": "Iterators & Generators",
+      "concept_id": "iterators",
+      "code": "def countdown(n):\n    while n > 0:\n        yield n\n        n -= 1\n\nfor i in countdown(3):\n    print(i)",
+      "notes": "Hy uses generator functions or iterators with the yield keyword for lazy element production."
+    },
+    "oop_classes": {
+      "title": "Classes & OOP",
+      "concept_id": "oop_classes",
+      "code": "class Person:\n    def __init__(self, name: str):\n        self.name = name\n    \n    def greet(self) -> str:\n        return f\"Hello {self.name}\"",
+      "notes": "Hy supports object-oriented paradigms with methods, constructors, and encapsulation."
+    },
+    "lists": {
+      "title": "Lists & Dynamic Arrays",
+      "concept_id": "lists",
+      "code": "items = [1, 2, 3]\nitems.append(4)\nitems.insert(1, 10)\npopped = items.pop()",
+      "notes": "Hy provides mutable dynamic lists/sequences with append, insert, and indexing operations."
+    },
+    "tuples": {
+      "title": "Tuples & Records",
+      "concept_id": "tuples",
+      "code": "pair = (10, \"apple\")\nx, name = pair\nsingle = (42,)",
+      "notes": "Hy provides immutable ordered tuples supporting unpack destructuring."
+    },
+    "sets": {
+      "title": "Sets & Collections",
+      "concept_id": "sets",
+      "code": "s = {1, 2, 3}\ns.add(4)\ns.remove(1)\nunion = s | {3, 5}",
+      "notes": "Hy provides unique element set collections with membership tests and mathematical set operations."
+    },
+    "modules_import": {
+      "title": "Modules & Imports",
+      "concept_id": "modules_import",
+      "code": "import math\nfrom math import sqrt, pi\nimport os.path as path",
+      "notes": "Hy manages code organization via modules and selective import statements."
+    }
+  }
+}

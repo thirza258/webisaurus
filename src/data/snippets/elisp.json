@@ -1,0 +1,149 @@
+{
+  "language_id": "elisp",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "(setq x 10)\n(defvar my-global 20 \"A documentation string.\")\n\n;; Local lexical/dynamic variables\n(let ((a 1)\n      (b 2))\n  (+ a b))",
+      "notes": "setq assigns values. defvar declares global variables. By default Emacs Lisp uses dynamic scope, though lexical binding can be enabled per-file."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "42                   ; integer\n3.14                 ; float\n\"Hello\"              ; string\n?A                   ; character (integer)\n'symbol              ; symbol\n'(1 2 3)             ; list\n[1 2 3]              ; vector\nt                    ; true\nnil                  ; false / empty list",
+      "notes": "Elisp shares many types with Common Lisp. Characters are just integers. Vectors are written with square brackets."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "(+ 1 2 3)    ; => 6\n(- 10 4)     ; => 6\n(* 2 3)      ; => 6\n(/ 10 2)     ; => 5\n\n(= 1 1)      ; Numeric equality\n(equal \"a\" \"a\") ; Structural equality\n(eq 'a 'a)   ; Identity equality\n\n(and t nil)  ; => nil\n(or nil t)   ; => t\n(not t)      ; => nil",
+      "notes": "Standard Lisp prefix operators. eq checks identity, equal checks structure, string= specifically compares strings."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "(if (> x 0)\n    'positive\n    'negative)\n\n(when (> x 0)\n  (message \"positive\"))\n\n(cond ((> x 0) 'positive)\n      ((< x 0) 'negative)\n      (t 'zero))",
+      "notes": "if, when, unless, and cond are the primary conditional constructs."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "(dotimes (i 10)\n  (message \"Iteration %d\" i))\n\n(dolist (item '(a b c))\n  (message \"Item: %s\" item))\n\n(require 'cl-lib)\n(cl-loop for i from 1 to 10\n         collect (* i i))",
+      "notes": "dotimes and dolist are built-in for simple iterations. For more complex loops, cl-loop (from cl-lib) provides Common Lisp's loop macro."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "(setq x 0)\n(while (< x 10)\n  (message \"Value: %d\" x)\n  (setq x (1+ x)))\n\n;; catch/throw can break out of loops\n(catch 'break\n  (while t\n    (if (some-condition) (throw 'break t))))",
+      "notes": "while is the fundamental loop in Emacs Lisp. catch and throw are used for early exits, similar to break in other languages."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "(defun my-add (a b)\n  \"Add A and B together.\"\n  (+ a b))\n\n;; Interactive function (Command)\n(defun hello-world ()\n  \"Print a greeting.\"\n  (interactive)\n  (message \"Hello, World!\"))\n\n;; Lambda\n(mapcar (lambda (x) (* x x)) '(1 2 3))",
+      "notes": "defun creates functions. Adding (interactive) makes the function callable via M-x. Documentation strings are built into the definition syntax."
+    },
+    "arrays": {
+      "title": "Arrays (Vectors)",
+      "concept_id": "arrays",
+      "code": ";; Creating a vector\n(make-vector 5 0)\n[1 2 3 4 5] ; Literal syntax\n\n;; Accessing and modifying\n(setq v (vector 10 20 30))\n(aref v 0)       ; => 10\n(aset v 0 42)    ; Mutates vector",
+      "notes": "Vectors are fixed-length arrays. aref gets an element, aset sets an element. Strings and bool-vectors are also array types."
+    },
+    "maps": {
+      "title": "Maps (Hash Tables / Alists)",
+      "concept_id": "maps",
+      "code": ";; Association List (Alist)\n(setq alist '((a . 1) (b . 2)))\n(cdr (assoc 'a alist)) ; => 1\n\n;; Hash Table\n(setq ht (make-hash-table :test 'equal))\n(puthash \"key\" \"value\" ht)\n(gethash \"key\" ht)\n(remhash \"key\" ht)",
+      "notes": "Alists (lists of cons cells) are traditionally used for small maps. Hash tables provide better performance for larger datasets."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "(condition-case err\n    (/ 1 0)\n  (arith-error (message \"Math error: %s\" err) 0)\n  (error (message \"Unknown error: %s\" err) nil))\n\n;; Signaling an error\n(error \"Something went wrong\")",
+      "notes": "condition-case is the try-catch equivalent, intercepting specific error symbols. ignore-errors is a useful macro to suppress all errors."
+    },
+    "comments": {
+      "title": "Comments & Annotations",
+      "concept_id": "comments",
+      "code": ";; Single-line comment in Lisp\n#|\n Multi-line block comment\n|#\n(defun add (a b)\n  \"Documentation string for function\"\n  (+ a b))",
+      "notes": "Emacs Lisp uses functional comment delimiters (-- in Haskell/ML, ; in Lisps, # or % in BEAM)."
+    },
+    "numbers": {
+      "title": "Numbers & Numerics",
+      "concept_id": "numbers",
+      "code": "(def x 42)          ; Integer\n(def pi 3.14159)    ; Float\n(def ratio 1/3)     ; Exact rational ratio\n(def hex #xFF)      ; Hexadecimal",
+      "notes": "Emacs Lisp supports exact rational fractions, arbitrary-precision integers, and IEEE floats natively."
+    },
+    "booleans": {
+      "title": "Booleans & Logic",
+      "concept_id": "booleans",
+      "code": "(def is-active true)\n(if is-active\n    (print \"Active\")\n    (print \"Inactive\"))",
+      "notes": "Emacs Lisp treats booleans as first-class algebraic constructors (True/False, true/false, t/nil)."
+    },
+    "type_casting": {
+      "title": "Type Conversion",
+      "concept_id": "type_casting",
+      "code": "(def n (parse-integer \"42\"))\n(def f (float n))\n(def s (write-to-string f))",
+      "notes": "Emacs Lisp performs conversion via typeclass methods (fromIntegral, show, read) or explicit parse functions."
+    },
+    "strings": {
+      "title": "Strings & Text",
+      "concept_id": "strings",
+      "code": "(def s \"Hello, World!\")\n(def char-val (char s 0))\n(def multi \"Line 1\nLine 2\")",
+      "notes": "Emacs Lisp represents strings as linked lists of characters, UTF-8 binaries, or dedicated text buffers."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "(format nil \"User: ~A scored ~D\" \"Alice\" 95)",
+      "notes": "Emacs Lisp formats text through format strings, interpolation macros, or string concatenation."
+    },
+    "pattern_matching": {
+      "title": "Pattern Matching",
+      "concept_id": "pattern_matching",
+      "code": "(case val\n  (1 \"One\")\n  ((2 3) \"Two or Three\")\n  (_ \"Other\"))",
+      "notes": "Pattern matching is a core feature in Emacs Lisp, destructuring algebraic variants, tuples, and lists directly."
+    },
+    "range": {
+      "title": "Ranges & Sequences",
+      "concept_id": "range",
+      "code": "(def r (range 1 10 2))\n(def sub (subseq [1 2 3 4 5] 1 3))",
+      "notes": "Emacs Lisp constructs ranges as lazy lists, infinite streams, or structured range enumerables."
+    },
+    "iterators": {
+      "title": "Iterators & Comprehensions",
+      "concept_id": "iterators",
+      "code": "(def squares (for [x (range 10) :when (even? x)] (* x x)))",
+      "notes": "Emacs Lisp achieves iterative processing through list comprehensions, map/filter transforms, and recursion."
+    },
+    "oop_classes": {
+      "title": "Types & Abstractions (OOP Equivalent)",
+      "concept_id": "oop_classes",
+      "code": "(defrecord Person [name age])\n(defprotocol Speaker\n  (speak [this]))",
+      "notes": "Emacs Lisp emphasizes algebraic data types, protocols/typeclasses, and structs over traditional class hierarchies."
+    },
+    "lists": {
+      "title": "Lists (Linked Lists)",
+      "concept_id": "lists",
+      "code": "(def list '(1 2 3))\n(def prepended (cons 0 list))\n(def tail (rest list))",
+      "notes": "Lists in Emacs Lisp are singly linked immutable sequences optimized for head/tail structural sharing."
+    },
+    "tuples": {
+      "title": "Tuples & Records",
+      "concept_id": "tuples",
+      "code": "(list 1 \"apple\" t)",
+      "notes": "Emacs Lisp uses fixed-length heterogeneous tuples for bundling related data points and function return values."
+    },
+    "sets": {
+      "title": "Sets",
+      "concept_id": "sets",
+      "code": "(def s (set [1 2 3]))\n(conj s 4)\n(contains? s 2)",
+      "notes": "Emacs Lisp provides persistent immutable sets implemented via balanced binary trees (HAMT / AVL)."
+    },
+    "modules_import": {
+      "title": "Modules & Imports",
+      "concept_id": "modules_import",
+      "code": "(ns my-project.core\n  (:require [clojure.string :as str]))",
+      "notes": "Emacs Lisp isolates scopes through modules and explicit import lists with aliasing and qualified names."
+    }
+  }
+}

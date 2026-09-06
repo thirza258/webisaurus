@@ -1,0 +1,149 @@
+{
+  "language_id": "powershell",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "$name = \"Alice\"\n$age = 30\nWrite-Output \"Name: $name\"",
+      "notes": "Variables start with '$'."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "[string]$str = \"Hello\"\n[int]$num = 42\n[bool]$flag = $true\n[datetime]$date = Get-Date",
+      "notes": "PowerShell is built on .NET and supports its rich type system."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "$sum = 5 + 3\n$isEqual = ($sum -eq 8) -and ($name -like \"A*\")",
+      "notes": "Comparison operators start with a dash (-eq, -ne, -gt, -lt, -like)."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "if ($val -gt 10) {\n    Write-Host \"Greater\"\n} elseif ($val -eq 10) {\n    Write-Host \"Equal\"\n} else {\n    Write-Host \"Lesser\"\n}",
+      "notes": "Uses standard C-style if/else blocks with PowerShell comparison operators."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "for ($i = 0; $i -lt 5; $i++) {\n    Write-Host $i\n}\n\nforeach ($item in $collection) {\n    Write-Host $item\n}",
+      "notes": "Supports both 'for' and 'foreach' loops."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "$count = 1\nwhile ($count -le 5) {\n    Write-Host $count\n    $count++\n}",
+      "notes": "Standard while loop syntax."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "function Get-Greeting {\n    param (\n        [string]$Name = \"World\"\n    )\n    return \"Hello, $Name!\"\n}\n\nGet-Greeting -Name \"Alice\"",
+      "notes": "Functions use standard Verb-Noun naming convention, support complex parameters."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "$fruits = @(\"apple\", \"banana\", \"cherry\")\n$fruits[0]\n\n# Better to use ArrayList or generic List for dynamic sizing\n$list = [System.Collections.Generic.List[string]]::new()\n$list.Add(\"date\")",
+      "notes": "Arrays are immutable by default; appending creates a new array."
+    },
+    "maps": {
+      "title": "Dictionaries / Hashtables",
+      "concept_id": "maps",
+      "code": "$hash = @{\n    \"apple\" = \"red\"\n    \"banana\" = \"yellow\"\n}\nWrite-Host $hash[\"apple\"]\n$hash[\"cherry\"] = \"red\"",
+      "notes": "Hashtables are created using @{ key = value }."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "try {\n    Get-Content \"nonexistent.txt\" -ErrorAction Stop\n} catch {\n    Write-Host \"An error occurred: $_\"\n} finally {\n    Write-Host \"Cleanup\"\n}",
+      "notes": "Use try/catch/finally blocks. Note the use of '-ErrorAction Stop' to force terminating errors."
+    },
+    "comments": {
+      "title": "Comments & Script Headers",
+      "concept_id": "comments",
+      "code": "# Single-line comment in PowerShell\n<#\n Multi-line comment block\n #>\n<#\n.SYNOPSIS\n Cmdlet documentation\n#>",
+      "notes": "PowerShell uses # for comments with script headers."
+    },
+    "numbers": {
+      "title": "Numbers & Arithmetic",
+      "concept_id": "numbers",
+      "code": "$a = 42\n$pi = 3.14159\n$hex = 0xFF\n$total = $a * 2",
+      "notes": "PowerShell supports shell integer arithmetic and numeric expressions."
+    },
+    "booleans": {
+      "title": "Booleans & Exit Codes",
+      "concept_id": "booleans",
+      "code": "$isActive = $true\n$isDone = $false\nif ($isActive -and -not $isDone) {\n    Write-Host \"Active\"\n}",
+      "notes": "PowerShell evaluates boolean status through exit codes (0 = success) and boolean primitives."
+    },
+    "type_casting": {
+      "title": "Type Casting & Coercion",
+      "concept_id": "type_casting",
+      "code": "$str = \"42\"\n[int]$num = $str\n[double]$flt = $num\n[string]$back = $flt",
+      "notes": "PowerShell handles type conversion explicitly via type accelerators [type] or arithmetic evaluation."
+    },
+    "strings": {
+      "title": "Strings & Quoting",
+      "concept_id": "strings",
+      "code": "$single = 'Literal string $no_expand'\n$double = \"Expanded: $a\"\n$here = @\"\nMultiline string\n\"@",
+      "notes": "PowerShell differentiates between single quotes (literal) and double quotes (variable expansion)."
+    },
+    "string_formatting": {
+      "title": "String Interpolation",
+      "concept_id": "string_formatting",
+      "code": "$name = \"Alice\"\n$score = 95\n$msg = \"User $name scored $($score * 2)\"\n$fmt = \"{0} : {1:N2}\" -f $name, 3.14159",
+      "notes": "PowerShell provides in-string variable interpolation and printf formatting."
+    },
+    "pattern_matching": {
+      "title": "Pattern Matching & Case",
+      "concept_id": "pattern_matching",
+      "code": "switch ($val) {\n    1 { \"One\" }\n    { $_ -in 2, 3 } { \"Two or Three\" }\n    default { \"Other\" }\n}",
+      "notes": "PowerShell matches patterns with case statements or switch blocks with glob matching."
+    },
+    "range": {
+      "title": "Ranges & Sequences",
+      "concept_id": "range",
+      "code": "$range = 1..10\n$even = $range | Where-Object { $_ % 2 -eq 0 }",
+      "notes": "PowerShell constructs ranges with brace expansion {start..end} or range operators .."
+    },
+    "iterators": {
+      "title": "Pipes & Iterators",
+      "concept_id": "iterators",
+      "code": "1..5 | ForEach-Object {\n    $_ * 2\n}",
+      "notes": "PowerShell streams data elements through command pipelines and loop iteration."
+    },
+    "oop_classes": {
+      "title": "Classes / Structured Functions",
+      "concept_id": "oop_classes",
+      "code": "class Person {\n    [string]$Name\n    Person([string]$name) {\n        $this.Name = $name\n    }\n    [string] Greet() {\n        return \"Hello $($this.Name)\"\n    }\n}",
+      "notes": "PowerShell defines reusable components through classes (PowerShell 5+) or modular functions."
+    },
+    "lists": {
+      "title": "Arrays & Collections",
+      "concept_id": "lists",
+      "code": "$list = @(1, 2, 3)\n$list += 4\n$first = $list[0]",
+      "notes": "PowerShell manages arrays using array lists @() or whitespace-delimited shell arrays."
+    },
+    "tuples": {
+      "title": "Tuples & Records",
+      "concept_id": "tuples",
+      "code": "$pair = [Tuple]::Create(10, \"apple\")\n$num = $pair.Item1",
+      "notes": "PowerShell emulates tuples through string delimiters, .NET Tuples, or positional variables."
+    },
+    "sets": {
+      "title": "Sets & Unique Lists",
+      "concept_id": "sets",
+      "code": "$set = [System.Collections.Generic.HashSet[string]]::new()\n$set.Add(\"apple\") | Out-Null",
+      "notes": "PowerShell models unique sets using associative arrays or underlying runtime sets."
+    },
+    "modules_import": {
+      "title": "Sourcing & Modules",
+      "concept_id": "modules_import",
+      "code": "Import-Module ActiveDirectory\nusing namespace System.Collections",
+      "notes": "PowerShell imports external functions using source (. in POSIX) or Import-Module."
+    }
+  }
+}

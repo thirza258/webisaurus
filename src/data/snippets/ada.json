@@ -1,0 +1,149 @@
+{
+  "language_id": "ada",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "Count : Integer := 0;\nPi    : constant Float := 3.14159;\nName  : String(1..5) := \"Alice\";",
+      "notes": "Ada uses explicit typing with a `Name : Type := Value;` syntax. Constants are marked with the `constant` keyword."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "type Age_Type is range 0 .. 150;\ntype Weekday is (Mon, Tue, Wed, Thu, Fri);\n\nMy_Age : Age_Type := 30;\nToday  : Weekday := Mon;",
+      "notes": "Ada has extremely strong typing. Developers frequently create constrained subtypes or entirely new types to prevent invalid states."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "Sum     : Integer := 5 + 10;\nPower   : Integer := 2 ** 3; -- Exponentiation\nIs_Eq   : Boolean := (5 = 5); -- Note: single '='\nNot_Eq  : Boolean := (5 /= 6);",
+      "notes": "Ada uses `=` for equality and `/=` for inequality. Exponentiation is built-in with `**`."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "if X > 5 then\n   Put_Line(\"Greater\");\nelsif X = 5 then\n   Put_Line(\"Equal\");\nelse\n   Put_Line(\"Lesser\");\nend if;",
+      "notes": "Conditionals use explicit `then` and require an `end if;` terminator, making blocks unambiguous."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "for I in 1 .. 5 loop\n   Put_Line(Integer'Image(I));\nend loop;\n\nfor I in reverse 1 .. 5 loop\n   null; -- iterates backwards\nend loop;",
+      "notes": "For loops iterate over a discrete range. The loop variable is implicitly declared and read-only within the loop."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "I : Integer := 1;\nwhile I <= 5 loop\n   Put_Line(Integer'Image(I));\n   I := I + 1;\nend loop;",
+      "notes": "While loops use explicit `loop` and `end loop;` markers. There is no `++` operator in Ada."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "function Add (A, B : Integer) return Integer is\nbegin\n   return A + B;\nend Add;\n\nprocedure Print (Msg : String) is\nbegin\n   Put_Line(Msg);\nend Print;",
+      "notes": "Ada distinguishes between `function` (which returns a value) and `procedure` (which does not)."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "type My_Array is array (1 .. 5) of Integer;\nArr : My_Array := (1, 2, 3, 4, 5);\n\nArr(1) := 10; -- Arrays are 1-indexed by default",
+      "notes": "Arrays in Ada can have any discrete type as their index (including enums), and they are strictly bounds-checked."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "with Ada.Containers.Hashed_Maps;\nwith Ada.Strings.Unbounded.Hash;\n\npackage String_Int_Maps is new Ada.Containers.Hashed_Maps\n  (Key_Type        => Ada.Strings.Unbounded.Unbounded_String,\n   Element_Type    => Integer,\n   Hash            => Ada.Strings.Unbounded.Hash,\n   Equivalent_Keys => \"=\");",
+      "notes": "Maps are provided via the generic `Ada.Containers` library, which requires explicit instantiation for specific types."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "begin\n   -- Risky code\n   raise Constraint_Error with \"Custom error\";\nexception\n   when Constraint_Error =>\n      Put_Line(\"Caught a constraint error\");\n   when others =>\n      Put_Line(\"Caught an unknown error\");\nend;",
+      "notes": "Exceptions are built-in. Code blocks can have an `exception` section at the end to catch specifically named errors."
+    },
+    "comments": {
+      "title": "Comments & Documentation",
+      "concept_id": "comments",
+      "code": "// Comments in Ada\n/* Block documentation */",
+      "notes": "Ada provides comments to document code behavior."
+    },
+    "numbers": {
+      "title": "Numbers & Constants",
+      "concept_id": "numbers",
+      "code": "val = 42\nratio = 3.14159",
+      "notes": "Ada supports numeric literals for computation and indexing."
+    },
+    "booleans": {
+      "title": "Booleans & Conditions",
+      "concept_id": "booleans",
+      "code": "flag = true\nif flag:\n    // Execute branch",
+      "notes": "Ada provides boolean conditions for program control flow."
+    },
+    "type_casting": {
+      "title": "Type Conversion",
+      "concept_id": "type_casting",
+      "code": "converted = (type)original_value",
+      "notes": "Ada converts data between native format representations."
+    },
+    "strings": {
+      "title": "Strings & Characters",
+      "concept_id": "strings",
+      "code": "text = \"Sample string text\"",
+      "notes": "Ada represents textual data through string literals and character arrays."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "formatted = format(\"Text: %s\", value)",
+      "notes": "Ada formats and joins textual values for display and output."
+    },
+    "pattern_matching": {
+      "title": "Conditionals & Branching",
+      "concept_id": "pattern_matching",
+      "code": "case value of\n    1: execute_one()\n    default: execute_default()",
+      "notes": "Ada branches execution based on value comparison and conditional expressions."
+    },
+    "range": {
+      "title": "Ranges & Intervals",
+      "concept_id": "range",
+      "code": "range = 1..10",
+      "notes": "Ada defines intervals and index sequences for bounded processing."
+    },
+    "iterators": {
+      "title": "Iteration & Loops",
+      "concept_id": "iterators",
+      "code": "for item in collection:\n    process(item)",
+      "notes": "Ada iterates across collections and sequence elements."
+    },
+    "oop_classes": {
+      "title": "Structures & Modules",
+      "concept_id": "oop_classes",
+      "code": "struct Entity {\n    data: Value\n}",
+      "notes": "Ada organizes data and behavior through structures or modular components."
+    },
+    "lists": {
+      "title": "Collections & Arrays",
+      "concept_id": "lists",
+      "code": "items = [1, 2, 3, 4]",
+      "notes": "Ada stores sequence data in indexed lists or arrays."
+    },
+    "tuples": {
+      "title": "Records & Pairs",
+      "concept_id": "tuples",
+      "code": "pair = (10, \"label\")",
+      "notes": "Ada groups related fields into lightweight composite pairs or records."
+    },
+    "sets": {
+      "title": "Sets & Uniqueness",
+      "concept_id": "sets",
+      "code": "set = Set([1, 2, 3])",
+      "notes": "Ada tracks unique values without duplicate entries."
+    },
+    "modules_import": {
+      "title": "Libraries & Modules",
+      "concept_id": "modules_import",
+      "code": "import module_name",
+      "notes": "Ada organizes external libraries and code units into modular namespaces."
+    }
+  }
+}

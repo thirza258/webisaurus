@@ -1,0 +1,149 @@
+{
+  "language_id": "sml",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "val x = 10\n\n(* Mutable reference *)\nval y = ref 20\nval _ = y := !y + 5",
+      "notes": "Bindings are created using 'val'. They are immutable. SML also supports explicit mutable cells using 'ref' and the assignment operator ':='."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "val i : int = 42\nval f : real = 3.14\nval b : bool = true\nval c : char = #\"X\"\nval s : string = \"Hello\"\n\n(* Datatype definition *)\ndatatype shape = \n    Circle of real\n  | Rectangle of real * real",
+      "notes": "SML has strong static typing with type inference. Floating-point numbers are called 'real'. Characters have a special #\"c\" syntax."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "val add_int = 5 + 3\nval add_real = 5.0 + 3.0\n\nval div_int = 5 div 2\nval div_real = 5.0 / 2.0\nval rem_int = 5 mod 2\n\nval logic = true andalso (not false) orelse true\n\nval eq = (5 = 5)\nval neq = (5 <> 3)",
+      "notes": "Operators are overloaded for 'int' and 'real', but type inference needs context or annotations if ambiguous. 'andalso' and 'orelse' are short-circuiting."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "val result = \n  if x > 0 then\n    \"Positive\"\n  else\n    \"Non-positive\"\n\n(* Pattern matching in case expression *)\nval sign = case x of\n    _ => if x > 0 then 1 else if x < 0 then ~1 else 0",
+      "notes": "if-then-else must have both branches returning the same type. There are no guard clauses in SML pattern matching like in Haskell, so if-expressions are used inside."
+    },
+    "for_loop": {
+      "title": "For Loop (Recursion/Map)",
+      "concept_id": "for_loop",
+      "code": "(* SML has no for loop. Iterate via recursion or map *)\nval lst = [1, 2, 3, 4, 5]\nval squares = List.map (fn x => x * x) lst\n\nfun loop_print 0 = ()\n  | loop_print n = (\n      print (Int.toString n ^ \"\\n\");\n      loop_print (n - 1)\n    )",
+      "notes": "Iteration is idiomatic through higher-order functions like List.map and List.foldl, or direct recursion."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "val counter = ref 0\n\nval _ = \n  while !counter < 5 do (\n    print (Int.toString (!counter) ^ \"\\n\");\n    counter := !counter + 1\n  )",
+      "notes": "SML provides an imperative 'while' loop. It relies on evaluating a boolean condition and side effects (like updating refs)."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "fun add x y = x + y\n\n(* Pattern matching in arguments *)\nfun factorial 0 = 1\n  | factorial n = n * factorial (n - 1)\n\n(* Anonymous function *)\nval multiply = fn x => fn y => x * y",
+      "notes": "Functions are defined using 'fun'. Multiple clauses allow elegant pattern matching directly in the function definition."
+    },
+    "arrays": {
+      "title": "Arrays and Lists",
+      "concept_id": "arrays",
+      "code": "(* List (immutable) *)\nval lst = [1, 2, 3]\nval new_lst = 0 :: lst\n\n(* Array (mutable) *)\nval arr = Array.fromList [1, 2, 3]\nval _ = Array.update(arr, 0, 99)\nval first = Array.sub(arr, 0)",
+      "notes": "Lists use the '::' (cons) operator. Arrays are mutable data structures with sub/update functions."
+    },
+    "maps": {
+      "title": "Maps (Using binary search trees)",
+      "concept_id": "maps",
+      "code": "(* Requires a structure definition, varies slightly by implementation like SML/NJ *)\nstructure IntMap = BinaryMapFn(struct\n  type ord_key = int\n  val compare = Int.compare\nend)\n\nval m = IntMap.empty\nval m1 = IntMap.insert(m, 1, \"apple\")\nval opt = IntMap.find(m1, 1)",
+      "notes": "Maps use functor instantiation over an ordered key type. The implementation depends on the specific SML compiler ecosystem."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "exception DivByZero\n\nfun divide (x, 0) = raise DivByZero\n  | divide (x, y) = x div y\n\nval result = \n  divide (10, 0) handle DivByZero => 0\n\n(* Option type *)\nfun safe_div (x, 0) = NONE\n  | safe_div (x, y) = SOME (x div y)",
+      "notes": "Exceptions are raised and caught with 'handle'. Option types (NONE/SOME) are heavily used for pure functional error handling."
+    },
+    "comments": {
+      "title": "Comments & Annotations",
+      "concept_id": "comments",
+      "code": "-- Single-line comment\n{- Multi-line\n   comment block -}\nadd :: Int -> Int -> Int\nadd a b = a + b",
+      "notes": "Standard ML uses functional comment delimiters (-- in Haskell/ML, ; in Lisps, # or % in BEAM)."
+    },
+    "numbers": {
+      "title": "Numbers & Numerics",
+      "concept_id": "numbers",
+      "code": "x = 42\npi = 3.14159\nhex = 0xFF",
+      "notes": "Standard ML supports exact rational fractions, arbitrary-precision integers, and IEEE floats natively."
+    },
+    "booleans": {
+      "title": "Booleans & Logic",
+      "concept_id": "booleans",
+      "code": "val isActive = true",
+      "notes": "Standard ML treats booleans as first-class algebraic constructors (True/False, true/false, t/nil)."
+    },
+    "type_casting": {
+      "title": "Type Conversion",
+      "concept_id": "type_casting",
+      "code": "num = String.to_integer(\"42\")\nstr = Integer.to_string(num)",
+      "notes": "Standard ML performs conversion via typeclass methods (fromIntegral, show, read) or explicit parse functions."
+    },
+    "strings": {
+      "title": "Strings & Text",
+      "concept_id": "strings",
+      "code": "s = \"Hello, World!\"\nchar = ?H",
+      "notes": "Standard ML represents strings as linked lists of characters, UTF-8 binaries, or dedicated text buffers."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "import Text.Printf\nmsg = printf \"User %s scored %d\" \"Alice\" (95 :: Int)",
+      "notes": "Standard ML formats text through format strings, interpolation macros, or string concatenation."
+    },
+    "pattern_matching": {
+      "title": "Pattern Matching",
+      "concept_id": "pattern_matching",
+      "code": "(case val\n  (1 \"One\")\n  ((2 3) \"Two or Three\")\n  (_ \"Other\"))",
+      "notes": "Pattern matching is a core feature in Standard ML, destructuring algebraic variants, tuples, and lists directly."
+    },
+    "range": {
+      "title": "Ranges & Sequences",
+      "concept_id": "range",
+      "code": "r = 1..10\nslice = Enum.slice(1..10, 2, 4)",
+      "notes": "Standard ML constructs ranges as lazy lists, infinite streams, or structured range enumerables."
+    },
+    "iterators": {
+      "title": "Iterators & Comprehensions",
+      "concept_id": "iterators",
+      "code": "for x <- 1..10, rem(x, 2) == 0, do: x * x",
+      "notes": "Standard ML achieves iterative processing through list comprehensions, map/filter transforms, and recursion."
+    },
+    "oop_classes": {
+      "title": "Types & Abstractions (OOP Equivalent)",
+      "concept_id": "oop_classes",
+      "code": "defmodule Person do\n  defstruct [:name, :age]\n  def greet(%Person{name: name}), do: \"Hello #{name}\"\nend",
+      "notes": "Standard ML emphasizes algebraic data types, protocols/typeclasses, and structs over traditional class hierarchies."
+    },
+    "lists": {
+      "title": "Lists (Linked Lists)",
+      "concept_id": "lists",
+      "code": "[1, 2, 3] ++ [4, 5]",
+      "notes": "Lists in Standard ML are singly linked immutable sequences optimized for head/tail structural sharing."
+    },
+    "tuples": {
+      "title": "Tuples & Records",
+      "concept_id": "tuples",
+      "code": "(list 1 \"apple\" t)",
+      "notes": "Standard ML uses fixed-length heterogeneous tuples for bundling related data points and function return values."
+    },
+    "sets": {
+      "title": "Sets",
+      "concept_id": "sets",
+      "code": "s = MapSet.new([1, 2, 3])\nMapSet.put(s, 4)",
+      "notes": "Standard ML provides persistent immutable sets implemented via balanced binary trees (HAMT / AVL)."
+    },
+    "modules_import": {
+      "title": "Modules & Imports",
+      "concept_id": "modules_import",
+      "code": "defmodule MyModule do\n  import Enum, only: [map: 2]\n  alias MyProject.Helper\nend",
+      "notes": "Standard ML isolates scopes through modules and explicit import lists with aliasing and qualified names."
+    }
+  }
+}

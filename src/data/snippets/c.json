@@ -1,0 +1,149 @@
+{
+  "language_id": "c",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "int count = 10;\nconstexpr double pi = 3.14159; // C23\nauto name = \"Alice\"; // C23 type inference",
+      "notes": "C23 introduces `constexpr` for named constants and `auto` for type inference, similar to C++."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "#include <stdbool.h>\n#include <stdint.h>\n\nint integer = 42;\nfloat decimal = 3.14f;\nbool flag = true;\nuint64_t large_num = 9000;",
+      "notes": "C features fundamental scalar types and relies on stdint.h for fixed-width integer types."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "int a = 10, b = 3;\nint sum = a + b;\nint mod = a % b;\nint bitwise_and = a & b;\nbool is_equal = (a == b);",
+      "notes": "C provides standard arithmetic, logical, and bitwise operators, but lacks a built-in exponentiation operator."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "int x = 10;\nif (x > 5) {\n    printf(\"Greater\");\n} else if (x == 5) {\n    printf(\"Equal\");\n} else {\n    printf(\"Lesser\");\n}\n\nint y = (x > 5) ? 1 : 0;",
+      "notes": "Conditionals follow the standard C-family syntax, including the ternary operator for concise checks."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "for (int i = 0; i < 5; i++) {\n    printf(\"%d\\n\", i);\n}",
+      "notes": "The classic three-part for loop is heavily used, allowing initialization, condition, and increment in one line."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "int i = 0;\nwhile (i < 5) {\n    printf(\"%d\\n\", i);\n    i++;\n}\n\ndo {\n    printf(\"Runs at least once\\n\");\n} while (0);",
+      "notes": "Supports both top-tested `while` and bottom-tested `do-while` loops."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "int add(int a, int b) {\n    return a + b;\n}\n\nvoid print_msg(const char* msg) {\n    puts(msg);\n}",
+      "notes": "Functions in C must be declared before use. They can return a single value or void."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "int numbers[5] = {1, 2, 3, 4, 5};\nint size = sizeof(numbers) / sizeof(numbers[0]);\n\nfor (int i = 0; i < size; i++) {\n    printf(\"%d \", numbers[i]);\n}",
+      "notes": "Arrays are continuous memory blocks. They do not store their size, requiring manual bounds tracking."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "// No built-in map type in C.\n// typically implemented via struct arrays or external libraries (e.g., GHashTable).\ntypedef struct {\n    char* key;\n    int value;\n} KeyValuePair;\n\nKeyValuePair map[2] = {{\"apple\", 1}, {\"banana\", 2}};",
+      "notes": "C lacks a built-in map/dictionary type. Developers implement hash tables manually or use third-party libraries."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "#include <errno.h>\n#include <string.h>\n\nFILE *f = fopen(\"missing.txt\", \"r\");\nif (!f) {\n    fprintf(stderr, \"Error: %s\\n\", strerror(errno));\n    return 1;\n}",
+      "notes": "Error handling typically relies on return codes, null pointers, and the global `errno` variable."
+    },
+    "comments": {
+      "title": "Comments & Documentation",
+      "concept_id": "comments",
+      "code": "// Single-line comment in C\n\n/*\n * Multi-line comment block\n */\n\n/**\n * Documentation comment\n */",
+      "notes": "C uses C-style // single-line and /* */ multi-line comments."
+    },
+    "numbers": {
+      "title": "Numbers & Numerics",
+      "concept_id": "numbers",
+      "code": "int a = 42;\nlong long b = 1000000000LL;\nfloat f = 3.14f;\ndouble d = 3.14159265;\nint hex = 0xFF;",
+      "notes": "C provides explicitly sized integer and floating-point primitives with binary and hex support."
+    },
+    "booleans": {
+      "title": "Booleans & Conditions",
+      "concept_id": "booleans",
+      "code": "#include <stdbool.h>\nbool is_active = true;\nbool is_done = false;\nif (is_active && !is_done) {\n    printf(\"Active\\n\");\n}",
+      "notes": "C uses bool / boolean types with true and false literals and logical operators (&&, ||, !)."
+    },
+    "type_casting": {
+      "title": "Type Casting & Conversion",
+      "concept_id": "type_casting",
+      "code": "int a = 42;\ndouble d = (double)a;\nint b = (int)d;",
+      "notes": "C supports explicit type casting using cast operators or constructor functions."
+    },
+    "strings": {
+      "title": "Strings & Characters",
+      "concept_id": "strings",
+      "code": "const char* str = \"Hello, World!\";\nchar ch = str[0]; // 'H'\nchar buf[64];\nstrcpy(buf, str);",
+      "notes": "C distinguishes between single-character literals and string sequences or pointer slices."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "char buffer[100];\nsnprintf(buffer, sizeof(buffer), \"User: %s, Score: %d\", \"Alice\", 95);\nprintf(\"%s\\n\", buffer);",
+      "notes": "C supports string interpolation or printf-style formatting specifiers."
+    },
+    "pattern_matching": {
+      "title": "Pattern Matching & Switch",
+      "concept_id": "pattern_matching",
+      "code": "switch (val) {\n    case 1:\n        printf(\"One\\n\");\n        break;\n    case 2:\n    case 3:\n        printf(\"Two or Three\\n\");\n        break;\n    default:\n        printf(\"Other\\n\");\n}",
+      "notes": "C evaluates branching conditions through switch statements, match expressions, or when constructs."
+    },
+    "range": {
+      "title": "Ranges & Slicing",
+      "concept_id": "range",
+      "code": "for (int i = 0; i < 10; i += 2) {\n    // Range from 0 to 9 step 2\n}",
+      "notes": "C represents ranges with range operators (.., ..<) or standard indexed iteration boundaries."
+    },
+    "iterators": {
+      "title": "Iterators & Sequences",
+      "concept_id": "iterators",
+      "code": "for (const auto& item : collection) {\n    // Iteration over container\n}",
+      "notes": "C implements iteration through Iterator interfaces, generators, or range-for loops."
+    },
+    "oop_classes": {
+      "title": "Classes & OOP",
+      "concept_id": "oop_classes",
+      "code": "typedef struct {\n    char name[32];\n    int age;\n} Person;\n\nvoid Person_Init(Person* p, const char* n, int a) {\n    strncpy(p->name, n, 31);\n    p->age = a;\n}",
+      "notes": "C models object orientation through classes with constructors/encapsulation or structs with associated methods."
+    },
+    "lists": {
+      "title": "Dynamic Arrays & Lists",
+      "concept_id": "lists",
+      "code": "// Dynamic array via malloc/realloc\nint* list = malloc(sizeof(int) * 4);\nlist[0] = 10;\nlist = realloc(list, sizeof(int) * 8);\nfree(list);",
+      "notes": "C manages growable dynamic collections using vectors, ArrayLists, or dynamically reallocated heap buffers."
+    },
+    "tuples": {
+      "title": "Tuples & Records",
+      "concept_id": "tuples",
+      "code": "typedef struct { int first; double second; } Pair;\nPair p = { 1, 3.14 };",
+      "notes": "C represents heterogeneous records through tuples, structured bindings, or lightweight record structs."
+    },
+    "sets": {
+      "title": "Sets & Unique Collections",
+      "concept_id": "sets",
+      "code": "Set<int> set = new HashSet<>();",
+      "notes": "C provides unique collection hashing structures with O(1) average lookup and insertion time."
+    },
+    "modules_import": {
+      "title": "Modules, Packages & Imports",
+      "concept_id": "modules_import",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n#include \"my_header.h\"",
+      "notes": "C structures namespaces and external libraries via include directives, package declarations, or module imports."
+    }
+  }
+}

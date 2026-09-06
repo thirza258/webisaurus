@@ -1,0 +1,149 @@
+{
+  "language_id": "objectpascal",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "var\n  Number: Integer = 42;\n  Text: string = 'Hello';",
+      "notes": "Variables are declared in a var block."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "var\n  I: Integer;\n  F: Double;\n  B: Boolean;\n  S: string;\n  C: Char;",
+      "notes": "Modern Object Pascal types."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "A := 5 + 3;\nB := A * 2;\nC := (A = B) and True;",
+      "notes": "Uses := for assignment, = for equality, and logical operators as words."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "if X > 0 then\nbegin\n  WriteLn('Positive');\nend\nelse if X < 0 then\nbegin\n  WriteLn('Negative');\nend\nelse\nbegin\n  WriteLn('Zero');\nend;",
+      "notes": "Uses begin/end to denote code blocks."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "for I := 1 to 10 do\nbegin\n  WriteLn(I);\nend;\n\nfor Item in List do\nbegin\n  WriteLn(Item);\nend;",
+      "notes": "Supports for-to and for-in loops."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "while Condition do\nbegin\n  // do something\nend;\n\nrepeat\n  // do something\nuntil Condition;",
+      "notes": "Supports while-do and repeat-until constructs."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "function Add(A, B: Integer): Integer;\nbegin\n  Result := A + B;\nend;\n\nprocedure Print(S: string);\nbegin\n  WriteLn(S);\nend;",
+      "notes": "Differentiates between functions (return value) and procedures (no return value)."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "var\n  Arr: array[0..2] of Integer = (1, 2, 3);\n  DynArr: array of Integer;\nbegin\n  Arr[0] := 4;\n  SetLength(DynArr, 3);\nend;",
+      "notes": "Supports static and dynamic arrays."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "uses Generics.Collections;\nvar\n  Dict: TDictionary<string, Integer>;\nbegin\n  Dict := TDictionary<string, Integer>.Create;\n  Dict.Add('Key', 1);\n  Value := Dict['Key'];\nend;",
+      "notes": "Uses generic collections for maps."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "try\n  raise Exception.Create('Error');\nexcept\n  on E: Exception do\n    WriteLn(E.Message);\nend;\n\ntry\n  // code\nfinally\n  // cleanup\nend;",
+      "notes": "Supports try-except and try-finally blocks."
+    },
+    "comments": {
+      "title": "Comments & Documentation",
+      "concept_id": "comments",
+      "code": "// Comments in Object Pascal\n/* Block documentation */",
+      "notes": "Object Pascal provides comments to document code behavior."
+    },
+    "numbers": {
+      "title": "Numbers & Constants",
+      "concept_id": "numbers",
+      "code": "val = 42\nratio = 3.14159",
+      "notes": "Object Pascal supports numeric literals for computation and indexing."
+    },
+    "booleans": {
+      "title": "Booleans & Conditions",
+      "concept_id": "booleans",
+      "code": "flag = true\nif flag:\n    // Execute branch",
+      "notes": "Object Pascal provides boolean conditions for program control flow."
+    },
+    "type_casting": {
+      "title": "Type Conversion",
+      "concept_id": "type_casting",
+      "code": "converted = (type)original_value",
+      "notes": "Object Pascal converts data between native format representations."
+    },
+    "strings": {
+      "title": "Strings & Characters",
+      "concept_id": "strings",
+      "code": "text = \"Sample string text\"",
+      "notes": "Object Pascal represents textual data through string literals and character arrays."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "formatted = format(\"Text: %s\", value)",
+      "notes": "Object Pascal formats and joins textual values for display and output."
+    },
+    "pattern_matching": {
+      "title": "Conditionals & Branching",
+      "concept_id": "pattern_matching",
+      "code": "case value of\n    1: execute_one()\n    default: execute_default()",
+      "notes": "Object Pascal branches execution based on value comparison and conditional expressions."
+    },
+    "range": {
+      "title": "Ranges & Intervals",
+      "concept_id": "range",
+      "code": "range = 1..10",
+      "notes": "Object Pascal defines intervals and index sequences for bounded processing."
+    },
+    "iterators": {
+      "title": "Iteration & Loops",
+      "concept_id": "iterators",
+      "code": "for item in collection:\n    process(item)",
+      "notes": "Object Pascal iterates across collections and sequence elements."
+    },
+    "oop_classes": {
+      "title": "Structures & Modules",
+      "concept_id": "oop_classes",
+      "code": "struct Entity {\n    data: Value\n}",
+      "notes": "Object Pascal organizes data and behavior through structures or modular components."
+    },
+    "lists": {
+      "title": "Collections & Arrays",
+      "concept_id": "lists",
+      "code": "items = [1, 2, 3, 4]",
+      "notes": "Object Pascal stores sequence data in indexed lists or arrays."
+    },
+    "tuples": {
+      "title": "Records & Pairs",
+      "concept_id": "tuples",
+      "code": "pair = (10, \"label\")",
+      "notes": "Object Pascal groups related fields into lightweight composite pairs or records."
+    },
+    "sets": {
+      "title": "Sets & Uniqueness",
+      "concept_id": "sets",
+      "code": "set = Set([1, 2, 3])",
+      "notes": "Object Pascal tracks unique values without duplicate entries."
+    },
+    "modules_import": {
+      "title": "Libraries & Modules",
+      "concept_id": "modules_import",
+      "code": "import module_name",
+      "notes": "Object Pascal organizes external libraries and code units into modular namespaces."
+    }
+  }
+}

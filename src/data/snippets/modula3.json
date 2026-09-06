@@ -1,0 +1,149 @@
+{
+  "language_id": "modula3",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "VAR\n  x: INTEGER := 10;\n  y := 20; (* Type inferred *)",
+      "notes": "Variables are declared in VAR blocks. Type can be inferred if an initial value is provided."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "TYPE\n  IntList = REF RECORD val: INTEGER; next: IntList END;\nVAR\n  b: BOOLEAN;\n  c: CHAR;\n  r: REAL;",
+      "notes": "Strongly typed. Introduces object-oriented features, references (REF), and traced (garbage-collected) vs untraced pointers."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "x := 10 + 5;\ny := x DIV 2;\nflag := (x = y) AND NOT (x > 20);",
+      "notes": "Similar to Modula-2. Assignment is ':='."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "IF x > 0 THEN\n  y := 1;\nELSIF x < 0 THEN\n  y := -1;\nELSE\n  y := 0;\nEND;",
+      "notes": "Standard IF structure ending with END."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "FOR i := 1 TO 10 DO\n  sum := sum + i;\nEND;",
+      "notes": "Loop variable is implicitly declared and read-only within the loop body."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "WHILE x < 100 DO\n  x := x * 2;\nEND;",
+      "notes": "Standard WHILE loop."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "PROCEDURE Add(a, b: INTEGER): INTEGER =\nBEGIN\n  RETURN a + b;\nEND Add;",
+      "notes": "Procedure definitions use '=' before BEGIN."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "VAR\n  arr: ARRAY [1..10] OF INTEGER;\n  dynArr: REF ARRAY OF INTEGER;\nBEGIN\n  dynArr := NEW(REF ARRAY OF INTEGER, 10);\n  dynArr[0] := 42;\nEND;",
+      "notes": "Supports both static arrays and dynamically allocated open arrays."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "(* Standard library provides a Table interface *)\nIMPORT IntIntTbl;\nVAR\n  tbl := NEW(IntIntTbl.Default).init();\nBEGIN\n  EVAL tbl.put(1, 42);\nEND;",
+      "notes": "The standard library provides generic tables (hash maps)."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "EXCEPTION Error(TEXT);\n\nTRY\n  RAISE Error(\"Something went wrong\");\nEXCEPT\n| Error(msg) => IO.Put(msg);\nEND;",
+      "notes": "Robust exception handling using TRY...EXCEPT and RAISE."
+    },
+    "comments": {
+      "title": "Comments & Documentation",
+      "concept_id": "comments",
+      "code": "// Comments in Modula-3\n/* Block documentation */",
+      "notes": "Modula-3 provides comments to document code behavior."
+    },
+    "numbers": {
+      "title": "Numbers & Constants",
+      "concept_id": "numbers",
+      "code": "val = 42\nratio = 3.14159",
+      "notes": "Modula-3 supports numeric literals for computation and indexing."
+    },
+    "booleans": {
+      "title": "Booleans & Conditions",
+      "concept_id": "booleans",
+      "code": "flag = true\nif flag:\n    // Execute branch",
+      "notes": "Modula-3 provides boolean conditions for program control flow."
+    },
+    "type_casting": {
+      "title": "Type Conversion",
+      "concept_id": "type_casting",
+      "code": "converted = (type)original_value",
+      "notes": "Modula-3 converts data between native format representations."
+    },
+    "strings": {
+      "title": "Strings & Characters",
+      "concept_id": "strings",
+      "code": "text = \"Sample string text\"",
+      "notes": "Modula-3 represents textual data through string literals and character arrays."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "formatted = format(\"Text: %s\", value)",
+      "notes": "Modula-3 formats and joins textual values for display and output."
+    },
+    "pattern_matching": {
+      "title": "Conditionals & Branching",
+      "concept_id": "pattern_matching",
+      "code": "case value of\n    1: execute_one()\n    default: execute_default()",
+      "notes": "Modula-3 branches execution based on value comparison and conditional expressions."
+    },
+    "range": {
+      "title": "Ranges & Intervals",
+      "concept_id": "range",
+      "code": "range = 1..10",
+      "notes": "Modula-3 defines intervals and index sequences for bounded processing."
+    },
+    "iterators": {
+      "title": "Iteration & Loops",
+      "concept_id": "iterators",
+      "code": "for item in collection:\n    process(item)",
+      "notes": "Modula-3 iterates across collections and sequence elements."
+    },
+    "oop_classes": {
+      "title": "Structures & Modules",
+      "concept_id": "oop_classes",
+      "code": "struct Entity {\n    data: Value\n}",
+      "notes": "Modula-3 organizes data and behavior through structures or modular components."
+    },
+    "lists": {
+      "title": "Collections & Arrays",
+      "concept_id": "lists",
+      "code": "items = [1, 2, 3, 4]",
+      "notes": "Modula-3 stores sequence data in indexed lists or arrays."
+    },
+    "tuples": {
+      "title": "Records & Pairs",
+      "concept_id": "tuples",
+      "code": "pair = (10, \"label\")",
+      "notes": "Modula-3 groups related fields into lightweight composite pairs or records."
+    },
+    "sets": {
+      "title": "Sets & Uniqueness",
+      "concept_id": "sets",
+      "code": "set = Set([1, 2, 3])",
+      "notes": "Modula-3 tracks unique values without duplicate entries."
+    },
+    "modules_import": {
+      "title": "Libraries & Modules",
+      "concept_id": "modules_import",
+      "code": "import module_name",
+      "notes": "Modula-3 organizes external libraries and code units into modular namespaces."
+    }
+  }
+}

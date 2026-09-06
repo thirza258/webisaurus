@@ -1,0 +1,149 @@
+{
+  "language_id": "xtend",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "val number = 42\nvar text = 'Hello'",
+      "notes": "val is for final (immutable), var is for mutable variables."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "val int i = 1\nval double f = 2.0\nval boolean b = true\nval String s = 'Text'",
+      "notes": "Uses Java types, with type inference."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "val a = 5 + 3\nval b = a * 2\nval c = (a == b) && true",
+      "notes": "Standard Java operators, plus operator overloading."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "if (x > 0) {\n    println('Positive')\n} else if (x < 0) {\n    println('Negative')\n} else {\n    println('Zero')\n}",
+      "notes": "Standard if/else syntax, conditionals are expressions."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "for (i : 1..10) {\n    println(i)\n}\nfor (item : list) {\n    println(item)\n}",
+      "notes": "Supports range loops and enhanced for loops."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "while (condition) {\n    // do something\n}\n\ndo {\n    // do something\n} while (condition)",
+      "notes": "Standard while and do-while loops."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "def int add(int a, int b) {\n    return a + b\n}\n\ndef void print(String s) {\n    println(s)\n}",
+      "notes": "Uses def keyword for method definition."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "val arr = newIntArrayOfSize(3)\narr.set(0, 1)",
+      "notes": "Arrays are less common than Lists in Xtend."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "val map = #{'Key' -> 1}\nval value = map.get('Key')",
+      "notes": "Uses map literals with -> for entries."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "try {\n    throw new Exception('Error')\n} catch (Exception e) {\n    println(e.message)\n} finally {\n    // cleanup\n}",
+      "notes": "Exceptions are unchecked by default in Xtend."
+    },
+    "comments": {
+      "title": "Comments & Documentation",
+      "concept_id": "comments",
+      "code": "// Comments in Xtend\n/* Block documentation */",
+      "notes": "Xtend provides comments to document code behavior."
+    },
+    "numbers": {
+      "title": "Numbers & Constants",
+      "concept_id": "numbers",
+      "code": "val = 42\nratio = 3.14159",
+      "notes": "Xtend supports numeric literals for computation and indexing."
+    },
+    "booleans": {
+      "title": "Booleans & Conditions",
+      "concept_id": "booleans",
+      "code": "flag = true\nif flag:\n    // Execute branch",
+      "notes": "Xtend provides boolean conditions for program control flow."
+    },
+    "type_casting": {
+      "title": "Type Conversion",
+      "concept_id": "type_casting",
+      "code": "converted = (type)original_value",
+      "notes": "Xtend converts data between native format representations."
+    },
+    "strings": {
+      "title": "Strings & Characters",
+      "concept_id": "strings",
+      "code": "text = \"Sample string text\"",
+      "notes": "Xtend represents textual data through string literals and character arrays."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "formatted = format(\"Text: %s\", value)",
+      "notes": "Xtend formats and joins textual values for display and output."
+    },
+    "pattern_matching": {
+      "title": "Conditionals & Branching",
+      "concept_id": "pattern_matching",
+      "code": "case value of\n    1: execute_one()\n    default: execute_default()",
+      "notes": "Xtend branches execution based on value comparison and conditional expressions."
+    },
+    "range": {
+      "title": "Ranges & Intervals",
+      "concept_id": "range",
+      "code": "range = 1..10",
+      "notes": "Xtend defines intervals and index sequences for bounded processing."
+    },
+    "iterators": {
+      "title": "Iteration & Loops",
+      "concept_id": "iterators",
+      "code": "for item in collection:\n    process(item)",
+      "notes": "Xtend iterates across collections and sequence elements."
+    },
+    "oop_classes": {
+      "title": "Structures & Modules",
+      "concept_id": "oop_classes",
+      "code": "struct Entity {\n    data: Value\n}",
+      "notes": "Xtend organizes data and behavior through structures or modular components."
+    },
+    "lists": {
+      "title": "Collections & Arrays",
+      "concept_id": "lists",
+      "code": "items = [1, 2, 3, 4]",
+      "notes": "Xtend stores sequence data in indexed lists or arrays."
+    },
+    "tuples": {
+      "title": "Records & Pairs",
+      "concept_id": "tuples",
+      "code": "pair = (10, \"label\")",
+      "notes": "Xtend groups related fields into lightweight composite pairs or records."
+    },
+    "sets": {
+      "title": "Sets & Uniqueness",
+      "concept_id": "sets",
+      "code": "set = Set([1, 2, 3])",
+      "notes": "Xtend tracks unique values without duplicate entries."
+    },
+    "modules_import": {
+      "title": "Libraries & Modules",
+      "concept_id": "modules_import",
+      "code": "import module_name",
+      "notes": "Xtend organizes external libraries and code units into modular namespaces."
+    }
+  }
+}

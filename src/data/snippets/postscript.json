@@ -1,0 +1,149 @@
+{
+  "language_id": "postscript",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "/x 10 def\nx = % prints 10",
+      "notes": "Variables are defined by pushing a literal name (starting with /) and a value, then calling 'def'."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "42 % integer\n3.14 % real\ntrue % boolean\n(Hello) % string",
+      "notes": "Dynamically typed. Supports numbers, booleans, strings, arrays, dictionaries, and executable procedures."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "1 2 add % 3\n5 2 sub % 3\n3 4 mul % 12\n10 2 div % 5.0\n1 1 eq  % true",
+      "notes": "Stack-based RPN syntax, similar to Forth."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "x 0 gt\n{ (Positive) = }\n{ (Non-positive) = }\nifelse",
+      "notes": "'if' and 'ifelse' consume a boolean and one or two procedure blocks."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "% start step limit { proc } for\n1 1 10 { \n  = % prints the loop counter\n} for",
+      "notes": "The 'for' operator takes a starting value, step, limit, and a procedure to execute."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "{ \n  x 10 gt { exit } if\n  /x x 1 add def\n} loop",
+      "notes": "'loop' iterates a procedure infinitely until 'exit' is called."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "/square {\n  dup mul\n} def\n\n5 square = % prints 25",
+      "notes": "Functions are simply executable arrays (procedures) bound to a name in the dictionary."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "/arr [1 2 3 (four)] def\narr 0 get % gets 1\narr 1 42 put % sets index 1 to 42",
+      "notes": "Arrays are enclosed in brackets. 'get' and 'put' are used for element access."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "/dict 2 dict def\ndict /Key1 (Value1) put\ndict /Key1 get % (Value1)\n\n% Alternatively:\n<< /Key (Value) >>",
+      "notes": "Dictionaries act as maps. Created with 'dict' operator or using << ... >> syntax."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "{ \n  % risky code\n} stopped { \n  (Error occurred) = \n} if",
+      "notes": "'stopped' executes a procedure and pushes a boolean true if it was halted prematurely (e.g., via 'stop' or an error)."
+    },
+    "comments": {
+      "title": "Comments & Documentation",
+      "concept_id": "comments",
+      "code": "// Comments in PostScript\n/* Block documentation */",
+      "notes": "PostScript provides comments to document code behavior."
+    },
+    "numbers": {
+      "title": "Numbers & Constants",
+      "concept_id": "numbers",
+      "code": "val = 42\nratio = 3.14159",
+      "notes": "PostScript supports numeric literals for computation and indexing."
+    },
+    "booleans": {
+      "title": "Booleans & Conditions",
+      "concept_id": "booleans",
+      "code": "flag = true\nif flag:\n    // Execute branch",
+      "notes": "PostScript provides boolean conditions for program control flow."
+    },
+    "type_casting": {
+      "title": "Type Conversion",
+      "concept_id": "type_casting",
+      "code": "converted = (type)original_value",
+      "notes": "PostScript converts data between native format representations."
+    },
+    "strings": {
+      "title": "Strings & Characters",
+      "concept_id": "strings",
+      "code": "text = \"Sample string text\"",
+      "notes": "PostScript represents textual data through string literals and character arrays."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "formatted = format(\"Text: %s\", value)",
+      "notes": "PostScript formats and joins textual values for display and output."
+    },
+    "pattern_matching": {
+      "title": "Conditionals & Branching",
+      "concept_id": "pattern_matching",
+      "code": "case value of\n    1: execute_one()\n    default: execute_default()",
+      "notes": "PostScript branches execution based on value comparison and conditional expressions."
+    },
+    "range": {
+      "title": "Ranges & Intervals",
+      "concept_id": "range",
+      "code": "range = 1..10",
+      "notes": "PostScript defines intervals and index sequences for bounded processing."
+    },
+    "iterators": {
+      "title": "Iteration & Loops",
+      "concept_id": "iterators",
+      "code": "for item in collection:\n    process(item)",
+      "notes": "PostScript iterates across collections and sequence elements."
+    },
+    "oop_classes": {
+      "title": "Structures & Modules",
+      "concept_id": "oop_classes",
+      "code": "struct Entity {\n    data: Value\n}",
+      "notes": "PostScript organizes data and behavior through structures or modular components."
+    },
+    "lists": {
+      "title": "Collections & Arrays",
+      "concept_id": "lists",
+      "code": "items = [1, 2, 3, 4]",
+      "notes": "PostScript stores sequence data in indexed lists or arrays."
+    },
+    "tuples": {
+      "title": "Records & Pairs",
+      "concept_id": "tuples",
+      "code": "pair = (10, \"label\")",
+      "notes": "PostScript groups related fields into lightweight composite pairs or records."
+    },
+    "sets": {
+      "title": "Sets & Uniqueness",
+      "concept_id": "sets",
+      "code": "set = Set([1, 2, 3])",
+      "notes": "PostScript tracks unique values without duplicate entries."
+    },
+    "modules_import": {
+      "title": "Libraries & Modules",
+      "concept_id": "modules_import",
+      "code": "import module_name",
+      "notes": "PostScript organizes external libraries and code units into modular namespaces."
+    }
+  }
+}

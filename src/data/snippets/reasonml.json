@@ -1,0 +1,149 @@
+{
+  "language_id": "reasonml",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "let x = 10;\n\n/* Mutable reference */\nlet y = ref(20);\ny := y^ + 5;",
+      "notes": "ReasonML uses 'let' for immutable bindings. Mutability is achieved via explicit 'ref's, dereferenced with '^' and updated with ':='."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "let i: int = 42;\nlet f: float = 3.14;\nlet b: bool = true;\nlet c: char = 'X';\nlet s: string = \"Hello\";\n\n/* Variant type */\ntype shape =\n  | Circle(float)\n  | Rectangle(float, float);",
+      "notes": "ReasonML provides a JavaScript-like syntax over OCaml's powerful static type system and variant types."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "let addInt = 5 + 3;\nlet addFloat = 5.0 +. 3.0;\n\nlet divInt = 5 / 2;\nlet divFloat = 5.0 /. 2.0;\n\nlet logic = true && !false || true;\n\nlet eq = (5 == 5);\nlet physEq = (5 === 5);\nlet neq = (5 != 3);",
+      "notes": "Like OCaml, float and int operators are distinct (e.g., '+' vs '+.'). Reason maps structural/physical equality to `==` and `===` respectively."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "let result = \n  if (x > 0) {\n    \"Positive\";\n  } else {\n    \"Non-positive\";\n  };\n\n/* Switch (pattern matching) */\nlet sign = switch (x) {\n  | n when n > 0 => 1\n  | n when n < 0 => -1\n  | _ => 0\n};",
+      "notes": "Conditionals are expressions. 'switch' is used for pattern matching, bringing immense power compared to JS switch statements."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "for (i in 1 to 5) {\n  Js.log(i);\n};\n\n/* Downward loop */\nfor (i in 5 downto 1) {\n  Js.log(i);\n};",
+      "notes": "Reason has built-in imperative for loops going 'to' or 'downto' a value, useful for simple side-effect iteration."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "let counter = ref(0);\n\nwhile (counter^ < 5) {\n  Js.log(counter^);\n  counter := counter^ + 1;\n};",
+      "notes": "While loops exist for imperative tasks. They do not return values (type is 'unit')."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "let add = (x, y) => x + y;\n\n/* Recursive function */\nlet rec factorial = (n) =>\n  if (n == 0) { 1 } else { n * factorial(n - 1) };\n\n/* Labeled arguments */\nlet greet = (~greeting, ~name) => greeting ++ \", \" ++ name;\ngreet(~name=\"Bob\", ~greeting=\"Hello\");",
+      "notes": "Functions use arrow syntax. The 'rec' keyword is mandatory for recursion. Labeled arguments make function calls explicit."
+    },
+    "arrays": {
+      "title": "Arrays and Lists",
+      "concept_id": "arrays",
+      "code": "/* List (immutable linked list) */\nlet lst = [1, 2, 3];\nlet newLst = [0, ...lst];\n\n/* Array (mutable, fixed size) */\nlet arr = [|1, 2, 3|];\narr[0] = 99;\nlet first = arr[0];",
+      "notes": "Lists are idiomatic for functional traversal. Arrays are used for fast random access and mutable state, bounded by `[|` and `|]`."
+    },
+    "maps": {
+      "title": "Maps / Dicts",
+      "concept_id": "maps",
+      "code": "/* Using Belt Map */\nmodule IntMap = Belt.Map.Int;\n\nlet m = IntMap.empty;\nlet m1 = IntMap.set(m, 1, \"apple\");\n\nlet valOpt = IntMap.get(m1, 1); /* Returns Some(\"apple\") */",
+      "notes": "Belt is the standard library for Reason/ReScript. Belt.Map provides immutable maps with an easy API."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "exception DivByZero;\n\nlet div = (x, y) => \n  if (y == 0) { raise(DivByZero) } else { x / y };\n\nlet safe = \n  try (div(10, 0)) {\n  | DivByZero => 0\n  };\n\n/* Option type */\nlet safeDiv = (x, y) =>\n  if (y == 0) { None } else { Some(x / y) };",
+      "notes": "Reason supports exceptions but idiomatic code uses 'option' or 'result' types to model failures in the type system."
+    },
+    "comments": {
+      "title": "Comments & Annotations",
+      "concept_id": "comments",
+      "code": "-- Single-line comment\n{- Multi-line\n   comment block -}\nadd :: Int -> Int -> Int\nadd a b = a + b",
+      "notes": "ReasonML uses functional comment delimiters (-- in Haskell/ML, ; in Lisps, # or % in BEAM)."
+    },
+    "numbers": {
+      "title": "Numbers & Numerics",
+      "concept_id": "numbers",
+      "code": "x = 42\npi = 3.14159\nhex = 0xFF",
+      "notes": "ReasonML supports exact rational fractions, arbitrary-precision integers, and IEEE floats natively."
+    },
+    "booleans": {
+      "title": "Booleans & Logic",
+      "concept_id": "booleans",
+      "code": "val isActive = true",
+      "notes": "ReasonML treats booleans as first-class algebraic constructors (True/False, true/false, t/nil)."
+    },
+    "type_casting": {
+      "title": "Type Conversion",
+      "concept_id": "type_casting",
+      "code": "num = String.to_integer(\"42\")\nstr = Integer.to_string(num)",
+      "notes": "ReasonML performs conversion via typeclass methods (fromIntegral, show, read) or explicit parse functions."
+    },
+    "strings": {
+      "title": "Strings & Text",
+      "concept_id": "strings",
+      "code": "s = \"Hello, World!\"\nchar = ?H",
+      "notes": "ReasonML represents strings as linked lists of characters, UTF-8 binaries, or dedicated text buffers."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "import Text.Printf\nmsg = printf \"User %s scored %d\" \"Alice\" (95 :: Int)",
+      "notes": "ReasonML formats text through format strings, interpolation macros, or string concatenation."
+    },
+    "pattern_matching": {
+      "title": "Pattern Matching",
+      "concept_id": "pattern_matching",
+      "code": "(case val\n  (1 \"One\")\n  ((2 3) \"Two or Three\")\n  (_ \"Other\"))",
+      "notes": "Pattern matching is a core feature in ReasonML, destructuring algebraic variants, tuples, and lists directly."
+    },
+    "range": {
+      "title": "Ranges & Sequences",
+      "concept_id": "range",
+      "code": "r = 1..10\nslice = Enum.slice(1..10, 2, 4)",
+      "notes": "ReasonML constructs ranges as lazy lists, infinite streams, or structured range enumerables."
+    },
+    "iterators": {
+      "title": "Iterators & Comprehensions",
+      "concept_id": "iterators",
+      "code": "for x <- 1..10, rem(x, 2) == 0, do: x * x",
+      "notes": "ReasonML achieves iterative processing through list comprehensions, map/filter transforms, and recursion."
+    },
+    "oop_classes": {
+      "title": "Types & Abstractions (OOP Equivalent)",
+      "concept_id": "oop_classes",
+      "code": "defmodule Person do\n  defstruct [:name, :age]\n  def greet(%Person{name: name}), do: \"Hello #{name}\"\nend",
+      "notes": "ReasonML emphasizes algebraic data types, protocols/typeclasses, and structs over traditional class hierarchies."
+    },
+    "lists": {
+      "title": "Lists (Linked Lists)",
+      "concept_id": "lists",
+      "code": "[1, 2, 3] ++ [4, 5]",
+      "notes": "Lists in ReasonML are singly linked immutable sequences optimized for head/tail structural sharing."
+    },
+    "tuples": {
+      "title": "Tuples & Records",
+      "concept_id": "tuples",
+      "code": "(list 1 \"apple\" t)",
+      "notes": "ReasonML uses fixed-length heterogeneous tuples for bundling related data points and function return values."
+    },
+    "sets": {
+      "title": "Sets",
+      "concept_id": "sets",
+      "code": "s = MapSet.new([1, 2, 3])\nMapSet.put(s, 4)",
+      "notes": "ReasonML provides persistent immutable sets implemented via balanced binary trees (HAMT / AVL)."
+    },
+    "modules_import": {
+      "title": "Modules & Imports",
+      "concept_id": "modules_import",
+      "code": "defmodule MyModule do\n  import Enum, only: [map: 2]\n  alias MyProject.Helper\nend",
+      "notes": "ReasonML isolates scopes through modules and explicit import lists with aliasing and qualified names."
+    }
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "language_id": "cpp_cli",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "int number = 42;\nString^ text = \"Hello\";",
+      "notes": "Uses ^ for tracking handles to reference types."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "int i = 1;\nfloat f = 2.0f;\ndouble d = 3.0;\nbool b = true;\nString^ s = \"Text\";",
+      "notes": "Mixes native C++ types with .NET managed types."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "int a = 5 + 3;\nint b = a * 2;\nbool c = (a == b) && true;",
+      "notes": "Standard C++ operators."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "if (x > 0) {\n    Console::WriteLine(\"Positive\");\n} else if (x < 0) {\n    Console::WriteLine(\"Negative\");\n} else {\n    Console::WriteLine(\"Zero\");\n}",
+      "notes": "Standard if/else syntax."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "for (int i = 0; i < 10; i++) {\n    Console::WriteLine(i);\n}\nfor each (String^ s in list) {\n    Console::WriteLine(s);\n}",
+      "notes": "Supports standard for loops and for each for collections."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "while (condition) {\n    // do something\n}\n\ndo {\n    // do something\n} while (condition);",
+      "notes": "Standard while and do-while loops."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "int Add(int a, int b) {\n    return a + b;\n}",
+      "notes": "Standard function definition."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "array<int>^ numbers = gcnew array<int>{1, 2, 3};\nnumbers[0] = 4;",
+      "notes": "Uses cli::array and gcnew for managed arrays."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "Dictionary<String^, int>^ map = gcnew Dictionary<String^, int>();\nmap->Add(\"Key\", 1);\nint val = map[\"Key\"];",
+      "notes": "Uses .NET Dictionary class."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "try {\n    throw gcnew Exception(\"Error\");\n} catch (Exception^ e) {\n    Console::WriteLine(e->Message);\n} finally {\n    // cleanup\n}",
+      "notes": "Standard try-catch-finally with managed exceptions."
+    },
+    "comments": {
+      "title": "Comments & Documentation",
+      "concept_id": "comments",
+      "code": "// Single-line comment in C++/CLI\n\n/*\n * Multi-line comment block\n */\n\n/**\n * Documentation comment\n */",
+      "notes": "C++/CLI uses C-style // single-line and /* */ multi-line comments."
+    },
+    "numbers": {
+      "title": "Numbers & Numerics",
+      "concept_id": "numbers",
+      "code": "int a = 42;\ndouble b = 3.14159;\nlong large = 1_000_000L;\nint hex = 0xFF;\nint bin = 0b1010;",
+      "notes": "C++/CLI provides explicitly sized integer and floating-point primitives with binary and hex support."
+    },
+    "booleans": {
+      "title": "Booleans & Conditions",
+      "concept_id": "booleans",
+      "code": "bool isActive = true;\nbool isDone = false;\nif (isActive && !isDone) {\n    // Condition satisfied\n}",
+      "notes": "C++/CLI uses bool / boolean types with true and false literals and logical operators (&&, ||, !)."
+    },
+    "type_casting": {
+      "title": "Type Casting & Conversion",
+      "concept_id": "type_casting",
+      "code": "int a = 42;\ndouble d = (double)a;\nint b = (int)d;",
+      "notes": "C++/CLI supports explicit type casting using cast operators or constructor functions."
+    },
+    "strings": {
+      "title": "Strings & Characters",
+      "concept_id": "strings",
+      "code": "String str = \"Hello, World!\";\nchar ch = str.charAt(0);\nint len = str.length();",
+      "notes": "C++/CLI distinguishes between single-character literals and string sequences or pointer slices."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "String name = \"Alice\";\nint score = 95;\nString msg = String.format(\"User %s scored %d\", name, score);",
+      "notes": "C++/CLI supports string interpolation or printf-style formatting specifiers."
+    },
+    "pattern_matching": {
+      "title": "Pattern Matching & Switch",
+      "concept_id": "pattern_matching",
+      "code": "switch (val) {\n    case 1:\n        printf(\"One\\n\");\n        break;\n    case 2:\n    case 3:\n        printf(\"Two or Three\\n\");\n        break;\n    default:\n        printf(\"Other\\n\");\n}",
+      "notes": "C++/CLI evaluates branching conditions through switch statements, match expressions, or when constructs."
+    },
+    "range": {
+      "title": "Ranges & Slicing",
+      "concept_id": "range",
+      "code": "for (int i = 0; i < 10; i += 2) {\n    // Range from 0 to 9 step 2\n}",
+      "notes": "C++/CLI represents ranges with range operators (.., ..<) or standard indexed iteration boundaries."
+    },
+    "iterators": {
+      "title": "Iterators & Sequences",
+      "concept_id": "iterators",
+      "code": "for (const auto& item : collection) {\n    // Iteration over container\n}",
+      "notes": "C++/CLI implements iteration through Iterator interfaces, generators, or range-for loops."
+    },
+    "oop_classes": {
+      "title": "Classes & OOP",
+      "concept_id": "oop_classes",
+      "code": "class Person {\n    private String name;\n    public Person(String name) {\n        this.name = name;\n    }\n    public String getName() {\n        return this.name;\n    }\n}",
+      "notes": "C++/CLI models object orientation through classes with constructors/encapsulation or structs with associated methods."
+    },
+    "lists": {
+      "title": "Dynamic Arrays & Lists",
+      "concept_id": "lists",
+      "code": "List<int> list = new ArrayList<int>();",
+      "notes": "C++/CLI manages growable dynamic collections using vectors, ArrayLists, or dynamically reallocated heap buffers."
+    },
+    "tuples": {
+      "title": "Tuples & Records",
+      "concept_id": "tuples",
+      "code": "record Pair(int x, int y) {}",
+      "notes": "C++/CLI represents heterogeneous records through tuples, structured bindings, or lightweight record structs."
+    },
+    "sets": {
+      "title": "Sets & Unique Collections",
+      "concept_id": "sets",
+      "code": "Set<int> set = new HashSet<>();",
+      "notes": "C++/CLI provides unique collection hashing structures with O(1) average lookup and insertion time."
+    },
+    "modules_import": {
+      "title": "Modules, Packages & Imports",
+      "concept_id": "modules_import",
+      "code": "import package.name;",
+      "notes": "C++/CLI structures namespaces and external libraries via include directives, package declarations, or module imports."
+    }
+  }
+}

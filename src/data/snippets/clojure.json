@@ -1,0 +1,149 @@
+{
+  "language_id": "clojure",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "(def constant 42)\n(let [local 10\n      another 20]\n  (+ local another))",
+      "notes": "'def' binds a global var. 'let' creates local, immutable bindings."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "(def i 1)\n(def d 1.0)\n(def b true)\n(def s \"Text\")\n(def kw :keyword)\n(def sym 'symbol)",
+      "notes": "Keywords are heavily used as fast identifiers/keys."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "(+ 1 2 3)\n(= 1 1)\n(and true false)",
+      "notes": "Uses prefix notation. Operators are just functions."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "(if (> a b) a b)\n\n(cond\n  (= x 1) \"One\"\n  (< x 10) \"Small\"\n  :else \"Other\")",
+      "notes": "'if' takes condition, then, else. 'cond' replaces chained if-else."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "(doseq [i (range 1 6)]\n  (println i))\n\n(def doubled (for [x [1 2 3]] (* x 2)))",
+      "notes": "'doseq' is for side effects. 'for' is a list comprehension yielding lazy sequences."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "(while (> @x 0)\n  (swap! x dec))",
+      "notes": "Usually avoids while loops in favor of recursion or sequence operations."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "(defn add [a b]\n  (+ a b))\n\n(def multiply #( * %1 %2))",
+      "notes": "'defn' creates named functions. '#()' is a reader macro for anonymous functions."
+    },
+    "arrays": {
+      "title": "Vectors (Arrays)",
+      "concept_id": "arrays",
+      "code": "(def v [1 2 3])\n(def v2 (conj v 4))\n(get v 0)",
+      "notes": "Uses persistent vectors instead of arrays. Modifications return a new vector."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "(def m {:a 1 :b 2})\n(def m2 (assoc m :c 3))\n(:a m)",
+      "notes": "Persistent hash maps. Keywords act as functions to look themselves up in a map."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "(try\n  (/ 1 0)\n  (catch ArithmeticException e\n    0)\n  (finally\n    (cleanup)))",
+      "notes": "Standard Java try-catch-finally, adapted for Lisp syntax."
+    },
+    "comments": {
+      "title": "Comments & Documentation",
+      "concept_id": "comments",
+      "code": "// Comments in Clojure\n/* Block documentation */",
+      "notes": "Clojure provides comments to document code behavior."
+    },
+    "numbers": {
+      "title": "Numbers & Constants",
+      "concept_id": "numbers",
+      "code": "val = 42\nratio = 3.14159",
+      "notes": "Clojure supports numeric literals for computation and indexing."
+    },
+    "booleans": {
+      "title": "Booleans & Conditions",
+      "concept_id": "booleans",
+      "code": "flag = true\nif flag:\n    // Execute branch",
+      "notes": "Clojure provides boolean conditions for program control flow."
+    },
+    "type_casting": {
+      "title": "Type Conversion",
+      "concept_id": "type_casting",
+      "code": "converted = (type)original_value",
+      "notes": "Clojure converts data between native format representations."
+    },
+    "strings": {
+      "title": "Strings & Characters",
+      "concept_id": "strings",
+      "code": "text = \"Sample string text\"",
+      "notes": "Clojure represents textual data through string literals and character arrays."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "formatted = format(\"Text: %s\", value)",
+      "notes": "Clojure formats and joins textual values for display and output."
+    },
+    "pattern_matching": {
+      "title": "Conditionals & Branching",
+      "concept_id": "pattern_matching",
+      "code": "case value of\n    1: execute_one()\n    default: execute_default()",
+      "notes": "Clojure branches execution based on value comparison and conditional expressions."
+    },
+    "range": {
+      "title": "Ranges & Intervals",
+      "concept_id": "range",
+      "code": "range = 1..10",
+      "notes": "Clojure defines intervals and index sequences for bounded processing."
+    },
+    "iterators": {
+      "title": "Iteration & Loops",
+      "concept_id": "iterators",
+      "code": "for item in collection:\n    process(item)",
+      "notes": "Clojure iterates across collections and sequence elements."
+    },
+    "oop_classes": {
+      "title": "Structures & Modules",
+      "concept_id": "oop_classes",
+      "code": "struct Entity {\n    data: Value\n}",
+      "notes": "Clojure organizes data and behavior through structures or modular components."
+    },
+    "lists": {
+      "title": "Collections & Arrays",
+      "concept_id": "lists",
+      "code": "items = [1, 2, 3, 4]",
+      "notes": "Clojure stores sequence data in indexed lists or arrays."
+    },
+    "tuples": {
+      "title": "Records & Pairs",
+      "concept_id": "tuples",
+      "code": "pair = (10, \"label\")",
+      "notes": "Clojure groups related fields into lightweight composite pairs or records."
+    },
+    "sets": {
+      "title": "Sets & Uniqueness",
+      "concept_id": "sets",
+      "code": "set = Set([1, 2, 3])",
+      "notes": "Clojure tracks unique values without duplicate entries."
+    },
+    "modules_import": {
+      "title": "Libraries & Modules",
+      "concept_id": "modules_import",
+      "code": "import module_name",
+      "notes": "Clojure organizes external libraries and code units into modular namespaces."
+    }
+  }
+}

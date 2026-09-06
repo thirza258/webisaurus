@@ -1,0 +1,149 @@
+{
+  "language_id": "octave",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "x = 10;\n# Octave supports # for comments as well as %\npi_val = pi;",
+      "notes": "Octave is largely compatible with MATLAB. It supports `#` for comments."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "d = 3.14;         # double\ns = single(3.14); # single precision\ni = int32(42);    # 32-bit integer\nc = 1 + 2i;       # complex\nstr = \"string\";   # strings can use double quotes\nchr = 'char';     # character array",
+      "notes": "Double quotes for strings are fully supported in Octave, allowing C-style escapes like \\n."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "# Matrix operations\nA * B\nA ^ 2\n\n# Element-wise\nA .* B\nA .^ 2\n\n# Octave supports C-style operators\nx += 1;\nx *= 2;\nx != y; # Equivalent to x ~= y",
+      "notes": "Unlike MATLAB, Octave supports increment operators `+=`, `-=` and `!=` for not-equal."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "if (x > 0)\n  disp(\"Positive\");\nelseif (x < 0)\n  disp(\"Negative\");\nelse\n  disp(\"Zero\");\nendif",
+      "notes": "Octave allows `endif` to explicitly close an `if` block, though `end` is also supported for MATLAB compatibility."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "for i = 1:10\n  printf(\"Square: %d\\n\", i^2);\nendfor",
+      "notes": "Octave supports `endfor` to explicitly close a `for` block. `printf` is available as in C."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "count = 0;\nwhile (count < 5)\n  disp(count);\n  count++; # Auto-increment supported\nendwhile",
+      "notes": "Octave supports `++` operator and `endwhile`."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "function [mean_val, std_val] = get_stats(data)\n  if (isempty(data))\n    mean_val = NA;\n    std_val = NA;\n    return;\n  endif\n  mean_val = mean(data);\n  std_val = std(data);\nendfunction",
+      "notes": "Octave uses `endfunction` block terminator. It allows function definition anywhere in a script."
+    },
+    "arrays": {
+      "title": "Arrays & Matrices",
+      "concept_id": "arrays",
+      "code": "vec = [1.5, 2.3, 4.1];\nmat = [1 2 3; 4 5 6];\n\n# Accessing (1-based indexing)\nval = mat(1, 2);",
+      "notes": "Identical syntax to MATLAB for array construction and indexing."
+    },
+    "maps": {
+      "title": "Structs / Hashes",
+      "concept_id": "maps",
+      "code": "s = struct(\"name\", \"model\", \"params\", [1, 2]);\n\n# Accessing fields\nval = s.name;",
+      "notes": "Structs are typically used for key-value pairings in Octave."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "try\n  result = 1 / 0;\ncatch\n  err = lasterror();\n  printf(\"Error: %s\\n\", err.message);\nend_try_catch",
+      "notes": "Octave provides `lasterror()` and the specific terminator `end_try_catch`."
+    },
+    "comments": {
+      "title": "Comments & Headers",
+      "concept_id": "comments",
+      "code": "# Comment in GNU Octave\n# Multi-line comments or docstrings\n# are documented here",
+      "notes": "GNU Octave uses # or language-specific delimiters (% in MATLAB, ! in Fortran) for comments."
+    },
+    "numbers": {
+      "title": "Vectors, Matrices & Numbers",
+      "concept_id": "numbers",
+      "code": "x = 42\npi = 3.14159\n# Vector operations\nv = [1, 2, 3, 4]",
+      "notes": "GNU Octave is optimized for vector and matrix calculations with high-precision numerical representations."
+    },
+    "booleans": {
+      "title": "Logical Vectors & Booleans",
+      "concept_id": "booleans",
+      "code": "is_valid = TRUE\nflags = c(TRUE, FALSE, TRUE)",
+      "notes": "GNU Octave provides boolean types with support for element-wise vector logic operations."
+    },
+    "type_casting": {
+      "title": "Type Coercion & Casting",
+      "concept_id": "type_casting",
+      "code": "as.numeric(\"42\")\nas.character(3.14)",
+      "notes": "GNU Octave converts data between numeric, character, factor, and logical representations."
+    },
+    "strings": {
+      "title": "Strings & Character Vectors",
+      "concept_id": "strings",
+      "code": "s = \"Statistical Computing\"\nlen = nchar(s)",
+      "notes": "GNU Octave treats strings as atomic character scalars or vector arrays."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "sprintf(\"Variable %.2f is %s\", 3.14159, \"pi\")",
+      "notes": "GNU Octave formats numerical output with sprintf formatting specifiers."
+    },
+    "pattern_matching": {
+      "title": "Conditionals & Switches",
+      "concept_id": "pattern_matching",
+      "code": "switch(val, \"one\" = 1, \"two\" = 2, 0)",
+      "notes": "GNU Octave executes branch logic via switch, ifelse, or conditional filtering."
+    },
+    "range": {
+      "title": "Sequences & Indexing",
+      "concept_id": "range",
+      "code": "seq(1, 10, by = 2)\nv[1:5]",
+      "notes": "GNU Octave indexes matrices and vectors using 1-based indexing and sequence generators."
+    },
+    "iterators": {
+      "title": "Vectorized Apply & Iteration",
+      "concept_id": "iterators",
+      "code": "lapply(1:5, function(x) x^2)",
+      "notes": "GNU Octave emphasizes vectorized functional processing (apply, map) over explicit loops."
+    },
+    "oop_classes": {
+      "title": "Object Systems & S3/S4",
+      "concept_id": "oop_classes",
+      "code": "# Object systems in GNU Octave\nobj = list(name = \"Model\", score = 0.95)\nclass(obj) = \"metric\"",
+      "notes": "GNU Octave uses class dispatch systems (S3/S4 in R, multiple dispatch in Julia) for data modeling."
+    },
+    "lists": {
+      "title": "DataFrames & Lists",
+      "concept_id": "lists",
+      "code": "df = list(a = 1:3, b = c(\"x\", \"y\", \"z\"))",
+      "notes": "GNU Octave stores heterogeneous columnar records in data frames and lists."
+    },
+    "tuples": {
+      "title": "Pairs & Records",
+      "concept_id": "tuples",
+      "code": "pair = c(x = 10, y = 20)",
+      "notes": "GNU Octave uses named vectors or lightweight structures for data records."
+    },
+    "sets": {
+      "title": "Set Operations",
+      "concept_id": "sets",
+      "code": "union(c(1, 2), c(2, 3))\nintersect(c(1, 2), c(2, 3))",
+      "notes": "GNU Octave provides native mathematical set functions (union, intersect, setdiff)."
+    },
+    "modules_import": {
+      "title": "Libraries & Packages",
+      "concept_id": "modules_import",
+      "code": "library(dplyr)\nrequire(ggplot2)",
+      "notes": "GNU Octave loads package namespaces using library or import declarations."
+    }
+  }
+}

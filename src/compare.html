@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webisaurus — Code Comparator</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <meta name="theme-color" content="#000000">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/compare.css">
+  <link rel="stylesheet" href="css/syntax-theme.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="navbar-container">
+      <a class="navbar-brand" href="index.html">🦕 Webisaurus</a>
+      <nav class="navbar-nav">
+        <a href="index.html" class="nav-link">Explorer</a>
+        <a href="compare.html" class="nav-link active">Compare</a>
+      </nav>
+      <div class="navbar-actions">
+        <button id="palette-trigger" class="palette-trigger-btn" aria-label="Open command palette">
+          <span>🔍</span>
+          <span>Search...</span>
+          <kbd class="palette-kbd">Ctrl K</kbd>
+        </button>
+        <button id="theme-toggle" class="btn-icon" aria-label="Toggle theme">
+          <span class="theme-icon">☀️</span>
+        </button>
+      </div>
+    </div>
+  </header>
+  
+  <main class="main-content">
+    <div class="comparator-toolbar" id="comparator-toolbar">
+      <div class="toolbar-group">
+        <label for="concept-select">Concept:</label>
+        <select id="concept-select" class="select-input">
+          <!-- JS populates options -->
+        </select>
+      </div>
+      <div class="toolbar-group">
+        <button id="add-slot-btn" class="btn btn-secondary">+ Add Language</button>
+        <button id="remove-slot-btn" class="btn btn-danger" style="display:none;">- Remove</button>
+        <button id="share-compare-btn" class="action-btn" title="Copy shareable link to this comparison">🔗 Share</button>
+      </div>
+    </div>
+    <div class="slots-grid slots-2" id="slots-grid">
+      <!-- Slot 1 -->
+      <div class="slot-card" data-slot="1">
+        <div class="slot-header">
+          <select class="slot-lang-select" data-slot="1"></select>
+          <div class="slot-actions">
+            <a href="#" class="explore-btn" data-slot="1" title="Open full reference in Explorer">↗ Explore</a>
+            <button class="swap-btn" data-swap="1-2" title="Swap with Slot 2">⇄ Swap</button>
+            <button class="copy-btn slot-copy" data-slot="1" aria-label="Copy code">📋</button>
+          </div>
+        </div>
+        <div class="slot-body">
+          <pre class="code-block"><code id="slot-code-1"></code></pre>
+        </div>
+        <div class="slot-footer">
+          <p class="slot-notes" id="slot-notes-1"></p>
+        </div>
+      </div>
+      <!-- Slot 2 -->
+      <div class="slot-card" data-slot="2">
+        <div class="slot-header">
+          <select class="slot-lang-select" data-slot="2"></select>
+          <div class="slot-actions">
+            <a href="#" class="explore-btn" data-slot="2" title="Open full reference in Explorer">↗ Explore</a>
+            <button class="swap-btn" data-swap="2-1" title="Swap with Slot 1">⇄ Swap</button>
+            <button class="copy-btn slot-copy" data-slot="2" aria-label="Copy code">📋</button>
+          </div>
+        </div>
+        <div class="slot-body">
+          <pre class="code-block"><code id="slot-code-2"></code></pre>
+        </div>
+        <div class="slot-footer">
+          <p class="slot-notes" id="slot-notes-2"></p>
+        </div>
+      </div>
+      <!-- Slot 3 -->
+      <div class="slot-card" data-slot="3" style="display:none;">
+        <div class="slot-header">
+          <select class="slot-lang-select" data-slot="3"></select>
+          <div class="slot-actions">
+            <a href="#" class="explore-btn" data-slot="3" title="Open full reference in Explorer">↗ Explore</a>
+            <button class="swap-btn" data-swap="3-1" title="Swap with Slot 1">⇄ Swap</button>
+            <button class="copy-btn slot-copy" data-slot="3" aria-label="Copy code">📋</button>
+          </div>
+        </div>
+        <div class="slot-body">
+          <pre class="code-block"><code id="slot-code-3"></code></pre>
+        </div>
+        <div class="slot-footer">
+          <p class="slot-notes" id="slot-notes-3"></p>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <footer class="footer">
+    <p>Webisaurus — Polyglot Syntax Reference</p>
+  </footer>
+  
+  <script src="js/vendor/prism.min.js"></script>
+  <script type="module" src="js/compare.js"></script>
+</body>
+</html>

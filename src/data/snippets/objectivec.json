@@ -1,0 +1,149 @@
+{
+  "language_id": "objectivec",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "int myVar = 10;\nNSString *myString = @\"Hello\";",
+      "notes": "Standard C primitive variables are supported. Objects are defined as pointers (*) and string literals are prefixed with @."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "int myInt = 42;\nfloat myFloat = 3.14f;\nBOOL myBool = YES;\nNSNumber *boxedInt = @42;\nNSString *str = @\"Objective-C\";",
+      "notes": "Objective-C distinguishes primitive C types from Foundation object types (e.g., NSNumber, NSString). Booleans are YES and NO."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "int sum = 3 + 4;\nBOOL isEqual = (1 == 1);\n\n// Object equality requires methods\nBOOL stringEq = [str isEqualToString:@\"Objective-C\"];",
+      "notes": "Primitives use standard C operators. Objects require method messaging ([receiver message]) for logical comparisons like equality."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "int x = 10;\nif (x > 0) {\n    NSLog(@\"Positive\");\n} else {\n    NSLog(@\"Non-positive\");\n}",
+      "notes": "Conditionals follow standard C syntax. NSLog is used for logging."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "// Standard C loop\nfor (int i = 0; i < 5; i++) {\n    NSLog(@\"%d\", i);\n}\n\n// Fast enumeration over collections\nNSArray *arr = @[@\"a\", @\"b\", @\"c\"];\nfor (NSString *item in arr) {\n    NSLog(@\"%@\", item);\n}",
+      "notes": "Fast enumeration (for-in) is the preferred way to iterate over Foundation collections like NSArray and NSDictionary."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "int x = 0;\nwhile (x < 5) {\n    x++;\n}\n\nint y = 0;\ndo {\n    y++;\n} while (y < 5);",
+      "notes": "While loops behave identically to C."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "// C-style function\nint add(int a, int b) { return a + b; }\n\n// Objective-C Method declaration\n- (int)addNumber:(int)a toNumber:(int)b {\n    return a + b;\n}\n\n// Calling the method\nint res = [self addNumber:3 toNumber:4];",
+      "notes": "Objective-C uses message passing brackets [ ] for methods. Methods prefix with - for instance or + for class methods."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "// Immutable array\nNSArray *arr = @[@1, @2, @3];\nNSNumber *first = arr[0];\n\n// Mutable array\nNSMutableArray *mutArr = [NSMutableArray arrayWithArray:arr];\n[mutArr addObject:@4];",
+      "notes": "NSArray is immutable. NSMutableArray must be used if contents need to change. Literal syntax @[ ] creates immutable arrays."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "NSDictionary *dict = @{@\"key1\": @1, @\"key2\": @2};\nNSNumber *val = dict[@\"key1\"];\n\nNSMutableDictionary *mutDict = [NSMutableDictionary dictionary];\nmutDict[@\"key3\"] = @3;",
+      "notes": "Dictionaries use NSDictionary. The literal syntax @{key: value} creates immutable maps."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "NSError *error = nil;\nBOOL success = [myObject performActionAndReturnError:&error];\n\nif (!success) {\n    NSLog(@\"Error occurred: %@\", error.localizedDescription);\n}\n\n// Exceptions (rarely used for control flow)\n@try {\n    // Risky code\n} @catch (NSException *exception) {\n    NSLog(@\"Caught: %@\", exception.name);\n} @finally {\n    // Cleanup\n}",
+      "notes": "Objective-C prefers passing a pointer to an NSError as an indirect return value for recoverable errors, using @try/@catch mostly for programmer errors."
+    },
+    "comments": {
+      "title": "Comments & Documentation",
+      "concept_id": "comments",
+      "code": "// Comments in Objective-C\n/* Block documentation */",
+      "notes": "Objective-C provides comments to document code behavior."
+    },
+    "numbers": {
+      "title": "Numbers & Constants",
+      "concept_id": "numbers",
+      "code": "val = 42\nratio = 3.14159",
+      "notes": "Objective-C supports numeric literals for computation and indexing."
+    },
+    "booleans": {
+      "title": "Booleans & Conditions",
+      "concept_id": "booleans",
+      "code": "flag = true\nif flag:\n    // Execute branch",
+      "notes": "Objective-C provides boolean conditions for program control flow."
+    },
+    "type_casting": {
+      "title": "Type Conversion",
+      "concept_id": "type_casting",
+      "code": "converted = (type)original_value",
+      "notes": "Objective-C converts data between native format representations."
+    },
+    "strings": {
+      "title": "Strings & Characters",
+      "concept_id": "strings",
+      "code": "text = \"Sample string text\"",
+      "notes": "Objective-C represents textual data through string literals and character arrays."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "formatted = format(\"Text: %s\", value)",
+      "notes": "Objective-C formats and joins textual values for display and output."
+    },
+    "pattern_matching": {
+      "title": "Conditionals & Branching",
+      "concept_id": "pattern_matching",
+      "code": "case value of\n    1: execute_one()\n    default: execute_default()",
+      "notes": "Objective-C branches execution based on value comparison and conditional expressions."
+    },
+    "range": {
+      "title": "Ranges & Intervals",
+      "concept_id": "range",
+      "code": "range = 1..10",
+      "notes": "Objective-C defines intervals and index sequences for bounded processing."
+    },
+    "iterators": {
+      "title": "Iteration & Loops",
+      "concept_id": "iterators",
+      "code": "for item in collection:\n    process(item)",
+      "notes": "Objective-C iterates across collections and sequence elements."
+    },
+    "oop_classes": {
+      "title": "Structures & Modules",
+      "concept_id": "oop_classes",
+      "code": "struct Entity {\n    data: Value\n}",
+      "notes": "Objective-C organizes data and behavior through structures or modular components."
+    },
+    "lists": {
+      "title": "Collections & Arrays",
+      "concept_id": "lists",
+      "code": "items = [1, 2, 3, 4]",
+      "notes": "Objective-C stores sequence data in indexed lists or arrays."
+    },
+    "tuples": {
+      "title": "Records & Pairs",
+      "concept_id": "tuples",
+      "code": "pair = (10, \"label\")",
+      "notes": "Objective-C groups related fields into lightweight composite pairs or records."
+    },
+    "sets": {
+      "title": "Sets & Uniqueness",
+      "concept_id": "sets",
+      "code": "set = Set([1, 2, 3])",
+      "notes": "Objective-C tracks unique values without duplicate entries."
+    },
+    "modules_import": {
+      "title": "Libraries & Modules",
+      "concept_id": "modules_import",
+      "code": "import module_name",
+      "notes": "Objective-C organizes external libraries and code units into modular namespaces."
+    }
+  }
+}

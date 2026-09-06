@@ -1,0 +1,149 @@
+{
+  "language_id": "wolfram",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "x = 10;\n(* Delayed assignment: recalculates every time *)\ny := RandomReal[]",
+      "notes": "`=` performs immediate assignment. `:=` performs delayed assignment. `(* ... *)` for comments."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "int = 42;\nreal = 3.14159;\ncomp = 1 + 2 I;\nrat = 3 / 4;\nstr = \"string\";\nsym = x; (* symbolic variable *)",
+      "notes": "Everything is a symbolic expression. Exact arithmetic (rationals, infinite precision) is natively supported."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "2 + 3 * 4\n2 ^ 10\n\n(* Matrix multiplication *)\nmat1 . mat2\n\n(* Element-wise operates automatically *)\n{1, 2} * {3, 4}",
+      "notes": "Dot `.` is used for dot product / matrix multiplication. Most operators thread over lists automatically."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "If[x > 0,\n  Print[\"Positive\"],\n  Print[\"Negative or Zero\"]\n]\n\n(* Piecewise for mathematical definitions *)\nf[x_] := Piecewise[{{x^2, x > 0}, {0, True}}]",
+      "notes": "`If` is a function. `Piecewise` is preferred for building mathematical functions with conditions."
+    },
+    "for_loop": {
+      "title": "For Loop / Do",
+      "concept_id": "for_loop",
+      "code": "Do[Print[i^2], {i, 1, 10}]\n\n(* More idiomatic: generating lists *)\nsquares = Table[i^2, {i, 1, 10}]\n\n(* Functional mapping *)\nMap[#^2 &, Range[10]]",
+      "notes": "`Do` and `Table` are standard. Functional paradigms (`Map`, `Apply`) are highly preferred over procedural loops."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "count = 0;\nWhile[count < 5,\n  Print[count];\n  count++\n]",
+      "notes": "`While` is available but functional alternatives like `Nest` or `FixedPoint` are often more idiomatic."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "(* Definition with pattern matching *)\ncalculateMean[l_List] := If[Length[l] == 0, Missing[], Total[l] / Length[l]]\n\n(* Pure function (anonymous) *)\nsquare = #^2 &;",
+      "notes": "Functions are defined via pattern matching `x_`. Pure functions use `#` for arguments and `&` to terminate."
+    },
+    "arrays": {
+      "title": "Arrays & Lists",
+      "concept_id": "arrays",
+      "code": "vec = {1.5, 2.3, 4.1};\nmat = {{1, 2, 3}, {4, 5, 6}};\n\n(* Accessing (1-based indexing) *)\nval = mat[[1, 2]];\n\n(* Slicing *)\ncol = mat[[All, 2]];",
+      "notes": "Lists `{...}` serve as vectors, matrices, and arrays. Accessed using `Part` or `[[...]]`."
+    },
+    "maps": {
+      "title": "Associations (Maps)",
+      "concept_id": "maps",
+      "code": "assoc = <|\"a\" -> 1, \"b\" -> 2|>;\n\n(* Accessing *)\nval = assoc[\"a\"];\n\n(* Updating *)\nAppendTo[assoc, \"c\" -> 3];",
+      "notes": "`Association` provides high-performance key-value maps. Queries on them are highly optimized."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "Check[\n  1 / 0,\n  Print[\"An error occurred!\"]\n]\n\n(* Catch and Throw *)\nCatch[\n  If[x < 0, Throw[\"Negative value\"]]\n]",
+      "notes": "`Check` monitors for messages. `Catch` and `Throw` allow non-local control flow for exceptions."
+    },
+    "comments": {
+      "title": "Comments & Headers",
+      "concept_id": "comments",
+      "code": "# Comment in Wolfram Language\n# Multi-line comments or docstrings\n# are documented here",
+      "notes": "Wolfram Language uses # or language-specific delimiters (% in MATLAB, ! in Fortran) for comments."
+    },
+    "numbers": {
+      "title": "Vectors, Matrices & Numbers",
+      "concept_id": "numbers",
+      "code": "x = 42\npi = 3.14159\n# Vector operations\nv = [1, 2, 3, 4]",
+      "notes": "Wolfram Language is optimized for vector and matrix calculations with high-precision numerical representations."
+    },
+    "booleans": {
+      "title": "Logical Vectors & Booleans",
+      "concept_id": "booleans",
+      "code": "is_valid = TRUE\nflags = c(TRUE, FALSE, TRUE)",
+      "notes": "Wolfram Language provides boolean types with support for element-wise vector logic operations."
+    },
+    "type_casting": {
+      "title": "Type Coercion & Casting",
+      "concept_id": "type_casting",
+      "code": "as.numeric(\"42\")\nas.character(3.14)",
+      "notes": "Wolfram Language converts data between numeric, character, factor, and logical representations."
+    },
+    "strings": {
+      "title": "Strings & Character Vectors",
+      "concept_id": "strings",
+      "code": "s = \"Statistical Computing\"\nlen = nchar(s)",
+      "notes": "Wolfram Language treats strings as atomic character scalars or vector arrays."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "sprintf(\"Variable %.2f is %s\", 3.14159, \"pi\")",
+      "notes": "Wolfram Language formats numerical output with sprintf formatting specifiers."
+    },
+    "pattern_matching": {
+      "title": "Conditionals & Switches",
+      "concept_id": "pattern_matching",
+      "code": "switch(val, \"one\" = 1, \"two\" = 2, 0)",
+      "notes": "Wolfram Language executes branch logic via switch, ifelse, or conditional filtering."
+    },
+    "range": {
+      "title": "Sequences & Indexing",
+      "concept_id": "range",
+      "code": "seq(1, 10, by = 2)\nv[1:5]",
+      "notes": "Wolfram Language indexes matrices and vectors using 1-based indexing and sequence generators."
+    },
+    "iterators": {
+      "title": "Vectorized Apply & Iteration",
+      "concept_id": "iterators",
+      "code": "lapply(1:5, function(x) x^2)",
+      "notes": "Wolfram Language emphasizes vectorized functional processing (apply, map) over explicit loops."
+    },
+    "oop_classes": {
+      "title": "Object Systems & S3/S4",
+      "concept_id": "oop_classes",
+      "code": "# Object systems in Wolfram Language\nobj = list(name = \"Model\", score = 0.95)\nclass(obj) = \"metric\"",
+      "notes": "Wolfram Language uses class dispatch systems (S3/S4 in R, multiple dispatch in Julia) for data modeling."
+    },
+    "lists": {
+      "title": "DataFrames & Lists",
+      "concept_id": "lists",
+      "code": "df = list(a = 1:3, b = c(\"x\", \"y\", \"z\"))",
+      "notes": "Wolfram Language stores heterogeneous columnar records in data frames and lists."
+    },
+    "tuples": {
+      "title": "Pairs & Records",
+      "concept_id": "tuples",
+      "code": "pair = c(x = 10, y = 20)",
+      "notes": "Wolfram Language uses named vectors or lightweight structures for data records."
+    },
+    "sets": {
+      "title": "Set Operations",
+      "concept_id": "sets",
+      "code": "union(c(1, 2), c(2, 3))\nintersect(c(1, 2), c(2, 3))",
+      "notes": "Wolfram Language provides native mathematical set functions (union, intersect, setdiff)."
+    },
+    "modules_import": {
+      "title": "Libraries & Packages",
+      "concept_id": "modules_import",
+      "code": "library(dplyr)\nrequire(ggplot2)",
+      "notes": "Wolfram Language loads package namespaces using library or import declarations."
+    }
+  }
+}

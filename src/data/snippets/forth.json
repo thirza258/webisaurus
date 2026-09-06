@@ -1,0 +1,149 @@
+{
+  "language_id": "forth",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "VARIABLE X\n10 X !\nX @",
+      "notes": "VARIABLE creates a pointer. ! (store) writes to it, @ (fetch) reads from it."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "\\ Everything is essentially a cell (word).\n\\ Manipulated on the data stack.",
+      "notes": "Forth is typeless. Data is manipulated on the stack as cell-sized integers or addresses."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "1 2 +  \\ Addition\n3 4 *  \\ Multiplication\n5 2 /  \\ Division\n1 1 =  \\ Equality (returns true/false flag)",
+      "notes": "Uses Reverse Polish Notation (RPN). Operators consume stack items and push the result."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": ": CHECK-ZERO ( n -- )\n  0= IF\n    .\" It is zero\"\n  ELSE\n    .\" It is not zero\"\n  THEN ;\n",
+      "notes": "IF checks the top of the stack. ELSE is optional. Must end with THEN."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": ": COUNT-TO-TEN\n  10 0 DO\n    I .\n  LOOP ;\n",
+      "notes": "DO ... LOOP executes from start (0) to limit (10). 'I' pushes the current loop index."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": ": WAIT-ZERO\n  BEGIN\n    KEY 48 = \n  UNTIL ;\n",
+      "notes": "BEGIN ... UNTIL loops until a true flag is on the stack. BEGIN ... WHILE ... REPEAT is also common."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": ": SQUARE ( n -- n^2 )\n  DUP * ;\n",
+      "notes": "Functions (words) are defined with ':' and end with ';'. The comment ( n -- n^2 ) describes stack effects."
+    },
+    "arrays": {
+      "title": "Arrays",
+      "concept_id": "arrays",
+      "code": "CREATE MY-ARRAY 10 CELLS ALLOT\n\n\\ Store 42 in index 0\n42 MY-ARRAY 0 CELLS + !\n",
+      "notes": "No built-in array type. Memory is allocated using CREATE and ALLOT. Indexing is done manually with address math."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "\\ Not built-in.",
+      "notes": "Dictionaries/maps are not built-in and must be implemented manually via linked lists or hash tables."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": ": SAFE-DIV ( n d -- res ) \n  DUP 0= IF \n    -22 THROW \n  ELSE \n    / \n  THEN ;\n\n['] SAFE-DIV CATCH",
+      "notes": "THROW and CATCH (ANS Forth) provide exception handling by unwinding the return stack."
+    },
+    "comments": {
+      "title": "Comments & Documentation",
+      "concept_id": "comments",
+      "code": "// Comments in Forth\n/* Block documentation */",
+      "notes": "Forth provides comments to document code behavior."
+    },
+    "numbers": {
+      "title": "Numbers & Constants",
+      "concept_id": "numbers",
+      "code": "val = 42\nratio = 3.14159",
+      "notes": "Forth supports numeric literals for computation and indexing."
+    },
+    "booleans": {
+      "title": "Booleans & Conditions",
+      "concept_id": "booleans",
+      "code": "flag = true\nif flag:\n    // Execute branch",
+      "notes": "Forth provides boolean conditions for program control flow."
+    },
+    "type_casting": {
+      "title": "Type Conversion",
+      "concept_id": "type_casting",
+      "code": "converted = (type)original_value",
+      "notes": "Forth converts data between native format representations."
+    },
+    "strings": {
+      "title": "Strings & Characters",
+      "concept_id": "strings",
+      "code": "text = \"Sample string text\"",
+      "notes": "Forth represents textual data through string literals and character arrays."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "formatted = format(\"Text: %s\", value)",
+      "notes": "Forth formats and joins textual values for display and output."
+    },
+    "pattern_matching": {
+      "title": "Conditionals & Branching",
+      "concept_id": "pattern_matching",
+      "code": "case value of\n    1: execute_one()\n    default: execute_default()",
+      "notes": "Forth branches execution based on value comparison and conditional expressions."
+    },
+    "range": {
+      "title": "Ranges & Intervals",
+      "concept_id": "range",
+      "code": "range = 1..10",
+      "notes": "Forth defines intervals and index sequences for bounded processing."
+    },
+    "iterators": {
+      "title": "Iteration & Loops",
+      "concept_id": "iterators",
+      "code": "for item in collection:\n    process(item)",
+      "notes": "Forth iterates across collections and sequence elements."
+    },
+    "oop_classes": {
+      "title": "Structures & Modules",
+      "concept_id": "oop_classes",
+      "code": "struct Entity {\n    data: Value\n}",
+      "notes": "Forth organizes data and behavior through structures or modular components."
+    },
+    "lists": {
+      "title": "Collections & Arrays",
+      "concept_id": "lists",
+      "code": "items = [1, 2, 3, 4]",
+      "notes": "Forth stores sequence data in indexed lists or arrays."
+    },
+    "tuples": {
+      "title": "Records & Pairs",
+      "concept_id": "tuples",
+      "code": "pair = (10, \"label\")",
+      "notes": "Forth groups related fields into lightweight composite pairs or records."
+    },
+    "sets": {
+      "title": "Sets & Uniqueness",
+      "concept_id": "sets",
+      "code": "set = Set([1, 2, 3])",
+      "notes": "Forth tracks unique values without duplicate entries."
+    },
+    "modules_import": {
+      "title": "Libraries & Modules",
+      "concept_id": "modules_import",
+      "code": "import module_name",
+      "notes": "Forth organizes external libraries and code units into modular namespaces."
+    }
+  }
+}

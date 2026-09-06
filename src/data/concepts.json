@@ -1,0 +1,68 @@
+[
+  {
+    "category": "Syntax & Fundamentals",
+    "category_id": "fundamentals",
+    "concepts": [
+      {"concept_id": "variables", "name": "Variables & Constants", "description": "Declaring and assigning mutable and immutable variables and constants."},
+      {"concept_id": "comments", "name": "Comments & Documentation", "description": "Single-line, multi-line, and docstring syntax."},
+      {"concept_id": "data_types", "name": "Data Types", "description": "Primitive, composite, and reference data types."},
+      {"concept_id": "numbers", "name": "Numbers & Numerics", "description": "Integer, floating point, complex numbers, and precision."},
+      {"concept_id": "booleans", "name": "Booleans & Truthiness", "description": "Boolean values, boolean logic, and truthy/falsy evaluation."},
+      {"concept_id": "type_casting", "name": "Type Casting & Conversion", "description": "Explicit and implicit conversion between types."},
+      {"concept_id": "operators", "name": "Operators", "description": "Arithmetic, comparison, logical, bitwise, and assignment operators."}
+    ]
+  },
+  {
+    "category": "Strings & Text",
+    "category_id": "strings_text",
+    "concepts": [
+      {"concept_id": "strings", "name": "Strings & Characters", "description": "String literals, escapes, raw strings, and character types."},
+      {"concept_id": "string_formatting", "name": "String Formatting", "description": "String interpolation, template literals, and formatting specifiers."}
+    ]
+  },
+  {
+    "category": "Control Flow & Branching",
+    "category_id": "control_flow",
+    "concepts": [
+      {"concept_id": "conditionals", "name": "If / Else Conditionals", "description": "If/else statements, ternary operators, and branching."},
+      {"concept_id": "pattern_matching", "name": "Pattern Matching & Match", "description": "Match statements, pattern matching, and switch expressions."}
+    ]
+  },
+  {
+    "category": "Loops & Iteration",
+    "category_id": "loops_iteration",
+    "concepts": [
+      {"concept_id": "for_loop", "name": "For Loop", "description": "Standard counted for loops and element iteration."},
+      {"concept_id": "while_loop", "name": "While Loop", "description": "Condition-based while loops and do-while loops."},
+      {"concept_id": "range", "name": "Ranges & Slicing", "description": "Range generation, slices, and index intervals."},
+      {"concept_id": "iterators", "name": "Iterators & Generators", "description": "Iterators, generator functions, yields, and lazy sequences."}
+    ]
+  },
+  {
+    "category": "Functions & OOP",
+    "category_id": "functions_oop",
+    "concepts": [
+      {"concept_id": "functions", "name": "Functions & Closures", "description": "Declaring functions, parameters, return values, and closures/lambdas."},
+      {"concept_id": "oop_classes", "name": "Classes & OOP", "description": "Object-oriented programming, classes, constructors, methods, and inheritance."},
+      {"concept_id": "modules_import", "name": "Modules & Imports", "description": "Importing packages, libraries, namespaces, and module declarations."}
+    ]
+  },
+  {
+    "category": "Data Structures & Collections",
+    "category_id": "collections",
+    "concepts": [
+      {"concept_id": "arrays", "name": "Arrays", "description": "Fixed-size arrays and buffer collections."},
+      {"concept_id": "lists", "name": "Lists & Dynamic Arrays", "description": "Dynamic arrays, lists, vectors, and slice structures."},
+      {"concept_id": "tuples", "name": "Tuples & Records", "description": "Heterogeneous ordered tuples and lightweight records."},
+      {"concept_id": "sets", "name": "Sets & Unique Collections", "description": "Unordered unique element sets and set operations."},
+      {"concept_id": "maps", "name": "Dictionaries & Maps", "description": "Key-value pair associative maps and hash tables."}
+    ]
+  },
+  {
+    "category": "Error Handling",
+    "category_id": "error_handling_cat",
+    "concepts": [
+      {"concept_id": "error_handling", "name": "Try / Except & Error Handling", "description": "Try/catch/except, error propagation, panics, and Result types."}
+    ]
+  }
+]

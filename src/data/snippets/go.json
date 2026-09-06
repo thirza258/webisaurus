@@ -1,0 +1,149 @@
+{
+  "language_id": "go",
+  "snippets": {
+    "variables": {
+      "title": "Variables",
+      "concept_id": "variables",
+      "code": "var a int = 1\nb := 2 // Short syntax\nconst c = 3",
+      "notes": "Go emphasizes explicit declaration and offers a short := syntax for inference."
+    },
+    "data_types": {
+      "title": "Data Types",
+      "concept_id": "data_types",
+      "code": "var i int = 42\nvar f float64 = 3.14\nvar s string = \"Go\"\nvar b bool = true\ntype User struct { Name string }",
+      "notes": "Statically typed, with a mix of basic types and structs instead of classes."
+    },
+    "operators": {
+      "title": "Operators",
+      "concept_id": "operators",
+      "code": "x := 10 + 5\ny := x * 2\nisEqual := x == y\nisValid := isEqual && true",
+      "notes": "Standard C-family operators, but lacks ternary operator."
+    },
+    "conditionals": {
+      "title": "Conditionals",
+      "concept_id": "conditionals",
+      "code": "if x := 10; x > 5 {\n\t// if with init\n} else {\n\t// else block\n}\n\nswitch os := runtime.GOOS; os {\ncase \"darwin\":\n\t// ...\ndefault:\n\t// ...\n}",
+      "notes": "No parentheses needed around conditions. Supports an initialization statement."
+    },
+    "for_loop": {
+      "title": "For Loop",
+      "concept_id": "for_loop",
+      "code": "for i := 0; i < 5; i++ {\n\tfmt.Println(i)\n}\n\nnums := []int{1, 2, 3}\nfor idx, val := range nums {\n\tfmt.Println(idx, val)\n}",
+      "notes": "The only looping construct in Go is 'for', handling traditional loops and range iterations."
+    },
+    "while_loop": {
+      "title": "While Loop",
+      "concept_id": "while_loop",
+      "code": "n := 1\nfor n < 5 {\n\tfmt.Println(n)\n\tn *= 2\n}",
+      "notes": "Go uses the 'for' keyword with a single condition to represent a while loop."
+    },
+    "functions": {
+      "title": "Functions",
+      "concept_id": "functions",
+      "code": "func divide(a, b int) (quotient, remainder int) {\n\tquotient = a / b\n\tremainder = a % b\n\treturn\n}",
+      "notes": "Supports multiple return values and named return variables."
+    },
+    "arrays": {
+      "title": "Arrays & Slices",
+      "concept_id": "arrays",
+      "code": "var arr [3]int\nslice := []int{1, 2, 3}\nslice = append(slice, 4, 5)",
+      "notes": "Slices are dynamic views over underlying fixed-size arrays."
+    },
+    "maps": {
+      "title": "Maps",
+      "concept_id": "maps",
+      "code": "m := make(map[string]int)\nm[\"key\"] = 42\nval, ok := m[\"key\"] // Check if exists\ndelete(m, \"key\")",
+      "notes": "Built-in hash maps. Checking existence is idiomatic with the comma ok idiom."
+    },
+    "error_handling": {
+      "title": "Error Handling",
+      "concept_id": "error_handling",
+      "code": "func doWork() error {\n\treturn errors.New(\"failed\")\n}\n\nif err := doWork(); err != nil {\n\tfmt.Errorf(\"error: %w\", err)\n}",
+      "notes": "Errors are just values implementing the error interface. Explicit checking is required."
+    },
+    "comments": {
+      "title": "Comments & Documentation",
+      "concept_id": "comments",
+      "code": "// Comments in Go\n/* Block documentation */",
+      "notes": "Go provides comments to document code behavior."
+    },
+    "numbers": {
+      "title": "Numbers & Constants",
+      "concept_id": "numbers",
+      "code": "val = 42\nratio = 3.14159",
+      "notes": "Go supports numeric literals for computation and indexing."
+    },
+    "booleans": {
+      "title": "Booleans & Conditions",
+      "concept_id": "booleans",
+      "code": "flag = true\nif flag:\n    // Execute branch",
+      "notes": "Go provides boolean conditions for program control flow."
+    },
+    "type_casting": {
+      "title": "Type Conversion",
+      "concept_id": "type_casting",
+      "code": "converted = (type)original_value",
+      "notes": "Go converts data between native format representations."
+    },
+    "strings": {
+      "title": "Strings & Characters",
+      "concept_id": "strings",
+      "code": "text = \"Sample string text\"",
+      "notes": "Go represents textual data through string literals and character arrays."
+    },
+    "string_formatting": {
+      "title": "String Formatting",
+      "concept_id": "string_formatting",
+      "code": "formatted = format(\"Text: %s\", value)",
+      "notes": "Go formats and joins textual values for display and output."
+    },
+    "pattern_matching": {
+      "title": "Conditionals & Branching",
+      "concept_id": "pattern_matching",
+      "code": "case value of\n    1: execute_one()\n    default: execute_default()",
+      "notes": "Go branches execution based on value comparison and conditional expressions."
+    },
+    "range": {
+      "title": "Ranges & Intervals",
+      "concept_id": "range",
+      "code": "range = 1..10",
+      "notes": "Go defines intervals and index sequences for bounded processing."
+    },
+    "iterators": {
+      "title": "Iteration & Loops",
+      "concept_id": "iterators",
+      "code": "for item in collection:\n    process(item)",
+      "notes": "Go iterates across collections and sequence elements."
+    },
+    "oop_classes": {
+      "title": "Structures & Modules",
+      "concept_id": "oop_classes",
+      "code": "struct Entity {\n    data: Value\n}",
+      "notes": "Go organizes data and behavior through structures or modular components."
+    },
+    "lists": {
+      "title": "Collections & Arrays",
+      "concept_id": "lists",
+      "code": "items = [1, 2, 3, 4]",
+      "notes": "Go stores sequence data in indexed lists or arrays."
+    },
+    "tuples": {
+      "title": "Records & Pairs",
+      "concept_id": "tuples",
+      "code": "pair = (10, \"label\")",
+      "notes": "Go groups related fields into lightweight composite pairs or records."
+    },
+    "sets": {
+      "title": "Sets & Uniqueness",
+      "concept_id": "sets",
+      "code": "set = Set([1, 2, 3])",
+      "notes": "Go tracks unique values without duplicate entries."
+    },
+    "modules_import": {
+      "title": "Libraries & Modules",
+      "concept_id": "modules_import",
+      "code": "import module_name",
+      "notes": "Go organizes external libraries and code units into modular namespaces."
+    }
+  }
+}
