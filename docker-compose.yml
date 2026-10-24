@@ -4,4 +4,4 @@ services:
     container_name: webisaurus_web
     restart: unless-stopped
     ports:
-      - "8080:80"
+      - "10090:80"

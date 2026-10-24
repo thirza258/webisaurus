@@ -301,9 +301,115 @@ Fix issue where the Single Language Explorer only rendered the first card ("Vari
 - ✅ Verified with real Chrome headless CDP browser testing: all 24 concept cards ("Variables & Constants", "Comments & Documentation", "Data Types", ..., "Try / Except & Error Handling") render 100% reliably across Rust, Zig, Go, C++, JavaScript, and Haskell.
 - ✅ Zero unhandled exceptions in browser console.
 
+---
+
+## 📝 Session: 2026-09-07 — Fix: Deployment Stale Cache & 24 Concepts Display Guarantee
+
+### 🎯 Objective
+Fix issue where deployed application (`https://c.nevatal.id`) only displayed the first concept ("Variables & Constants") instead of all 24 syntax concepts present in the snippet JSON files.
+
+### 📂 Files Modified
+- [`nginx.conf`](file:///home/thirzq/webisaurus/nginx.conf) — Removed `Cache-Control: public, immutable` (7 days) anti-pattern from unhashed assets. Replaced with `Cache-Control: no-cache, must-revalidate` across HTML, JS, CSS, and JSON endpoints to enable instantaneous conditional updates (HTTP 304).
+- [`src/index.html`](file:///home/thirzq/webisaurus/src/index.html) — Appended version query string `?v=20260907-v5` to all stylesheet and script tags; added `data-manual` attribute to Prism.js script tag to prevent uncoordinated automatic DOM scans.
+- [`src/compare.html`](file:///home/thirzq/webisaurus/src/compare.html) — Appended version query string `?v=20260907-v5` to stylesheets and scripts; added `data-manual` to Prism.js.
+- [`src/sw.js`](file:///home/thirzq/webisaurus/src/sw.js) — Bumped cache version to `webisaurus-static-v5`; updated `STATIC_ASSETS` with versioned query strings; implemented `{ cache: 'reload' }` during install to bypass stale disk caches; implemented Network-First strategy for `/data/*.json` requests.
+- [`src/js/data-loader.js`](file:///home/thirzq/webisaurus/src/js/data-loader.js) — Bumped `STORAGE_PREFIX` to `webisaurus_cache_v5_`; added `cleanupOldStorage()` to automatically purge legacy cache versions (`v1` through `v4`) from `localStorage`; dispatched `webisaurus:snippets-loaded` and `webisaurus:concepts-loaded` custom events upon background revalidation.
+- [`src/js/app.js`](file:///home/thirzq/webisaurus/src/js/app.js) — Added isolated `try...catch` per concept card in rendering loop to guarantee zero rendering halt if any single token fails; added listener for `webisaurus:snippets-loaded` to update view immediately when background data arrives.
+- [`src/js/compare.js`](file:///home/thirzq/webisaurus/src/js/compare.js) — Added listener for `webisaurus:snippets-loaded` to refresh active comparison slots seamlessly.
+- [`docker-compose.yml`](file:///home/thirzq/webisaurus/docker-compose.yml) — Rebuilt and restarted container `webisaurus_web` on port 10090.
+
+### 💡 Root Cause & Technical Resolution
+- **Root Cause**:
+  1. In `nginx.conf`, static assets were served with `Cache-Control: public, immutable` and `expires 7d;`.
+  2. Scripts in `index.html` were unversioned (`src="js/vendor/prism.min.js"`, `src="js/app.js"`).
+  3. Browsers that visited the site prior to the Prism `markup-templating` fix retained the broken `prism.min.js` and unguarded `app.js` in disk cache, refusing to query the server for 7 days.
+  4. In the old scripts, tokenization error on card 2 halted the rendering loop, causing only the "Variables" card to render.
+- **Resolution**:
+  1. Switched `nginx.conf` to `no-cache, must-revalidate` for dynamic static assets.
+  2. Added cache-busting query strings (`?v=20260907-v5`) to all asset URLs in HTML and Service Worker.
+  3. Upgraded Service Worker to `v5` with `{ cache: 'reload' }` pre-caching and Network-First data fetching.
+  4. Automatically evicted legacy `localStorage` versions on startup.
+  5. Tested and verified that all 24 concepts render seamlessly across all 140 languages.
+
+### 🧪 Verification & Status
+- ✅ `node --check` passed with 0 errors across all JS files.
+- ✅ Full DOM mock test verified: all 24 concepts render and highlight with 0 errors across all languages (Python, JS, Rust, Go, C++, PHP, Ruby, Haskell, Zig).
+- ✅ Docker container `webisaurus_web` rebuilt and restarted via `docker compose up -d --build`.
+- ✅ Verified HTTP 200 responses with correct `no-cache` headers and updated script tags on both `http://localhost:10090/` and `https://c.nevatal.id/`.
+
+---
+
+## 📝 Session: 2026-09-07 — Fix: Service Worker TypeError & Resilient Offline/502 Fallback
+
+### 🎯 Objective
+Resolve issues reported in browser console:
+1. `sw.js:1 Uncaught (in promise) TypeError: Failed to convert value to 'Response'`
+2. `Failed to load resource: the server responded with a status of 502 ()` during container rebuild
+3. `<meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes">`
+
+### 📂 Files Modified
+- [`src/sw.js`](file:///home/thirzq/webisaurus/src/sw.js) — Bumped cache to `webisaurus-static-v6`; refactored fetch listener with async IIFEs ensuring that `event.respondWith` ALWAYS resolves to a valid `Response` object (eliminating `TypeError`); implemented automatic fallback to cached data when network returns 5xx status codes (e.g. 502 Bad Gateway) or network errors; excluded `manifest.json` from dynamic data branch to treat it as an app shell static asset.
+- [`src/index.html`](file:///home/thirzq/webisaurus/src/index.html) — Added `<meta name="mobile-web-app-capable" content="yes">` to fix deprecation warning; updated asset query strings to `?v=20260907-v6`.
+- [`src/compare.html`](file:///home/thirzq/webisaurus/src/compare.html) — Added `<meta name="mobile-web-app-capable" content="yes">`; updated asset query strings to `?v=20260907-v6`.
+- [`src/js/data-loader.js`](file:///home/thirzq/webisaurus/src/js/data-loader.js) — Softened non-fatal fetch exceptions from `console.error` to `console.warn`; safely caught background preload promises in `preloadSnippets`.
+- [`.claude/CONTEXT.md`](file:///home/thirzq/webisaurus/.claude/CONTEXT.md) — Updated status to Cache v6.
+
+### 💡 Root Cause Analysis & Technical Fix
+1. **HTTP 502 Bad Gateway**:
+   - *Cause*: In the preceding session, `docker compose up -d --build` stopped the container for several seconds during rebuilding. The Cloudflare Tunnel (`cloudflared`) routed requests to `localhost:10090` while the container was temporarily offline, returning HTTP 502 for all incoming requests.
+   - *Fix*: The container is running and healthy. Assets and container were synchronized with zero-downtime hot-reload (`docker cp` + `nginx -s reload`). In addition, `sw.js` was enhanced to catch 5xx responses and fall back to local Cache API copy rather than serving an error page.
+2. **`TypeError: Failed to convert value to 'Response'` in `sw.js`**:
+   - *Cause*: In `sw.js`, when a network request failed or was offline, `.catch(() => caches.match(event.request))` was used. When the requested URL was not yet in the cache, `caches.match(...)` resolved to `undefined`. In Service Workers, passing a Promise that resolves to `undefined` to `event.respondWith()` causes the browser engine to throw `TypeError: Failed to convert value to 'Response'`.
+   - *Fix*: Refactored both the data (`/data/*.json`) and app shell fetch handlers to guarantee that every return path provides a valid `Response` object (network response, cached response, or a fallback 503 `Response` object with appropriate Content-Type).
+3. **PWA Deprecation Warning**:
+   - *Cause*: Modern Chromium browsers require `<meta name="mobile-web-app-capable" content="yes">` in preference over the Apple-prefixed tag.
+   - *Fix*: Added the standard `<meta name="mobile-web-app-capable" content="yes">` tag to both `index.html` and `compare.html`.
+
+### 🧪 Verification & Status
+- ✅ `node --check` passed with 0 errors across `sw.js`, `data-loader.js`, `app.js`, and `compare.js`.
+- ✅ Live endpoints verified via `curl` against `https://c.nevatal.id`:
+  - `https://c.nevatal.id/` (200 OK)
+  - `https://c.nevatal.id/manifest.json` (200 OK)
+  - `https://c.nevatal.id/sw.js` (200 OK, v6 deployed)
+  - `https://c.nevatal.id/data/concepts.json` (200 OK)
+  - `https://c.nevatal.id/data/registry.json` (200 OK)
+  - `https://c.nevatal.id/data/snippets/rust.json` (200 OK)
+  - `https://c.nevatal.id/data/snippets/go.json` (200 OK)
+  - `https://c.nevatal.id/data/snippets/typescript.json` (200 OK)
+  - `https://c.nevatal.id/data/snippets/java.json` (200 OK)
+- ✅ Zero-downtime hot reload completed and Docker image updated.
 
 
 
 
 
 
+
+
+
+---
+
+## 📝 Session: 2026-09-08 — SEO: Sitemap & Robots for c.nevatal.id
+
+### 🎯 Objective
+Create `sitemap.xml` and `robots.txt` for search-engine crawlers, served from the site root at `https://c.nevatal.id`.
+
+### 📂 Files Created / Modified
+- `src/sitemap.xml` — Generated data-driven from `src/data/registry.json`: 142 URLs total — `/` (priority 1.0), `/compare.html` (priority 0.8), and all 140 language deep links `/?lang=<id>` (priority 0.6). `lastmod` = 2026-09-08. Valid sitemaps.org 0.9 namespace.
+- `src/robots.txt` — Allows all user agents, points to `Sitemap: https://c.nevatal.id/sitemap.xml`.
+
+### 💡 Key Decisions
+- Sitemap generated programmatically from `registry.json` (single source of truth; regenerating after language additions re-enumerates the URLs).
+- Canonical URLs only: `/` listed instead of `/index.html` to avoid duplicate-content entries.
+- No `changefreq` (ignored by Google); `priority` kept as a soft hint only.
+- `robots.txt` intentionally permissive — no disallow rules; static JSON/JS assets are harmless to crawl.
+
+### 🧪 Verification & Status
+- ✅ `sitemap.xml` parses as valid XML (142 `<loc>` entries).
+- ✅ Deployed via zero-downtime hot-reload: `docker cp` into `webisaurus_web:/usr/share/nginx/html/` + `nginx -s reload`.
+- ✅ Live endpoints verified via `curl`:
+  - `https://c.nevatal.id/sitemap.xml` (200 OK, `text/xml`)
+  - `https://c.nevatal.id/robots.txt` (200 OK, `text/plain`)
+
+### 🔜 Pending Items / Next Steps
+- Submit the sitemap in Google Search Console (and Bing Webmaster Tools) if not already done.

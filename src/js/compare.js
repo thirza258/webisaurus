@@ -266,6 +266,17 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
     
+    // Seamless update when fresh background snippet data is loaded
+    window.addEventListener('webisaurus:snippets-loaded', (e) => {
+        if (!e.detail) return;
+        ['1', '2', '3'].forEach(slot => {
+            const select = document.querySelector(`.slot-lang-select[data-slot="${slot}"]`);
+            if (select && select.value === e.detail.langId) {
+                updateSlot(slot);
+            }
+        });
+    });
+
     // Initial load of active slots
     updateSlot('1');
     updateSlot('2');

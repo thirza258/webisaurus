@@ -142,83 +142,87 @@ document.addEventListener('DOMContentLoaded', async () => {
                 conceptsGrid.appendChild(catHeader);
 
                 categoryObj.concepts.forEach(concept => {
-                    const article = document.createElement('article');
-                    article.classList.add('concept-card');
-                    article.id = `concept-${concept.concept_id}`;
-                    article.dataset.conceptId = concept.concept_id;
+                    try {
+                        const article = document.createElement('article');
+                        article.classList.add('concept-card');
+                        article.id = `concept-${concept.concept_id}`;
+                        article.dataset.conceptId = concept.concept_id;
 
-                    const header = document.createElement('div');
-                    header.classList.add('concept-card-header');
+                        const header = document.createElement('div');
+                        header.classList.add('concept-card-header');
 
-                    const title = document.createElement('h3');
-                    title.classList.add('concept-title');
-                    title.textContent = concept.name;
+                        const title = document.createElement('h3');
+                        title.classList.add('concept-title');
+                        title.textContent = concept.name;
 
-                    // Action buttons group (Copy + Compare) (P2)
-                    const actionsDiv = document.createElement('div');
-                    actionsDiv.classList.add('concept-card-actions');
+                        // Action buttons group (Copy + Compare) (P2)
+                        const actionsDiv = document.createElement('div');
+                        actionsDiv.classList.add('concept-card-actions');
 
-                    // Cross-Navigation: Compare button (P2)
-                    const compareLink = document.createElement('a');
-                    compareLink.classList.add('concept-action-btn');
-                    compareLink.title = 'Compare this concept in Multi-Language Comparator';
-                    compareLink.href = `compare.html?concept=${concept.concept_id}&slots=${langId},${defaultPeer}`;
-                    compareLink.textContent = '⇄ Compare';
-                    actionsDiv.appendChild(compareLink);
+                        // Cross-Navigation: Compare button (P2)
+                        const compareLink = document.createElement('a');
+                        compareLink.classList.add('concept-action-btn');
+                        compareLink.title = 'Compare this concept in Multi-Language Comparator';
+                        compareLink.href = `compare.html?concept=${concept.concept_id}&slots=${langId},${defaultPeer}`;
+                        compareLink.textContent = '⇄ Compare';
+                        actionsDiv.appendChild(compareLink);
 
-                    // Copy code button
-                    const copyBtn = document.createElement('button');
-                    copyBtn.classList.add('copy-btn');
-                    copyBtn.textContent = '📋 Copy';
-                    actionsDiv.appendChild(copyBtn);
+                        // Copy code button
+                        const copyBtn = document.createElement('button');
+                        copyBtn.classList.add('copy-btn');
+                        copyBtn.textContent = '📋 Copy';
+                        actionsDiv.appendChild(copyBtn);
 
-                    header.appendChild(title);
-                    header.appendChild(actionsDiv);
+                        header.appendChild(title);
+                        header.appendChild(actionsDiv);
 
-                    const pre = document.createElement('pre');
-                    pre.classList.add('code-block');
+                        const pre = document.createElement('pre');
+                        pre.classList.add('code-block');
 
-                    const codeEl = document.createElement('code');
-                    codeEl.className = `language-${getPrismLanguage(langId)}`;
+                        const codeEl = document.createElement('code');
+                        codeEl.className = `language-${getPrismLanguage(langId)}`;
 
-                    const notesEl = document.createElement('p');
-                    notesEl.classList.add('concept-notes');
+                        const notesEl = document.createElement('p');
+                        notesEl.classList.add('concept-notes');
 
-                    const snippet = snippets[concept.concept_id];
-                    if (snippet) {
-                        codeEl.textContent = snippet.code;
-                        notesEl.textContent = snippet.notes || '';
+                        const snippet = snippets[concept.concept_id];
+                        if (snippet) {
+                            codeEl.textContent = snippet.code;
+                            notesEl.textContent = snippet.notes || '';
 
-                        copyBtn.addEventListener('click', async () => {
-                            try {
-                                await navigator.clipboard.writeText(snippet.code);
-                                copyBtn.textContent = '✓ Copied!';
-                                setTimeout(() => {
-                                    copyBtn.textContent = '📋 Copy';
-                                }, 1800);
-                            } catch (err) {
-                                console.error('Failed to copy', err);
-                            }
-                        });
-                    } else {
-                        codeEl.textContent = 'No snippet available for this concept.';
-                        notesEl.textContent = '';
-                        copyBtn.style.display = 'none';
-                    }
-
-                    pre.appendChild(codeEl);
-                    article.appendChild(header);
-                    article.appendChild(pre);
-                    article.appendChild(notesEl);
-
-                    conceptsGrid.appendChild(article);
-
-                    if (window.Prism && snippet) {
-                        try {
-                            window.Prism.highlightElement(codeEl);
-                        } catch (err) {
-                            console.warn('Prism highlighting fallback:', err);
+                            copyBtn.addEventListener('click', async () => {
+                                try {
+                                    await navigator.clipboard.writeText(snippet.code);
+                                    copyBtn.textContent = '✓ Copied!';
+                                    setTimeout(() => {
+                                        copyBtn.textContent = '📋 Copy';
+                                    }, 1800);
+                                } catch (err) {
+                                    console.error('Failed to copy', err);
+                                }
+                            });
+                        } else {
+                            codeEl.textContent = 'No snippet available for this concept.';
+                            notesEl.textContent = '';
+                            copyBtn.style.display = 'none';
                         }
+
+                        pre.appendChild(codeEl);
+                        article.appendChild(header);
+                        article.appendChild(pre);
+                        article.appendChild(notesEl);
+
+                        conceptsGrid.appendChild(article);
+
+                        if (window.Prism && snippet) {
+                            try {
+                                window.Prism.highlightElement(codeEl);
+                            } catch (err) {
+                                console.warn('Prism highlighting fallback:', err);
+                            }
+                        }
+                    } catch (cardErr) {
+                        console.error('Failed to render concept card:', concept.concept_id, cardErr);
                     }
                 });
             });
@@ -234,6 +238,13 @@ document.addEventListener('DOMContentLoaded', async () => {
                 }
             }
         }
+
+        // Seamless update if background revalidation returns fresh snippets
+        window.addEventListener('webisaurus:snippets-loaded', (e) => {
+            if (e.detail && e.detail.langId === currentSelectedLangId) {
+                selectLanguage(currentSelectedLangId, false);
+            }
+        });
 
         // Language click event
         languageList.addEventListener('click', (e) => {

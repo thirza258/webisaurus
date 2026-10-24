@@ -4,7 +4,22 @@ const cache = {
     snippets: new Map()
 };
 
-const STORAGE_PREFIX = 'webisaurus_cache_v4_';
+const STORAGE_PREFIX = 'webisaurus_cache_v5_';
+
+// Purge any stale caches from older versions immediately
+function cleanupOldStorage() {
+    try {
+        const keysToRemove = [];
+        for (let i = 0; i < localStorage.length; i++) {
+            const k = localStorage.key(i);
+            if (k && k.startsWith('webisaurus_cache_') && !k.startsWith(STORAGE_PREFIX)) {
+                keysToRemove.push(k);
+            }
+        }
+        keysToRemove.forEach(k => localStorage.removeItem(k));
+    } catch (e) {}
+}
+cleanupOldStorage();
 
 function getStorage(key) {
     try {
@@ -65,7 +80,7 @@ export async function loadRegistry() {
         setStorage('registry', data);
         return data;
     } catch (error) {
-        console.error('Failed to load registry:', error);
+        console.warn('Failed to load registry:', error);
         return [];
     }
 }
@@ -83,6 +98,9 @@ export async function loadConcepts() {
                 if (fresh) {
                     cache.concepts = fresh;
                     setStorage('concepts', fresh);
+                    window.dispatchEvent(new CustomEvent('webisaurus:concepts-loaded', {
+                        detail: { concepts: fresh }
+                    }));
                 }
             })
             .catch(() => {});
@@ -97,7 +115,7 @@ export async function loadConcepts() {
         setStorage('concepts', data);
         return data;
     } catch (error) {
-        console.error('Failed to load concepts:', error);
+        console.warn('Failed to load concepts:', error);
         return [];
     }
 }
@@ -115,6 +133,9 @@ export async function loadSnippets(langId) {
                 if (fresh) {
                     cache.snippets.set(langId, fresh);
                     setStorage('snippet_' + langId, fresh);
+                    window.dispatchEvent(new CustomEvent('webisaurus:snippets-loaded', {
+                        detail: { langId, snippets: fresh.snippets || {} }
+                    }));
                 }
             })
             .catch(() => {});
@@ -129,7 +150,7 @@ export async function loadSnippets(langId) {
         setStorage('snippet_' + langId, data);
         return data;
     } catch (error) {
-        console.error(`Failed to load snippets for ${langId}:`, error);
+        console.warn(`Failed to load snippets for ${langId}:`, error);
         return { language_id: langId, snippets: {} };
     }
 }
@@ -138,7 +159,7 @@ export function preloadSnippets(langIds) {
     if (!Array.isArray(langIds)) return;
     langIds.forEach(id => {
         if (!cache.snippets.has(id)) {
-            loadSnippets(id);
+            loadSnippets(id).catch(() => {});
         }
     });
 }
