@@ -1,0 +1,19 @@
+{
+  "serverInfo": {
+    "name": "webisaurus-mcp",
+    "version": "1.0.0"
+  },
+  "endpoint": "https://c.nevatal.id/mcp",
+  "capabilities": {
+    "tools": {
+      "listChanged": false
+    },
+    "resources": {
+      "subscribe": false,
+      "listChanged": false
+    },
+    "prompts": {
+      "listChanged": false
+    }
+  }
+}

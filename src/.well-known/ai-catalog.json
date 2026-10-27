@@ -1,0 +1,28 @@
+{
+  "specVersion": "1.0",
+  "host": {
+    "displayName": "Webisaurus",
+    "identifier": "did:web:c.nevatal.id"
+  },
+  "entries": [
+    {
+      "identifier": "urn:air:c.nevatal.id:api:site",
+      "displayName": "Webisaurus API",
+      "type": "application/json",
+      "url": "https://c.nevatal.id/sitemap.xml",
+      "representativeQueries": [
+        "what does Webisaurus do",
+        "get data from Webisaurus"
+      ]
+    },
+    {
+      "identifier": "urn:air:c.nevatal.id:server:mcp",
+      "displayName": "Webisaurus MCP Server",
+      "type": "application/mcp-server-card+json",
+      "url": "https://c.nevatal.id/.well-known/mcp/server-card.json",
+      "representativeQueries": [
+        "query Webisaurus"
+      ]
+    }
+  ]
+}

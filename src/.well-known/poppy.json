@@ -1,0 +1,46 @@
+{
+  "protocol_version": "0.1",
+  "organization": {
+    "name": "Nevatal",
+    "domain": "c.nevatal.id"
+  },
+  "auth": {
+    "issuer": "https://c.nevatal.id",
+    "direct": {
+      "scopes": [
+        "poppy:read",
+        "poppy:write"
+      ]
+    },
+    "device": {
+      "scopes": [
+        "poppy:read",
+        "poppy:write"
+      ]
+    }
+  },
+  "agent": {
+    "protocols": [
+      {
+        "type": "poppy",
+        "endpoint": "https://c.nevatal.id/api/"
+      }
+    ]
+  },
+  "apis": [
+    {
+      "type": "openapi",
+      "url": "https://c.nevatal.id/sitemap.xml",
+      "description": "Webisaurus API"
+    },
+    {
+      "type": "mcp",
+      "url": "https://c.nevatal.id/mcp",
+      "description": "Webisaurus MCP server"
+    }
+  ],
+  "web": {
+    "browser_session_endpoint": "https://c.nevatal.id/"
+  },
+  "extensions": {}
+}

@@ -1,0 +1,45 @@
+{
+  "name": "Webisaurus Agent",
+  "description": "Polyglot syntax reference and multi-language code comparator covering 140 programming languages.",
+  "url": "https://c.nevatal.id",
+  "provider": {
+    "name": "Nevatal",
+    "url": "https://c.nevatal.id"
+  },
+  "version": "1.0.0",
+  "protocolVersion": "0.3.0",
+  "preferredTransport": "JSONRPC",
+  "supportedInterfaces": [
+    {
+      "url": "https://c.nevatal.id/api",
+      "protocolBinding": "JSONRPC",
+      "protocolVersion": "0.3.0"
+    }
+  ],
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false
+  },
+  "defaultInputModes": [
+    "text/plain"
+  ],
+  "defaultOutputModes": [
+    "text/plain"
+  ],
+  "skills": [
+    {
+      "id": "compare-syntax",
+      "name": "Compare Language Syntax",
+      "description": "Compare how two or three programming languages express the same concept."
+    },
+    {
+      "id": "browse-syntax",
+      "name": "Browse Syntax Reference",
+      "description": "Browse syntax snippets for 140 languages and 24 concepts."
+    }
+  ],
+  "authentication": {
+    "type": "oauth2",
+    "discovery_url": "https://c.nevatal.id/.well-known/oauth-authorization-server"
+  }
+}

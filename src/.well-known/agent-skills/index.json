@@ -1,0 +1,17 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "compare-syntax",
+      "type": "skill-md",
+      "description": "Compare how two or three programming languages express the same concept.",
+      "url": "https://c.nevatal.id/.well-known/agent-skills/compare-syntax/SKILL.md"
+    },
+    {
+      "name": "browse-syntax",
+      "type": "skill-md",
+      "description": "Browse syntax snippets for 140 languages and 24 concepts.",
+      "url": "https://c.nevatal.id/.well-known/agent-skills/browse-syntax/SKILL.md"
+    }
+  ]
+}

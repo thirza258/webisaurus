@@ -1,0 +1,25 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://c.nevatal.id/api",
+      "service-desc": [
+        {
+          "href": "https://c.nevatal.id/sitemap.xml",
+          "type": "application/json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://c.nevatal.id/auth.md",
+          "type": "text/markdown"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://c.nevatal.id/sitemap.xml",
+          "type": "application/json"
+        }
+      ]
+    }
+  ]
+}

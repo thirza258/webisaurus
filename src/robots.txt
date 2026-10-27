@@ -3,3 +3,4 @@ Content-Signal: ai-train=yes, search=yes, ai-input=yes
 Allow: /
 
 Sitemap: https://c.nevatal.id/sitemap.xml
+Agentmap: https://c.nevatal.id/.well-known/ai-catalog.json

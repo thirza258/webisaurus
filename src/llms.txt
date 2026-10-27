@@ -1,0 +1,11 @@
+# Webisaurus
+
+> Polyglot syntax reference and multi-language code comparator covering 140 programming languages.
+
+## Endpoints
+- Homepage: https://c.nevatal.id/
+- API: https://c.nevatal.id/sitemap.xml
+- API Catalog: https://c.nevatal.id/.well-known/api-catalog
+- Agent Card: https://c.nevatal.id/.well-known/agent-card.json
+- AI Catalog: https://c.nevatal.id/.well-known/ai-catalog.json
+- Authentication Guide: https://c.nevatal.id/auth.md
