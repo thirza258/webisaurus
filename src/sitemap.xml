@@ -11,6 +11,16 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://c.nevatal.id/privacy.html</loc>
+    <lastmod>2026-11-01</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://c.nevatal.id/terms.html</loc>
+    <lastmod>2026-11-01</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://c.nevatal.id/?lang=actionscript</loc>
     <lastmod>2026-09-08</lastmod>
     <priority>0.6</priority>
